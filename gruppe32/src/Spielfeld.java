@@ -2,9 +2,10 @@
 public class Spielfeld {
 /*hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass) */
 int[][][] spielfeld = new int [4][20][15];
-int level = 0;
+int level;
 int reihe;
 int spalte;
+int aktuellesLevel;
 /*muss in der main-class direkt am anfang ausgefuehrt werden*/
 public void levelsErstellen() {
 /*Allen Randfeldern in allen Leveln den Wert 1 ("hier is ne mauer") geben*/
@@ -21,14 +22,35 @@ public void levelsErstellen() {
 			}
 		}
 	}
-	
-	
-		
-	
 	//startfelder(2) und zielfelder(3) setzen, erstmal fuer alle level das gleiche
 	spielfeld[0][0][5]=spielfeld[1][0][5]=spielfeld[2][0][5]=spielfeld[3][0][5]=2;
 	spielfeld[0][19][5]=spielfeld[1][19][5]=spielfeld[2][19][5]=spielfeld[3][19][5]=3;
 }
+
+public void levelDarstellen() {
+	//stellt StdDraw auf eine besser handhabbare skala um
+	StdDraw.setXscale(0.0,800);
+	StdDraw.setYscale(0,600);
+	for (spalte=0;spalte<20;spalte++) {
+		for(reihe=0;reihe<15;reihe++) {
+			// stellt an allen orten das dem wert entsprechende bild dar
+			if (spielfeld[aktuellesLevel][spalte][reihe]==0){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "boden.jpg"); 
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==1){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "mauer.jpg");
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==2){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "start.jpg");
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==3){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "ziel.jpg");
+			}
+		}
+	}
+}
+
+
 public int wertBeiKoordinaten(int n,int m)
 {
 	return spielfeld[level][n][m];

@@ -7,11 +7,10 @@ public class main extends JFrame implements ActionListener{
 //Buttons sollen nur in dieser Klasse verwendet werden -->private
 private JButton starten;
 private JButton ende;
+private Spielfeld mySpielfeld;
 
 public static void main(String[] args) {
-
-		/*Spielfeld mySpielfeld = new Spielfeld();
-		mySpielfeld.levelsErstellen();*/
+		
 		main frame = new main("Menü");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//frame soll geschlossen werden können
 		frame.setSize(400,400); //Groesse vom frame
@@ -31,6 +30,7 @@ public main(String title){
 	ende.addActionListener(this);
 	add(ende);
 	
+	mySpielfeld = new Spielfeld();
 }
 
 //oeffnet neues Fenster
@@ -45,7 +45,10 @@ public static void fenster(){
 public void actionPerformed(ActionEvent event) {
 	//wenn der Button 'starten' gedrueckt wird soll sich Fenster mit Spielfeld oeffnen
 	if (event.getSource()==starten){
-		fenster();
+		//fenster();
+		mySpielfeld.levelsErstellen(); //berechnet die werte für alle levels
+		StdDraw.setCanvasSize(880,660); // öffnet ein StdDraw fenster
+		mySpielfeld.levelDarstellen(); // stellt das aktuelle/erste level dar
 	}
 	//wenn der Button 'schliessen' gedrueckt wird, soll sich das Menuefenster schliessen
 	if(event.getSource()==ende){

@@ -25,6 +25,9 @@ public void levelsErstellen() {
 	//startfelder(2) und zielfelder(3) setzen, erstmal fuer alle level das gleiche
 	spielfeld[0][0][5]=spielfeld[1][0][5]=spielfeld[2][0][5]=spielfeld[3][0][5]=2;
 	spielfeld[0][19][5]=spielfeld[1][19][5]=spielfeld[2][19][5]=spielfeld[3][19][5]=3;
+	//testfallen&mobs
+	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=4;
+	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
 }
 
 public void levelDarstellen() {
@@ -45,6 +48,12 @@ public void levelDarstellen() {
 			}
 			else if (spielfeld[aktuellesLevel][spalte][reihe]==3){
 				StdDraw.picture(20+40*spalte,20+40*reihe, "ziel.jpg");
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==4){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "falle.jpg");
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==5){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "mob.jpg");
 			}
 		}
 	}

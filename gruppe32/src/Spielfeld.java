@@ -28,6 +28,8 @@ public void levelsErstellen() {
 	//testfallen&mobs
 	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=4;
 	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
+	//spielfigur(6) testweise an den Anfang setzten
+	spielfeld[0][1][5]=6;
 }
 
 public void levelDarstellen() {
@@ -54,6 +56,9 @@ public void levelDarstellen() {
 			}
 			else if (spielfeld[aktuellesLevel][spalte][reihe]==5){
 				StdDraw.picture(20+40*spalte,20+40*reihe, "mob.jpg");
+			}
+			else if (spielfeld[aktuellesLevel][spalte][reihe]==6){
+				StdDraw.picture(20+40*spalte,20+40*reihe, "spielfigur.jpg");
 			}
 		}
 	}

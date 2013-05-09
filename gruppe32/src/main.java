@@ -33,19 +33,13 @@ public main(String title){
 	mySpielfeld = new Spielfeld();
 }
 
-//oeffnet neues Fenster
-public static void fenster(){
-	JFrame fenster = new JFrame("Dungeon Crawler"); //erstellt Fenster
-	fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //soll geschlossen werden koennen
-	fenster.setSize(650,350); 
-	fenster.setVisible(true); 
-	}
-
-//Methode gibt an, was passiert, wenn man die Buttons drueckt
+/**
+ * Methode gibt an, was passiert, wenn man die Buttons drueckt
+ * 
+ */
 public void actionPerformed(ActionEvent event) {
 	//wenn der Button 'starten' gedrueckt wird soll sich Fenster mit Spielfeld oeffnen
 	if (event.getSource()==starten){
-		//fenster();
 		mySpielfeld.levelsErstellen(); //berechnet die werte für alle levels
 		StdDraw.setCanvasSize(880,660); // öffnet ein StdDraw fenster
 		mySpielfeld.levelDarstellen(); // stellt das aktuelle/erste level dar

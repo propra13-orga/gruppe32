@@ -1,4 +1,10 @@
-
+/**
+ * 
+ * Klassenkommentar:
+ * Erstellung eines Spielfeldes (Spiellogik) und
+ * Darstellung dieses Spielfeldes (Grafik)
+ * 
+ */
 public class Spielfeld {
 /*hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass) */
 int[][][] spielfeld = new int [4][20][15];
@@ -6,7 +12,14 @@ int level;
 int reihe;
 int spalte;
 int aktuellesLevel;
-/*muss in der main-class direkt am anfang ausgefuehrt werden*/
+
+/**
+ * 
+ * Methodenkommentar:
+ * Spiellogik: Erstellung des 1. Levels
+ * (muss in der main-class direkt am anfang ausgefuehrt werden)
+ * 
+ */
 public void levelsErstellen() {
 /*Allen Randfeldern in allen Leveln den Wert 1 ("hier is ne mauer") geben*/
 	for (spalte=0; spalte<20; spalte++) {
@@ -32,6 +45,13 @@ public void levelsErstellen() {
 	spielfeld[0][1][5]=6;
 }
 
+
+/**
+ * 
+ * Methodenkommentar:
+ * Darstellung der Levels (Grafik)
+ * 
+ */
 public void levelDarstellen() {
 	//stellt StdDraw auf eine besser handhabbare skala um
 	StdDraw.setXscale(0.0,800);

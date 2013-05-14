@@ -1,3 +1,5 @@
+import javax.swing.JLabel;
+
 /**
  * 
  * Klassenkommentar:
@@ -89,4 +91,24 @@ public int wertBeiKoordinaten(int n,int m)
 {
 	return spielfeld[level][n][m];
 }
+
+
+
+
+// JLabel gameOver; // Label fuer gameOver
+
+// gameOver = new JLabel(); 
+// gameOver.setVisible(false); 
+
+// /**
+//  * Methodenkommentar:
+//  * Beendigung des Spieles (noch nicht ausgearbeitet)
+//  * 
+//  */
+// public void endGame(){ 
+//	gameOver.setVisible(true); 
+//	gameOver.setText("GAME OVER"); 
+//} 
+
+
 }

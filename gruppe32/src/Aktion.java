@@ -1,3 +1,10 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
 /**
  * Klassenkommentar:
  * Hauptspiellogik bzw. was tun wenn was passiert
@@ -11,9 +18,45 @@ static int figurX;
 static int figurY;
 int aktuellesLevel = 0;
 
+
+// so in der Art könnte man vielleicht die Bewegungen abfragen? ist allerdings noch fehlerhaft 
+boolean up;
+boolean down;
+boolean left;
+boolean right;
+
+
+public void keyTyped(KeyEvent e) {
+}
+
+public void keyReleased(KeyEvent e){
+}
+
+public void actionPerformed(ActionEvent e) {
+}
+
+/*
+public void KeyPressed(KeyEvent e){
+	if (e.getKeyCode==KeyEvent.VK_UP){
+		up=true;
+	}
+	if (e.getKeyCode==KeyEvent.VK_DOWN){
+		down=true;
+	}
+	if (e.getKeyCode==KeyEvent.VK_LEFT){
+		left=true;
+	}
+	if (e.getKeyCode==KeyEvent.VK_RIGHT){
+		right=true;
+	}
+}
+*/
+// müssen dann wahrscheinlich irgendwann auch wieder auf false gesetzt werden...
+
+
 public void figurBewegen(int richtung){
 	
-	if (richtung==0){ //rechts
+	if (right){ //rechts
 		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==0){
 			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
 			figurX=figurX+1;
@@ -28,7 +71,7 @@ public void figurBewegen(int richtung){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}
-	else if (richtung==1){ //unten
+	else if (down){ //unten
 		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY-1)==0){
 			Darstellung.figurBewegen(figurX,figurY,figurX,figurY-1);
 			figurY=figurY-1;
@@ -42,7 +85,7 @@ public void figurBewegen(int richtung){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}
-	else if (richtung==2){ //links
+	else if (left){ //links
 		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==0){
 			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
 			figurX=figurX-1;
@@ -56,7 +99,7 @@ public void figurBewegen(int richtung){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}
-	else if (richtung==3){ //oben
+	else if (up){ //oben
 		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY+1)==0){
 			Darstellung.figurBewegen(figurX,figurY,figurX,figurY+1);
 			figurY=figurY+1;
@@ -76,6 +119,8 @@ public static void setFigurXY(int x, int y){
 	figurX=x;
 	figurY=y;		
 }
+
+
 
 }
 

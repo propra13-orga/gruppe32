@@ -19,8 +19,10 @@ int aktuellesLevel;
 
 /**
  * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
+ *
  */
 public Spielfeld(){
+	// Schleife über alle Level, Spalten und Reihen für Mauersteine
 	for (spalte=0; spalte<20; spalte++) {
 		for (reihe=0; reihe<15; reihe++) {
 			for (level=0; level<4; level++) {

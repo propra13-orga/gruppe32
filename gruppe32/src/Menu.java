@@ -5,7 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 
-
+/**
+ * 
+ * erstellt das Menu
+ *
+ */
 public class Menu extends JFrame{
 
 	public static JButton starten;

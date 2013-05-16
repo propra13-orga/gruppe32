@@ -1,4 +1,4 @@
-/*
+/**
  * Klassenkommentar:
  * Hauptspiellogik bzw. was tun wenn was passiert
  * ACHTUNG! PSEUDOVERSION! NICH FERTIG ! 

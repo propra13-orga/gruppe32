@@ -1,6 +1,6 @@
 
 
-/*
+/**
 *
 *Klassenkommentar:
 *Umsetzung der in Spielfeld generierten Logik auf grafischer Ebene 
@@ -10,6 +10,11 @@ public class Darstellung{
 	static int spalte;
 	static int reihe;
 
+	/**
+	 * Methodenkommentar:
+	 * hinterlegt jedem Feld des Arrays die passende Graphik
+	 * @param level
+	 */
 	public static void levelDarstellen(int level) {
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.setXscale(0.0,800);
@@ -42,7 +47,7 @@ public class Darstellung{
 			}
 		}
 	}
-	/*
+	/**
 	 * Methodenkommentar:
 	 * Stellt die figur an den neuen koordinaten dar, und und ueberschreibt sie am ausgangspunkt
 	 */

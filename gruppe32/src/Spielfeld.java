@@ -16,6 +16,10 @@ int spalte;
 int aktuellesLevel;
 
 
+
+/**
+ * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
+ */
 public Spielfeld(){
 	for (spalte=0; spalte<20; spalte++) {
 		for (reihe=0; reihe<15; reihe++) {

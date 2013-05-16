@@ -7,13 +7,12 @@ import javax.swing.*;
 
 
 /**
- * Klassenkommentar:
- * Menueerstellung
+ * 
+ * Main
  *
  */
 public class Main extends JFrame implements ActionListener, KeyListener {
 
-//Buttons sollen nur in dieser Klasse verwendet werden -->private
 private Spielfeld mySpielfeld;
 private Darstellung darstellung;
 private Aktion aktion;
@@ -28,7 +27,10 @@ public static void main(String[] args) {
 		Menu menu = new Menu();
 	}
 
-
+/**
+ * 
+ * @param title
+ */
 public Main(String title){
 	super(title);
 	mySpielfeld = new Spielfeld();

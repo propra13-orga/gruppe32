@@ -21,15 +21,19 @@ int spielGestartet=0;
 //private JFrame frame;
 
 
+/**
+ * 
+ * Menue wird aufgerufen
+ */
 public static void main(String[] args) {
-		
 		
 		Menu menu = new Menu();
 	}
 
+
 /**
  * 
- * @param title
+ * Objekte für Darstellung, Spielfeld und Aktion werden erstellt
  */
 public Main(String title){
 	super(title);
@@ -43,7 +47,6 @@ public Main(String title){
 
 
 /**
- * Methodenkommentar:
  * Test: KeyListener im Menue
  * 
  */
@@ -52,10 +55,10 @@ public void keyTyped(KeyEvent k){
 }
 
 public void keyPressed(KeyEvent k){
-		if (k.getID() == KeyEvent.VK_A){
-			
-		}
-	
+	//test der KeyEvent-funktion im menue
+	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+		System.exit(0);
+	}
 }
 
 public void keyReleased(KeyEvent k){
@@ -83,12 +86,7 @@ public void actionPerformed(ActionEvent event) {
 		System.exit(0);
 	}
 	
-	//test der KeyEvent-funktion im menue
-	if(event.getID() == KeyEvent.VK_DOWN){
-		StdDraw.setCanvasSize(880,660); // oeffnet ein StdDraw fenster
-		darstellung.levelDarstellen(0); // stellt das aktuelle/erste level dar
-	}
-	}
+}
 
 
 /**

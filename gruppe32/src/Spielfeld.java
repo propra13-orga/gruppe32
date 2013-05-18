@@ -48,28 +48,30 @@ public Spielfeld(){
 }
 
 
-public static int wertBeiXY(int level,int x,int y)
-{
+/**
+ * Spielfeldeigenschaft Wert des Feldes XY abfragen
+ * @param level Level des Spiels
+ * @param x X-Koordinate
+ * @param y Y-Koordinate
+ * 
+ */
+public static int wertLesenBeiXY(int level,int x,int y) {
+	
 	return spielfeld[level][x][y];
 }
 
 
-
-
-// JLabel gameOver; // Label fuer gameOver
-
-// gameOver = new JLabel(); 
-// gameOver.setVisible(false); 
-
-// /**
-//  * Methodenkommentar:
-//  * Beendigung des Spieles (noch nicht ausgearbeitet)
-//  * 
-//  */
-// public void endGame(){ 
-//	gameOver.setVisible(true); 
-//	gameOver.setText("GAME OVER"); 
-//} 
-
+/**
+ * 
+ * @param level Level des Spiels
+ * @param x X-Koordinate
+ * @param y Y-Koordinate
+ * @param wert Wert, der in das entsprechende Spielfeld gesetzt wird
+ * 
+ */
+public static void wertSetzenBeiXY (int level, int x, int y, int wert) {
+	
+	spielfeld[level][x][y] = wert;
+}
 
 }

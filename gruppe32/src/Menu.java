@@ -23,11 +23,14 @@ public class Menu extends JFrame{
 		frame.setVisible(true);
 		frame.setFocusable(true);
 		frame.addKeyListener(frame);
+		
+		// Button "Starten"
 		starten = new JButton("Spiel starten"); //neuer Button
 		starten.setBounds(200,10,160,40); //legt Groesse und Position fest
 		starten.addActionListener(frame); //damit was passiert, wenn man Buttons drueckt
 		frame.add(starten); //wird der Oberflaeche hinzugefuegt
 		
+		// Button "Beenden"
 		ende = new JButton("Beenden"); //folgendes analog zu starten-Button (mit geaenderten Koordinaten)
 		ende.setBounds(440,10,160,40);
 		ende.addActionListener(frame);

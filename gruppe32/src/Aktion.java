@@ -8,7 +8,13 @@ import javax.swing.JFrame;
 /**
  * Klassenkommentar:
  * Hauptspiellogik bzw. was tun wenn was passiert
+ * 
  * ACHTUNG! PSEUDOVERSION! NICH FERTIG ! 
+ * 
+ * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ * PROBLEM: Wie frage ich die KeyEvents im StdDraw-Fenster ab?
+ * 			Aktion-Methode wird nicht aufgerufen!
+ * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  */
 
 
@@ -19,7 +25,6 @@ static int figurY;
 int aktuellesLevel = 0;
 
 
-// so in der Art könnte man vielleicht die Bewegungen abfragen? ist allerdings noch fehlerhaft 
 boolean up;
 boolean down;
 boolean left;
@@ -35,81 +40,98 @@ public void keyReleased(KeyEvent e){
 public void actionPerformed(ActionEvent e) {
 }
 
-/*
+
 public void KeyPressed(KeyEvent e){
-	if (e.getKeyCode==KeyEvent.VK_UP){
+	if (e.getKeyCode()==KeyEvent.VK_UP){
 		up=true;
+		down=false;
+		right=false;
+		left=false;
+		figurBewegen();
 	}
-	if (e.getKeyCode==KeyEvent.VK_DOWN){
+	if (e.getKeyCode()==KeyEvent.VK_DOWN){
+		up=false;
 		down=true;
+		right=false;
+		left=false;
+		figurBewegen();
 	}
-	if (e.getKeyCode==KeyEvent.VK_LEFT){
+	if (e.getKeyCode()==KeyEvent.VK_LEFT){
+		up=false;
+		down=false;
+		right=false;
 		left=true;
+		figurBewegen();
 	}
-	if (e.getKeyCode==KeyEvent.VK_RIGHT){
+	if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+		up=false;
+		down=false;
 		right=true;
+		left=false;
+		figurBewegen();
 	}
 }
-*/
-// müssen dann wahrscheinlich irgendwann auch wieder auf false gesetzt werden...
 
 
-public void figurBewegen(int richtung){
+public void figurBewegen(){
 	
 	if (right){ //rechts
-		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==0){
-			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX+1;
 		}
 
-		else if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==3){
-			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==3){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			aktuellesLevel++;
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
-		else if ((Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Darstellung.levelDarstellen(aktuellesLevel);
+			// Game-Over-Text einblenden
+			// Game-Over-Status auf true setzen, weitere Key-Atkionen unterbinden
+			
 		}
 	}
 	else if (down){ //unten
-		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY-1)==0){
-			Darstellung.figurBewegen(figurX,figurY,figurX,figurY-1);
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==0){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			figurY=figurY-1;
 		}
-		else if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY-1)==3){
-			Darstellung.figurBewegen(figurX,figurY,figurX,figurY-1);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==3){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			aktuellesLevel++;
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
-		else if ((Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY-1)==4)|(Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY-1)==5)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==5)){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}
 	else if (left){ //links
-		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==0){
-			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX-1;
 		}
-		else if (Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==3){
-			Darstellung.figurBewegen(figurX,figurY,figurX+1,figurY);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==3){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			aktuellesLevel++;
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
-		else if ((Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}
 	else if (up){ //oben
-		if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY+1)==0){
-			Darstellung.figurBewegen(figurX,figurY,figurX,figurY+1);
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==0){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
 			figurY=figurY+1;
 		}
-		else if (Spielfeld.wertBeiXY(aktuellesLevel,figurX,figurY+1)==3){
-			Darstellung.figurBewegen(figurX,figurY,figurX,figurY+1);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==3){
+			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
 			aktuellesLevel++;
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
-		else if ((Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Darstellung.levelDarstellen(aktuellesLevel);
 		}
 	}

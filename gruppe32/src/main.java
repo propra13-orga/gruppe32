@@ -77,8 +77,7 @@ public void actionPerformed(ActionEvent event) {
 	//wenn der Button 'starten' gedrueckt wird, soll sich Fenster mit Spielfeld oeffnen
 	if (event.getSource() == Menu.starten){
 		spielGestartet=1;
-		StdDraw.setCanvasSize(880,660); // oeffnet ein StdDraw fenster
-		darstellung.levelDarstellen(0); // stellt das aktuelle/erste level dar
+		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
 	}
 	
 	//wenn der Button 'schliessen' gedrueckt wird, soll sich das Menuefenster schliessen

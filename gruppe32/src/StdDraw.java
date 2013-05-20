@@ -117,7 +117,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     private static StdDraw std = new StdDraw();
 
     // the frame for drawing to the screen
-    private static JFrame frame;
+    public static Main frame;
 
     // mouse state
     private static boolean mousePressed = false;
@@ -162,7 +162,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     // init
     private static void init() {
         if (frame != null) frame.setVisible(false);
-        frame = new JFrame();
+        frame = new Main("Dungeoncrawler");
         offscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         onscreenImage  = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         offscreen = offscreenImage.createGraphics();
@@ -198,6 +198,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
         frame.setJMenuBar(createMenuBar());
         frame.pack();
         frame.requestFocusInWindow();
+        frame.setFocusable(true);
         frame.setVisible(true);
     }
 

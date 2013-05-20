@@ -77,17 +77,17 @@ public void figurBewegen(){
 	
 	if (right){ //rechts
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX+1;
 		}
 
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==3){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			aktuellesLevel++;
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 			// Game-Over-Text einblenden
 			// Game-Over-Status auf true setzen, weitere Key-Atkionen unterbinden
 			
@@ -95,44 +95,44 @@ public void figurBewegen(){
 	}
 	else if (down){ //unten
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==0){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			figurY=figurY-1;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==3){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			aktuellesLevel++;
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==5)){
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 	}
 	else if (left){ //links
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX-1;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==3){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			aktuellesLevel++;
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 	}
 	else if (up){ //oben
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==0){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
 			figurY=figurY+1;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==3){
-			Darstellung.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
 			aktuellesLevel++;
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
-			Darstellung.levelDarstellen(aktuellesLevel);
+			Menu.levelDarstellen(aktuellesLevel);
 		}
 	}
 }

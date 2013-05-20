@@ -18,6 +18,7 @@ public class Menu extends JFrame{
 	public Menu(){
 		Main frame = new Main("Menü");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //frame soll geschlossen werden koennen
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(880,660); //Groesse vom frame
 		frame.setLayout(null);
 		frame.setVisible(true);

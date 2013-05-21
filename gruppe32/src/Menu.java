@@ -35,6 +35,7 @@ public class Menu{
 		starten = new JButton("Spiel starten"); //neuer Button
 		starten.setBounds(200,10,160,40); //legt Groesse und Position fest
 		starten.addActionListener(std.frame); //damit was passiert, wenn man Buttons drueckt
+		starten.setFocusable(false);
 		std.frame.add(starten); //wird der Oberflaeche hinzugefuegt
 		
 		// Button "Beenden"
@@ -42,6 +43,8 @@ public class Menu{
 		ende.setBounds(440,10,160,40);
 		ende.addActionListener(std.frame);
 		std.frame.add(ende);
+		
+		std.frame.addKeyListener(std.frame);
 	
 	
 	}
@@ -91,12 +94,23 @@ public class Menu{
 	 */
 	public static void figurBewegen(int level, int vonX, int vonY, int nachX, int nachY ){
 		
-		Spielfeld.wertSetzenBeiXY(level, vonX, vonY, 0);
+		
 		StdDraw.picture(20+40*vonX,20+40*vonY, "boden.jpg");
 		
-		Spielfeld.wertSetzenBeiXY(level, nachX, nachY, 6);
-		StdDraw.picture(20+40*nachX,20+40*nachY+1, "figur.jpg");
 		
+		StdDraw.picture(20+40*nachX,20+40*nachY+1, "spielfigur.jpg");
+		
+	}
+	public static void figurReset(int level,int x, int y){
+		for (spalte=0;spalte<20;spalte++) {
+			for(reihe=0;reihe<15;reihe++) {
+				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==6){
+					StdDraw.picture(20+40*x,20+40*y,"boden.jpg");
+					StdDraw.picture(20+40*spalte,20+40*reihe, "spielfigur.jpg");
+					Aktion.setFigurXY(spalte, reihe);
+			}
+		}
+		}
 	}
 	
 }

@@ -50,20 +50,7 @@ public Main(String title){
  * Test: KeyListener im Menue
  * 
  */
-public void keyTyped(KeyEvent k){
 
-}
-
-public void keyPressed(KeyEvent k){
-	//test der KeyEvent-funktion im menue
-	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
-		System.exit(0);
-	}
-}
-
-public void keyReleased(KeyEvent k){
-	
-}
 
 
 
@@ -78,15 +65,40 @@ public void actionPerformed(ActionEvent event) {
 	if (event.getSource() == Menu.starten){
 		spielGestartet=1;
 		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
+		
 	}
 	
 	//wenn der Button 'schliessen' gedrueckt wird, soll sich das Menuefenster schliessen
 	if(event.getSource() == Menu.ende){
 		System.exit(0);
 	}
+
 	
 }
+public void keyTyped(KeyEvent k){
 
+}
+
+public void keyPressed(KeyEvent k){
+	//test der KeyEvent-funktion im menue
+	
+	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+		aktion.figurBewegen(0); 
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_DOWN){
+		aktion.figurBewegen(1);
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_LEFT){
+		aktion.figurBewegen(2);
+	}
+	else if (k.getKeyCode() == KeyEvent.VK_UP){
+		aktion.figurBewegen(3);
+	}
+}
+
+public void keyReleased(KeyEvent k){
+	
+}
 
 /**
  * Methodenkommentar:
@@ -107,7 +119,6 @@ public void actionPerformed(ActionEvent event) {
 	//Spielfeld.levelDarstellen(); // stellt das aktuelle/erste level dar
 //}
 
+
+
 }
-
-
-

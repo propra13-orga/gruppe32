@@ -1,20 +1,11 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * Klassenkommentar:
  * Hauptspiellogik bzw. was tun wenn was passiert
  * 
- * ACHTUNG! PSEUDOVERSION! NICH FERTIG ! 
  * 
- * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
- * PROBLEM: Wie frage ich die KeyEvents im StdDraw-Fenster ab?
- * 			Aktion-Methode wird nicht aufgerufen!
- * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
  */
 
 
@@ -23,12 +14,12 @@ public class Aktion{
 static int figurX;
 static int figurY;
 int aktuellesLevel = 0;
-
-
+boolean gameOver;
 
 
 public void figurBewegen(int richtung){
 	
+		
 	if (richtung == 0){ //rechts
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
@@ -43,8 +34,8 @@ public void figurBewegen(int richtung){
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
-			// Game-Over-Text einblenden
-			// Game-Over-Status auf true setzen, weitere Key-Atkionen unterbinden
+			gameOver=true;
+			
 			
 		}
 	}
@@ -61,6 +52,7 @@ public void figurBewegen(int richtung){
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			gameOver=true;
 		}
 	}
 	else if (richtung == 2){ //links
@@ -76,6 +68,7 @@ public void figurBewegen(int richtung){
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			gameOver=true;
 		}
 	}
 	else if (richtung == 3){ //oben
@@ -91,8 +84,21 @@ public void figurBewegen(int richtung){
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			gameOver=true;
 		}
 	}
+	
+	if (gameOver){
+		JFrame fenster = new JFrame("Game Over");
+	    
+		   fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+		   JLabel label = new JLabel("Game Over!", JLabel.CENTER);
+		   fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+		   fenster.setSize(300, 200);
+		   fenster.setVisible(true);// fenster anzeigen
+		   gameOver=false;
+	}
+	
 }
 
 public static void setFigurXY(int x, int y){

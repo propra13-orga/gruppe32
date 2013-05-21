@@ -42,17 +42,6 @@ public Main(String title){
 
 
 
-
-
-/**
- * Test: KeyListener im Menue
- * 
- */
-
-
-
-
-
 /**
  * Methode gibt an, was passiert, wenn man die Buttons drueckt
  * 
@@ -78,7 +67,7 @@ public void keyTyped(KeyEvent k){
 }
 
 public void keyPressed(KeyEvent k){
-	//test der KeyEvent-funktion im menue
+	// KeyEvent-funktion 
 	
 	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
 		aktion.figurBewegen(0); 
@@ -98,24 +87,7 @@ public void keyReleased(KeyEvent k){
 	
 }
 
-/**
- * Methodenkommentar:
- * ... Alternative zum starten 
- * "Spielfeld();" greift dann hier drauf zu und fuehrt aus
- * 
- * NOCH FEHLERHAFT!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
- * (Wegen Vermischung von Swing und StdDraw?)
- * 
- */
-//public static void Spielfeld(){
-	//JFrame Spielfeld = new JFrame("Game");
-	//Spielfeld.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//Spielfeld.setSize(880,660);
-	//Spielfeld.setVisible(true);
-	//Spielfeld.addWindowListener(new Board());
-	//Spielfeld.levelsErstellen(); //berechnet die werte fuer alle levels
-	//Spielfeld.levelDarstellen(); // stellt das aktuelle/erste level dar
-//}
+
 
 
 

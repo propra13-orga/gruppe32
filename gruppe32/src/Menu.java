@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -18,20 +19,13 @@ public class Menu{
 	public static Main main;
 	public static int reihe;
 	public static int spalte;
+	boolean gameOver;
 	public Menu(){
 		
 		std.setCanvasSize(880, 660);
 		
-		/**Main frame = new Main("Menü");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //frame soll geschlossen werden koennen
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(880,660); //Groesse vom frame
-		frame.setLayout(null);
-		frame.setVisible(true);
-		frame.setFocusable(true);
-		frame.addKeyListener(frame);
-		
-		*/ //Button "Starten"
+			
+		 //Button "Starten"
 		starten = new JButton("Spiel starten"); //neuer Button
 		starten.setBounds(200,10,160,40); //legt Groesse und Position fest
 		starten.addActionListener(std.frame); //damit was passiert, wenn man Buttons drueckt
@@ -45,6 +39,8 @@ public class Menu{
 		std.frame.add(ende);
 		
 		std.frame.addKeyListener(std.frame);
+		
+		
 	
 	
 	}
@@ -52,7 +48,10 @@ public class Menu{
 	public void menuOeffnen(){
 		
 	}
-
+/**
+ * Darstellung des Spielfelds
+ * @param level
+ */
 	public static void levelDarstellen(int level) {
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.setXscale(0.0,800);

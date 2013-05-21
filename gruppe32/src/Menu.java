@@ -66,7 +66,7 @@ public class Menu{
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==1){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "mauer.jpg");
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==2){
+				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)== (2)){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "start.jpg");
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==3){
@@ -84,6 +84,7 @@ public class Menu{
 				}
 			}
 		}
+		
 	}
 	
 	

@@ -14,7 +14,6 @@ import javax.swing.*;
 public class Main extends JFrame implements ActionListener, KeyListener {
 
 private Spielfeld mySpielfeld;
-private Darstellung darstellung;
 private Aktion aktion;
 int aktuellesLevel=0;
 int spielGestartet=0;
@@ -38,7 +37,6 @@ public static void main(String[] args) {
 public Main(String title){
 	super(title);
 	mySpielfeld = new Spielfeld();
-	darstellung = new Darstellung();
 	aktion = new Aktion();
 }
 

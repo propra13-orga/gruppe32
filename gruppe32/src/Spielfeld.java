@@ -44,7 +44,8 @@ public Spielfeld(){
 	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
 	//spielfigur(6) testweise an den Anfang setzten
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=6;
-	spielfeld[3][19][5]=7;
+	spielfeld[3][10][7]=7;
+	
 }
 
 

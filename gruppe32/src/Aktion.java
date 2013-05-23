@@ -38,14 +38,18 @@ public void figurBewegen(int richtung){
 			gameOver=true;
 		}
 			
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==8){
 			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			sieg=true;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 			}		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==2){
+			aktuellesLevel--;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
+	}
 
 			   
 	else if (richtung == 1){ //unten
@@ -64,13 +68,17 @@ public void figurBewegen(int richtung){
 			gameOver=true;
 		}
 
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==8){
 			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			sieg=true;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
-			}	  
+			}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==2){
+			aktuellesLevel--;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
 
 		}
 	
@@ -90,13 +98,18 @@ public void figurBewegen(int richtung){
 			gameOver=true;
 		}
 
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==8){
 			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			sieg=true;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
-			}	 
+			}
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==2){
+			aktuellesLevel--;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
 
 		}
 	
@@ -118,11 +131,16 @@ public void figurBewegen(int richtung){
 
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
 			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			sieg=true;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 			}	
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==2){
+			aktuellesLevel--;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
 
 		}
 	

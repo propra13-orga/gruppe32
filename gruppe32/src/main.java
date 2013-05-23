@@ -8,7 +8,7 @@ import javax.swing.*;
 
 /**
  * 
- * Main
+ * 
  *
  */
 public class Main extends JFrame implements ActionListener, KeyListener {

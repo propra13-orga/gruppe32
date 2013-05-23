@@ -20,6 +20,7 @@ public class Menu{
 	public static int reihe;
 	public static int spalte;
 	boolean gameOver;
+	boolean sieg;
 	public Menu(){
 		
 		std.setCanvasSize(880, 660);
@@ -80,6 +81,9 @@ public class Menu{
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==6){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "spielfigur.jpg");
 					Aktion.setFigurXY(spalte, reihe);
+				}
+				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==8){
+					StdDraw.picture(20+40*spalte,20+40*reihe, "sieg.jpg");
 				}
 			}
 		}

@@ -39,12 +39,14 @@ public Spielfeld(){
 	//startfelder(2) und zielfelder(3) setzen, erstmal fuer alle level das gleiche
 	spielfeld[0][0][5]=spielfeld[1][17][14]=spielfeld[2][10][14]=spielfeld[3][19][3]=2;
 	spielfeld[0][17][0]=spielfeld[1][10][0]=spielfeld[2][0][3]=3;
-	//testfallen&mobs
+	//testfallen&mobs(4/5)
 	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=4;
 	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
 	//spielfigur(6) testweise an den Anfang setzten
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=6;
 	spielfeld[3][19][5]=7;
+	//sieg(8)
+	spielfeld[3][1][13]=8;
 }
 
 

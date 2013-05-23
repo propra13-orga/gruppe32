@@ -15,6 +15,7 @@ static int figurX;
 static int figurY;
 int aktuellesLevel = 0;
 boolean gameOver;
+boolean sieg;
 
 
 public void figurBewegen(int richtung){
@@ -35,8 +36,11 @@ public void figurBewegen(int richtung){
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
-			
-			
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==8){
+			aktuellesLevel=0;
+			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			sieg=true;
 		}
 	}
 	else if (richtung == 1){ //unten
@@ -54,6 +58,11 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==8){
+			aktuellesLevel=0;
+			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			sieg=true;
+		}
 	}
 	else if (richtung == 2){ //links
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==0){
@@ -70,6 +79,11 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==8){
+			aktuellesLevel=0;
+			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			sieg=true;
+		}
 	}
 	else if (richtung == 3){ //oben
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==0){
@@ -82,9 +96,14 @@ public void figurBewegen(int richtung){
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
+			aktuellesLevel=0;
+			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			sieg=true;
 		}
 	}
 	
@@ -97,6 +116,16 @@ public void figurBewegen(int richtung){
 		   fenster.setSize(300, 200);
 		   fenster.setVisible(true);// fenster anzeigen
 		   gameOver=false;
+	}
+	if (sieg){
+		JFrame fenster = new JFrame("Sieg!");
+	    
+		   fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+		   JLabel label = new JLabel("Sieg!", JLabel.CENTER);
+		   fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+		   fenster.setSize(300, 200);
+		   fenster.setVisible(true);// fenster anzeigen
+		   sieg=false;
 	}
 	
 }

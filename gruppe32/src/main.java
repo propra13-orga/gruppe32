@@ -63,24 +63,24 @@ public void actionPerformed(ActionEvent event) {
 	
 }
 public void keyTyped(KeyEvent k){
-
+	
 }
 
 public void keyPressed(KeyEvent k){
 	// KeyEvent-funktion 
 	
-	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
-		aktion.figurBewegen(0); 
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_DOWN){
-		aktion.figurBewegen(1);
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_LEFT){
-		aktion.figurBewegen(2);
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_UP){
-		aktion.figurBewegen(3);
-	}
+			if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+				aktion.figurBewegen(0); 
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_DOWN){
+				aktion.figurBewegen(1);
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_LEFT){
+				aktion.figurBewegen(2);
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_UP){
+				aktion.figurBewegen(3);
+			}
 }
 
 public void keyReleased(KeyEvent k){

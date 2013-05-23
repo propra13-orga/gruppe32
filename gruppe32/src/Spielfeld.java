@@ -40,8 +40,10 @@ public Spielfeld(){
 	spielfeld[0][0][5]=spielfeld[1][17][14]=spielfeld[2][10][14]=spielfeld[3][19][3]=2;
 	spielfeld[0][17][0]=spielfeld[1][10][0]=spielfeld[2][0][3]=3;
 	//testfallen&mobs(4/5)
-	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=4;
-	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
+	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=spielfeld[1][5][6]=spielfeld[1][9][3]=4;
+	spielfeld[2][1][9]=spielfeld[2][5][12]=spielfeld[2][9][6]=spielfeld[3][3][3]=spielfeld[3][3][4]=spielfeld[3][3][5]=spielfeld[3][14][4]=4;
+	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=spielfeld[1][10][2]=spielfeld[1][4][6]=5;
+	spielfeld[2][15][4]=spielfeld[2][16][4]=spielfeld[2][13][9]=spielfeld[2][2][2]=spielfeld[3][9][5]=spielfeld[3][10][5]=spielfeld[3][15][3]=5;
 	//spielfigur(6) testweise an den Anfang setzten
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=6;
 	spielfeld[3][19][5]=7;

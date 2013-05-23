@@ -60,12 +60,19 @@ public void actionPerformed(ActionEvent event) {
 		System.exit(0);
 	}
 
-	
+/**
+ * Methode kyeTyped: KeyEvent
+ * 	
+ */
 }
 public void keyTyped(KeyEvent k){
 	
 }
 
+/**
+ * Methode keyPressed: KeyEvent
+ * 
+ */
 public void keyPressed(KeyEvent k){
 	// KeyEvent-funktion 
 	
@@ -83,6 +90,10 @@ public void keyPressed(KeyEvent k){
 			}
 }
 
+/**
+ * Methode keyReleased : KeyEvent
+ * 
+ */
 public void keyReleased(KeyEvent k){
 	
 }

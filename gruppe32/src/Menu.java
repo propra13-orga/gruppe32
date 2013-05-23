@@ -26,7 +26,7 @@ public class Menu{
 		std.setCanvasSize(880, 660);
 		
 			
-		 //Button "Starten"
+		//Button "Starten"
 		starten = new JButton("Spiel starten"); //neuer Button
 		starten.setBounds(200,10,160,40); //legt Groesse und Position fest
 		starten.addActionListener(std.frame); //damit was passiert, wenn man Buttons drueckt
@@ -96,18 +96,19 @@ public class Menu{
 	
 	/**
 	 * Methodenkommentar:
-	 * Stellt die figur an den neuen koordinaten dar, und ueberschreibt sie am ausgangspunkt
+	 * Stellt die Figur an den neuen Koordinaten dar, und ueberschreibt sie am ausgangspunkt
 	 * 
 	 */
 	public static void figurBewegen(int level, int vonX, int vonY, int nachX, int nachY ){
 		
-		
 		StdDraw.picture(20+40*vonX,20+40*vonY, "boden.jpg");
-		
-		
-		StdDraw.picture(20+40*nachX,20+40*nachY+1, "spielfigur.jpg");
-		
+		StdDraw.picture(20+40*nachX,20+40*nachY+1, "spielfigur.jpg");	
 	}
+	
+	/**
+	 * Methoden setzt Figur zu Ausgangskoordinaten zurueck
+	 *
+	 */
 	public static void figurReset(int level,int x, int y){
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {

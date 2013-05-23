@@ -17,7 +17,10 @@ int aktuellesLevel = 0;
 boolean gameOver;
 boolean sieg;
 
-
+/**
+ * Methode bewegt Figur anhand von Koordinaten
+ * 
+ */
 public void figurBewegen(int richtung){
 	
 		
@@ -173,7 +176,10 @@ public void figurBewegen(int richtung){
 	
 	
 
-
+/**
+ * Methode setzt Figur
+ * 
+ */
 public static void setFigurXY(int x, int y){
 	figurX=x;
 	figurY=y;		

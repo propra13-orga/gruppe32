@@ -36,11 +36,23 @@ public void figurBewegen(int richtung){
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
+
+				
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==8){
-			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
-			sieg=true;
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==8){
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			figurX=figurX+1;
+			JFrame fenster = new JFrame("Spiel gewonnen");
+		    fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+			JLabel label = new JLabel("Herzlichen Glückwunsch! Du hast gewonnen!", JLabel.CENTER);
+			fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+			fenster.setSize(300, 200);
+			fenster.setVisible(true);// fenster anzeigen
+			aktuellesLevel=aktuellesLevel-3;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
+			   
+
 		}
 	}
 	else if (richtung == 1){ //unten
@@ -58,10 +70,20 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==8){
-			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
-			sieg=true;
+
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==8){
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
+			figurY=figurY-1;
+			JFrame fenster = new JFrame("Spiel gewonnen");
+		    fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+ 		    JLabel label = new JLabel("Herzlichen Glückwunsch! Du hast gewonnen!", JLabel.CENTER);
+			fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+			fenster.setSize(300, 200);
+			fenster.setVisible(true);// fenster anzeigen
+			aktuellesLevel=aktuellesLevel-3;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);   
+
 		}
 	}
 	else if (richtung == 2){ //links
@@ -79,10 +101,20 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==8){
-			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
-			sieg=true;
+
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==8){
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX-1,figurY);
+			figurX=figurX-1;
+			JFrame fenster = new JFrame("Spiel gewonnen");
+		    fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+			JLabel label = new JLabel("Herzlichen Glückwunsch! Du hast gewonnen!", JLabel.CENTER);
+			fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+			fenster.setSize(300, 200);
+			fenster.setVisible(true);// fenster anzeigen
+			aktuellesLevel=aktuellesLevel-3;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);   
+
 		}
 	}
 	else if (richtung == 3){ //oben
@@ -100,10 +132,20 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel,figurX,figurY);
 			gameOver=true;
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
-			aktuellesLevel=0;
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
-			sieg=true;
+
+		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==8){
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
+			figurY=figurY+1;
+			JFrame fenster = new JFrame("Spiel gewonnen");
+		    fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
+			JLabel label = new JLabel("Herzlichen Glückwunsch! Du hast gewonnen!", JLabel.CENTER);
+			fenster.getContentPane().add(label);// dem fenster das label hinzufügen
+			fenster.setSize(300, 200);
+			fenster.setVisible(true);// fenster anzeigen
+			aktuellesLevel=aktuellesLevel-3;
+			Menu.levelDarstellen(aktuellesLevel);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
+
 		}
 	}
 	
@@ -117,7 +159,9 @@ public void figurBewegen(int richtung){
 		   fenster.setVisible(true);// fenster anzeigen
 		   gameOver=false;
 	}
-	if (sieg){
+	}
+
+	/*if (sieg){
 		JFrame fenster = new JFrame("Sieg!");
 	    
 		   fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
@@ -126,9 +170,13 @@ public void figurBewegen(int richtung){
 		   fenster.setSize(300, 200);
 		   fenster.setVisible(true);// fenster anzeigen
 		   sieg=false;
+		   }
 	}
+*/
+
+
 	
-}
+
 
 public static void setFigurXY(int x, int y){
 	figurX=x;

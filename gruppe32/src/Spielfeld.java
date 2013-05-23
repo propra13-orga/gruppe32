@@ -45,8 +45,9 @@ public Spielfeld(){
 	//spielfigur(6) testweise an den Anfang setzten
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=6;
 	spielfeld[3][19][5]=7;
-	//sieg(8)
-	spielfeld[3][1][13]=8;
+	//Ziel im letzten Level/Raum
+	spielfeld[3][14][5]=8;
+
 }
 
 

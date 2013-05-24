@@ -7,8 +7,9 @@ import javax.swing.*;
 
 
 /**
- * 
- * 
+ * Main-Klasse wird direkt zu Start des Programms aufgerufen,
+ * von hier aus wird das Menue aufgerufen, die Bewegungsabfragen definiert 
+ * und Objekte fuer Darstellung, Spielfeld und Aktion werden erstellt
  *
  */
 public class Main extends JFrame implements ActionListener, KeyListener {
@@ -21,8 +22,8 @@ int spielGestartet=0;
 
 
 /**
- * 
  * Menue wird aufgerufen
+ * 
  */
 public static void main(String[] args) {
 		
@@ -31,8 +32,8 @@ public static void main(String[] args) {
 
 
 /**
+ * Objekte fuer Darstellung, Spielfeld und Aktion werden erstellt
  * 
- * Objekte für Darstellung, Spielfeld und Aktion werden erstellt
  */
 public Main(String title){
 	super(title);
@@ -61,7 +62,8 @@ public void actionPerformed(ActionEvent event) {
 	}
 
 /**
- * Methode kyeTyped: KeyEvent
+ * Methode kyeTyped: KeyEvent,
+ * jedoch nicht genutzt
  * 	
  */
 }
@@ -70,11 +72,11 @@ public void keyTyped(KeyEvent k){
 }
 
 /**
- * Methode keyPressed: KeyEvent
+ * Methode keyPressed: KeyEvent:
+ * Pfeiltasten werden mit Bewegungsfunktionen innerhalb des Programms belegt
  * 
  */
 public void keyPressed(KeyEvent k){
-	// KeyEvent-funktion 
 	
 			if (k.getKeyCode() == KeyEvent.VK_RIGHT){
 				aktion.figurBewegen(0); 
@@ -91,15 +93,13 @@ public void keyPressed(KeyEvent k){
 }
 
 /**
- * Methode keyReleased : KeyEvent
+ * Methode keyReleased : KeyEvent, 
+ * jedoch nicht genutzt
  * 
  */
 public void keyReleased(KeyEvent k){
 	
 }
-
-
-
 
 
 }

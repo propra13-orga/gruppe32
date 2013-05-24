@@ -1,14 +1,12 @@
 import javax.swing.JLabel;
 
 /**
- * 
  * Klassenkommentar:
  * Generierung des Spielfelds auf logischer Ebene
  * 
- * 
  */
 public class Spielfeld {
-/*hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass) */
+//hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass)
 static int[][][] spielfeld = new int [4][20][15];
 int level;
 int reihe;
@@ -28,7 +26,6 @@ public Spielfeld(){
 			for (level=0; level<4; level++) {
 				if ((spalte==0)|(spalte==19)|(reihe==0)|(reihe==14)) {			
 					spielfeld[level][spalte][reihe]=1;
-					
 				}
 				else {
 					spielfeld[level][spalte][reihe]=0;
@@ -36,6 +33,7 @@ public Spielfeld(){
 			}
 		}
 	}
+	
 	//startfelder(2) und zielfelder(3) setzen, erstmal fuer alle level das gleiche
 	spielfeld[0][0][5]=spielfeld[1][17][14]=spielfeld[2][10][14]=spielfeld[3][19][3]=2;
 	spielfeld[0][17][0]=spielfeld[1][10][0]=spielfeld[2][0][3]=3;
@@ -67,7 +65,7 @@ public static int wertLesenBeiXY(int level,int x,int y) {
 
 
 /**
- * 
+ * Methode setzt den Wert bei den X- und Y-Koordinaten
  * @param level Level des Spiels
  * @param x X-Koordinate
  * @param y Y-Koordinate

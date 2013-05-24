@@ -1,6 +1,5 @@
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,10 +20,15 @@ public class Menu{
 	public static int spalte;
 	boolean gameOver;
 	boolean sieg;
+	
+	
+	/**
+	 * Methode oeffnet das Menue
+	 * 
+	 */
 	public Menu(){
 		
 		std.setCanvasSize(880, 660);
-		
 			
 		//Button "Starten"
 		starten = new JButton("Spiel starten"); //neuer Button
@@ -40,18 +44,23 @@ public class Menu{
 		std.frame.add(ende);
 		
 		std.frame.addKeyListener(std.frame);
-		
-		
+	
+		}
 	
 	
-	}
 	
+	/**
+	 * Methode menuOeffnen() noch nicht genutzt
+	 * 
+	 */
 	public void menuOeffnen(){
 		
 	}
+	
+	
 /**
- * Darstellung des Spielfelds
- * @param level
+ * Darstellung des Spielfelds (Grafische Ausgabe)
+ * 
  */
 	public static void levelDarstellen(int level) {
 		//stellt StdDraw auf eine besser handhabbare skala um
@@ -90,8 +99,8 @@ public class Menu{
 				}
 			}
 		}
-		
 	}
+	
 	
 	
 	/**
@@ -105,6 +114,8 @@ public class Menu{
 		StdDraw.picture(20+40*nachX,20+40*nachY+1, "spielfigur.jpg");	
 	}
 	
+	
+	
 	/**
 	 * Methoden setzt Figur zu Ausgangskoordinaten zurueck
 	 *
@@ -116,9 +127,10 @@ public class Menu{
 					StdDraw.picture(20+40*x,20+40*y,"boden.jpg");
 					StdDraw.picture(20+40*spalte,20+40*reihe, "spielfigur.jpg");
 					Aktion.setFigurXY(spalte, reihe);
+				}
 			}
 		}
-		}
 	}
+	
 	
 }

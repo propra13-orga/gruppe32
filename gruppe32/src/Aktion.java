@@ -22,30 +22,32 @@ public void figurBewegen(int richtung){
 	
 		
 	if (richtung == 0){ //rechts
+		// 0=Boden
 		if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==0){
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX+1;
 		}
-
+		// 3=Zielfeld
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==3){
 			//Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			aktuellesLevel++;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
-		
+		// 4=Falle, 5=Mob
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			Menu.figurReset(0,figurX,figurY);
+			Menu.levelDarstellen(0);
 			gameOver=true;
 		}
-			
+		// 8=Sieg	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==8){
 			aktuellesLevel=0;
 			sieg=true;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}		
-		
+		// 2=Startfeld
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==2){
 			aktuellesLevel--;
 			Menu.levelDarstellen(aktuellesLevel);
@@ -64,11 +66,12 @@ public void figurBewegen(int richtung){
 			//Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			aktuellesLevel++;
 			Menu.levelDarstellen(aktuellesLevel);
-			//Menu.figurReset(aktuellesLevel, figurX, figurY);
+			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==5)){
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			Menu.figurReset(0,figurX,figurY);
+			Menu.levelDarstellen(0);
 			gameOver=true;
 		}
 
@@ -101,7 +104,8 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==5)){
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			Menu.figurReset(0,figurX,figurY);
+			Menu.levelDarstellen(0);
 			gameOver=true;
 		}
 
@@ -134,7 +138,8 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==4)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==5)){
-			Menu.figurReset(aktuellesLevel,figurX,figurY);
+			Menu.figurReset(0,figurX,figurY);
+			Menu.levelDarstellen(0);
 			gameOver=true;
 		}
 

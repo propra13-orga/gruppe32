@@ -7,8 +7,9 @@ import javax.swing.*;
 
 
 /**
- * 
- * Main
+ * Main-Klasse wird direkt zu Start des Programms aufgerufen,
+ * von hier aus wird das Menue aufgerufen, die Bewegungsabfragen definiert 
+ * und Objekte fuer Darstellung, Spielfeld und Aktion werden erstellt
  *
  */
 public class Main extends JFrame implements ActionListener, KeyListener {
@@ -21,8 +22,8 @@ int spielGestartet=0;
 
 
 /**
- * 
  * Menue wird aufgerufen
+ * 
  */
 public static void main(String[] args) {
 		
@@ -31,25 +32,14 @@ public static void main(String[] args) {
 
 
 /**
+ * Objekte fuer Darstellung, Spielfeld und Aktion werden erstellt
  * 
- * Objekte für Darstellung, Spielfeld und Aktion werden erstellt
  */
 public Main(String title){
 	super(title);
 	mySpielfeld = new Spielfeld();
 	aktion = new Aktion();
 }
-
-
-
-
-
-/**
- * Test: KeyListener im Menue
- * 
- */
-
-
 
 
 
@@ -71,52 +61,45 @@ public void actionPerformed(ActionEvent event) {
 		System.exit(0);
 	}
 
-	
+/**
+ * Methode kyeTyped: KeyEvent,
+ * jedoch nicht genutzt
+ * 	
+ */
 }
 public void keyTyped(KeyEvent k){
-
-}
-
-public void keyPressed(KeyEvent k){
-	//test der KeyEvent-funktion im menue
-	
-	if (k.getKeyCode() == KeyEvent.VK_RIGHT){
-		aktion.figurBewegen(0); 
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_DOWN){
-		aktion.figurBewegen(1);
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_LEFT){
-		aktion.figurBewegen(2);
-	}
-	else if (k.getKeyCode() == KeyEvent.VK_UP){
-		aktion.figurBewegen(3);
-	}
-}
-
-public void keyReleased(KeyEvent k){
 	
 }
 
 /**
- * Methodenkommentar:
- * ... Alternative zum starten 
- * "Spielfeld();" greift dann hier drauf zu und fuehrt aus
- * 
- * NOCH FEHLERHAFT!!!! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
- * (Wegen Vermischung von Swing und StdDraw?)
+ * Methode keyPressed: KeyEvent:
+ * Pfeiltasten werden mit Bewegungsfunktionen innerhalb des Programms belegt
  * 
  */
-//public static void Spielfeld(){
-	//JFrame Spielfeld = new JFrame("Game");
-	//Spielfeld.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	//Spielfeld.setSize(880,660);
-	//Spielfeld.setVisible(true);
-	//Spielfeld.addWindowListener(new Board());
-	//Spielfeld.levelsErstellen(); //berechnet die werte fuer alle levels
-	//Spielfeld.levelDarstellen(); // stellt das aktuelle/erste level dar
-//}
+public void keyPressed(KeyEvent k){
+	
+			if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+				aktion.figurBewegen(0); 
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_DOWN){
+				aktion.figurBewegen(1);
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_LEFT){
+				aktion.figurBewegen(2);
+			}
+			else if (k.getKeyCode() == KeyEvent.VK_UP){
+				aktion.figurBewegen(3);
+			}
+}
 
+/**
+ * Methode keyReleased : KeyEvent, 
+ * jedoch nicht genutzt
+ * 
+ */
+public void keyReleased(KeyEvent k){
+	
+}
 
 
 }

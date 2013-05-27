@@ -1,14 +1,12 @@
 import javax.swing.JLabel;
 
 /**
- * 
  * Klassenkommentar:
  * Generierung des Spielfelds auf logischer Ebene
  * 
- * 
  */
 public class Spielfeld {
-/*hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass) */
+//hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass)
 static int[][][] spielfeld = new int [4][20][15];
 int level;
 int reihe;
@@ -28,7 +26,6 @@ public Spielfeld(){
 			for (level=0; level<4; level++) {
 				if ((spalte==0)|(spalte==19)|(reihe==0)|(reihe==14)) {			
 					spielfeld[level][spalte][reihe]=1;
-					
 				}
 				else {
 					spielfeld[level][spalte][reihe]=0;
@@ -36,15 +33,21 @@ public Spielfeld(){
 			}
 		}
 	}
+	
 	//startfelder(2) und zielfelder(3) setzen, erstmal fuer alle level das gleiche
 	spielfeld[0][0][5]=spielfeld[1][17][14]=spielfeld[2][10][14]=spielfeld[3][19][3]=2;
 	spielfeld[0][17][0]=spielfeld[1][10][0]=spielfeld[2][0][3]=3;
-	//testfallen&mobs
-	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=4;
-	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=5;
+	//testfallen&mobs(4/5)
+	spielfeld[0][1][6]=spielfeld[0][1][4]=spielfeld[0][2][6]=spielfeld[0][2][4]=spielfeld[1][5][6]=spielfeld[1][9][3]=4;
+	spielfeld[2][1][9]=spielfeld[2][5][12]=spielfeld[2][9][6]=spielfeld[3][3][3]=spielfeld[3][3][4]=spielfeld[3][3][5]=spielfeld[3][14][4]=4;
+	spielfeld[0][18][6]=spielfeld[0][18][4]=spielfeld[0][17][6]=spielfeld[0][17][4]=spielfeld[1][10][2]=spielfeld[1][4][6]=5;
+	spielfeld[2][15][4]=spielfeld[2][16][4]=spielfeld[2][13][9]=spielfeld[2][2][2]=spielfeld[3][9][5]=spielfeld[3][10][5]=spielfeld[3][15][3]=5;
 	//spielfigur(6) testweise an den Anfang setzten
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=6;
 	spielfeld[3][19][5]=7;
+	//Ziel im letzten Level/Raum
+	spielfeld[3][14][5]=8;
+
 }
 
 
@@ -62,7 +65,7 @@ public static int wertLesenBeiXY(int level,int x,int y) {
 
 
 /**
- * 
+ * Methode setzt den Wert bei den X- und Y-Koordinaten
  * @param level Level des Spiels
  * @param x X-Koordinate
  * @param y Y-Koordinate

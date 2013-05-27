@@ -77,4 +77,6 @@ public static void wertSetzenBeiXY (int level, int x, int y, int wert) {
 	spielfeld[level][x][y] = wert;
 }
 
+
+
 }

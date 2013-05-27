@@ -81,23 +81,13 @@ public class Menu{
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==6){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "spielfigur.jpg");
 					Aktion.setFigurXY(spalte, reihe);
-				}else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==7){
-					StdDraw.picture(20+40*spalte,20+40*reihe, "schatz.jpg");
 				}
 			}
 		}
 		
 	}
 	
-	public static void gewonnen(){
-		Main.spielGestartet=0;
-		for (spalte=0;spalte<20;spalte++) {
-			for(reihe=0;reihe<15;reihe++) {
-				StdDraw.picture(20+40*spalte,20+40*reihe, "mauer.jpg");
-			}
-		}
-		StdDraw.picture(20+40*9,20+40*7, "gewonnen.jpg");
-	}
+	
 	/**
 	 * Methodenkommentar:
 	 * Stellt die figur an den neuen koordinaten dar, und ueberschreibt sie am ausgangspunkt
@@ -121,23 +111,6 @@ public class Menu{
 					Aktion.setFigurXY(spalte, reihe);
 			}
 		}
-		}
-	}
-	public static void figurZumZiel(int level){
-		if (level == 0){
-			figurBewegen(level,1,5,17,1);
-			Aktion.setFigurXY(17, 1);
-		}
-		else if (level==1){
-			figurBewegen(level,17,13,10,1);
-			Aktion.setFigurXY(10, 1);
-		}
-		else if (level==2){
-			figurBewegen(level,10,13,1,3);
-			Aktion.setFigurXY(1, 3);
-		}
-		else if (level==3){
-			//figurBewegen(level,0,0,-1,-1);
 		}
 	}
 	

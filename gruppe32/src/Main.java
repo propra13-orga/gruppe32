@@ -16,9 +16,12 @@ public class Main extends JFrame implements ActionListener, KeyListener {
 
 private Spielfeld mySpielfeld;
 private Aktion aktion;
-int aktuellesLevel=0;
-static int spielGestartet=0;
-//private JFrame frame;
+protected static int spielGestartet=0;
+private static final int RECHTS = 0;
+private static final int UNTEN = 1;
+private static final int LINKS = 2;
+private static final int OBEN= 3;
+
 
 
 /**
@@ -37,8 +40,8 @@ public static void main(String[] args) {
  */
 public Main(String title){
 	super(title);
-	mySpielfeld = new Spielfeld();
 	aktion = new Aktion();
+	mySpielfeld = new Spielfeld();
 }
 
 
@@ -52,7 +55,7 @@ public void actionPerformed(ActionEvent event) {
 	//wenn der Button 'starten' gedrueckt wird, soll sich Fenster mit Spielfeld oeffnen
 	if (event.getSource().equals(Menu.starten)){
 		spielGestartet=1;
-		aktion.aktuellesLevel=0;
+		aktion.setLevel(0);
 		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
 		
 	}
@@ -80,16 +83,16 @@ public void keyTyped(KeyEvent k){
 public void keyPressed(KeyEvent k){
 	if(spielGestartet == 1){
 			if (k.getKeyCode() == KeyEvent.VK_RIGHT){
-				aktion.figurBewegen(0); 
+				aktion.figurBewegen(RECHTS); 
 			}
 			else if (k.getKeyCode() == KeyEvent.VK_DOWN){
-				aktion.figurBewegen(1);
+				aktion.figurBewegen(UNTEN);
 			}
 			else if (k.getKeyCode() == KeyEvent.VK_LEFT){
-				aktion.figurBewegen(2);
+				aktion.figurBewegen(LINKS);
 			}
 			else if (k.getKeyCode() == KeyEvent.VK_UP){
-				aktion.figurBewegen(3);
+				aktion.figurBewegen(OBEN);
 			}
 	}
 }

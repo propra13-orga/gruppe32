@@ -92,8 +92,10 @@ public class Menu{
 					Aktion.setFigurXY(spalte, reihe);
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==8){
-
 					StdDraw.picture(20+40*spalte,20+40*reihe, "sieg.jpg");
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==9){
+					StdDraw.picture(20+40*spalte,20+40*reihe, "checkpoint.jpg");
 				}
 			}
 		}

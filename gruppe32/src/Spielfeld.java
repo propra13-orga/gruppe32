@@ -47,6 +47,8 @@ public Spielfeld(){
 	spielfeld[3][19][5]=7;
 	//Ziel im letzten Level/Raum
 	spielfeld[3][14][5]=8;
+	//Checkpoint (9)
+	spielfeld[2][14][6]=9;
 
 }
 

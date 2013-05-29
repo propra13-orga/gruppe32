@@ -26,6 +26,10 @@ private static final int RECHTS = 0;
 private static final int UNTEN = 1;
 private static final int LINKS = 2;
 private static final int OBEN= 3;
+private static final int CHECKPOINT = 8;
+
+int leben=3;
+boolean reachedCheckpoint;
 
 /**
  * Methode bewegt Figur anhand von Koordinaten
@@ -51,15 +55,30 @@ public void figurBewegen(int richtung){
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==MOB)){
-			Menu.figurReset(0,figurX,figurY);
-			Menu.levelDarstellen(0);
-			Menu.gameOver();
+			if ((leben>0)&reachedCheckpoint==true){
+				aktuellesLevel=2;
+				Menu.levelDarstellen(2);
+				Menu.figurReset(2, figurX, figurY);
+				//Menu.figurZumCheckpoint();
+				leben--;
+			}
+			else {
+				Menu.figurReset(0,figurX,figurY);
+			    Menu.levelDarstellen(0);
+			    Menu.gameOver();
+			}
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==SIEG){
 			aktuellesLevel=0;
 			Menu.sieg();
 			//Menu.levelDarstellen(aktuellesLevel);
 			//Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==CHECKPOINT){
+			reachedCheckpoint=true;
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
+			figurX=figurX+1;
 		}
 	}
 
@@ -83,9 +102,18 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==MOB)){
-			Menu.figurReset(0,figurX,figurY);
-			Menu.levelDarstellen(0);
-			Menu.gameOver();
+			if ((leben>0)&reachedCheckpoint==true){
+				aktuellesLevel=2;
+				Menu.levelDarstellen(2);
+				Menu.figurReset(2, figurX, figurY);
+				//Menu.figurZumCheckpoint();
+				leben--;
+			}
+			else {
+			    Menu.figurReset(0,figurX,figurY);
+			    Menu.levelDarstellen(0);
+			    Menu.gameOver();
+			}
 		}
 
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==SIEG){
@@ -93,6 +121,12 @@ public void figurBewegen(int richtung){
 			Menu.sieg();
 			//Menu.levelDarstellen(aktuellesLevel);
 			//Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==CHECKPOINT){
+			reachedCheckpoint=true;
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
+			figurY=figurY-1;
 		}
 		
 	}
@@ -117,9 +151,18 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==MOB)){
-			Menu.figurReset(0,figurX,figurY);
-			Menu.levelDarstellen(0);
-			Menu.gameOver();
+			if (leben>0){
+				aktuellesLevel=2;
+				Menu.levelDarstellen(2);
+				Menu.figurReset(2, figurX, figurY);
+				//Menu.figurZumCheckpoint();
+				leben--;
+			}
+			else {
+			    Menu.figurReset(0,figurX,figurY);
+			    Menu.levelDarstellen(0);
+			    Menu.gameOver();
+			}
 		}
 
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==SIEG){
@@ -127,6 +170,12 @@ public void figurBewegen(int richtung){
 			Menu.sieg();
 			//Menu.levelDarstellen(aktuellesLevel);
 			//Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==CHECKPOINT){
+			reachedCheckpoint=true;
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX-1,figurY);
+			figurX=figurX-1;
 		}
 		
 		
@@ -151,8 +200,19 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FALLE)
-					|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==MOB)){
-			Menu.gameOver();
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==MOB)){
+		if (leben>0){
+			aktuellesLevel=2;
+			Menu.levelDarstellen(2);
+			Menu.figurReset(2, figurX, figurY);
+			//Menu.figurZumCheckpoint();
+			leben--;
+		}
+		else {
+		    Menu.figurReset(0,figurX,figurY);
+		    Menu.levelDarstellen(0);
+		    Menu.gameOver();
+		}
 		}
 
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==SIEG){
@@ -160,6 +220,12 @@ public void figurBewegen(int richtung){
 			Menu.sieg();
 			//Menu.levelDarstellen(aktuellesLevel);
 			//Menu.figurReset(aktuellesLevel, figurX, figurY);
+		}	
+		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==CHECKPOINT){
+			reachedCheckpoint=true;
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
+			figurY=figurY+1;
 		}	
 		
 	}

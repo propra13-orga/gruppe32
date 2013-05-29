@@ -18,7 +18,8 @@ public class Menu{
 	public static Main main;
 	public static int reihe;
 	public static int spalte;
-
+	private static int hpCheck;
+	private static int manaCheck;
 	
 	private static final int BODEN = 0;
 	private static final int MAUER = 1;
@@ -42,14 +43,14 @@ public class Menu{
 			
 		//Button "Starten"
 		starten = new JButton("Spiel starten"); //neuer Button
-		starten.setBounds(200,10,160,40); //legt Groesse und Position fest
+		starten.setBounds(260,0,160,40); //legt Groesse und Position fest
 		starten.addActionListener(std.frame); //damit was passiert, wenn man Buttons drueckt
 		starten.setFocusable(false);
 		std.frame.add(starten); //wird der Oberflaeche hinzugefuegt
 		
 		// Button "Beenden"
 		ende = new JButton("Beenden"); //folgendes analog zu starten-Button (mit geaenderten Koordinaten)
-		ende.setBounds(440,10,160,40);
+		ende.setBounds(450,0,160,40);
 		ende.addActionListener(std.frame);
 		std.frame.add(ende);
 		
@@ -111,6 +112,8 @@ public class Menu{
 
 			}
 		}
+		displayPlayerHP(Figur.getHP());
+		displayPlayerMana(Figur.getMana());
 	}
 	
 	
@@ -199,6 +202,34 @@ public class Menu{
 			fenster.setVisible(true);// fenster anzeigen
 			*/
 		}
-	
+		
+		public static void displayPlayerHP(double hp){	
+			for (hpCheck=1; hpCheck<=Figur.MAXHP; hpCheck++){
+				if ((hpCheck>hp)&(hp>hpCheck-1)){
+					StdDraw.picture(-10+20*hpCheck,610,"halfHeart.jpg");
+				}
+				else if(hpCheck<=hp){
+					StdDraw.picture(-10+20*hpCheck,610,"fullHeart.jpg");
+				}
+				else{
+					StdDraw.picture(-10+20*hpCheck,610,"emptyHeart.jpg");
+				}
+				
+			}
+		}
+		public static void displayPlayerMana(double mana){	
+			for (manaCheck=1; manaCheck<=Figur.MAXMANA; manaCheck++){
+				if ((manaCheck>mana)&(mana>manaCheck-1)){
+					StdDraw.picture(810-20*manaCheck,610,"halfMana.jpg");
+				}
+				else if(manaCheck<=mana){
+					StdDraw.picture(810-20*manaCheck,610,"fullMana.jpg");
+				}
+				else{
+					StdDraw.picture(810-20*manaCheck,610,"emptyMana.jpg");
+				}
+				
+			}
+		}
 	
 }

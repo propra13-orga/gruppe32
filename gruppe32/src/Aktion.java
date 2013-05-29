@@ -63,6 +63,7 @@ public void figurBewegen(int richtung){
 				leben--;
 			}
 			else {
+				reachedCheckpoint=false;
 				Menu.figurReset(0,figurX,figurY);
 			    Menu.levelDarstellen(0);
 			    Menu.gameOver();
@@ -110,6 +111,7 @@ public void figurBewegen(int richtung){
 				leben--;
 			}
 			else {
+				reachedCheckpoint=false;
 			    Menu.figurReset(0,figurX,figurY);
 			    Menu.levelDarstellen(0);
 			    Menu.gameOver();
@@ -159,6 +161,7 @@ public void figurBewegen(int richtung){
 				leben--;
 			}
 			else {
+				reachedCheckpoint=false;
 			    Menu.figurReset(0,figurX,figurY);
 			    Menu.levelDarstellen(0);
 			    Menu.gameOver();
@@ -209,6 +212,7 @@ public void figurBewegen(int richtung){
 			leben--;
 		}
 		else {
+			reachedCheckpoint=false;
 		    Menu.figurReset(0,figurX,figurY);
 		    Menu.levelDarstellen(0);
 		    Menu.gameOver();

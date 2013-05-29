@@ -55,7 +55,7 @@ public Spielfeld(){
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=FIGUR;
 	spielfeld[3][14][5]=SIEG;
 	
-	spielfeld[2][14][6]=CHECKPOINT;
+	spielfeld[2][9][13]=CHECKPOINT;
 
 }
 

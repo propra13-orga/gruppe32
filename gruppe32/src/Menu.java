@@ -172,10 +172,6 @@ public class Menu{
 			}
 		}
 		
-		/*public static void figurZumCheckpoint(){
-			//figurBewegen();
-			Aktion.setFigurXY();
-		}*/
 		
 		public static void gameOver(){
 			StdDraw.picture(400,300, "gameover.jpg");

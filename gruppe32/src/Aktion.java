@@ -59,7 +59,6 @@ public void figurBewegen(int richtung){
 				aktuellesLevel=2;
 				Menu.levelDarstellen(2);
 				Menu.figurReset(2, figurX, figurY);
-				//Menu.figurZumCheckpoint();
 				leben--;
 			}
 			else {
@@ -80,6 +79,7 @@ public void figurBewegen(int richtung){
 			reachedCheckpoint=true;
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX+1,figurY);
 			figurX=figurX+1;
+			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 	}
 
@@ -107,7 +107,6 @@ public void figurBewegen(int richtung){
 				aktuellesLevel=2;
 				Menu.levelDarstellen(2);
 				Menu.figurReset(2, figurX, figurY);
-				//Menu.figurZumCheckpoint();
 				leben--;
 			}
 			else {
@@ -129,6 +128,7 @@ public void figurBewegen(int richtung){
 			reachedCheckpoint=true;
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			figurY=figurY-1;
+			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 		
 	}
@@ -157,7 +157,6 @@ public void figurBewegen(int richtung){
 				aktuellesLevel=2;
 				Menu.levelDarstellen(2);
 				Menu.figurReset(2, figurX, figurY);
-				//Menu.figurZumCheckpoint();
 				leben--;
 			}
 			else {
@@ -179,6 +178,7 @@ public void figurBewegen(int richtung){
 			reachedCheckpoint=true;
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX-1,figurY);
 			figurX=figurX-1;
+			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 		
 		
@@ -208,7 +208,6 @@ public void figurBewegen(int richtung){
 			aktuellesLevel=2;
 			Menu.levelDarstellen(2);
 			Menu.figurReset(2, figurX, figurY);
-			//Menu.figurZumCheckpoint();
 			leben--;
 		}
 		else {
@@ -230,6 +229,7 @@ public void figurBewegen(int richtung){
 			reachedCheckpoint=true;
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY+1);
 			figurY=figurY+1;
+			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}	
 		
 	}

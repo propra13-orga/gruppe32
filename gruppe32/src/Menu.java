@@ -77,6 +77,7 @@ public class Menu{
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.setXscale(0.0,800);
 		StdDraw.setYscale(0,600);
+		StdDraw.show(0);
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
@@ -114,6 +115,7 @@ public class Menu{
 		}
 		displayPlayerHP(Figur.getHP());
 		displayPlayerMana(Figur.getMana());
+		StdDraw.show();
 	}
 	
 	

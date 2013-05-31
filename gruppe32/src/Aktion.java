@@ -86,7 +86,7 @@ public void figurBewegen(int richtung){
 			   
 	else if (richtung == UNTEN){ 
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==BODEN)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FIGUR)){
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==FIGUR)){
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,figurX,figurY-1);
 			figurY=figurY-1;
 		}

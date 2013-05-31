@@ -233,5 +233,9 @@ public class Menu{
 				
 			}
 		}
+		
+		public static void displayPlayer(int farbe, int ruestung){
+			
+		}
 	
 }

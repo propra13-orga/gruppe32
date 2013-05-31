@@ -56,7 +56,7 @@ public void actionPerformed(ActionEvent event) {
 	if (event.getSource().equals(Menu.starten)){
 		spielGestartet=1;
 		aktion.setLevel(0);
-		Figur.resetManaHP();
+		Figur.resetPlayerStats();
 		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
 		
 	}

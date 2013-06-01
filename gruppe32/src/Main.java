@@ -21,6 +21,7 @@ private static final int RECHTS = 0;
 private static final int UNTEN = 1;
 private static final int LINKS = 2;
 private static final int OBEN= 3;
+private static final int CHECKPOINT = 8;
 
 
 
@@ -58,6 +59,8 @@ public void actionPerformed(ActionEvent event) {
 		aktion.setLevel(0);
 		Figur.resetPlayerStats();
 		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
+		Aktion.reachedCheckpoint=false;
+		Spielfeld.wertSetzenBeiXY(2,9,13,CHECKPOINT);
 		
 	}
 	

@@ -177,28 +177,12 @@ public class Menu{
 		
 		public static void gameOver(){
 			StdDraw.picture(400,300, "gameover.jpg");
-			Main.spielGestartet=0;
-			/*JFrame fenster = new JFrame("Game Over");
-		    
-			   fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
-			   JLabel label = new JLabel("Game Over!", JLabel.CENTER);
-			   fenster.getContentPane().add(label);// dem fenster das label hinzufügen
-			   fenster.setSize(300, 200);
-			   fenster.setVisible(true);// fenster anzeigen
-			   gameOver=false;
-			*/
+			Main.spielGestartet=0;			
 		}
 		
 		public static void sieg(){
 			StdDraw.picture(400,300, "gewonnen.jpg");
-			Main.spielGestartet=0;
-			/*JFrame fenster = new JFrame("Spiel gewonnen!");
-			fenster.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // fenster schließen 
-			JLabel label = new JLabel("Herzlichen Glückwunsch! Du hast gewonnen!", JLabel.CENTER);
-			fenster.getContentPane().add(label);// dem fenster das label hinzufügen
-			fenster.setSize(300, 200);
-			fenster.setVisible(true);// fenster anzeigen
-			*/
+			Main.spielGestartet=0;			
 		}
 		
 		public static void displayPlayerHP(double hp){	

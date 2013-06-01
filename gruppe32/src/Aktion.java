@@ -29,7 +29,7 @@ private static final int OBEN= 3;
 private static final int CHECKPOINT = 8;
 
 int leben=3;
-boolean reachedCheckpoint;
+static boolean reachedCheckpoint;
 
 /**
  * Methode bewegt Figur anhand von Koordinaten
@@ -153,7 +153,7 @@ public void figurBewegen(int richtung){
 		}
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==MOB)){
-			if (leben>0){
+			if ((leben>0)&reachedCheckpoint==true){
 				aktuellesLevel=2;
 				Menu.levelDarstellen(2);
 				Menu.figurReset(2, figurX, figurY);
@@ -204,7 +204,7 @@ public void figurBewegen(int richtung){
 		
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FALLE)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==MOB)){
-		if (leben>0){
+			if ((leben>0)&reachedCheckpoint==true){
 			aktuellesLevel=2;
 			Menu.levelDarstellen(2);
 			Menu.figurReset(2, figurX, figurY);

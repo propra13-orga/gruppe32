@@ -189,9 +189,7 @@ public class Menu{
 			Main.spielGestartet=0;			
 		}
 		
-		public static void storyteller(){
-			// StdDraw.picture(400,300, "gewonnen.jpg");		
-		}
+		
 		
 		public static void displayPlayerHP(double hp){	
 			for (hpCheck=1; hpCheck<=Figur.MAXHP; hpCheck++){

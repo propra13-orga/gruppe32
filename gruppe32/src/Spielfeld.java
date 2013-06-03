@@ -1,4 +1,5 @@
 import javax.swing.JLabel;
+//import java.StdOut;
 
 /**
  * Klassenkommentar:
@@ -59,8 +60,38 @@ public Spielfeld(){
 	spielfeld[2][9][13]=CHECKPOINT;
 
 	//storyteller
-	spielfeld[0][2][2]=spielfeld[2][9][9]=STORYTELLER;
+	spielfeld[0][10][10]=spielfeld[2][11][13]=spielfeld[3][16][7]=STORYTELLER;
 }
+
+
+/**
+ * Storyteller erzaehlt seine Geschichte
+ * 
+ * ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ * ACHTUNG: ARBEITSVERSION
+ * Ausgabe noch nicht richtig, da Text im Spiel 
+ * und nicht auf der Konsole ausgegeben werden soll
+ * +
+ * Fallunterscheidung funktioniert nicht
+ * +
+ * Methode steht in der falschen Klasse
+ * ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ * 
+ */
+public static void storyteller(){
+	
+	if (spielfeld[0][10][10] == STORYTELLER){
+		System.out.println("Hey du! Warte mal! Nur keine Angst, ich will dir nur helfen... \nDu bist nicht der erste Abenteurer hier auf dem Weg. Aber in dir sehe ich Potential diese Hoelle zu durchstehen... \nFrueher war dies ein friedliches Plaetzchen, aber dann kamen die Trolle und legten Fallen aus... und das nur, um ihr Essen besser wuerzen zu koennen! \nSiehst du sie dort unten...? Pass auf, komm ihnen nicht zu nahe!");
+	}
+	else if (spielfeld[2][11][13] == STORYTELLER){
+		System.out.println("Da bist du ja schon! Pass auf, direkt neben mir steht die bester Erfindung seitdem es die fiesen Trolle es hier runter geschafft haben. Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie beruehrst und im weiteren Verlauf deines Abenteuers stirbst, wirst du hier wiederbelebt. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
+	}
+	else if (spielfeld[3][16][7] == STORYTELLER){
+		System.out.println("Fast hast du es geschafft!!! Beruehre diese Flagge dort und du kannst beruhigt nach Hause zurueckkehren und dich als Sieger feiern lassen. \nAber lass dich nicht auf den letzten Metern von den Trollen erwischen! Mach's gut!");
+	}		
+}
+
+
 
 
 /**

@@ -85,7 +85,7 @@ public void figurBewegen(int richtung){
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==STORYTELLER){
-		    Menu.storyteller();
+		    Spielfeld.storyteller();
 		}
 	}
 
@@ -137,7 +137,7 @@ public void figurBewegen(int richtung){
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==STORYTELLER){
-		    Menu.storyteller();
+			Spielfeld.storyteller();
 		}
 	}
 	
@@ -189,7 +189,7 @@ public void figurBewegen(int richtung){
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==STORYTELLER){
-		    Menu.storyteller();
+			Spielfeld.storyteller();
 		}	
 	}
 	
@@ -241,7 +241,7 @@ public void figurBewegen(int richtung){
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==STORYTELLER){
-		    Menu.storyteller();
+			Spielfeld.storyteller();
 		}
 	}
 

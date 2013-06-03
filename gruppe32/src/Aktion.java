@@ -21,12 +21,15 @@ private static final int FALLE = 4;
 private static final int MOB = 5;
 private static final int FIGUR = 6;
 private static final int SIEG = 7;
+private static final int CHECKPOINT = 8;
+private static final int STORYTELLER = 9;
 
 private static final int RECHTS = 0;
 private static final int UNTEN = 1;
 private static final int LINKS = 2;
 private static final int OBEN= 3;
-private static final int CHECKPOINT = 8;
+
+
 
 int leben=3;
 static boolean reachedCheckpoint;
@@ -81,6 +84,9 @@ public void figurBewegen(int richtung){
 			figurX=figurX+1;
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==STORYTELLER){
+		    Menu.storyteller();
+		}
 	}
 
 			   
@@ -130,7 +136,9 @@ public void figurBewegen(int richtung){
 			figurY=figurY-1;
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
-		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==STORYTELLER){
+		    Menu.storyteller();
+		}
 	}
 	
 	
@@ -180,8 +188,9 @@ public void figurBewegen(int richtung){
 			figurX=figurX-1;
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}
-		
-		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==STORYTELLER){
+		    Menu.storyteller();
+		}	
 	}
 	
 	
@@ -231,7 +240,9 @@ public void figurBewegen(int richtung){
 			figurY=figurY+1;
 			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
 		}	
-		
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==STORYTELLER){
+		    Menu.storyteller();
+		}
 	}
 
 }

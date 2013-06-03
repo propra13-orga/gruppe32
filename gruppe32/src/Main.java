@@ -81,7 +81,7 @@ public void keyTyped(KeyEvent k){
 
 /**
  * Methode keyPressed: KeyEvent:
- * Pfeiltasten werden mit Bewegungsfunktionen innerhalb des Programms belegt
+ * Tasten werden mit Bewegungsfunktionen innerhalb des Programms belegt
  * 
  */
 public void keyPressed(KeyEvent k){

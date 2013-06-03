@@ -21,7 +21,7 @@ private static final int MOB = 5;
 private static final int FIGUR = 6;
 private static final int SIEG = 7;
 private static final int CHECKPOINT = 8;
-
+private static final int STORYTELLER = 9;
 
 
 /**
@@ -55,8 +55,11 @@ public Spielfeld(){
 	spielfeld[0][1][5]=spielfeld[1][17][13]=spielfeld[2][10][13]=spielfeld[3][18][3]=FIGUR;
 	spielfeld[3][14][5]=SIEG;
 	
+	//checkpoint
 	spielfeld[2][9][13]=CHECKPOINT;
 
+	//storyteller
+	spielfeld[0][2][2]=spielfeld[2][9][9]=STORYTELLER;
 }
 
 

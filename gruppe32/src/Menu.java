@@ -30,6 +30,7 @@ public class Menu{
 	private static final int FIGUR = 6;
 	private static final int SIEG = 7;
 	private static final int CHECKPOINT = 8;
+	private static final int STORYTELLER = 9;
 	
 	private static final int BREITE = 880;
 	private static final int HOEHE = 660;
@@ -110,6 +111,9 @@ public class Menu{
 				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==CHECKPOINT){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "checkpoint.jpg");
 				}
+				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==STORYTELLER){
+					StdDraw.picture(20+40*spalte,20+40*reihe, "storyteller.jpg");
+				}
 
 			}
 		}
@@ -183,6 +187,10 @@ public class Menu{
 		public static void sieg(){
 			StdDraw.picture(400,300, "gewonnen.jpg");
 			Main.spielGestartet=0;			
+		}
+		
+		public static void storyteller(){
+			// StdDraw.picture(400,300, "gewonnen.jpg");		
 		}
 		
 		public static void displayPlayerHP(double hp){	

@@ -81,10 +81,10 @@ public Spielfeld(){
 public static void storyteller(){
 	
 	if (spielfeld[0][10][10] == STORYTELLER){
-		System.out.println("Hey du! Warte mal! Nur keine Angst, ich will dir nur helfen... \nDu bist nicht der erste Abenteurer hier auf dem Weg. Aber in dir sehe ich Potential diese Hoelle zu durchstehen... \nFrueher war dies ein friedliches Plaetzchen, aber dann kamen die Trolle und legten Fallen aus... und das nur, um ihr Essen besser wuerzen zu koennen! \nSiehst du sie dort unten...? Pass auf, komm ihnen nicht zu nahe!");
+		System.out.println("Hey du! Warte mal! Keine Angst, ich will dir nur helfen... \nDu bist nicht der erste Abenteurer hier auf dem Weg. Aber in dir sehe ich Potential diese Hoelle zu durchstehen... \nFrueher war dies ein friedliches Plaetzchen, aber dann kamen die Trolle und legten Fallen aus... und das nur, um ihr Essen besser wuerzen zu koennen! \nSiehst du sie dort unten...? Pass auf, komm ihnen nicht zu nahe!");
 	}
 	else if (spielfeld[2][11][13] == STORYTELLER){
-		System.out.println("Da bist du ja schon! Pass auf, direkt neben mir steht die bester Erfindung seitdem es die fiesen Trolle es hier runter geschafft haben. Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie beruehrst und im weiteren Verlauf deines Abenteuers stirbst, wirst du hier wiederbelebt. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
+		System.out.println("Da bist du ja schon! Pass auf, direkt neben mir steht die beste Erfindung, seitdem die fiesen Trolle es hier runter geschafft haben. Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie beruehrst und im weiteren Verlauf deines Abenteuers stirbst, wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
 	}
 	else if (spielfeld[3][16][7] == STORYTELLER){
 		System.out.println("Fast hast du es geschafft!!! Beruehre diese Flagge dort und du kannst beruhigt nach Hause zurueckkehren und dich als Sieger feiern lassen. \nAber lass dich nicht auf den letzten Metern von den Trollen erwischen! Mach's gut!");

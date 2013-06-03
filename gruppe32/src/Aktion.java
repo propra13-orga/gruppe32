@@ -23,6 +23,14 @@ private static final int FIGUR = 6;
 private static final int SIEG = 7;
 private static final int CHECKPOINT = 8;
 private static final int STORYTELLER = 9;
+private static final int FARBEGELB = 12;
+private static final int FARBEBLAU = 10;
+private static final int FARBEROT = 11;
+private static final int GELB = 0;
+private static final int BLAU = 1;
+private static final int ROT = 2;
+
+
 
 private static final int RECHTS = 0;
 private static final int UNTEN = 1;
@@ -87,6 +95,15 @@ public void figurBewegen(int richtung){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==STORYTELLER){
 		    Spielfeld.storyteller();
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==FARBEGELB){
+			Figur.setFarbe(GELB);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==FARBEROT){
+			Figur.setFarbe(ROT);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX+1,figurY)==FARBEBLAU){
+			Figur.setFarbe(BLAU);
+		}
 	}
 
 			   
@@ -139,6 +156,15 @@ public void figurBewegen(int richtung){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==STORYTELLER){
 			Spielfeld.storyteller();
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==FARBEGELB){
+			Figur.setFarbe(GELB);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==FARBEROT){
+			Figur.setFarbe(ROT);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY-1)==FARBEBLAU){
+			Figur.setFarbe(BLAU);
+		}
 	}
 	
 	
@@ -190,7 +216,17 @@ public void figurBewegen(int richtung){
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==STORYTELLER){
 			Spielfeld.storyteller();
-		}	
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==FARBEGELB){
+			Figur.setFarbe(GELB);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==FARBEROT){
+			Figur.setFarbe(ROT);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX-1,figurY)==FARBEBLAU){
+			Figur.setFarbe(BLAU);
+		}
+		
 	}
 	
 	
@@ -243,7 +279,17 @@ public void figurBewegen(int richtung){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==STORYTELLER){
 			Spielfeld.storyteller();
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FARBEGELB){
+			Figur.setFarbe(GELB);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FARBEROT){
+			Figur.setFarbe(ROT);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,figurX,figurY+1)==FARBEBLAU){
+			Figur.setFarbe(BLAU);
+		}
 	}
+
 
 }
 	
@@ -266,7 +312,12 @@ public static void setFigurXY(int x, int y){
 public static void setLevel(int level){
 	aktuellesLevel = level;
 }
-
+public static int getFigurX(){
+	return figurX;
+}
+public static int getFigurY(){
+	return figurY;
+}
 
 }
 

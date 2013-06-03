@@ -10,7 +10,10 @@ public class Figur{
 	private static final int DEFAULTFARBE = GELB;
 	private static final double DEFAULTSCHADEN = 1;
 	private static final double DEFAULTMANAFAKTOR=1;
+	private static final int DEFAULTLEBEN=3;
+	private static final int DEFAULTRUESTUNG = 20;
 	
+	private static int leben;
 	private static double manaFaktor;
 	private static double schaden;
 	private static double aktuellesMana;
@@ -36,7 +39,13 @@ public class Figur{
 		aktuelleHP = aktuelleHP-(schaden*((100-ruestung)/100));
 		Menu.displayPlayerHP(aktuelleHP);
 		if (aktuelleHP<=0){
-			Menu.gameOver();
+			leben--;
+			if (leben<=0){
+				Menu.gameOver();
+			}
+			aktuelleHP=DEFAULTHP;
+			Menu.displayPlayerHP(aktuelleHP);
+			//Menu.playerToCheckpoint();
 		}
 	}
 	public static void manaVerbrauchen(double verbrauch){
@@ -86,6 +95,8 @@ public class Figur{
 		aktuelleFarbe=DEFAULTFARBE;
 		schaden=DEFAULTSCHADEN;
 		manaFaktor=DEFAULTMANAFAKTOR;
+		leben = DEFAULTLEBEN;
+		ruestung = DEFAULTRUESTUNG;
 	}
 	
 	/*
@@ -99,6 +110,22 @@ public class Figur{
 	public static double getMana(){
 		return aktuellesMana;
 	}
+	public static int getFarbe(){
+		return aktuelleFarbe;
+	}
+	public static double getRuestung(){
+		return ruestung;
+	}
+	public static double getManaFaktor(){
+		return manaFaktor;
+	}
+	public static double getSchaden(){
+		return schaden;
+	}
+	public static int getLeben(){
+		return leben;
+	}
+	
 	
 	
 	/*
@@ -129,6 +156,7 @@ public class Figur{
 			else if (aktuelleFarbe == ROT){
 				schaden = schaden/1.5;
 				manaFaktor = manaFaktor/1.5;
+				ruestung = ruestung+10;
 			}
 			aktuelleFarbe=BLAU;
 		}
@@ -136,6 +164,7 @@ public class Figur{
 			if (aktuelleFarbe == BLAU){
 				manaFaktor = manaFaktor*1.5;
 				schaden = schaden*1.5;
+				ruestung = ruestung-10;
 			}
 			else if (aktuelleFarbe == GELB){
 				ruestung = ruestung-40;
@@ -143,6 +172,7 @@ public class Figur{
 			}
 			aktuelleFarbe=ROT;
 		}
-		//Menu.dispalyPlayer;
+		Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
+		Menu.displayPlayerStats();
 	}
 }

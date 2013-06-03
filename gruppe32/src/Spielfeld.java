@@ -23,6 +23,9 @@ private static final int FIGUR = 6;
 private static final int SIEG = 7;
 private static final int CHECKPOINT = 8;
 private static final int STORYTELLER = 9;
+private static final int FARBEGELB = 12;
+private static final int FARBEBLAU = 10;
+private static final int FARBEROT = 11;
 
 
 /**
@@ -61,6 +64,10 @@ public Spielfeld(){
 
 	//storyteller
 	spielfeld[0][10][10]=spielfeld[2][11][13]=spielfeld[3][16][7]=STORYTELLER;
+	
+	spielfeld[0][5][5]=FARBEBLAU;
+	spielfeld[0][5][6]=FARBEROT;
+	spielfeld[0][5][7]=FARBEGELB;
 }
 
 

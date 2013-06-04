@@ -17,11 +17,28 @@ public class Main extends JFrame implements ActionListener, KeyListener {
 private Spielfeld mySpielfeld;
 private Aktion aktion;
 protected static int spielGestartet=0;
-private static final int RECHTS = 0;
-private static final int UNTEN = 1;
-private static final int LINKS = 2;
-private static final int OBEN= 3;
-private static final int CHECKPOINT = 8;
+public static final int RECHTS = 0;
+public static final int UNTEN = 1;
+public static final int LINKS = 2;
+public static final int OBEN= 3;
+
+public static final int BODEN = 0;
+public static final int MAUER = 1;
+public static final int START = 2;
+public static final int ZIEL = 3;
+public static final int FALLE = 4;
+public static final int MOB = 5;
+public static final int FIGUR = 6;
+public static final int SIEG = 7;
+public static final int CHECKPOINT = 8;
+public static final int STORYTELLER = 9;
+public static final int FARBEGELB = 12;
+public static final int FARBEBLAU = 10;
+public static final int FARBEROT = 11;
+public static final int GELB = 0;
+public static final int BLAU = 1;
+public static final int ROT = 2;
+
 
 
 

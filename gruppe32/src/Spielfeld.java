@@ -1,4 +1,5 @@
 import javax.swing.JLabel;
+import java.io.*;
 //import java.StdOut;
 
 /**
@@ -12,6 +13,7 @@ private static int[][][] spielfeld = new int [4][20][15];
 private int level;
 private int reihe;
 private int spalte;
+private char testChar;
 
 private static final int BODEN = 0;
 private static final int MAUER = 1;
@@ -27,14 +29,16 @@ private static final int FARBEGELB = 12;
 private static final int FARBEBLAU = 10;
 private static final int FARBEROT = 11;
 
+private FileReader fr;
+private BufferedReader br;
 
 /**
  * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
  *
  */
-public Spielfeld(){
+public Spielfeld() {
 	// Schleife über alle Level, Spalten und Reihen für Mauersteine
-	for (spalte=0; spalte<20; spalte++) {
+	/*for (spalte=0; spalte<20; spalte++) {
 		for (reihe=0; reihe<15; reihe++) {
 			for (level=0; level<4; level++) {
 				if ((spalte==0)|(spalte==19)|(reihe==0)|(reihe==14)) {			
@@ -67,7 +71,14 @@ public Spielfeld(){
 	
 	spielfeld[0][5][5]=FARBEBLAU;
 	spielfeld[0][5][6]=FARBEROT;
-	spielfeld[0][5][7]=FARBEGELB;
+	spielfeld[0][5][7]=FARBEGELB;*/
+	try{
+	fr = new FileReader("levels.txt");
+	br = new BufferedReader(fr);
+	}
+	catch(IOException e){
+		
+	}
 }
 
 

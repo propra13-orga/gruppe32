@@ -96,7 +96,8 @@ public class Menu{
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
-				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.BODEN){
+				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.BODEN
+						|(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==13)){
 					StdDraw.picture(20+40*spalte,20+40*reihe, BODENIMG); 
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.MAUER){
@@ -190,23 +191,18 @@ public class Menu{
 		 * 
 		 */
 	
-		public static void figurZumZiel(int level){
-			if (level == 0){
-				figurBewegen(level,1,5,17,1);
-				Aktion.setFigurXY(17, 1);
-			}
-			else if (level==1){
-				figurBewegen(level,17,13,10,1);
-				Aktion.setFigurXY(10, 1);
-			}
-			else if (level==2){
-				figurBewegen(level,10,13,1,3);
-				Aktion.setFigurXY(1, 3);
-			}
-			else if (level==3){
-				//figurBewegen(level,0,0,-1,-1);
+	public static void figurZumZiel(int level){
+		for (spalte=0;spalte<20;spalte++) {
+			for(reihe=0;reihe<15;reihe++) {
+				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==13){
+					StdDraw.picture(20+40*Aktion.getFigurX(),20+40*Aktion.getFigurY(),BODENIMG);
+					//StdDraw.picture(20+40*spalte,20+40*reihe, SPIELFIGURIMG);
+					displayPlayer(Figur.getFarbe(),spalte,reihe);
+					Aktion.setFigurXY(spalte, reihe);
+				}
 			}
 		}
+	}
 		
 		
 		public static void gameOver(){

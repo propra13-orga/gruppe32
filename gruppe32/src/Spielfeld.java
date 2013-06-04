@@ -13,7 +13,7 @@ private static int[][][] spielfeld = new int [4][20][15];
 private int level;
 private int reihe;
 private int spalte;
-private char testChar;
+private int testChar;
 
 private FileReader fr;
 private BufferedReader br;
@@ -59,13 +59,70 @@ public Spielfeld() {
 	spielfeld[0][5][6]=FARBEROT;
 	spielfeld[0][5][7]=FARBEGELB;*/
 	try{
-	fr = new FileReader("levels.txt");
-	br = new BufferedReader(fr);
+	    
+		fr = new FileReader("src/level.txt");
+		br = new BufferedReader(fr);
+		for (level=0; level<4; level++) {
+			br.skip(2);
+			for (reihe=14; reihe>=0; reihe--) {
+				br.skip(1);
+					for (spalte=0; spalte<20; spalte++) {
+						br.skip(1);
+						testChar = br.read();
+						if (testChar-48 == 1){
+							spielfeld[level][spalte][reihe]=MAUER;
+						}
+						else if (testChar-48 ==0){
+							spielfeld[level][spalte][reihe]=BODEN;	
+						}
+						else if (testChar-48 ==2){
+							spielfeld[level][spalte][reihe]=START;	
+						}
+						else if (testChar-48 ==3){
+							spielfeld[level][spalte][reihe]=ZIEL;
+						}
+						else if (testChar-48 == 5){
+							spielfeld[level][spalte][reihe]=MOB;
+						}
+						else if (testChar-48 == 4){
+							spielfeld[level][spalte][reihe]=FALLE;
+						}
+						else if (testChar-48 == 6){
+							spielfeld[level][spalte][reihe]=FIGUR;
+						}
+						else if (testChar-48 == 7){
+							spielfeld[level][spalte][reihe]=SIEG;
+						}
+						else if (testChar-48 == 8){
+							spielfeld[level][spalte][reihe]=CHECKPOINT;
+						}
+						else if (testChar-48 == 9){
+							spielfeld[level][spalte][reihe]=STORYTELLER;
+						}
+						else if (testChar == 71){
+							spielfeld[level][spalte][reihe]=FARBEGELB;
+						}
+						else if (testChar == 82){
+							spielfeld[level][spalte][reihe]=FARBEROT;
+						}
+						else if (testChar == 66){
+							spielfeld[level][spalte][reihe]=FARBEBLAU;
+						}
+						else if (testChar == 88){
+							spielfeld[level][spalte][reihe]=13;
+						}
+						
+				}
+			}
+		}
+		}
+		catch(FileNotFoundException e){
+			spielfeld[0][1][2]=FARBEBLAU;
+		}
+		catch(IOException e){
+			spielfeld[0][5][6]=FARBEROT;
+		}
 	}
-	catch(IOException e){
-		
-	}
-}
 
 
 /**

@@ -72,6 +72,7 @@ public void actionPerformed(ActionEvent event) {
 	
 	//wenn der Button 'starten' gedrueckt wird, soll sich Fenster mit Spielfeld oeffnen
 	if (event.getSource().equals(Menu.starten)){
+		StdDraw.clear();
 		spielGestartet=1;
 		aktion.setLevel(0);
 		aktion.setRaum(0);

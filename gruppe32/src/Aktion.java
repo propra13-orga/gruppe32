@@ -1,5 +1,4 @@
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+
 
 /**
  * Klassenkommentar:
@@ -154,6 +153,11 @@ public static int getFigurX(){
 public static int getFigurY(){
 	return figurY;
 }
-
+public static int getLevel(){
+	return aktuellesLevel;
+}
+public static int getRaum(){
+	return aktuellerRaum;
+}
 }
 

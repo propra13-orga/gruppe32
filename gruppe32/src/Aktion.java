@@ -55,13 +55,27 @@ static boolean reachedCheckpoint;
 			figurX=newFigurX;
 			figurY=newFigurY;
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.START)&(aktuellesLevel>0)){
-			aktuellesLevel--;
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.START)
+				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
+		
+			if (aktuellerRaum>0){
+				aktuellerRaum--;
+			}
+			else if(aktuellesLevel>0){
+				aktuellesLevel--;
+				aktuellerRaum=2;
+			}
 			Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
 			Menu.figurZumZiel(aktuellesLevel,aktuellerRaum);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.ZIEL){
-			aktuellesLevel++;
+			if (aktuellerRaum<2){
+				aktuellerRaum++;
+			}
+			else {
+				aktuellesLevel++;
+				aktuellerRaum=0;
+			}
 			Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
 			Menu.figurReset(aktuellesLevel,aktuellerRaum, figurX, figurY);
 		}

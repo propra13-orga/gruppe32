@@ -74,10 +74,11 @@ public void actionPerformed(ActionEvent event) {
 	if (event.getSource().equals(Menu.starten)){
 		spielGestartet=1;
 		aktion.setLevel(0);
+		aktion.setRaum(0);
 		Figur.resetPlayerStats();
-		Menu.levelDarstellen(0); // stellt das aktuelle/erste level dar
+		Menu.levelDarstellen(0,0); // stellt das aktuelle/erste level dar
 		Aktion.reachedCheckpoint=false;
-		Spielfeld.wertSetzenBeiXY(2,9,13,CHECKPOINT);
+		//Spielfeld.wertSetzenBeiXY(2,9,13,CHECKPOINT);
 		
 	}
 	

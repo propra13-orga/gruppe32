@@ -88,7 +88,7 @@ public class Menu{
  * Darstellung des Spielfelds (Grafische Ausgabe)
  * 
  */
-	public static void levelDarstellen(int level) {
+	public static void levelDarstellen(int level,int raum) {
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.setXscale(0.0,900);
 		StdDraw.setYscale(0,600);
@@ -96,47 +96,47 @@ public class Menu{
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
-				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.BODEN
-						|(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==13)){
+				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.BODEN
+						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==13)){
 					StdDraw.picture(20+40*spalte,20+40*reihe, BODENIMG); 
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.MAUER){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MAUER){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MAUERIMG);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)== Main.START){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)== Main.START){
 					StdDraw.picture(20+40*spalte,20+40*reihe, STARTIMG);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.ZIEL){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.ZIEL){
 					StdDraw.picture(20+40*spalte,20+40*reihe, ZIELIMG);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FALLE){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FALLE){
 					StdDraw.picture(20+40*spalte,20+40*reihe, FALLEIMG);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.MOB){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MOB){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MOBIMG);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FIGUR){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FIGUR){
 					//StdDraw.picture(20+40*spalte,20+40*reihe, SPIELFIGURIMG);
 					displayPlayer(Figur.getFarbe(),spalte,reihe);
 					Aktion.setFigurXY(spalte, reihe);
 				}
-				else if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.SIEG){
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.SIEG){
 
 					StdDraw.picture(20+40*spalte,20+40*reihe, SIEGIMG);
 				}
-				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.CHECKPOINT){
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.CHECKPOINT){
 					StdDraw.picture(20+40*spalte,20+40*reihe, CHECKPOINTIMG);
 				}
-				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FARBEBLAU){
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FARBEBLAU){
 					StdDraw.picture(20+40*spalte,20+40*reihe, FARBEBLAUIMG);
 				}
-				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FARBEGELB){
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FARBEGELB){
 					StdDraw.picture(20+40*spalte,20+40*reihe, FARBEGELBIMG);
 				}
-				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FARBEROT){
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FARBEROT){
 					StdDraw.picture(20+40*spalte,20+40*reihe, FARBEROTIMG);
 				}
-				else if(Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.STORYTELLER){
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.STORYTELLER){
 					StdDraw.picture(20+40*spalte,20+40*reihe, "storyteller.jpg");
 				}
 
@@ -171,10 +171,10 @@ public class Menu{
 	 * Methoden setzt Figur zu Ausgangskoordinaten zurueck
 	 *
 	 */
-	public static void figurReset(int level,int x, int y){
+	public static void figurReset(int level,int raum, int x, int y){
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
-				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==Main.FIGUR){
+				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.FIGUR){
 					StdDraw.picture(20+40*x,20+40*y,BODENIMG);
 					//StdDraw.picture(20+40*spalte,20+40*reihe, SPIELFIGURIMG);
 					displayPlayer(Figur.getFarbe(),spalte,reihe);
@@ -191,10 +191,10 @@ public class Menu{
 		 * 
 		 */
 	
-	public static void figurZumZiel(int level){
+	public static void figurZumZiel(int level, int raum){
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
-				if (Spielfeld.wertLesenBeiXY(level,spalte,reihe)==13){
+				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==13){
 					StdDraw.picture(20+40*Aktion.getFigurX(),20+40*Aktion.getFigurY(),BODENIMG);
 					//StdDraw.picture(20+40*spalte,20+40*reihe, SPIELFIGURIMG);
 					displayPlayer(Figur.getFarbe(),spalte,reihe);

@@ -47,6 +47,7 @@ public class Figur{
 			Menu.displayPlayerHP(aktuelleHP);
 			//Menu.playerToCheckpoint();
 		}
+		Menu.displayPlayerStats();
 	}
 	public static void manaVerbrauchen(double verbrauch){
 		if ((aktuellesMana-verbrauch)>=0){

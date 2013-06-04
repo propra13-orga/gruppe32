@@ -27,9 +27,7 @@ static boolean reachedCheckpoint;
  * Methode bewegt Figur anhand von Koordinaten
  * 
  */
-public void figurBewegen(int richtung){
 	
-		
 	public void figurBewegen(int richtung){
 		
 		
@@ -49,24 +47,24 @@ public void figurBewegen(int richtung){
 			newFigurX=figurX;
 			newFigurY=figurY+1;
 		}
-		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==BODEN)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==FIGUR)
+		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.BODEN)
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.FIGUR)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==13)){
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=newFigurX;
 			figurY=newFigurY;
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==START)&(aktuellesLevel>0)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.START)&(aktuellesLevel>0)){
 			aktuellesLevel--;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurZumZiel(aktuellesLevel);
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==ZIEL){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.ZIEL){
 			aktuellesLevel++;
 			Menu.levelDarstellen(aktuellesLevel);
 			Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==MOB)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.FALLE)|(Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.MOB)){
 			if ((leben>0)&reachedCheckpoint==true){
 				aktuellesLevel=2;
 				Menu.levelDarstellen(2);
@@ -80,37 +78,37 @@ public void figurBewegen(int richtung){
 			    Menu.gameOver();
 			}
 		}	
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==SIEG){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.SIEG){
 			aktuellesLevel=0;
 			Menu.sieg();
 			//Menu.levelDarstellen(aktuellesLevel);
 			//Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
 		
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==CHECKPOINT){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.CHECKPOINT){
 			reachedCheckpoint=true;
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=figurX+1;
-			Spielfeld.wertSetzenBeiXY(2,9,13,BODEN);
+			Spielfeld.wertSetzenBeiXY(2,9,13,Main.BODEN);
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==STORYTELLER){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.STORYTELLER){
 		    Spielfeld.storyteller();
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==FARBEGELB){
-			Figur.setFarbe(GELB);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.FARBEGELB){
+			Figur.setFarbe(Main.GELB);
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==FARBEROT){
-			Figur.setFarbe(ROT);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.FARBEROT){
+			Figur.setFarbe(Main.ROT);
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==FARBEBLAU){
-			Figur.setFarbe(BLAU);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,newFigurX,newFigurY)==Main.FARBEBLAU){
+			Figur.setFarbe(Main.BLAU);
 		}
 
 
 	}
 
 
-}
+
 	
 	
 	

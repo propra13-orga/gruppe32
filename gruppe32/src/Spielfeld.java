@@ -70,43 +70,43 @@ public Spielfeld() {
 						br.skip(1);
 						testChar = br.read();
 						if (testChar-48 == 1){
-							spielfeld[level][spalte][reihe]=MAUER;
+							spielfeld[level][spalte][reihe]=Main.MAUER;
 						}
 						else if (testChar-48 ==0){
-							spielfeld[level][spalte][reihe]=BODEN;	
+							spielfeld[level][spalte][reihe]=Main.BODEN;	
 						}
 						else if (testChar-48 ==2){
-							spielfeld[level][spalte][reihe]=START;	
+							spielfeld[level][spalte][reihe]=Main.START;	
 						}
 						else if (testChar-48 ==3){
-							spielfeld[level][spalte][reihe]=ZIEL;
+							spielfeld[level][spalte][reihe]=Main.ZIEL;
 						}
 						else if (testChar-48 == 5){
-							spielfeld[level][spalte][reihe]=MOB;
+							spielfeld[level][spalte][reihe]=Main.MOB;
 						}
 						else if (testChar-48 == 4){
-							spielfeld[level][spalte][reihe]=FALLE;
+							spielfeld[level][spalte][reihe]=Main.FALLE;
 						}
 						else if (testChar-48 == 6){
-							spielfeld[level][spalte][reihe]=FIGUR;
+							spielfeld[level][spalte][reihe]=Main.FIGUR;
 						}
 						else if (testChar-48 == 7){
-							spielfeld[level][spalte][reihe]=SIEG;
+							spielfeld[level][spalte][reihe]=Main.SIEG;
 						}
 						else if (testChar-48 == 8){
-							spielfeld[level][spalte][reihe]=CHECKPOINT;
+							spielfeld[level][spalte][reihe]=Main.CHECKPOINT;
 						}
 						else if (testChar-48 == 9){
-							spielfeld[level][spalte][reihe]=STORYTELLER;
+							spielfeld[level][spalte][reihe]=Main.STORYTELLER;
 						}
 						else if (testChar == 71){
-							spielfeld[level][spalte][reihe]=FARBEGELB;
+							spielfeld[level][spalte][reihe]=Main.FARBEGELB;
 						}
 						else if (testChar == 82){
-							spielfeld[level][spalte][reihe]=FARBEROT;
+							spielfeld[level][spalte][reihe]=Main.FARBEROT;
 						}
 						else if (testChar == 66){
-							spielfeld[level][spalte][reihe]=FARBEBLAU;
+							spielfeld[level][spalte][reihe]=Main.FARBEBLAU;
 						}
 						else if (testChar == 88){
 							spielfeld[level][spalte][reihe]=13;
@@ -117,10 +117,10 @@ public Spielfeld() {
 		}
 		}
 		catch(FileNotFoundException e){
-			spielfeld[0][1][2]=FARBEBLAU;
+			spielfeld[0][1][2]=Main.FARBEBLAU;
 		}
 		catch(IOException e){
-			spielfeld[0][5][6]=FARBEROT;
+			spielfeld[0][5][6]=Main.FARBEROT;
 		}
 	}
 

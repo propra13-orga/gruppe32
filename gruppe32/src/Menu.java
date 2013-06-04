@@ -261,9 +261,12 @@ public class Menu{
 			StdDraw.filledRectangle(920, 300, 100, 500);
 			StdDraw.setPenColor();
 			StdDraw.textLeft(820, 550, "Leben:"+Figur.getLeben());
-			StdDraw.textLeft(820, 500, "Schaden:"+Figur.getSchaden());
-			StdDraw.textLeft(820, 450, "Ruestung:"+Figur.getRuestung());
-			StdDraw.textLeft(820, 400, "Manafaktor:"+Figur.getManaFaktor());
+			StdDraw.textLeft(820, 530, "Schaden:"+Figur.getSchaden());
+			StdDraw.textLeft(820, 510, "Ruestung:"+Figur.getRuestung());
+			StdDraw.textLeft(820, 490, "Manafaktor:"+Figur.getManaFaktor());
+			StdDraw.textLeft(820, 470,"Raum: "+(Aktion.getLevel()+1)+"-"+(Aktion.getRaum()+1));
+			StdDraw.textLeft(820, 450, "HP:"+Figur.getHP());
+			StdDraw.textLeft(820, 430, "Mana:"+Figur.getMana());
 		}
 	
 }

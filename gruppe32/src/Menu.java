@@ -48,6 +48,8 @@ public class Menu{
 	
 	private static final int BREITE = 990;
 	private static final int HOEHE = 660;
+	
+	
 	/**
 	 * Methode oeffnet das Menue
 	 * 
@@ -97,7 +99,9 @@ public class Menu{
 			for(reihe=0;reihe<15;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
 				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.BODEN
-						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==13)){
+						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
+						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
+																					//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
 					StdDraw.picture(20+40*spalte,20+40*reihe, BODENIMG); 
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MAUER){
@@ -187,7 +191,7 @@ public class Menu{
 		/**
 		 * 
 		 * Methodenkommentar:
-		 * Setzt die Spielfigur zum Ziel des gegebenen levels
+		 * Setzt die Spielfigur zum Ziel des vorherigen Levels, wenn man einen Raum zurueck geht
 		 * 
 		 */
 	
@@ -203,18 +207,43 @@ public class Menu{
 			}
 		}
 	}
-		
-		
+	
+	/**
+	 * Setzt Figur zurueck zum Checkpoint
+	 * @param level
+	 * @param raum
+	 */
+	public static void figurZumCheckpoint(int level, int raum){
+		for (spalte=0;spalte<20;spalte++) {
+			for(reihe=0;reihe<15;reihe++) {
+				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==14){
+					StdDraw.picture(20+40*Aktion.getFigurX(),20+40*Aktion.getFigurY(),BODENIMG);
+					displayPlayer(Figur.getFarbe(),spalte,reihe);
+					Aktion.setFigurXY(spalte, reihe);
+				}
+			}
+		}
+	}
+		/**
+		 * blendet 'Game Over' ein und setzt spielGestartet zurueck auf 0
+		 */
 		public static void gameOver(){
 			StdDraw.picture(400,300, GAMEOVERIMG);
 			Main.spielGestartet=0;			
 		}
 		
+		/**
+		 * blendet 'Gewonnen' ein und setzt spielGestartet zurueck auf 0
+		 */
 		public static void sieg(){
 			StdDraw.picture(400,300, GEWONNENIMG);
 			Main.spielGestartet=0;			
 		}
 		
+		/**
+		 * zeigt aktuelle HP oben links ueber dem Spielfeld an
+		 * @param hp
+		 */
 		public static void displayPlayerHP(double hp){	
 			for (hpCheck=1; hpCheck<=Figur.MAXHP; hpCheck++){
 				if ((hpCheck>hp)&(hp>hpCheck-1)){
@@ -229,6 +258,10 @@ public class Menu{
 				
 			}
 		}
+		/**
+		 * zeigt aktuelle Mana oben rechts ueber dem Spielfeld an
+		 * @param mana
+		 */
 		public static void displayPlayerMana(double mana){	
 			for (manaCheck=1; manaCheck<=Figur.MAXMANA; manaCheck++){
 				if ((manaCheck>mana)&(mana>manaCheck-1)){
@@ -244,6 +277,12 @@ public class Menu{
 			}
 		}
 		
+		/**
+		 * veraendert die Farbe der Spielfigur
+		 * @param farbe
+		 * @param x
+		 * @param y
+		 */
 		public static void displayPlayer(int farbe, int x, int y){
 			if (farbe == Main.GELB){
 				StdDraw.picture(20+40*x,20+40*y, FIGURGELB);
@@ -256,6 +295,16 @@ public class Menu{
 			}
 		}
 		
+		/**
+		 * zeigt rechts neben dem Spielfeld folgende Werte an:
+		 * - Leben der Spielfigur
+		 * - Schadensfaktor, die eine Figur bekommt, wenn sie auf Gegner trifft
+		 * - Ruestungsfaktor, die Figur an entsprechender Stelle bekommt
+		 * - Manafaktor, die Figur an entsprechender Stelle bekommt
+		 * - das aktuelle Level und den aktuellen Raum
+		 * - aktuelles HP
+		 * - aktuelles Mana
+		 */
 		public static void displayPlayerStats(){
 			StdDraw.setPenColor(StdDraw.WHITE);
 			StdDraw.filledRectangle(920, 300, 100, 500);

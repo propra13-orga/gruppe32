@@ -79,7 +79,7 @@ public void actionPerformed(ActionEvent event) {
 		Figur.resetPlayerStats();
 		Menu.levelDarstellen(0,0); // stellt das aktuelle/erste level dar
 		Aktion.reachedCheckpoint=false;
-		//Spielfeld.wertSetzenBeiXY(2,9,13,CHECKPOINT);
+	
 		
 	}
 	

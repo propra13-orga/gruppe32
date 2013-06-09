@@ -17,7 +17,7 @@ public class Figur{
 	private static double manaFaktor;
 	private static double schaden;
 	private static double aktuellesMana;
-	private static double aktuelleHP;
+	static double aktuelleHP;
 	private static double ruestung;
 	private static int aktuelleFarbe;
 	
@@ -38,7 +38,7 @@ public class Figur{
 	public static void schadenBekommen(double schaden){
 		aktuelleHP = aktuelleHP-(schaden*((100-ruestung)/100));
 		Menu.displayPlayerHP(aktuelleHP);
-		if (aktuelleHP<=0){
+		if (aktuelleHP<=0 & Aktion.reachedCheckpoint==false){
 			leben--;
 			if (leben<=0){
 				Menu.gameOver();

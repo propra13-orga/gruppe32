@@ -22,6 +22,8 @@ private static final int OBEN= 3;
 
 int leben=3;
 static boolean reachedCheckpoint;
+int checkpointMerkeLevel;
+int checkpointMerkeRaum;
 
 /**
  * Methode bewegt Figur anhand von Koordinaten
@@ -39,17 +41,18 @@ static boolean reachedCheckpoint;
 			newFigurX=figurX;
 			newFigurY=figurY-1;
 		}
-		else if (richtung == LINKS){ //links
+		else if (richtung == LINKS){ 
 			newFigurX=figurX-1;
 			newFigurY=figurY;
 		}
-		else if (richtung == OBEN){ //oben
+		else if (richtung == OBEN){ 
 			newFigurX=figurX;
 			newFigurY=figurY+1;
 		}
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.BODEN)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FIGUR)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13)){
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13)
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=newFigurX;
 			figurY=newFigurY;
@@ -80,31 +83,32 @@ static boolean reachedCheckpoint;
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FALLE)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){
-			if ((leben>0)&reachedCheckpoint==true){
-				//aktuellesLevel=2;
-				//Menu.levelDarstellen(2);
-				//Menu.figurReset(2, figurX, figurY);
-				Figur.schadenBekommen(1);
+			
+			if ((Figur.aktuelleHP<=0)&reachedCheckpoint==true){
+				aktuellesLevel=checkpointMerkeLevel;
+				aktuellerRaum=checkpointMerkeRaum;
+				Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
+				Menu.figurZumCheckpoint(aktuellesLevel,aktuellerRaum);
+				reachedCheckpoint=false;
+				
 			}
 			else {
-				reachedCheckpoint=false;
-				//Menu.figurReset(0,figurX,figurY);
-			    //Menu.levelDarstellen(0);
 				Figur.schadenBekommen(1);
 			}
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.SIEG){
 			aktuellesLevel=0;
 			Menu.sieg();
-			//Menu.levelDarstellen(aktuellesLevel);
-			//Menu.figurReset(aktuellesLevel, figurX, figurY);
 		}
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.CHECKPOINT){
 			reachedCheckpoint=true;
-			//Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
-			//figurX=figurX+1;
-			//Spielfeld.wertSetzenBeiXY(2,9,13,Main.BODEN);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
+			figurX=newFigurX;
+			figurY=newFigurY;
+			checkpointMerkeLevel=aktuellesLevel;
+			checkpointMerkeRaum=aktuellerRaum;
+			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.STORYTELLER){
 		    Spielfeld.storyteller();

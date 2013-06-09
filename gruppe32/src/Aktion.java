@@ -19,11 +19,9 @@ private static final int UNTEN = 1;
 private static final int LINKS = 2;
 private static final int OBEN= 3;
 
-
-int leben=3;
 static boolean reachedCheckpoint;
-int checkpointMerkeLevel;
-int checkpointMerkeRaum;
+static int checkpointMerkeLevel;
+static int checkpointMerkeRaum;
 
 /**
  * Methode bewegt Figur anhand von Koordinaten
@@ -51,8 +49,9 @@ int checkpointMerkeRaum;
 		}
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.BODEN)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FIGUR)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
+													                                                //14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=newFigurX;
 			figurY=newFigurY;
@@ -84,12 +83,15 @@ int checkpointMerkeRaum;
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FALLE)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){
 			
-			if ((Figur.aktuelleHP<=0)&reachedCheckpoint==true){
+			if ((Figur.leben<=0)&reachedCheckpoint==true){
+				Figur.leben = 3;
 				aktuellesLevel=checkpointMerkeLevel;
 				aktuellerRaum=checkpointMerkeRaum;
 				Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
 				Menu.figurZumCheckpoint(aktuellesLevel,aktuellerRaum);
 				reachedCheckpoint=false;
+				Menu.displayPlayerStats();
+				
 				
 			}
 			else {
@@ -98,16 +100,19 @@ int checkpointMerkeRaum;
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.SIEG){
 			aktuellesLevel=0;
+			aktuellerRaum=0;
 			Menu.sieg();
 		}
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.CHECKPOINT){
 			reachedCheckpoint=true;
+			Menu.displayPlayerStats();
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=newFigurX;
 			figurY=newFigurY;
 			checkpointMerkeLevel=aktuellesLevel;
 			checkpointMerkeRaum=aktuellerRaum;
+			
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.STORYTELLER){

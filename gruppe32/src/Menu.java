@@ -194,7 +194,6 @@ public class Menu{
 		 * Setzt die Spielfigur zum Ziel des vorherigen Levels, wenn man einen Raum zurueck geht
 		 * 
 		 */
-	
 	public static void figurZumZiel(int level, int raum){
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<15;reihe++) {
@@ -225,7 +224,9 @@ public class Menu{
 		}
 	}
 		/**
+		 * 
 		 * blendet 'Game Over' ein und setzt spielGestartet zurueck auf 0
+		 * 
 		 */
 		public static void gameOver(){
 			StdDraw.picture(400,300, GAMEOVERIMG);
@@ -233,7 +234,9 @@ public class Menu{
 		}
 		
 		/**
+		 * 
 		 * blendet 'Gewonnen' ein und setzt spielGestartet zurueck auf 0
+		 * 
 		 */
 		public static void sieg(){
 			StdDraw.picture(400,300, GEWONNENIMG);
@@ -241,8 +244,10 @@ public class Menu{
 		}
 		
 		/**
+		 * 
 		 * zeigt aktuelle HP oben links ueber dem Spielfeld an
 		 * @param hp
+		 * 
 		 */
 		public static void displayPlayerHP(double hp){	
 			for (hpCheck=1; hpCheck<=Figur.MAXHP; hpCheck++){
@@ -259,8 +264,10 @@ public class Menu{
 			}
 		}
 		/**
+		 * 
 		 * zeigt aktuelle Mana oben rechts ueber dem Spielfeld an
 		 * @param mana
+		 * 
 		 */
 		public static void displayPlayerMana(double mana){	
 			for (manaCheck=1; manaCheck<=Figur.MAXMANA; manaCheck++){
@@ -278,10 +285,12 @@ public class Menu{
 		}
 		
 		/**
+		 * 
 		 * veraendert die Farbe der Spielfigur
 		 * @param farbe
 		 * @param x
 		 * @param y
+		 * 
 		 */
 		public static void displayPlayer(int farbe, int x, int y){
 			if (farbe == Main.GELB){
@@ -316,6 +325,11 @@ public class Menu{
 			StdDraw.textLeft(820, 470,"Raum: "+(Aktion.getLevel()+1)+"-"+(Aktion.getRaum()+1));
 			StdDraw.textLeft(820, 450, "HP:"+Figur.getHP());
 			StdDraw.textLeft(820, 430, "Mana:"+Figur.getMana());
+			if (Aktion.reachedCheckpoint==true){
+				StdDraw.textLeft(820, 400, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
+			    StdDraw.picture(870,370,CHECKPOINTIMG);
+			    }
+			
 		}
 	
 }

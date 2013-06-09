@@ -79,8 +79,7 @@ public void actionPerformed(ActionEvent event) {
 		Figur.resetPlayerStats();
 		Menu.levelDarstellen(0,0); // stellt das aktuelle/erste level dar
 		Aktion.reachedCheckpoint=false;
-	
-		
+			
 	}
 	
 	//wenn der Button 'schliessen' gedrueckt wird, soll sich das Menuefenster schliessen

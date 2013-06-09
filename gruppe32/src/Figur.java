@@ -13,7 +13,7 @@ public class Figur{
 	private static final int DEFAULTLEBEN=3;
 	private static final int DEFAULTRUESTUNG = 20;
 	
-	private static int leben;
+	static int leben;
 	private static double manaFaktor;
 	private static double schaden;
 	private static double aktuellesMana;
@@ -29,18 +29,17 @@ public class Figur{
 		y = newY;
 	}*/
 	
-	/*
+	/**
 	 * Methodenkommentar
 	 * reduziert die aktuellenHP/mana um einen gegeben schadenswert
 	 * 
 	 */
-	
 	public static void schadenBekommen(double schaden){
 		aktuelleHP = aktuelleHP-(schaden*((100-ruestung)/100));
 		Menu.displayPlayerHP(aktuelleHP);
-		if (aktuelleHP<=0 & Aktion.reachedCheckpoint==false){
+		if (aktuelleHP<=0){
 			leben--;
-			if (leben<=0){
+			if (leben<=0 & Aktion.reachedCheckpoint==false){
 				Menu.gameOver();
 			}
 			aktuelleHP=DEFAULTHP;
@@ -58,7 +57,7 @@ public class Figur{
 		}
 		Menu.displayPlayerMana(aktuellesMana);
 	}
-	/*
+	/**
 	 * Methodenkommentar
 	 * erhöht die aktuellenHP/Mana um einen gegebenen wert
 	 * 
@@ -84,7 +83,7 @@ public class Figur{
 	}
 	
 	
-	/*
+	/**
 	 * Methodenkommentar:
 	 * setz alle werte auf die defaultwerte
 	 * 
@@ -100,7 +99,7 @@ public class Figur{
 		ruestung = DEFAULTRUESTUNG;
 	}
 	
-	/*
+	/**
 	 * Methodenkommentar:
 	 * gibt die momentanen hp/mana aus
 	 * 
@@ -129,9 +128,10 @@ public class Figur{
 	
 	
 	
-	/*
+	/**
 	 * 
 	 * Methodenkommentar:
+	 * stellt Mana, Schaden und Ruestung auf den entsprechenden Faktor der Farbe um 
 	 *  
 	 * 
 	 */

@@ -32,6 +32,7 @@ public static final int FIGUR = 6;
 public static final int SIEG = 7;
 public static final int CHECKPOINT = 8;
 public static final int STORYTELLER = 9;
+public static final int MUENZEN = 13;
 public static final int FARBEGELB = 12;
 public static final int FARBEBLAU = 10;
 public static final int FARBEROT = 11;

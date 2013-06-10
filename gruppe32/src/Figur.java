@@ -12,6 +12,7 @@ public class Figur{
 	private static final double DEFAULTMANAFAKTOR=1;
 	private static final int DEFAULTLEBEN=3;
 	private static final int DEFAULTRUESTUNG = 20;
+	private static final int DEFAULTMUENZEN = 0;
 	
 	static int leben;
 	private static double manaFaktor;
@@ -19,6 +20,8 @@ public class Figur{
 	private static double aktuellesMana;
 	static double aktuelleHP;
 	private static double ruestung;
+	static int aktuelleMuenzen;
+	static int muenzen;
 	private static int aktuelleFarbe;
 	
 	//public static int x;
@@ -57,12 +60,13 @@ public class Figur{
 		}
 		Menu.displayPlayerMana(aktuellesMana);
 	}
+	
+	
 	/**
 	 * Methodenkommentar
-	 * erhöht die aktuellenHP/Mana um einen gegebenen wert
+	 * erhoeht die aktuellenHP/Mana um einen gegebenen wert
 	 * 
 	 */
-	
 	public static void heilen(double heilung){
 		if ((aktuelleHP+heilung)<=MAXHP){
 			aktuelleHP = aktuelleHP+heilung;
@@ -84,6 +88,17 @@ public class Figur{
 	
 	
 	/**
+	 * Muenzen einsammeln
+	 * 
+	 */
+	public static void muenzen(int muenzen){
+		aktuelleMuenzen = aktuelleMuenzen+muenzen;
+	}
+	
+	
+
+	
+	/**
 	 * Methodenkommentar:
 	 * setz alle werte auf die defaultwerte
 	 * 
@@ -92,6 +107,7 @@ public class Figur{
 	public static void resetPlayerStats(){
 		aktuelleHP=DEFAULTHP;
 		aktuellesMana=DEFAULTMANA;
+		aktuelleMuenzen=DEFAULTMUENZEN;
 		aktuelleFarbe=DEFAULTFARBE;
 		schaden=DEFAULTSCHADEN;
 		manaFaktor=DEFAULTMANAFAKTOR;
@@ -109,6 +125,9 @@ public class Figur{
 	}
 	public static double getMana(){
 		return aktuellesMana;
+	}
+	public static double getMuenzen(){
+		return aktuelleMuenzen;
 	}
 	public static int getFarbe(){
 		return aktuelleFarbe;

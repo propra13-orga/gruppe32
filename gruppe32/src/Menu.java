@@ -20,31 +20,33 @@ public class Menu{
 	public static int spalte;
 	private static int hpCheck;
 	private static int manaCheck;
+	
 
-	private static final String MAUERIMG = "Images/mauer.jpg";
-	private static final String BODENIMG = "Images/boden.jpg";
-	private static final String CHECKPOINTIMG = "Images/checkpoint.jpg";
-	private static final String EMPTYHEARTIMG = "Images/emptyHeart.jpg";
-	private static final String EMPTYMANAIMG = "Images/emptyMana.jpg";
-	private static final String FALLEIMG = "Images/falle.jpg";
-	private static final String FULLHEARTIMG = "Images/fullHeart.jpg";
-	private static final String FULLMANAIMG = "Images/fullMana.jpg";
-	private static final String GAMEOVERIMG = "Images/gameover.jpg";
-	private static final String GEWONNENIMG = "Images/gewonnen.jpg";
-	private static final String HALFHEARTIMG = "Images/halfHeart.jpg";
-	private static final String HALFMANAIMG = "Images/halfMana.jpg";
-	private static final String MOBIMG = "Images/mob.jpg";
-	private static final String SIEGIMG = "Images/sieg.jpg";
-	private static final String SPIELFIGURIMG = "Images/spielfigur.jpg";
-	private static final String STARTIMG = "Images/start.jpg";
-	private static final String ZIELIMG = "Images/ziel.jpg";
-	private static final String FIGURGELB = "Images/figurGelb.jpg";
-	private static final String FIGURROT = "Images/figurRot.jpg";
-	private static final String FIGURBLAU = "Images/figurBlau.jpg";
-	private static final String FARBEGELBIMG = "Images/farbeGelb.jpg";
-	private static final String FARBEROTIMG = "Images/farbeRot.jpg";
-	private static final String FARBEBLAUIMG = "Images/farbeBlau.jpg";
-	private static final String STORYTELLERIMG = "Images/storyteller.jpg";
+	private static final String MAUERIMG = "Images\\mauer.jpg";
+	private static final String BODENIMG = "Images\\boden.jpg";
+	private static final String CHECKPOINTIMG = "Images\\checkpoint.jpg";
+	private static final String EMPTYHEARTIMG = "Images\\emptyHeart.jpg";
+	private static final String EMPTYMANAIMG = "Images\\emptyMana.jpg";
+	private static final String FALLEIMG = "Images\\falle.jpg";
+	private static final String FULLHEARTIMG = "Images\\fullHeart.jpg";
+	private static final String FULLMANAIMG = "Images\\fullMana.jpg";
+	private static final String GAMEOVERIMG = "Images\\gameover.jpg";
+	private static final String GEWONNENIMG = "Images\\gewonnen.jpg";
+	private static final String HALFHEARTIMG = "Images\\halfHeart.jpg";
+	private static final String HALFMANAIMG = "Images\\halfMana.jpg";
+	private static final String MOBIMG = "Images\\mob.jpg";
+	private static final String SIEGIMG = "Images\\sieg.jpg";
+	private static final String SPIELFIGURIMG = "Images\\spielfigur.jpg";
+	private static final String STARTIMG = "Images\\start.jpg";
+	private static final String ZIELIMG = "Images\\ziel.jpg";
+	private static final String FIGURGELB = "Images\\figurGelb.jpg";
+	private static final String FIGURROT = "Images\\figurRot.jpg";
+	private static final String FIGURBLAU = "Images\\figurBlau.jpg";
+	private static final String FARBEGELBIMG = "Images\\farbeGelb.jpg";
+	private static final String FARBEROTIMG = "Images\\farbeRot.jpg";
+	private static final String FARBEBLAUIMG = "Images\\farbeBlau.jpg";
+	private static final String STORYTELLERIMG = "Images\\storyteller.jpg";
+	private static final String MUENZENIMG = "Images\\muenze.jpg";
 	
 	private static final int BREITE = 990;
 	private static final int HOEHE = 660;
@@ -141,7 +143,10 @@ public class Menu{
 					StdDraw.picture(20+40*spalte,20+40*reihe, FARBEROTIMG);
 				}
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.STORYTELLER){
-					StdDraw.picture(20+40*spalte,20+40*reihe, "storyteller.jpg");
+					StdDraw.picture(20+40*spalte,20+40*reihe, STORYTELLERIMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MUENZEN){
+					StdDraw.picture(20+40*spalte,20+40*reihe, MUENZENIMG);
 				}
 
 			}
@@ -223,6 +228,9 @@ public class Menu{
 			}
 		}
 	}
+	
+	
+	
 		/**
 		 * 
 		 * blendet 'Game Over' ein und setzt spielGestartet zurueck auf 0
@@ -233,6 +241,8 @@ public class Menu{
 			Main.spielGestartet=0;			
 		}
 		
+		
+		
 		/**
 		 * 
 		 * blendet 'Gewonnen' ein und setzt spielGestartet zurueck auf 0
@@ -242,6 +252,8 @@ public class Menu{
 			StdDraw.picture(400,300, GEWONNENIMG);
 			Main.spielGestartet=0;			
 		}
+		
+		
 		
 		/**
 		 * 
@@ -263,6 +275,9 @@ public class Menu{
 				
 			}
 		}
+		
+		
+		
 		/**
 		 * 
 		 * zeigt aktuelle Mana oben rechts ueber dem Spielfeld an
@@ -283,6 +298,9 @@ public class Menu{
 				
 			}
 		}
+		
+		
+		
 		
 		/**
 		 * 
@@ -313,6 +331,7 @@ public class Menu{
 		 * - das aktuelle Level und den aktuellen Raum
 		 * - aktuelles HP
 		 * - aktuelles Mana
+		 * - akutelle Muenzen
 		 */
 		public static void displayPlayerStats(){
 			StdDraw.setPenColor(StdDraw.WHITE);
@@ -325,6 +344,7 @@ public class Menu{
 			StdDraw.textLeft(820, 470,"Raum: "+(Aktion.getLevel()+1)+"-"+(Aktion.getRaum()+1));
 			StdDraw.textLeft(820, 450, "HP:"+Figur.getHP());
 			StdDraw.textLeft(820, 430, "Mana:"+Figur.getMana());
+			StdDraw.textLeft(820, 410, "Muenzen:"+Figur.getMuenzen());
 			if (Aktion.reachedCheckpoint==true){
 				StdDraw.textLeft(820, 400, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
 			    StdDraw.picture(870,370,CHECKPOINTIMG);

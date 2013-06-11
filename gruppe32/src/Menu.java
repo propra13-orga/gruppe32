@@ -346,8 +346,8 @@ public class Menu{
 			StdDraw.textLeft(820, 430, "Mana:"+Figur.getMana());
 			StdDraw.textLeft(820, 410, "Muenzen:"+Figur.getMuenzen());
 			if (Aktion.reachedCheckpoint==true){
-				StdDraw.textLeft(820, 400, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
-			    StdDraw.picture(870,370,CHECKPOINTIMG);
+				StdDraw.textLeft(820, 390, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
+			    StdDraw.picture(870,360,CHECKPOINTIMG);
 			    }
 			
 		}

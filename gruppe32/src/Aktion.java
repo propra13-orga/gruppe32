@@ -106,12 +106,13 @@ static int checkpointMerkeRaum;
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.CHECKPOINT){
 			reachedCheckpoint=true;
+			checkpointMerkeLevel=aktuellesLevel;
+			checkpointMerkeRaum=aktuellerRaum;
 			Menu.displayPlayerStats();
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
 			figurX=newFigurX;
 			figurY=newFigurY;
-			checkpointMerkeLevel=aktuellesLevel;
-			checkpointMerkeRaum=aktuellerRaum;
+			
 			
 			
 		}

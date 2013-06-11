@@ -119,6 +119,9 @@ public void keyPressed(KeyEvent k){
 			else if (k.getKeyCode() == KeyEvent.VK_UP){
 				aktion.figurBewegen(OBEN);
 			}
+			else if (k.getKeyCode() == KeyEvent.VK_SPACE){
+				Figur.schildZauber();
+			}
 	}
 }
 

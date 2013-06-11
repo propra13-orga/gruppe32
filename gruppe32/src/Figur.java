@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Figur{
 	
 	public static final double MAXMANA = 10.0;
@@ -13,6 +15,8 @@ public class Figur{
 	private static final int DEFAULTLEBEN=3;
 	private static final int DEFAULTRUESTUNG = 20;
 	private static final int DEFAULTMUENZEN = 0;
+	private static final int DEFAULTSCHILDAUFLADUNG = 0;
+	private static final int MAXSCHILD = 2;
 	
 	private static int leben;
 	private static double manaFaktor;
@@ -22,6 +26,8 @@ public class Figur{
 	private static double ruestung;
 	private static int aktuelleMuenzen;
 	private static int aktuelleFarbe;
+	private static int schildAufladung;
+	private static boolean schild;
 	
 	//public static int x;
 	//public static int y;
@@ -37,24 +43,33 @@ public class Figur{
 	 * 
 	 */
 	public static void schadenBekommen(double schaden){
-		aktuelleHP = aktuelleHP-(schaden*((100-ruestung)/100));
-		Menu.displayPlayerHP(aktuelleHP);
-		if (aktuelleHP<=0){
-			leben--;
-			Aktion.zumCheckpoint();
-			if (leben<=0){
-				Menu.gameOver();
+		if (schildAufladung>0){
+			schildAufladung--;
+			if (schildAufladung<=0){
+				schild=false;
+				Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
 			}
-			//Aktion.zumCheckpoint();
-			//aktuelleHP=DEFAULTHP;
-			//Menu.displayPlayerHP(aktuelleHP);
-			//Menu.playerToCheckpoint();
 		}
+		else {
+			aktuelleHP = Math.round((aktuelleHP-(schaden*((100-ruestung)/100)))*100.0)/100.0;
+			Menu.displayPlayerHP(aktuelleHP);
+			if (aktuelleHP<=0){
+				leben--;
+				Aktion.zumCheckpoint();
+				if (leben<=0){
+					Menu.gameOver();
+				}
+				//Aktion.zumCheckpoint();
+				//aktuelleHP=DEFAULTHP;
+				//Menu.displayPlayerHP(aktuelleHP);
+				//Menu.playerToCheckpoint();
+			}
 		Menu.displayPlayerStats();
+		}
 	}
 	public static void manaVerbrauchen(double verbrauch){
-		if ((aktuellesMana-verbrauch)>=0){
-			aktuellesMana = aktuellesMana-verbrauch;
+		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
+			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))*100.0)/100.0;
 		}
 		else{
 			aktuellesMana = 0;
@@ -70,7 +85,7 @@ public class Figur{
 	 */
 	public static void heilen(double heilung){
 		if ((aktuelleHP+heilung)<=MAXHP){
-			aktuelleHP = aktuelleHP+heilung;
+			aktuelleHP = Math.round((aktuelleHP+heilung)*100.0)/100.0;
 		}
 		else{
 			aktuelleHP = MAXHP;
@@ -79,7 +94,7 @@ public class Figur{
 	}
 	public static void manaReg(double reg){
 		if ((aktuellesMana+reg)<=MAXMANA){
-			aktuellesMana = aktuellesMana+reg;
+			aktuellesMana = Math.round((aktuellesMana+reg)*100.0)/100.0;
 		}
 		else{
 			aktuellesMana = MAXMANA;
@@ -115,6 +130,8 @@ public class Figur{
 		manaFaktor=DEFAULTMANAFAKTOR;
 		leben = DEFAULTLEBEN;
 		ruestung = DEFAULTRUESTUNG;
+		schild = false;
+		schildAufladung = DEFAULTSCHILDAUFLADUNG;
 	}
 	
 	/**
@@ -146,6 +163,12 @@ public class Figur{
 	public static int getLeben(){
 		return leben;
 	}
+	public static int getSchild(){
+		return schildAufladung;
+	}
+	public static boolean schildBool(){
+		return schild;
+	}
 	
 	
 	
@@ -161,7 +184,7 @@ public class Figur{
 		
 		if (farbe == GELB){
 			if (aktuelleFarbe == BLAU){
-				manaFaktor = manaFaktor*1.5;
+				manaFaktor = Math.round(manaFaktor*1.5);
 				ruestung = ruestung+30;
 			}
 			else if (aktuelleFarbe == ROT){
@@ -173,18 +196,18 @@ public class Figur{
 		else if (farbe == BLAU){
 			if (aktuelleFarbe == GELB){
 				ruestung = ruestung-30;
-				manaFaktor = manaFaktor/1.5;
+				manaFaktor = Math.round((manaFaktor/1.5)*100.0)/100.0;
 			}
 			else if (aktuelleFarbe == ROT){
 				schaden = schaden/1.5;
-				manaFaktor = manaFaktor/1.5;
+				manaFaktor = Math.round((manaFaktor/1.5)*100.0)/100.0;
 				ruestung = ruestung+10;
 			}
 			aktuelleFarbe=BLAU;
 		}
 		else if (farbe == ROT){
 			if (aktuelleFarbe == BLAU){
-				manaFaktor = manaFaktor*1.5;
+				manaFaktor = Math.round(manaFaktor*1.5);
 				schaden = schaden*1.5;
 				ruestung = ruestung-10;
 			}
@@ -199,5 +222,14 @@ public class Figur{
 	}
 	public static void resetHP(){
 		aktuelleHP = DEFAULTHP;
+	}
+	public static void schildZauber(){
+		if ((schildAufladung <MAXSCHILD)&(aktuellesMana>=1)){
+			manaVerbrauchen(1);
+			schildAufladung = schildAufladung+1;
+			schild = true ;
+			Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
+			Menu.displayPlayerStats();
+		}
 	}
 }

@@ -42,6 +42,9 @@ public class Menu{
 	private static final String FIGURGELB = "Images\\figurGelb.jpg";
 	private static final String FIGURROT = "Images\\figurRot.jpg";
 	private static final String FIGURBLAU = "Images\\figurBlau.jpg";
+	private static final String FIGURGELBSCHILD = "Images\\figurGelbSchild.jpg";
+	private static final String FIGURROTSCHILD = "Images\\figurRotSchild.jpg";
+	private static final String FIGURBLAUSCHILD = "Images\\figurBlauSchild.jpg";
 	private static final String FARBEGELBIMG = "Images\\farbeGelb.jpg";
 	private static final String FARBEROTIMG = "Images\\farbeRot.jpg";
 	private static final String FARBEBLAUIMG = "Images\\farbeBlau.jpg";
@@ -320,14 +323,30 @@ public class Menu{
 		 */
 		public static void displayPlayer(int farbe, int x, int y){
 			if (farbe == Main.GELB){
-				StdDraw.picture(20+40*x,20+40*y, FIGURGELB);
+				if (Figur.schildBool()==false){
+					StdDraw.picture(20+40*x,20+40*y, FIGURGELB);
+				}
+				else{
+					StdDraw.picture(20+40*x,20+40*y, FIGURGELBSCHILD);
+				}
 			}
 			else if (farbe == Main.BLAU){
-				StdDraw.picture(20+40*x,20+40*y, FIGURBLAU);
+				if (Figur.schildBool()==false){
+					StdDraw.picture(20+40*x,20+40*y, FIGURBLAU);
+				}
+				else{
+					StdDraw.picture(20+40*x,20+40*y, FIGURBLAUSCHILD);
+				}
 			}
 			else if (farbe== Main.ROT){
-				StdDraw.picture(20+40*x,20+40*y, FIGURROT);
+				if (Figur.schildBool()==false){
+					StdDraw.picture(20+40*x,20+40*y, FIGURROT);
+				}
+				else{
+					StdDraw.picture(20+40*x,20+40*y, FIGURROTSCHILD);
+				}
 			}
+			
 		}
 		
 		/**

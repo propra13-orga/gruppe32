@@ -35,7 +35,7 @@ public Spielfeld() {
 			br.skip(4);
 			for (raum=0; raum<3; raum++) {
 			br.skip(2);
-			for (reihe=14; reihe>=0; reihe--) {
+			for (reihe=12; reihe>=0; reihe--) {
 				br.skip(1);
 					for (spalte=0; spalte<20; spalte++) {
 						br.skip(1);

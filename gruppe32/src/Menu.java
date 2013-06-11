@@ -103,7 +103,7 @@ public class Menu{
 		StdDraw.setYscale(0,600);
 		StdDraw.show(0);
 		for (spalte=0;spalte<20;spalte++) {
-			for(reihe=0;reihe<15;reihe++) {
+			for(reihe=0;reihe<13;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
 				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.BODEN
 						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren

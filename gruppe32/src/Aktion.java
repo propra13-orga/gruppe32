@@ -83,20 +83,8 @@ static int checkpointMerkeRaum;
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FALLE)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){
 			
-			if ((Figur.leben<=0)&reachedCheckpoint==true){
-				Figur.leben = 3;
-				aktuellesLevel=checkpointMerkeLevel;
-				aktuellerRaum=checkpointMerkeRaum;
-				Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
-				Menu.figurZumCheckpoint(aktuellesLevel,aktuellerRaum);
-				reachedCheckpoint=false;
-				Menu.displayPlayerStats();
-				
-				
-			}
-			else {
-				Figur.schadenBekommen(1);
-			}
+			Figur.schadenBekommen(1);
+			
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.SIEG){
 			aktuellesLevel=0;
@@ -120,7 +108,10 @@ static int checkpointMerkeRaum;
 		    Spielfeld.storyteller();
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MUENZEN){
-		//	Figur.muenzen();
+			Figur.muenzen(1);
+			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
+			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEGELB){
 			Figur.setFarbe(Main.GELB);
@@ -130,6 +121,12 @@ static int checkpointMerkeRaum;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEBLAU){
 			Figur.setFarbe(Main.BLAU);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANK){
+			Figur.heilen(1);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANK){
+			Figur.manaReg(1);
 		}
 
 
@@ -172,5 +169,21 @@ public static int getLevel(){
 public static int getRaum(){
 	return aktuellerRaum;
 }
+public static void zumCheckpoint(){
+	if (reachedCheckpoint == true){
+		Figur.resetHP();
+		aktuellesLevel=checkpointMerkeLevel;
+		aktuellerRaum=checkpointMerkeRaum;
+		Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
+		Menu.figurZumCheckpoint(aktuellesLevel,aktuellerRaum);
+		reachedCheckpoint=false;
+		Menu.displayPlayerStats();
+	}
+	else{
+		Figur.resetHP();
+		Menu.levelDarstellen(aktuellesLevel, 0);
+	}
+}
+
 }
 

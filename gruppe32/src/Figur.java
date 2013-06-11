@@ -14,14 +14,13 @@ public class Figur{
 	private static final int DEFAULTRUESTUNG = 20;
 	private static final int DEFAULTMUENZEN = 0;
 	
-	static int leben;
+	private static int leben;
 	private static double manaFaktor;
 	private static double schaden;
 	private static double aktuellesMana;
-	static double aktuelleHP;
+	private static double aktuelleHP;
 	private static double ruestung;
-	static int aktuelleMuenzen;
-	static int muenzen;
+	private static int aktuelleMuenzen;
 	private static int aktuelleFarbe;
 	
 	//public static int x;
@@ -42,11 +41,13 @@ public class Figur{
 		Menu.displayPlayerHP(aktuelleHP);
 		if (aktuelleHP<=0){
 			leben--;
-			if (leben<=0 & Aktion.reachedCheckpoint==false){
+			Aktion.zumCheckpoint();
+			if (leben<=0){
 				Menu.gameOver();
 			}
-			aktuelleHP=DEFAULTHP;
-			Menu.displayPlayerHP(aktuelleHP);
+			//Aktion.zumCheckpoint();
+			//aktuelleHP=DEFAULTHP;
+			//Menu.displayPlayerHP(aktuelleHP);
 			//Menu.playerToCheckpoint();
 		}
 		Menu.displayPlayerStats();
@@ -93,6 +94,7 @@ public class Figur{
 	 */
 	public static void muenzen(int muenzen){
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
+		Menu.displayPlayerStats();
 	}
 	
 	
@@ -126,7 +128,7 @@ public class Figur{
 	public static double getMana(){
 		return aktuellesMana;
 	}
-	public static double getMuenzen(){
+	public static int getMuenzen(){
 		return aktuelleMuenzen;
 	}
 	public static int getFarbe(){
@@ -194,5 +196,8 @@ public class Figur{
 		}
 		Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
 		Menu.displayPlayerStats();
+	}
+	public static void resetHP(){
+		aktuelleHP = DEFAULTHP;
 	}
 }

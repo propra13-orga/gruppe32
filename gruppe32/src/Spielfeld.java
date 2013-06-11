@@ -16,6 +16,9 @@ private int reihe;
 private int spalte;
 private int testChar;
 
+private static final int BEIZIEL = 13;
+private static final int BEICHECKPOINT = 14;
+
 private FileReader fr;
 private BufferedReader br;
 
@@ -37,52 +40,60 @@ public Spielfeld() {
 					for (spalte=0; spalte<20; spalte++) {
 						br.skip(1);
 						testChar = br.read();
-						if (testChar-48 == 1){
+						if (testChar-48 == 1){ // 1
 							spielfeld[level][raum][spalte][reihe]=Main.MAUER;
 						}
-						else if (testChar-48 ==0){
+						else if (testChar-48 ==0){ // 0
 							spielfeld[level][raum][spalte][reihe]=Main.BODEN;	
 						}
-						else if (testChar-48 ==2){
+						else if (testChar-48 ==2){ // 2
 							spielfeld[level][raum][spalte][reihe]=Main.START;	
 						}
-						else if (testChar-48 ==3){
+						else if (testChar-48 ==3){  // 3
 							spielfeld[level][raum][spalte][reihe]=Main.ZIEL;
 						}
-						else if (testChar-48 == 5){
+						else if (testChar-48 == 5){ // 5
 							spielfeld[level][raum][spalte][reihe]=Main.MOB;
 						}
-						else if (testChar-48 == 4){
+						else if (testChar-48 == 4){ // 4
 							spielfeld[level][raum][spalte][reihe]=Main.FALLE;
 						}
-						else if (testChar-48 == 6){
+						else if (testChar-48 == 6){ // 6
 							spielfeld[level][raum][spalte][reihe]=Main.FIGUR;
 						}
-						else if (testChar-48 == 7){
+						else if (testChar-48 == 7){ // 7
 							spielfeld[level][raum][spalte][reihe]=Main.SIEG;
 						}
-						else if (testChar-48 == 8){
+						else if (testChar-48 == 8){ // 8
 							spielfeld[level][raum][spalte][reihe]=Main.CHECKPOINT;
 						}
-						else if (testChar-48 == 9){
+						else if (testChar-48 == 9){ // 9
 							spielfeld[level][raum][spalte][reihe]=Main.STORYTELLER;
 						}
-						else if (testChar-48 == 55){
+						else if (testChar == 36){ // $
 							spielfeld[level][raum][spalte][reihe]=Main.MUENZEN; //noch nicht eingetragen
 						}
-						else if (testChar == 71){
+						else if (testChar == 71){  // G
 							spielfeld[level][raum][spalte][reihe]=Main.FARBEGELB;
 						}
-						else if (testChar == 82){
+						else if (testChar == 82){ // R
 							spielfeld[level][raum][spalte][reihe]=Main.FARBEROT;
 						}
-						else if (testChar == 66){
+						else if (testChar == 66){ // B
 							spielfeld[level][raum][spalte][reihe]=Main.FARBEBLAU;
 						}
-						else if (testChar == 88){
-							spielfeld[level][raum][spalte][reihe]=13;
+						else if (testChar == 88){ // X
+							spielfeld[level][raum][spalte][reihe]=BEIZIEL;
 						}
-						
+						else if (testChar == 89){ // Y
+							spielfeld[level][raum][spalte][reihe]=BEICHECKPOINT;
+						}
+						else if (testChar == 43){ // +
+							spielfeld[level][raum][spalte][reihe]=Main.HPTRANK;
+						}
+						else if (testChar == 42){ // *
+							spielfeld[level][raum][spalte][reihe]=Main.MANATRANK;
+						}
 				}
 			}
 			}

@@ -84,7 +84,7 @@ static int checkpointMerkeRaum;
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){
 			
 			Figur.schadenBekommen(1);
-			
+						
 		}	
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.SIEG){
 			aktuellesLevel=0;
@@ -181,7 +181,8 @@ public static void zumCheckpoint(){
 	}
 	else{
 		Figur.resetHP();
-		Menu.levelDarstellen(aktuellesLevel, 0);
+		aktuellerRaum=0;
+		Menu.levelDarstellen(aktuellesLevel, aktuellerRaum);
 	}
 }
 

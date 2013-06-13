@@ -51,6 +51,9 @@ public class Menu{
 	private static final String FARBEBLAUIMG = "Images\\farbeBlau.jpg";
 	private static final String STORYTELLERIMG = "Images\\storyteller.jpg";
 	private static final String MUENZENIMG = "Images\\muenze.jpg";
+	private static final String SHOP1IMG = "Images\\shop1.jpg";
+	private static final String SHOP2IMG = "Images\\shop2.jpg";
+	private static final String SHOP3IMG = "Images\\shop3.jpg";
 	private static final String HPTRANKIMG = "Images\\hpTrank.jpg";
 	private static final String MANATRANKIMG = "Images\\manaTrank.jpg";
 	
@@ -153,6 +156,15 @@ public class Menu{
 				}
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MUENZEN){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MUENZENIMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.SHOP1){
+					StdDraw.picture(20+40*spalte,20+40*reihe, SHOP1IMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.SHOP2){
+					StdDraw.picture(20+40*spalte,20+40*reihe, SHOP2IMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.SHOP3){
+					StdDraw.picture(20+40*spalte,20+40*reihe, SHOP3IMG);
 				}
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.HPTRANK){
 					StdDraw.picture(20+40*spalte,20+40*reihe, HPTRANKIMG);

@@ -29,7 +29,7 @@ private BufferedReader br;
 public Spielfeld() {
 	try{
 	    
-		fr = new FileReader("src\\level.txt");
+		fr = new FileReader("C:\\Users\\Christine\\Documents\\Studium\\2. Semester\\Programmierpraktikum\\ProPra_Workspace\\gruppe32\\gruppe32\\src\\level.txt");
 		br = new BufferedReader(fr);
 		for (level=0; level<3; level++) {
 			br.skip(4);
@@ -72,6 +72,15 @@ public Spielfeld() {
 						}
 						else if (testChar == 36){ // $
 							spielfeld[level][raum][spalte][reihe]=Main.MUENZEN; //noch nicht eingetragen
+						}
+						else if (testChar == 83){ // S
+							spielfeld[level][raum][spalte][reihe]=Main.SHOP1; 
+						}
+						else if (testChar == 79){ // O
+							spielfeld[level][raum][spalte][reihe]=Main.SHOP2; 
+						}
+						else if (testChar == 80){ // P
+							spielfeld[level][raum][spalte][reihe]=Main.SHOP3; 
 						}
 						else if (testChar == 71){  // G
 							spielfeld[level][raum][spalte][reihe]=Main.FARBEGELB;

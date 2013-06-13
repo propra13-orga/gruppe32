@@ -29,7 +29,7 @@ private BufferedReader br;
 public Spielfeld() {
 	try{
 	    
-		fr = new FileReader("C:\\Users\\Christine\\Documents\\Studium\\2. Semester\\Programmierpraktikum\\ProPra_Workspace\\gruppe32\\gruppe32\\src\\level.txt");
+		fr = new FileReader("src\\level.txt");
 		br = new BufferedReader(fr);
 		for (level=0; level<3; level++) {
 			br.skip(4);

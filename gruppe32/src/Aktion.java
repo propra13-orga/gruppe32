@@ -23,11 +23,11 @@ static boolean reachedCheckpoint;
 static int checkpointMerkeLevel;
 static int checkpointMerkeRaum;
 
+
 /**
  * Methode bewegt Figur anhand von Koordinaten
  * 
  */
-	
 	public void figurBewegen(int richtung){
 		
 		
@@ -105,8 +105,8 @@ static int checkpointMerkeRaum;
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.STORYTELLER){
-		    //Main.storytellerBoolean(True);
 			Menu.storyteller();
+			//Main.storytellerBool(false);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MUENZEN){
 			Figur.muenzenSammeln(1);
@@ -167,21 +167,57 @@ public static void setFigurXY(int x, int y){
 public static void setLevel(int level){
 	aktuellesLevel = level;
 }
+
+/**
+ * 
+ * Methode setzt den aktuellen Raum
+ * 
+ */
 public static void setRaum(int raum){
 	aktuellerRaum = raum;
 }
+
+/**
+ * 
+ * Methode liefert X-Wert der Figur zurueck
+ * 
+ */
 public static int getFigurX(){
 	return figurX;
 }
+
+/**
+ * 
+ * Methode liefert Y-Wert der Figur zurueck
+ * 
+ */
 public static int getFigurY(){
 	return figurY;
 }
+
+/**
+ * 
+ * Methode liefert Level zurueck
+ * 
+ */
 public static int getLevel(){
 	return aktuellesLevel;
 }
+
+/**
+ * 
+ * Methode liefert Raum zurueck
+ * 
+ */
 public static int getRaum(){
 	return aktuellerRaum;
 }
+
+/**
+ * 
+ * Methode setzt Figur zum Checkpoint
+ * 
+ */
 public static void zumCheckpoint(){
 	if (reachedCheckpoint == true){
 		Figur.resetHP();

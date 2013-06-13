@@ -172,39 +172,102 @@ public class Figur{
 	
 	/**
 	 * Methodenkommentar:
-	 * gibt die momentanen hp/mana aus
+	 * gibt die momentanen hp aus
 	 * 
 	 */
 	public static double getHP(){
 		return aktuelleHP;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt die momentanen mana aus
+	 * 
+	 */
 	public static double getMana(){
 		return aktuellesMana;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt die momentane Anzahl an Muenzen aus
+	 * 
+	 */
 	public static int getMuenzen(){
 		return aktuelleMuenzen;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt die momentane Farbe zurueck
+	 * 
+	 */
 	public static int getFarbe(){
 		return aktuelleFarbe;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt den momentanen Ruestungswert zurueck
+	 * 
+	 */
 	public static double getRuestung(){
 		return ruestung;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt den momentanen Manafaktor zurueck
+	 * 
+	 */
 	public static double getManaFaktor(){
 		return manaFaktor;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt den momentanen Schadensfaktor zurueck
+	 * 
+	 */
 	public static double getSchaden(){
 		return schaden;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt die momentanen Lebensanzahl zurueck
+	 * 
+	 */
 	public static int getLeben(){
 		return leben;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * gibt die momentane Schildaufladung zurueck
+	 * 
+	 */
 	public static int getSchild(){
 		return schildAufladung;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * Booelan, ob Schild genutzt wird
+	 * 
+	 */
 	public static boolean schildBool(){
 		return schild;
 	}
+	
+	/**
+	 * Methodenkommentar:
+	 * Booelan, ob Storytellerausgabe angezeigt wird
+	 * 
+	 */
+	//public static boolean storytellerBool(){
+	//	return false;
+	//}
 	
 	
 	

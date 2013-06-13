@@ -1,4 +1,5 @@
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -377,6 +378,32 @@ public class Menu{
 			    StdDraw.picture(870,360,CHECKPOINTIMG);
 			    }
 			
+		}
+		
+		
+		
+		/**
+		 * Storyteller erzaehlt seine Geschichte
+		 * 
+		 */
+		public static void storyteller(){
+			
+			if ((Aktion.getLevel()==0)&(Aktion.getRaum()==0)){ //Storyteller am Anfang (Level 1, Raum 1)
+				StdDraw.text(400, 560, "Früher war dies ein friedliches Plätzchen, aber dann kamen die Trolle und legten Fallen aus... ");
+				StdDraw.text(400, 540, "Und das nur, um ihr Essen besser würzen zu können!");
+					//if (k.getKeyCode() == KeyEvent.VK_RIGHT | k.getKeyCode() == KeyEvent.VK_DOWN | k.getKeyCode() == KeyEvent.VK_LEFT | k.getKeyCode() == KeyEvent.VK_UP){
+					//	Main.storytellerBoolean(False); 
+					//}
+			}
+			else if ((Aktion.getLevel()==0)&(Aktion.getRaum()==1)){ //Storyteller vor dem Checkpoint (Level 1, Raum 2)
+				StdDraw.text(400, 570, "Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, seit die fiesen Trolle es hier runter geschafft haben.");
+				StdDraw.text(400, 550, "Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie berührst und im weiteren Verlauf deines Abenteuers stirbst,");
+				StdDraw.text(400, 530, "wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
+			}
+			else if ((Aktion.getLevel()==2)&(Aktion.getRaum()==2)){ //Storyteller im Endraum (Level 3, Raum 3)
+				StdDraw.text(400, 560, "Fast hast du es geschafft!!! Berühre diese Flagge dort und du kannst beruhigt nach Hause zurückkehren");
+				StdDraw.text(400, 540, "und dich als Sieger feiern lassen. Aber lass dich nicht auf den letzten Metern von den Trollen erwischen!");
+			}		
 		}
 	
 }

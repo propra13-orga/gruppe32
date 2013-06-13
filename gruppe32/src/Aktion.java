@@ -105,7 +105,8 @@ static int checkpointMerkeRaum;
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.STORYTELLER){
-		    Spielfeld.storyteller();
+		    //Main.storytellerBoolean(True);
+			Menu.storyteller();
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MUENZEN){
 			Figur.muenzen(1);

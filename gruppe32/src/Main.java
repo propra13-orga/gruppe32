@@ -17,6 +17,7 @@ public class Main extends JFrame implements ActionListener, KeyListener {
 private Spielfeld mySpielfeld;
 private Aktion aktion;
 protected static int spielGestartet=0;
+public static boolean storytellerBoolean;
 public static final int RECHTS = 0;
 public static final int UNTEN = 1;
 public static final int LINKS = 2;

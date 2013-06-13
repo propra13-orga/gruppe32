@@ -29,7 +29,7 @@ private BufferedReader br;
 public Spielfeld() {
 	try{
 	    
-		fr = new FileReader("src\\level.txt");
+		fr = new FileReader("C:\\Users\\Christine\\Documents\\Studium\\2. Semester\\Programmierpraktikum\\ProPra_Workspace\\gruppe32\\gruppe32\\src\\level.txt");
 		br = new BufferedReader(fr);
 		for (level=0; level<3; level++) {
 			br.skip(4);
@@ -106,29 +106,6 @@ public Spielfeld() {
 			spielfeld[0][0][5][6]=Main.FARBEROT;
 		}
 	}
-
-
-/**
- * Storyteller erzaehlt seine Geschichte
- * 
- * ::::::::::::::::::::::::::::::::::::::::::::::::::::::
- * ACHTUNG: ARBEITSVERSION
- * Methode steht in der falschen Klasse
- * ::::::::::::::::::::::::::::::::::::::::::::::::::::::
- * 
- */
-public static void storyteller(){
-	
-	if ((Aktion.getLevel()==0)&(Aktion.getRaum()==0)){
-		StdDraw.text(200, 200,"Hey du! Warte mal! Keine Angst, ich will dir nur helfen... \nDu bist nicht der erste Abenteurer hier auf dem Weg. Aber in dir sehe ich Potential diese Hoelle zu durchstehen... \nFrueher war dies ein friedliches Plaetzchen, aber dann kamen die Trolle und legten Fallen aus... und das nur, um ihr Essen besser wuerzen zu koennen! \nSiehst du sie dort unten...? Pass auf, komm ihnen nicht zu nahe!");
-	}
-	else if ((Aktion.getLevel()==1)&(Aktion.getRaum()==1)){ //noch nicht genutzt
-		StdDraw.text(200, 200, "Da bist du ja schon! Pass auf, direkt neben mir steht die beste Erfindung, seitdem die fiesen Trolle es hier runter geschafft haben. Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie beruehrst und im weiteren Verlauf deines Abenteuers stirbst, wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
-	}
-	else if ((Aktion.getLevel()==2)&(Aktion.getRaum()==2)){ //noch nicht genutzt
-		StdDraw.text(200, 200, "Fast hast du es geschafft!!! Beruehre diese Flagge dort und du kannst beruhigt nach Hause zurueckkehren und dich als Sieger feiern lassen. \nAber lass dich nicht auf den letzten Metern von den Trollen erwischen! Mach's gut!");
-	}		
-}
 
 
 

@@ -45,6 +45,8 @@ public static final int BLAU = 1;
 public static final int ROT = 2;
 public static final int HPTRANK = 16;
 public static final int MANATRANK= 17;
+public static final int HPTRANKSHOP = 21;
+public static final int MANATRANKSHOP= 22;
 
 
 

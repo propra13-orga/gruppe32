@@ -82,6 +82,12 @@ public Spielfeld() {
 						else if (testChar == 80){ // P
 							spielfeld[level][raum][spalte][reihe]=Main.SHOP3; 
 						}
+						else if (testChar == 72){ // H
+							spielfeld[level][raum][spalte][reihe]=Main.HPTRANKSHOP; 
+						}
+						else if (testChar == 77){ // M
+							spielfeld[level][raum][spalte][reihe]=Main.MANATRANKSHOP; 
+						}
 						else if (testChar == 71){  // G
 							spielfeld[level][raum][spalte][reihe]=Main.FARBEGELB;
 						}

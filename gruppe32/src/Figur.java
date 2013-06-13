@@ -79,7 +79,7 @@ public class Figur{
 	
 	
 	/**
-	 * Methodenkommentar
+	 * Methodenkommentar:
 	 * erhoeht die aktuellenHP/Mana um einen gegebenen wert
 	 * 
 	 */
@@ -103,13 +103,49 @@ public class Figur{
 	}
 	
 	
+	
+	
+	/**
+	 * Methodenkommentar:
+	 * Shop: Items erhoehen die aktuellenHP/Mana um einen gegebenen Wert
+	 * 
+	 */
+	public static void shopHP(double heilung){
+		if (((aktuelleHP+heilung)<=MAXHP)&(aktuelleMuenzen>0)){
+			aktuelleHP = Math.round((aktuelleHP+heilung)*100.0)/100.0;
+		}
+		Menu.displayPlayerHP(aktuelleHP);
+	}
+	public static void shopMana(double reg){
+		if (((aktuellesMana+reg)<=MAXMANA)&(aktuelleMuenzen>0)){
+			aktuellesMana = Math.round((aktuellesMana+reg)*100.0)/100.0;
+		}
+		Menu.displayPlayerMana(aktuellesMana);
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Muenzen einsammeln
 	 * 
 	 */
-	public static void muenzen(int muenzen){
+	public static void muenzenSammeln(int muenzen){
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
 		Menu.displayPlayerStats();
+	}
+	
+	
+	/**
+	 * Muenzen verlieren
+	 * 
+	 */
+	public static void muenzenVerlieren(int muenzen){
+		if (aktuelleMuenzen > 0){
+			aktuelleMuenzen = aktuelleMuenzen-muenzen;
+			Menu.displayPlayerStats();
+		}
 	}
 	
 	

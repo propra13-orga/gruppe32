@@ -109,10 +109,18 @@ static int checkpointMerkeRaum;
 			Menu.storyteller();
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MUENZEN){
-			Figur.muenzen(1);
+			Figur.muenzenSammeln(1);
 			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
 			
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANKSHOP){
+			Figur.shopHP(1);
+			Figur.muenzenVerlieren(1);
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANKSHOP){
+			Figur.shopMana(1);
+			Figur.muenzenVerlieren(1);
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEGELB){
 			Figur.setFarbe(Main.GELB);
@@ -125,9 +133,13 @@ static int checkpointMerkeRaum;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANK){
 			Figur.heilen(1);
+			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANK){
 			Figur.manaReg(1);
+			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
 		}
 
 

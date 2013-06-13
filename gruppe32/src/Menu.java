@@ -172,6 +172,12 @@ public class Menu{
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MANATRANK){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MANATRANKIMG);
 				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.HPTRANKSHOP){
+					StdDraw.picture(20+40*spalte,20+40*reihe, HPTRANKIMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==Main.MANATRANKSHOP){
+					StdDraw.picture(20+40*spalte,20+40*reihe, MANATRANKIMG);
+				}
 
 			}
 		}
@@ -408,9 +414,13 @@ public class Menu{
 					//}
 			}
 			else if ((Aktion.getLevel()==0)&(Aktion.getRaum()==1)){ //Storyteller vor dem Checkpoint (Level 1, Raum 2)
-				StdDraw.text(400, 570, "Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, seit die fiesen Trolle es hier runter geschafft haben.");
+				StdDraw.text(400, 570, "Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, seit es die fiesen Trolle hier runter geschafft haben.");
 				StdDraw.text(400, 550, "Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie berührst und im weiteren Verlauf deines Abenteuers stirbst,");
 				StdDraw.text(400, 530, "wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
+			}
+			else if ((Aktion.getLevel()==1)&(Aktion.getRaum()==0)){ //Storyteller vor dem Checkpoint (Level 2, Raum 1)
+				StdDraw.text(400, 560, "Das hier ist der einzige Shop hier unten. Decke dich gut ein, denn du wirst nicht so schnell wieder die Möglichkeit finden,");
+				StdDraw.text(400, 540, "deine Gesundheit und dein Mana zu regenerieren! Jeder Trank kostet genau eine Münze!");
 			}
 			else if ((Aktion.getLevel()==2)&(Aktion.getRaum()==2)){ //Storyteller im Endraum (Level 3, Raum 3)
 				StdDraw.text(400, 560, "Fast hast du es geschafft!!! Berühre diese Flagge dort und du kannst beruhigt nach Hause zurückkehren");

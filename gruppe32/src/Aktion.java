@@ -111,6 +111,8 @@ private static final String WEISSIMG = "Images\\weiss.jpg";
 			Figur.muenzenSammeln(1);
 			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
+			figurX=newFigurX;
+			figurY=newFigurY;
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANKSHOP){
@@ -133,12 +135,16 @@ private static final String WEISSIMG = "Images\\weiss.jpg";
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANK){
 			Figur.heilen(1);
 			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
+			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
+			figurX=newFigurX;
+			figurY=newFigurY;
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANK){
 			Figur.manaReg(1);
 			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
 			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
+			figurX=newFigurX;
+			figurY=newFigurY;
 		}
 
 

@@ -14,14 +14,12 @@ private static int aktuellerRaum =0;
 private static int newFigurX;
 private static int newFigurY;
 
-private static final int RECHTS = 0;
-private static final int UNTEN = 1;
-private static final int LINKS = 2;
-private static final int OBEN= 3;
-
 static boolean reachedCheckpoint;
 static int checkpointMerkeLevel;
 static int checkpointMerkeRaum;
+static boolean storyteller;
+
+private static final String WEISSIMG = "Images\\weiss.jpg";
 
 
 /**
@@ -31,19 +29,19 @@ static int checkpointMerkeRaum;
 	public void figurBewegen(int richtung){
 		
 		
-		if (richtung == RECHTS){ 
+		if (richtung == Main.RECHTS){ 
 			newFigurX=figurX+1;
 			newFigurY=figurY;
 		}	   
-		else if (richtung == UNTEN){ 
+		else if (richtung == Main.UNTEN){ 
 			newFigurX=figurX;
 			newFigurY=figurY-1;
 		}
-		else if (richtung == LINKS){ 
+		else if (richtung == Main.LINKS){ 
 			newFigurX=figurX-1;
 			newFigurY=figurY;
 		}
-		else if (richtung == OBEN){ 
+		else if (richtung == Main.OBEN){ 
 			newFigurX=figurX;
 			newFigurY=figurY+1;
 		}
@@ -79,6 +77,7 @@ static int checkpointMerkeRaum;
 			}
 			Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
 			Menu.figurReset(aktuellesLevel,aktuellerRaum, figurX, figurY);
+			StdDraw.picture(400,560,WEISSIMG);
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FALLE)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){

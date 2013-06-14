@@ -57,6 +57,7 @@ public class Menu{
 	private static final String HPTRANKIMG = "Images\\hpTrank.jpg";
 	private static final String MANATRANKIMG = "Images\\manaTrank.jpg";
 	
+		
 	private static final int BREITE = 990;
 	private static final int HOEHE = 660;
 	
@@ -409,23 +410,26 @@ public class Menu{
 			if ((Aktion.getLevel()==0)&(Aktion.getRaum()==0)){ //Storyteller am Anfang (Level 1, Raum 1)
 				StdDraw.text(400, 560, "Früher war dies ein friedliches Plätzchen, aber dann kamen die Trolle und legten Fallen aus... ");
 				StdDraw.text(400, 540, "Und das nur, um ihr Essen besser würzen zu können!");
-					//if (k.getKeyCode() == KeyEvent.VK_RIGHT | k.getKeyCode() == KeyEvent.VK_DOWN | k.getKeyCode() == KeyEvent.VK_LEFT | k.getKeyCode() == KeyEvent.VK_UP){
-					//	Main.storytellerBoolean(False); 
-					//}
+									
 			}
 			else if ((Aktion.getLevel()==0)&(Aktion.getRaum()==1)){ //Storyteller vor dem Checkpoint (Level 1, Raum 2)
 				StdDraw.text(400, 570, "Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, seit es die fiesen Trolle hier runter geschafft haben.");
 				StdDraw.text(400, 550, "Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie berührst und im weiteren Verlauf deines Abenteuers stirbst,");
 				StdDraw.text(400, 530, "wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
+				
 			}
 			else if ((Aktion.getLevel()==1)&(Aktion.getRaum()==0)){ //Storyteller vor dem Checkpoint (Level 2, Raum 1)
 				StdDraw.text(400, 560, "Das hier ist der einzige Shop hier unten. Decke dich gut ein, denn du wirst nicht so schnell wieder die Möglichkeit finden,");
 				StdDraw.text(400, 540, "deine Gesundheit und dein Mana zu regenerieren! Jeder Trank kostet genau eine Münze!");
+				
 			}
 			else if ((Aktion.getLevel()==2)&(Aktion.getRaum()==2)){ //Storyteller im Endraum (Level 3, Raum 3)
 				StdDraw.text(400, 560, "Fast hast du es geschafft!!! Berühre diese Flagge dort und du kannst beruhigt nach Hause zurückkehren");
 				StdDraw.text(400, 540, "und dich als Sieger feiern lassen. Aber lass dich nicht auf den letzten Metern von den Trollen erwischen!");
+				
 			}		
+			
+		
 		}
 	
 }

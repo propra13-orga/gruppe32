@@ -103,7 +103,7 @@ public Aktion(boolean ifPlayer, int newId){
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
 			
 			if (player==true){
-				
+				returnArray[0]=Interface.MOB;
 			}
 			else{
 				returnArray[0]=Interface.MAUER;

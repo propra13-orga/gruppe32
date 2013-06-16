@@ -108,6 +108,9 @@ public class Spieler{
 				Interface.toCheckpoint=true;
 			}
 		}
+		else if (checkArray[0]==Interface.MOB){
+			sterben();
+		}
 		x=checkArray[1];
 		y=checkArray[2];
 		return bewegenReturn;
@@ -124,7 +127,7 @@ public class Spieler{
 	 * reduziert die aktuellenHP/mana um einen gegeben schadenswert
 	 * 
 	 */
-	public boolean schadenBekommen(double schaden){
+	public boolean schadenBekommen(double incSchaden){
 		gestorben = false;
 		if (schildAufladung>0){
 			schildAufladung--;
@@ -134,7 +137,7 @@ public class Spieler{
 			}
 		}
 		else {
-			aktuelleHP = Math.round((aktuelleHP-(schaden*((100-ruestung)/100)))*100.0)/100.0;
+			aktuelleHP = Math.round((aktuelleHP-(incSchaden*((100-ruestung)/100)))*100.0)/100.0;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 			if (aktuelleHP<=0){
 				leben--;
@@ -155,7 +158,13 @@ public class Spieler{
 	return gestorben;	
 	}
 	
-	
+	public void sterben(){
+		schildAufladung=0;
+		schild=false;
+		if (schadenBekommen(1000000000)==true){
+			Interface.toCheckpoint=true;
+		}
+	}
 	public void manaVerbrauchen(double verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
 			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))*100.0)/100.0;

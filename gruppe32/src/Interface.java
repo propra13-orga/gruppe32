@@ -211,16 +211,20 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_W){
 					playerAttack(OBEN);
+					alleGegnerBewegen();
 					
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_A){
 					playerAttack(LINKS);
+					alleGegnerBewegen();
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_S){
 					playerAttack(UNTEN);
+					alleGegnerBewegen();
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_D){
 					playerAttack(RECHTS);
+					alleGegnerBewegen();
 				}
 				
 				
@@ -229,11 +233,13 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 					gegnerZahl=0;
 					nextRoom();
 					levelDarstellen();
+					player[0].moveTo(Spielfeld.getStartpunkt(level,raum)[0], Spielfeld.getStartpunkt(level,raum)[1]);
 				}
 				else if(checkStartZiel == START){
 					gegnerZahl=0;
 					previousRoom();
 					levelDarstellen();
+					player[0].moveTo(Spielfeld.getZielpunkt(level,raum)[0], Spielfeld.getZielpunkt(level,raum)[1]);
 				}
 				
 				if (toCheckpoint==true){
@@ -247,8 +253,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 	}
 	public void alleGegnerBewegen(){
-		if (spielGestartet==true){
-			for (counter=0;counter<gegnerZahl;counter++){
+		for (counter=0;counter<gegnerZahl;counter++){
+			if (spielGestartet==true){
 				gegnerAktion(counter);
 			}
 		}

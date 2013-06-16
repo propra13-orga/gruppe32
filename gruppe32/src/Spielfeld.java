@@ -16,6 +16,10 @@ private  static int spalte;
 private static int testChar;
 private static int[][] checkpoint = new int[6][4];
 private static int counter;
+private static int[][] startpunkt = new int[9][2];
+private static int[] startpunktReturn = new int[2];
+private static int[][] zielpunkt = new int[9][2];
+private static int[] zielpunktReturn = new int[2];
 private static int[] checkpointReturn = new int[4];
 
 private static final int BEIZIEL = 13;
@@ -68,6 +72,7 @@ public static void initSpielfeld() {
 							counter=counter-3;
 							}
 							counter++;
+							setStartpunkt((level*3)+raum,spalte,reihe);
 						}
 						else if (testChar-48 == 7){ // 7
 							spielfeld[level][raum][spalte][reihe]=Interface.SIEG;
@@ -108,6 +113,7 @@ public static void initSpielfeld() {
 						}
 						else if (testChar == 88){ // X
 							spielfeld[level][raum][spalte][reihe]=BEIZIEL;
+							setZielpunkt((level*3)+raum,spalte,reihe);
 						}
 						else if (testChar == 89){ // Y
 							spielfeld[level][raum][spalte][reihe]=BEICHECKPOINT;
@@ -142,6 +148,26 @@ public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, 
 public static int[] getCheckpoint(int aktiveCheckpoint){
 	checkpointReturn = checkpoint[aktiveCheckpoint];
 	return checkpointReturn;
+}
+
+public static void setStartpunkt(int newStartpunkt,int x,int y){
+	startpunkt[newStartpunkt][0]=x;
+	startpunkt[newStartpunkt][1]=y;
+}
+
+public static int[] getStartpunkt(int level, int raum){
+	startpunktReturn = startpunkt[level*3+raum];
+	return startpunktReturn;
+}
+
+public static void setZielpunkt(int newzielpunkt,int x,int y){
+	zielpunkt[newzielpunkt][0]=x;
+	zielpunkt[newzielpunkt][1]=y;
+}
+
+public static int[] getZielpunkt(int level, int raum){
+	zielpunktReturn = zielpunkt[level*3+raum];
+	return zielpunktReturn;
 }
 
 /**

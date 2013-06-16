@@ -14,6 +14,9 @@ private static int raum;
 private static int reihe;
 private  static int spalte;
 private static int testChar;
+private static int[][] checkpoint = new int[6][4];
+private static int counter;
+private static int[] checkpointReturn = new int[4];
 
 private static final int BEIZIEL = 13;
 private static final int BEICHECKPOINT = 14;
@@ -26,6 +29,7 @@ private static BufferedReader br;
  *
  */
 public static void initSpielfeld() {
+	counter=0;
 	try{
 	    
 		fr = new FileReader("src\\level.txt");
@@ -59,12 +63,18 @@ public static void initSpielfeld() {
 						}
 						else if (testChar-48 == 6){ // 6
 							spielfeld[level][raum][spalte][reihe]=Interface.FIGUR;
+							if (counter==0){
+							setCheckpoint(level*2,level,raum,spalte,reihe);
+							counter=counter-3;
+							}
+							counter++;
 						}
 						else if (testChar-48 == 7){ // 7
 							spielfeld[level][raum][spalte][reihe]=Interface.SIEG;
 						}
 						else if (testChar-48 == 8){ // 8
 							spielfeld[level][raum][spalte][reihe]=Interface.CHECKPOINT;
+							setCheckpoint(level*2+1,level,raum,spalte,reihe);
 						}
 						else if (testChar-48 == 9){ // 9
 							spielfeld[level][raum][spalte][reihe]=Interface.STORYTELLER;
@@ -122,7 +132,17 @@ public static void initSpielfeld() {
 	}
 
 
+public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, int y){
+	checkpoint[newCheckpoint][0]=level;
+	checkpoint[newCheckpoint][1]=raum;
+	checkpoint[newCheckpoint][2]=x;
+	checkpoint[newCheckpoint][3]=y;
+}
 
+public static int[] getCheckpoint(int aktiveCheckpoint){
+	checkpointReturn = checkpoint[aktiveCheckpoint];
+	return checkpointReturn;
+}
 
 /**
  * Spielfeldeigenschaft Wert des Feldes XY abfragen

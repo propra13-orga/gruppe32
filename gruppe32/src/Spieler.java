@@ -31,7 +31,11 @@ public class Spieler{
 	private int x;
 	private int y;
 	private Aktion aktion;
-	private int[] checkArray = new int[2];
+	private int[] checkArray = new int[3];
+	private int[] attackReturn = new int[3];
+	
+	private boolean gestorben;
+		
 	private StatDisplay stats = new StatDisplay();
 	
 	private int id;
@@ -41,6 +45,8 @@ public class Spieler{
 		id = newId;
 		aktion = new Aktion(true, id);
 		resetPlayerStats();
+		gestorben = false;
+		
 	}
 	
 	//public static int x;
@@ -55,7 +61,7 @@ public class Spieler{
 		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild);
 		bewegenReturn = 0;
 		if (checkArray[0]==Interface.CHECKPOINT){
-			
+			Interface.nextCheckpoint();
 		}
 		else if (checkArray[0]==Interface.MUENZEN){
 			aktuelleMuenzen++;
@@ -97,9 +103,20 @@ public class Spieler{
 		else if (checkArray[0]==Interface.ZIEL){
 			bewegenReturn=Interface.ZIEL;
 		}
+		else if (checkArray[0]==Interface.FALLE){
+			if (schadenBekommen(5)==true){
+				Interface.toCheckpoint=true;
+			}
+		}
 		x=checkArray[1];
 		y=checkArray[2];
 		return bewegenReturn;
+	}
+	
+	public void moveTo(int newX, int newY){
+		aktion.playerNachXY(x, y, newX, newY, aktuelleFarbe, schild );
+		x = newX;
+		y = newY;
 	}
 	
 	/**
@@ -107,7 +124,8 @@ public class Spieler{
 	 * reduziert die aktuellenHP/mana um einen gegeben schadenswert
 	 * 
 	 */
-	public void schadenBekommen(double schaden){
+	public boolean schadenBekommen(double schaden){
+		gestorben = false;
 		if (schildAufladung>0){
 			schildAufladung--;
 			if (schildAufladung<=0){
@@ -120,18 +138,24 @@ public class Spieler{
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 			if (aktuelleHP<=0){
 				leben--;
-				//Aktion.zumCheckpoint();
 				if (leben<=0){
 					Interface.gameOver();
 				}
-				//Aktion.zumCheckpoint();
-				//aktuelleHP=DEFAULTHP;
-				//Menu.displayPlayerHP(aktuelleHP);
-				//Menu.playerToCheckpoint();
+				else{
+					Interface.toCheckpoint();
+					gestorben = true;
+				}
+				aktuelleHP=DEFAULTHP;
+				
+				
 			}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
+		
 		}
+	return gestorben;	
 	}
+	
+	
 	public void manaVerbrauchen(double verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
 			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))*100.0)/100.0;
@@ -414,4 +438,16 @@ public class Spieler{
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
+	
+	public int[] playerAttack(int richtung){
+		attackReturn[0]=0;
+		checkArray= aktion.playerAttack(richtung);		
+		if (checkArray[0]==Interface.MOB){
+			attackReturn=checkArray;
+		}
+		
+		return attackReturn;
+	}
+	
+	
 }

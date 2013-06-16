@@ -17,7 +17,7 @@ static int checkpointMerkeLevel;
 static int checkpointMerkeRaum;
 static boolean storyteller;
 private boolean player;
-private int[] returnArray = new int[3];
+private int[] returnArray = new int[5];
 
 private int figurX;
 private int figurY;
@@ -31,16 +31,7 @@ public Aktion(boolean ifPlayer, int newId){
 }
 
 
-/**
- * Methode bewegt Figur anhand von Koordinaten
- * 
- */
-	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild){
-		figurX=figurX2;
-		figurY=figurY2;
-		aktuellesLevel = Interface.getLevel();
-		aktuellerRaum = Interface.getRaum();
-		
+	private void setNewFigurXY(int richtung){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
 			newFigurY=figurY;
@@ -57,6 +48,19 @@ public Aktion(boolean ifPlayer, int newId){
 			newFigurX=figurX;
 			newFigurY=figurY+1;
 		}
+	}
+
+/**
+ * Methode bewegt Figur anhand von Koordinaten
+ * 
+ */
+	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild){
+		figurX=figurX2;
+		figurY=figurY2;
+		aktuellesLevel = Interface.getLevel();
+		aktuellerRaum = Interface.getRaum();
+		setNewFigurXY(richtung);
+		
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BODEN)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
@@ -96,8 +100,7 @@ public Aktion(boolean ifPlayer, int newId){
 				
 			}
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
 			
 			if (player==true){
 				
@@ -108,7 +111,18 @@ public Aktion(boolean ifPlayer, int newId){
 				
 			}
 						
-		}	
+		}	else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE)){
+			
+			if (player==true){
+				returnArray[0]=Interface.FALLE;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+						
+		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SIEG){
 			if ( player == true){
 				aktuellesLevel=0;
@@ -247,7 +261,9 @@ public Aktion(boolean ifPlayer, int newId){
 
 			}
 			else {
-				//schadenmachzeug
+				returnArray[0]=Interface.FIGUR;
+				returnArray[3]=newFigurX;
+				returnArray[4]=newFigurY;
 			}
 		}
 		else{
@@ -263,10 +279,25 @@ public Aktion(boolean ifPlayer, int newId){
 
 	}
 
+	public int[] playerAttack(int richtung){
+		setNewFigurXY(richtung);
+		returnArray[0]=0;
+		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
+			returnArray[0]=Interface.MOB;
+			returnArray[1]=newFigurX;
+			returnArray[2]=newFigurY;
+		}
+		return returnArray;
+	}
+	
 
 public void displayFigur(int x, int y, int farbe, boolean schild){
 	move.displayPlayer(x, y, farbe, schild);
 }
+public void playerNachXY(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
+	move.figurBewegen(vonX, vonY, nachX, nachY, farbe, schild );
+}
+
 public void displayGegner(int x, int y, int richtung){
 	move.displayGegner(x,y,richtung);
 }

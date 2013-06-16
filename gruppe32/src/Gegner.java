@@ -12,6 +12,11 @@ public class Gegner{
 	private int richtung;
 	private int id;
 	private Aktion aktion;
+	private int[] attackReturn = new int[3];
+	private boolean lebendig;
+	private double loot;
+	
+	private StatDisplay stats = new StatDisplay();
 	
 	
 	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID){
@@ -25,37 +30,71 @@ public class Gegner{
 		richtung = startRichtung;
 		id = newID;
 		aktion = new Aktion(false, id);
+		lebendig = true;
+		
 		
 	}
 	
-	public void bewegen(){
-		int[] bewegungsReturn = aktion.figurBewegen(richtung,x,y,0,false);
-		
-		if((bewegungsReturn[0]==Interface.MAUER)){
-			if (richtung == Interface.OBEN){
-				richtung = Interface.UNTEN;
-				aktion.displayGegner(x,y,richtung);
+	public int[] bewegen(){
+		attackReturn[0]=0;
+		if (lebendig==true){	
+			int[] aktionReturn = aktion.figurBewegen(richtung,x,y,0,false);
+			
+			x=aktionReturn[1];
+			y=aktionReturn[2];
+			if((aktionReturn[0]==Interface.MAUER)){
+				if (richtung == Interface.OBEN){
+					richtung = Interface.UNTEN;
+					aktion.displayGegner(x,y,richtung);
+				}
+				else if (richtung == Interface.LINKS){
+					richtung = Interface.RECHTS;
+					aktion.displayGegner(x,y,richtung);
+				}
+				else if (richtung == Interface.UNTEN){
+					richtung = Interface.OBEN;
+					aktion.displayGegner(x,y,richtung);
+				}
+				else if (richtung == Interface.RECHTS){
+					richtung = Interface.LINKS;
+					aktion.displayGegner(x,y,richtung);
+				}
+			
 			}
-			else if (richtung == Interface.LINKS){
-				richtung = Interface.RECHTS;
-				aktion.displayGegner(x,y,richtung);
+			else if(aktionReturn[0]==Interface.FIGUR){
+				attackReturn[0]=1;
+				attackReturn[1]=aktionReturn[3];
+				attackReturn[2]=aktionReturn[4];
+			
 			}
-			else if (richtung == Interface.UNTEN){
-				richtung = Interface.OBEN;
-				aktion.displayGegner(x,y,richtung);
-			}
-			else if (richtung == Interface.RECHTS){
-				richtung = Interface.LINKS;
-				aktion.displayGegner(x,y,richtung);
-			}
+				stats.displayGegnerHP(hp, defaultHP, x, y);
 		}
 		
-		x=bewegungsReturn[1];
-		y=bewegungsReturn[2];
+		return attackReturn;
 	}
 	
 	public void schadenBekommen(double schaden){
 		hp = Math.round((hp-(schaden*((100-ruestung)/100)))*100.0)/100.0;
+		stats.displayGegnerHP(hp, defaultHP, x, y);
+		if (hp<=0){
+			sterben();
+		}
+	}
+	public void sterben(){
+		lebendig=false;
+		loot=Math.random();
+		if (loot<0.33){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.HPTRANK);
+			StdDraw.picture(20+40*x,20+40*y, Interface.HPTRANKIMG);
+		}
+		else if (loot<0.66){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
+			StdDraw.picture(20+40*x,20+40*y, Interface.MANATRANKIMG);
+		}
+		else{
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
+			StdDraw.picture(20+40*x,20+40*y, Interface.MUENZENIMG);
+		}
 	}
 	
 	public void setXY(int newX, int newY){

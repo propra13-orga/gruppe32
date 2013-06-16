@@ -66,4 +66,17 @@ public class StatDisplay{
 			
 		}
 	}
+	public void displayGegnerHP(double hp,double defaulthp, int x, int y){
+		if (hp>=0){
+			StdDraw.show(0);
+			StdDraw.setPenColor(StdDraw.GRAY);
+			StdDraw.filledRectangle(20+40*x, 20+40*y+12, 15, 2);
+			StdDraw.setPenColor(StdDraw.GREEN);
+			double mod =  (hp/defaulthp)*15;
+			StdDraw.filledRectangle(20+40*x, 20+40*y+12, mod, 2);
+			StdDraw.setPenColor();
+			StdDraw.show(0);
+		}
+		
+	}
 }

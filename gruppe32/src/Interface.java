@@ -21,6 +21,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static int spalte;
 
 	private int counter;
+	private int counter2;
+	private int counter3;
 	private int returner;
 	private static boolean spielGestartet;
 
@@ -94,13 +96,21 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	private Gegner[] gegner = new Gegner[20];
 	
 	private int playerZahl;
-	private int gegnerZahl=0;
+	private static int gegnerZahl=0;
 	
 	private static int level;
 	private static int raum;
 	
 	private int checkStartZiel;
 	
+	
+	private int[] gegnerAttack = new int[3];
+	private int[] playerAttack = new int[3];
+	
+	private static int aktiveCheckpoint=0;
+	private static int[] checkpointArray = new int[4];
+	
+	public static  boolean toCheckpoint;
 	
 
 	
@@ -177,7 +187,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 * 
 	 */
 	public void keyPressed(KeyEvent k){
+		toCheckpoint=false;
 		if(spielGestartet == true){
+			StdDraw.show(0);
 				if (k.getKeyCode() == KeyEvent.VK_RIGHT){
 					checkStartZiel = player[0].bewegen(RECHTS);
 					alleGegnerBewegen();
@@ -197,6 +209,22 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if (k.getKeyCode() == KeyEvent.VK_SPACE){
 					player[0].schildZauber();
 				}
+				else if (k.getKeyCode() == KeyEvent.VK_W){
+					playerAttack(OBEN);
+					
+				}
+				else if (k.getKeyCode() == KeyEvent.VK_A){
+					playerAttack(LINKS);
+				}
+				else if (k.getKeyCode() == KeyEvent.VK_S){
+					playerAttack(UNTEN);
+				}
+				else if (k.getKeyCode() == KeyEvent.VK_D){
+					playerAttack(RECHTS);
+				}
+				
+				
+				
 				if (checkStartZiel == ZIEL){
 					gegnerZahl=0;
 					nextRoom();
@@ -207,13 +235,41 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 					previousRoom();
 					levelDarstellen();
 				}
+				
+				if (toCheckpoint==true){
+					gegnerZahl=0;
+					levelDarstellen();
+					player[0].moveTo(checkpointArray[2], checkpointArray[3]);
+				}
+					
+				
+			StdDraw.show();
 		}
 	}
 	public void alleGegnerBewegen(){
-		for (counter=0;counter<gegnerZahl;counter++){
-			gegner[counter].bewegen();
+		if (spielGestartet==true){
+			for (counter=0;counter<gegnerZahl;counter++){
+				gegnerAktion(counter);
+			}
 		}
 	}
+	
+	
+	public void gegnerAktion(int id){
+		gegnerAttack=gegner[id].bewegen();
+		if (gegnerAttack[0]==1){
+			if (player[ getPlayerID(gegnerAttack[1],gegnerAttack[2]) ].schadenBekommen( gegner[id].getSchaden() ) ==true){
+				toCheckpoint=true;
+			}
+		}
+	}
+	public void playerAttack(int richtung){
+		playerAttack=player[0].playerAttack(richtung);
+		if (playerAttack[0]==MOB){
+			gegner[ getGegnerID(playerAttack[1],playerAttack[2]) ].schadenBekommen( player[0].getSchaden() );
+		}
+	}
+	
 	/**
 	 * Methode keyReleased : KeyEvent, 
 	 * jedoch nicht genutzt
@@ -232,6 +288,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
  * 
  */
 	public void levelDarstellen() {
+		gegnerZahl=0;
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.setXscale(0.0,900);
 		StdDraw.setYscale(0,600);
@@ -259,7 +316,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MOB){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MOBIMG);
-					gegner[gegnerZahl] = new Gegner(10, spalte, reihe, OBEN, 10, 2, gegnerZahl);
+					gegner[gegnerZahl] = new Gegner(10, spalte, reihe, OBEN, 0, 2, gegnerZahl);
 					gegnerZahl++;
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FIGUR){
@@ -319,29 +376,32 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		StdDraw.show();
 	}
 	
+	
 	public static void nextRoom(){
 		if (raum<2){
 			raum++;
 		}
 		else {
 			level++;
-			
+			raum=0;
+			aktiveCheckpoint=level*2;	
 		}
-		
-		
 	}
 	public static void previousRoom(){
 		if (raum>0){
 			raum--;
 		}
-		else if(level>0){
-			level--;
-			raum=2;
-		}
-		
 	}
 
-	
+	public static void nextCheckpoint(){
+		aktiveCheckpoint++;
+	}
+	public static void toCheckpoint(){
+		gegnerZahl=0;
+		checkpointArray=Spielfeld.getCheckpoint(aktiveCheckpoint);
+		level=checkpointArray[0];
+		raum=checkpointArray[1];
+	}
 	
 	
 	
@@ -416,19 +476,19 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 		
 		public int getPlayerID(int x,int y){
-			for (counter=0;counter<playerZahl; counter++ ){
-				if ((player[counter].getX() == x)
-					|(player[counter].getY() == y)){
-					returner = counter;
+			for (counter2=0;counter2<playerZahl; counter2++ ){
+				if ((player[counter2].getX() == x)
+					|(player[counter2].getY() == y)){
+					returner = counter2;
 				}
 			}
 			return returner;
 		}
 		public int getGegnerID(int x,int y){
-			for (counter=0; counter<gegnerZahl; counter++ ){
-				if ((gegner[counter].getX() == x)
-					|(gegner[counter].getY() == y)){
-					returner= counter;
+			for (counter3=0; counter3<gegnerZahl; counter3++ ){
+				if ((gegner[counter3].getX() == x)
+					|(gegner[counter3].getY() == y)){
+					returner= counter3;
 				}
 			}
 			return returner;

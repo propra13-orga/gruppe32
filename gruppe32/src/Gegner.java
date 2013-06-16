@@ -1,4 +1,4 @@
-
+import java.lang.Math;
 
 
 public class Gegner{
@@ -24,58 +24,43 @@ public class Gegner{
 		ruestung = startRuestung;
 		richtung = startRichtung;
 		id = newID;
-		aktion = new Aktion(id);
+		aktion = new Aktion(false, id);
 		
 	}
 	
-	public void gegnerBewegen(){
-		int[] bewegungsReturn = aktion.figurBewegen(richtung);
+	public void bewegen(){
+		int[] bewegungsReturn = aktion.figurBewegen(richtung,x,y,0,false);
 		
-		if(bewegungsReturn[0]==Main.FIGUR){
-			//muss bei Interface rein
-			public void gegnerSchlag(int gegnerID, int zielX, int zielY){
-				player[getPlayerID(zielX,zielY)].schadenBekommen(gegner[gegnerID].getSchaden);
+		if((bewegungsReturn[0]==Interface.MAUER)){
+			if (richtung == Interface.OBEN){
+				richtung = Interface.UNTEN;
+				aktion.displayGegner(x,y,richtung);
 			}
-			public void playerSchlag(int playerID, int zielX, int zielY){
-				gegner[getGegnerID(zielX,zielY)].schadenBekommen(player[playerID].getSchaden);
+			else if (richtung == Interface.LINKS){
+				richtung = Interface.RECHTS;
+				aktion.displayGegner(x,y,richtung);
 			}
-			
-			public int getPlayerID(int x,int y){
-				for (counter=0; counter++; counter<spielerZahl){
-					if ((player[counter].getX == x)
-						|(player[counter].getY == y)){
-						return counter;
-					}
-				}
+			else if (richtung == Interface.UNTEN){
+				richtung = Interface.OBEN;
+				aktion.displayGegner(x,y,richtung);
 			}
-			public int getGegnerID(int x,int y){
-				for (counter=0; counter++; counter<gegnerZahl){
-					if ((gegner[counter].getX == x)
-						|(gegner[counter].getY == y)){
-						return counter;
-					}
-				}
+			else if (richtung == Interface.RECHTS){
+				richtung = Interface.LINKS;
+				aktion.displayGegner(x,y,richtung);
 			}
-			public void gegnerDarstelen(int id, int x, int y, int richtung)
-			
-			
-		}
-		else{
-			if (richtung == Main.OBEN){
-				richtung = Main.UNTEN;
-			}
-			else if (richtung == Main.LINKS){
-				richtung = Main.RECHTS;
-			}
-			else if (richtung == Main.UNTEN){
-				richtung = Main.OBEN;
-			}
-			else if (richtung == Main.RECHTS){
-				richtung = Main.LINKS;
-			}
-			
 		}
 		
+		x=bewegungsReturn[1];
+		y=bewegungsReturn[2];
+	}
+	
+	public void schadenBekommen(double schaden){
+		hp = Math.round((hp-(schaden*((100-ruestung)/100)))*100.0)/100.0;
+	}
+	
+	public void setXY(int newX, int newY){
+		x= newX;
+		y= newY;
 	}
 	
 	public int getRichtung(){
@@ -89,6 +74,9 @@ public class Gegner{
 	}
 	public int getY(){
 		return y;
+	}
+	public double getSchaden(){
+		return schaden;
 	}
 	
 	

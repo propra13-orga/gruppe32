@@ -1,6 +1,6 @@
 import java.lang.Math;
 
-public class Figur{
+public class Spieler{
 	
 	public static final double MAXMANA = 10.0;
 	public static final double MAXHP = 10.0;
@@ -18,16 +18,30 @@ public class Figur{
 	private static final int DEFAULTSCHILDAUFLADUNG = 0;
 	private static final int MAXSCHILD = 2;
 	
-	private static int leben;
-	private static double manaFaktor;
-	private static double schaden;
-	private static double aktuellesMana;
-	private static double aktuelleHP;
-	private static double ruestung;
-	private static int aktuelleMuenzen;
-	private static int aktuelleFarbe;
-	private static int schildAufladung;
-	private static boolean schild;
+	private int leben;
+	private double manaFaktor;
+	private double schaden;
+	private double aktuellesMana;
+	private double aktuelleHP;
+	private double ruestung;
+	private int aktuelleMuenzen;
+	private int aktuelleFarbe;
+	private int schildAufladung;
+	private boolean schild;
+	private int x;
+	private int y;
+	private Aktion aktion;
+	private int[] checkArray = new int[2];
+	private StatDisplay stats = new StatDisplay();
+	
+	private int id;
+	private int bewegenReturn;
+	
+	public Spieler(int newId){
+		id = newId;
+		aktion = new Aktion(true, id);
+		resetPlayerStats();
+	}
 	
 	//public static int x;
 	//public static int y;
@@ -37,44 +51,95 @@ public class Figur{
 		y = newY;
 	}*/
 	
+	public int bewegen(int richtung){
+		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild);
+		bewegenReturn = 0;
+		if (checkArray[0]==Interface.CHECKPOINT){
+			
+		}
+		else if (checkArray[0]==Interface.MUENZEN){
+			aktuelleMuenzen++;
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
+		}
+		else if (checkArray[0]==Interface.MANATRANK){
+			manaReg(1);
+		
+		}
+		else if (checkArray[0]==Interface.HPTRANK){
+			heilen(1);
+		
+		}
+		else if (checkArray[0]==Interface.MANATRANKSHOP){
+			if (aktuelleMuenzen>0){
+				aktuelleMuenzen--;
+				manaReg(1);
+			}
+			
+		}
+		else if (checkArray[0]==Interface.HPTRANKSHOP){
+			if (aktuelleMuenzen>0){
+				aktuelleMuenzen--;
+				heilen(1);
+			}
+		}
+		else if (checkArray[0]==Interface.FARBEGELB){
+			setFarbe(Interface.GELB);
+		}
+		else if (checkArray[0]==Interface.FARBEROT){
+			setFarbe(Interface.ROT);
+		}
+		else if (checkArray[0]==Interface.FARBEBLAU){
+			setFarbe(Interface.BLAU);
+		}
+		else if (checkArray[0]==Interface.START){
+			bewegenReturn=Interface.START;
+		}
+		else if (checkArray[0]==Interface.ZIEL){
+			bewegenReturn=Interface.ZIEL;
+		}
+		x=checkArray[1];
+		y=checkArray[2];
+		return bewegenReturn;
+	}
+	
 	/**
 	 * Methodenkommentar
 	 * reduziert die aktuellenHP/mana um einen gegeben schadenswert
 	 * 
 	 */
-	public static void schadenBekommen(double schaden){
+	public void schadenBekommen(double schaden){
 		if (schildAufladung>0){
 			schildAufladung--;
 			if (schildAufladung<=0){
 				schild=false;
-				Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
+				aktion.displayFigur(x,y,aktuelleFarbe,schild);
 			}
 		}
 		else {
 			aktuelleHP = Math.round((aktuelleHP-(schaden*((100-ruestung)/100)))*100.0)/100.0;
-			Menu.displayPlayerHP(aktuelleHP);
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 			if (aktuelleHP<=0){
 				leben--;
-				Aktion.zumCheckpoint();
+				//Aktion.zumCheckpoint();
 				if (leben<=0){
-					Menu.gameOver();
+					Interface.gameOver();
 				}
 				//Aktion.zumCheckpoint();
 				//aktuelleHP=DEFAULTHP;
 				//Menu.displayPlayerHP(aktuelleHP);
 				//Menu.playerToCheckpoint();
 			}
-		Menu.displayPlayerStats();
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 		}
 	}
-	public static void manaVerbrauchen(double verbrauch){
+	public void manaVerbrauchen(double verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
 			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))*100.0)/100.0;
 		}
 		else{
 			aktuellesMana = 0;
 		}
-		Menu.displayPlayerMana(aktuellesMana);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
 	
 	
@@ -83,23 +148,23 @@ public class Figur{
 	 * erhoeht die aktuellenHP/Mana um einen gegebenen wert
 	 * 
 	 */
-	public static void heilen(double heilung){
+	public void heilen(double heilung){
 		if ((aktuelleHP+heilung)<=MAXHP){
 			aktuelleHP = Math.round((aktuelleHP+heilung)*100.0)/100.0;
 		}
 		else{
 			aktuelleHP = MAXHP;
 		}
-		Menu.displayPlayerHP(aktuelleHP);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
-	public static void manaReg(double reg){
+	public void manaReg(double reg){
 		if ((aktuellesMana+reg)<=MAXMANA){
 			aktuellesMana = Math.round((aktuellesMana+reg)*100.0)/100.0;
 		}
 		else{
 			aktuellesMana = MAXMANA;
 		}
-		Menu.displayPlayerMana(aktuellesMana);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
 	
 	
@@ -110,17 +175,17 @@ public class Figur{
 	 * Shop: Items erhoehen die aktuellenHP/Mana um einen gegebenen Wert
 	 * 
 	 */
-	public static void shopHP(double heilung){
+	public void shopHP(double heilung){
 		if (((aktuelleHP+heilung)<=MAXHP)&(aktuelleMuenzen>0)){
 			aktuelleHP = Math.round((aktuelleHP+heilung)*100.0)/100.0;
 		}
-		Menu.displayPlayerHP(aktuelleHP);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
-	public static void shopMana(double reg){
+	public void shopMana(double reg){
 		if (((aktuellesMana+reg)<=MAXMANA)&(aktuelleMuenzen>0)){
 			aktuellesMana = Math.round((aktuellesMana+reg)*100.0)/100.0;
 		}
-		Menu.displayPlayerMana(aktuellesMana);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
 	
 	
@@ -131,9 +196,9 @@ public class Figur{
 	 * Muenzen einsammeln
 	 * 
 	 */
-	public static void muenzenSammeln(int muenzen){
+	public void muenzenSammeln(int muenzen){
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
-		Menu.displayPlayerStats();
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
 	
 	
@@ -141,10 +206,10 @@ public class Figur{
 	 * Muenzen verlieren
 	 * 
 	 */
-	public static void muenzenVerlieren(int muenzen){
+	public void muenzenVerlieren(int muenzen){
 		if (aktuelleMuenzen > 0){
 			aktuelleMuenzen = aktuelleMuenzen-muenzen;
-			Menu.displayPlayerStats();
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 		}
 	}
 	
@@ -157,7 +222,7 @@ public class Figur{
 	 * 
 	 */
 	
-	public static void resetPlayerStats(){
+	public void resetPlayerStats(){
 		aktuelleHP=DEFAULTHP;
 		aktuellesMana=DEFAULTMANA;
 		aktuelleMuenzen=DEFAULTMUENZEN;
@@ -175,7 +240,7 @@ public class Figur{
 	 * gibt die momentanen hp aus
 	 * 
 	 */
-	public static double getHP(){
+	public double getHP(){
 		return aktuelleHP;
 	}
 	
@@ -184,7 +249,7 @@ public class Figur{
 	 * gibt die momentanen mana aus
 	 * 
 	 */
-	public static double getMana(){
+	public double getMana(){
 		return aktuellesMana;
 	}
 	
@@ -193,7 +258,7 @@ public class Figur{
 	 * gibt die momentane Anzahl an Muenzen aus
 	 * 
 	 */
-	public static int getMuenzen(){
+	public int getMuenzen(){
 		return aktuelleMuenzen;
 	}
 	
@@ -202,7 +267,7 @@ public class Figur{
 	 * gibt die momentane Farbe zurueck
 	 * 
 	 */
-	public static int getFarbe(){
+	public int getFarbe(){
 		return aktuelleFarbe;
 	}
 	
@@ -211,7 +276,7 @@ public class Figur{
 	 * gibt den momentanen Ruestungswert zurueck
 	 * 
 	 */
-	public static double getRuestung(){
+	public double getRuestung(){
 		return ruestung;
 	}
 	
@@ -220,7 +285,7 @@ public class Figur{
 	 * gibt den momentanen Manafaktor zurueck
 	 * 
 	 */
-	public static double getManaFaktor(){
+	public double getManaFaktor(){
 		return manaFaktor;
 	}
 	
@@ -229,7 +294,7 @@ public class Figur{
 	 * gibt den momentanen Schadensfaktor zurueck
 	 * 
 	 */
-	public static double getSchaden(){
+	public double getSchaden(){
 		return schaden;
 	}
 	
@@ -238,7 +303,7 @@ public class Figur{
 	 * gibt die momentanen Lebensanzahl zurueck
 	 * 
 	 */
-	public static int getLeben(){
+	public int getLeben(){
 		return leben;
 	}
 	
@@ -247,7 +312,7 @@ public class Figur{
 	 * gibt die momentane Schildaufladung zurueck
 	 * 
 	 */
-	public static int getSchild(){
+	public int getSchild(){
 		return schildAufladung;
 	}
 	
@@ -256,8 +321,15 @@ public class Figur{
 	 * Booelan, ob Schild genutzt wird
 	 * 
 	 */
-	public static boolean schildBool(){
+	public boolean schildBool(){
 		return schild;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
 	}
 	
 	/**
@@ -279,7 +351,7 @@ public class Figur{
 	 * 
 	 */
 	
-	public static void setFarbe(int farbe){
+	public void setFarbe(int farbe){
 		
 		if (farbe == GELB){
 			if (aktuelleFarbe == BLAU){
@@ -316,19 +388,30 @@ public class Figur{
 			}
 			aktuelleFarbe=ROT;
 		}
-		Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
-		Menu.displayPlayerStats();
+		aktion.displayFigur(x,y,aktuelleFarbe,schild);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
-	public static void resetHP(){
+	
+	public void setXY(int newX, int newY){
+		x=newX;
+		y=newY;
+		aktion.displayFigur(x,y,aktuelleFarbe,schild);
+	}
+	
+	public void resetHP(){
 		aktuelleHP = DEFAULTHP;
 	}
-	public static void schildZauber(){
+	public void schildZauber(){
 		if ((schildAufladung <MAXSCHILD)&(aktuellesMana>=1)){
 			manaVerbrauchen(1);
 			schildAufladung = schildAufladung+1;
 			schild = true ;
-			Menu.displayPlayer(aktuelleFarbe,Aktion.getFigurX(),Aktion.getFigurY());
-			Menu.displayPlayerStats();
+			aktion.displayFigur(x,y,aktuelleFarbe,schild);
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 		}
+	}
+	public void display(){
+		aktion.displayFigur(x,y,aktuelleFarbe,schild);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 	}
 }

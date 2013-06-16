@@ -1,4 +1,3 @@
-import javax.swing.JLabel;
 import java.io.*;
 
 
@@ -10,23 +9,23 @@ import java.io.*;
 public class Spielfeld {
 //hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass)
 private static int[][][][] spielfeld = new int [3][3][20][15];
-private int level;
-private int raum;
-private int reihe;
-private int spalte;
-private int testChar;
+private static int level;
+private static int raum;
+private static int reihe;
+private  static int spalte;
+private static int testChar;
 
 private static final int BEIZIEL = 13;
 private static final int BEICHECKPOINT = 14;
 
-private FileReader fr;
-private BufferedReader br;
+private static FileReader fr;
+private static BufferedReader br;
 
 /**
  * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
  *
  */
-public Spielfeld() {
+public static void initSpielfeld() {
 	try{
 	    
 		fr = new FileReader("src\\level.txt");
@@ -41,61 +40,61 @@ public Spielfeld() {
 						br.skip(1);
 						testChar = br.read();
 						if (testChar-48 == 1){ // 1
-							spielfeld[level][raum][spalte][reihe]=Main.MAUER;
+							spielfeld[level][raum][spalte][reihe]=Interface.MAUER;
 						}
 						else if (testChar-48 ==0){ // 0
-							spielfeld[level][raum][spalte][reihe]=Main.BODEN;	
+							spielfeld[level][raum][spalte][reihe]=Interface.BODEN;	
 						}
 						else if (testChar-48 ==2){ // 2
-							spielfeld[level][raum][spalte][reihe]=Main.START;	
+							spielfeld[level][raum][spalte][reihe]=Interface.START;	
 						}
 						else if (testChar-48 ==3){  // 3
-							spielfeld[level][raum][spalte][reihe]=Main.ZIEL;
+							spielfeld[level][raum][spalte][reihe]=Interface.ZIEL;
 						}
 						else if (testChar-48 == 5){ // 5
-							spielfeld[level][raum][spalte][reihe]=Main.MOB;
+							spielfeld[level][raum][spalte][reihe]=Interface.MOB;
 						}
 						else if (testChar-48 == 4){ // 4
-							spielfeld[level][raum][spalte][reihe]=Main.FALLE;
+							spielfeld[level][raum][spalte][reihe]=Interface.FALLE;
 						}
 						else if (testChar-48 == 6){ // 6
-							spielfeld[level][raum][spalte][reihe]=Main.FIGUR;
+							spielfeld[level][raum][spalte][reihe]=Interface.FIGUR;
 						}
 						else if (testChar-48 == 7){ // 7
-							spielfeld[level][raum][spalte][reihe]=Main.SIEG;
+							spielfeld[level][raum][spalte][reihe]=Interface.SIEG;
 						}
 						else if (testChar-48 == 8){ // 8
-							spielfeld[level][raum][spalte][reihe]=Main.CHECKPOINT;
+							spielfeld[level][raum][spalte][reihe]=Interface.CHECKPOINT;
 						}
 						else if (testChar-48 == 9){ // 9
-							spielfeld[level][raum][spalte][reihe]=Main.STORYTELLER;
+							spielfeld[level][raum][spalte][reihe]=Interface.STORYTELLER;
 						}
 						else if (testChar == 36){ // $
-							spielfeld[level][raum][spalte][reihe]=Main.MUENZEN;
+							spielfeld[level][raum][spalte][reihe]=Interface.MUENZEN;
 						}
 						else if (testChar == 83){ // S
-							spielfeld[level][raum][spalte][reihe]=Main.SHOP1; 
+							spielfeld[level][raum][spalte][reihe]=Interface.SHOP1; 
 						}
 						else if (testChar == 79){ // O
-							spielfeld[level][raum][spalte][reihe]=Main.SHOP2; 
+							spielfeld[level][raum][spalte][reihe]=Interface.SHOP2; 
 						}
 						else if (testChar == 80){ // P
-							spielfeld[level][raum][spalte][reihe]=Main.SHOP3; 
+							spielfeld[level][raum][spalte][reihe]=Interface.SHOP3; 
 						}
 						else if (testChar == 72){ // H
-							spielfeld[level][raum][spalte][reihe]=Main.HPTRANKSHOP; 
+							spielfeld[level][raum][spalte][reihe]=Interface.HPTRANKSHOP; 
 						}
 						else if (testChar == 77){ // M
-							spielfeld[level][raum][spalte][reihe]=Main.MANATRANKSHOP; 
+							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANKSHOP; 
 						}
 						else if (testChar == 71){  // G
-							spielfeld[level][raum][spalte][reihe]=Main.FARBEGELB;
+							spielfeld[level][raum][spalte][reihe]=Interface.FARBEGELB;
 						}
 						else if (testChar == 82){ // R
-							spielfeld[level][raum][spalte][reihe]=Main.FARBEROT;
+							spielfeld[level][raum][spalte][reihe]=Interface.FARBEROT;
 						}
 						else if (testChar == 66){ // B
-							spielfeld[level][raum][spalte][reihe]=Main.FARBEBLAU;
+							spielfeld[level][raum][spalte][reihe]=Interface.FARBEBLAU;
 						}
 						else if (testChar == 88){ // X
 							spielfeld[level][raum][spalte][reihe]=BEIZIEL;
@@ -104,10 +103,10 @@ public Spielfeld() {
 							spielfeld[level][raum][spalte][reihe]=BEICHECKPOINT;
 						}
 						else if (testChar == 43){ // +
-							spielfeld[level][raum][spalte][reihe]=Main.HPTRANK;
+							spielfeld[level][raum][spalte][reihe]=Interface.HPTRANK;
 						}
 						else if (testChar == 42){ // *
-							spielfeld[level][raum][spalte][reihe]=Main.MANATRANK;
+							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANK;
 						}
 				}
 			}
@@ -115,10 +114,10 @@ public Spielfeld() {
 		}
 		}
 		catch(FileNotFoundException e){
-			spielfeld[0][0][1][2]=Main.FARBEBLAU;
+			spielfeld[0][0][1][2]=Interface.FARBEBLAU;
 		}
 		catch(IOException e){
-			spielfeld[0][0][5][6]=Main.FARBEROT;
+			spielfeld[0][0][5][6]=Interface.FARBEROT;
 		}
 	}
 

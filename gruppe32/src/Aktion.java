@@ -7,238 +7,276 @@
  */
 public class Aktion{
 
-private static int figurX;
-private static int figurY;
-private static int aktuellesLevel = 0;
-private static int aktuellerRaum =0;
-private static int newFigurX;
-private static int newFigurY;
+private int aktuellesLevel = 0;
+private int aktuellerRaum =0;
+private int newFigurX;
+private int newFigurY;
 
 static boolean reachedCheckpoint;
 static int checkpointMerkeLevel;
 static int checkpointMerkeRaum;
 static boolean storyteller;
+private boolean player;
+private int[] returnArray = new int[3];
+
+private int figurX;
+private int figurY;
+private FigurBewegung move = new FigurBewegung();
 
 private static final String WEISSIMG = "Images\\weiss.jpg";
+
+public Aktion(boolean ifPlayer, int newId){
+	player = ifPlayer;
+	
+}
 
 
 /**
  * Methode bewegt Figur anhand von Koordinaten
  * 
  */
-	public void figurBewegen(int richtung){
+	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild){
+		figurX=figurX2;
+		figurY=figurY2;
+		aktuellesLevel = Interface.getLevel();
+		aktuellerRaum = Interface.getRaum();
 		
-		
-		if (richtung == Main.RECHTS){ 
+		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
 			newFigurY=figurY;
 		}	   
-		else if (richtung == Main.UNTEN){ 
+		else if (richtung == Interface.UNTEN){ 
 			newFigurX=figurX;
 			newFigurY=figurY-1;
 		}
-		else if (richtung == Main.LINKS){ 
+		else if (richtung == Interface.LINKS){ 
 			newFigurX=figurX-1;
 			newFigurY=figurY;
 		}
-		else if (richtung == Main.OBEN){ 
+		else if (richtung == Interface.OBEN){ 
 			newFigurX=figurX;
 			newFigurY=figurY+1;
 		}
-		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.BODEN)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FIGUR)
+		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BODEN)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
-													                                                //14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
-			figurX=newFigurX;
-			figurY=newFigurY;
-		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.START)
-				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
-		
-			if (aktuellerRaum>0){
-				aktuellerRaum--;
-			}
-			else if(aktuellesLevel>0){
-				aktuellesLevel--;
-				aktuellerRaum=2;
-			}
-			Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
-			Menu.figurZumZiel(aktuellesLevel,aktuellerRaum);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.ZIEL){
-			if (aktuellerRaum<2){
-				aktuellerRaum++;
+			if (player==true){	//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
+				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
+				figurX=newFigurX;
+				figurY=newFigurY;
 			}
 			else {
-				aktuellesLevel++;
-				aktuellerRaum=0;
+				move.gegnerBewegen(figurX,figurY,newFigurX,newFigurY,richtung);
+				figurX=newFigurX;
+				figurY=newFigurY;
 			}
-			Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
-			Menu.figurReset(aktuellesLevel,aktuellerRaum, figurX, figurY);
-			StdDraw.picture(400,560,WEISSIMG);
-		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FALLE)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MOB)){
+			returnArray[0]=Interface.BODEN;
 			
-			Figur.schadenBekommen(1);
+		}
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.START)
+				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
+			if (player==true){
+				returnArray[0]=Interface.START;
+				StdDraw.picture(400,560,WEISSIMG);
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
+			if ( player==true){	
+				returnArray[0]=Interface.ZIEL;
+				StdDraw.picture(400,560,WEISSIMG);
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+		}
+		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE)
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
+			
+			if (player==true){
+				
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
 						
 		}	
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.SIEG){
-			aktuellesLevel=0;
-			aktuellerRaum=0;
-			Menu.sieg();
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SIEG){
+			if ( player == true){
+				aktuellesLevel=0;
+				aktuellerRaum=0;
+				Interface.sieg();
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
 		}
 		
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.CHECKPOINT){
-			reachedCheckpoint=true;
-			checkpointMerkeLevel=aktuellesLevel;
-			checkpointMerkeRaum=aktuellerRaum;
-			Menu.displayPlayerStats();
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
-			figurX=newFigurX;
-			figurY=newFigurY;
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.CHECKPOINT){
+			if (player == true){
+				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
+				figurX=newFigurX;
+				figurY=newFigurY;
+				returnArray[0]=Interface.CHECKPOINT;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
 			
 			
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.STORYTELLER){
+			if (player == true){
+				Interface.storyteller();
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MUENZEN){
+			if (player == true){
+				returnArray[0]=Interface.MUENZEN;
+				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				figurX=newFigurX;
+				figurY=newFigurY;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
 			
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.STORYTELLER){
-			Menu.storyteller();
-			//Main.storytellerBool(false);
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
+			if (player == true){	
+				returnArray[0]=Interface.HPTRANKSHOP;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MUENZEN){
-			Figur.muenzenSammeln(1);
-			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
-			figurX=newFigurX;
-			figurY=newFigurY;
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MANATRANKSHOP){
+			if (player == true){	
+				returnArray[0]=Interface.MANATRANKSHOP;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEGELB){
+			if (player == true){	
+				returnArray[0]=Interface.FARBEGELB;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEROT){
+			if (player == true){	
+				returnArray[0]=Interface.FARBEROT;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEBLAU){
+			if (player == true){	
+				returnArray[0]=Interface.FARBEBLAU;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANK){
+			if (player == true){	
+				returnArray[0]=Interface.HPTRANK;
+				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				figurX=newFigurX;
+				figurY=newFigurY;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MANATRANK){
+			if (player == true){	
+				returnArray[0]=Interface.MANATRANK;
+				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				figurX=newFigurX;
+				figurY=newFigurY;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FIGUR){
+			if (player == true){
+				returnArray[0]=Interface.MAUER;
+				
+
+			}
+			else {
+				//schadenmachzeug
+			}
+		}
+		else{
+			returnArray[0]=Interface.MAUER;
 			
+
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANKSHOP){
-			Figur.shopHP(1);
-			Figur.muenzenVerlieren(1);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANKSHOP){
-			Figur.shopMana(1);
-			Figur.muenzenVerlieren(1);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEGELB){
-			Figur.setFarbe(Main.GELB);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEROT){
-			Figur.setFarbe(Main.ROT);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.FARBEBLAU){
-			Figur.setFarbe(Main.BLAU);
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.HPTRANK){
-			Figur.heilen(1);
-			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);
-			figurX=newFigurX;
-			figurY=newFigurY;
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Main.MANATRANK){
-			Figur.manaReg(1);
-			Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Main.BODEN);
-			Menu.figurBewegen(aktuellesLevel,figurX,figurY,newFigurX,newFigurY);	
-			figurX=newFigurX;
-			figurY=newFigurY;
-		}
+		
+		returnArray[1]=figurX;
+		returnArray[2]=figurY;
+		return returnArray;
 
 
 	}
 
 
-
+public void displayFigur(int x, int y, int farbe, boolean schild){
+	move.displayPlayer(x, y, farbe, schild);
+}
+public void displayGegner(int x, int y, int richtung){
+	move.displayGegner(x,y,richtung);
+}
 	
 	
 	
 
-/**
- * Methode setzt Figur
- * 
- */
-public static void setFigurXY(int x, int y){
-	figurX=x;
-	figurY=y;		
-}
-/**
- * 
- * Methode setzt das aktuelle Level
- * 
- */
-public static void setLevel(int level){
-	aktuellesLevel = level;
-}
 
-/**
- * 
- * Methode setzt den aktuellen Raum
- * 
- */
-public static void setRaum(int raum){
-	aktuellerRaum = raum;
-}
 
-/**
- * 
- * Methode liefert X-Wert der Figur zurueck
- * 
- */
-public static int getFigurX(){
-	return figurX;
-}
 
-/**
- * 
- * Methode liefert Y-Wert der Figur zurueck
- * 
- */
-public static int getFigurY(){
-	return figurY;
-}
-
-/**
- * 
- * Methode liefert Level zurueck
- * 
- */
-public static int getLevel(){
-	return aktuellesLevel;
-}
-
-/**
- * 
- * Methode liefert Raum zurueck
- * 
- */
-public static int getRaum(){
-	return aktuellerRaum;
-}
-
-/**
- * 
- * Methode setzt Figur zum Checkpoint
- * 
- */
-public static void zumCheckpoint(){
-	if (reachedCheckpoint == true){
-		Figur.resetHP();
-		aktuellesLevel=checkpointMerkeLevel;
-		aktuellerRaum=checkpointMerkeRaum;
-		Menu.levelDarstellen(aktuellesLevel,aktuellerRaum);
-		Menu.figurZumCheckpoint(aktuellesLevel,aktuellerRaum);
-		reachedCheckpoint=false;
-		Menu.displayPlayerStats();
-	}
-	else{
-		Figur.resetHP();
-		aktuellerRaum=0;
-		Menu.levelDarstellen(aktuellesLevel, aktuellerRaum);
-	}
-}
 
 }
 

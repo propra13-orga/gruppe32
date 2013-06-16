@@ -117,7 +117,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     private static StdDraw std = new StdDraw();
 
     // the frame for drawing to the screen
-    public static Main frame;
+    public static Interface frame;
 
     // mouse state
     private static boolean mousePressed = false;
@@ -162,7 +162,7 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
     // init
     private static void init() {
         if (frame != null) frame.setVisible(false);
-        frame = new Main("Dungeoncrawler");
+        frame = new Interface();
         offscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         onscreenImage  = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         offscreen = offscreenImage.createGraphics();

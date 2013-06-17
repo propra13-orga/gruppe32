@@ -124,6 +124,15 @@ public static void initSpielfeld() {
 						else if (testChar == 42){ // *
 							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANK;
 						}
+						else if (testChar == 60){ // <
+							spielfeld[level][raum][spalte][reihe]=Interface.BOSS1;
+						}
+						else if (testChar == 61){ // =
+							spielfeld[level][raum][spalte][reihe]=Interface.BOSS2;
+						}
+						else if (testChar == 62){ // >
+							spielfeld[level][raum][spalte][reihe]=Interface.BOSS3;
+						}
 				}
 			}
 			}

@@ -4,8 +4,8 @@ public class Spieler{
 	
 	public static final double MAXMANA = 10.0;
 	public static final double MAXHP = 10.0;
-	private static final double DEFAULTMANA = 5.0;
-	private static final double DEFAULTHP = 5.0;
+	private static final double DEFAULTMANA = 10.0;
+	private static final double DEFAULTHP = 10.0;
 	private static final int GELB = 0;
 	private static final int BLAU = 1;
 	private static final int ROT = 2;
@@ -102,6 +102,9 @@ public class Spieler{
 		}
 		else if (checkArray[0]==Interface.ZIEL){
 			bewegenReturn=Interface.ZIEL;
+		}else if (checkArray[0]==Interface.SIEG){
+			bewegenReturn=Interface.SIEG;
+			Interface.sieg();
 		}
 		else if (checkArray[0]==Interface.FALLE){
 			if (schadenBekommen(5)==true){
@@ -109,6 +112,9 @@ public class Spieler{
 			}
 		}
 		else if (checkArray[0]==Interface.MOB){
+			sterben();
+		}
+		else if (checkArray[0]==Interface.BOSS3){
 			sterben();
 		}
 		x=checkArray[1];
@@ -452,6 +458,9 @@ public class Spieler{
 		attackReturn[0]=0;
 		checkArray= aktion.playerAttack(richtung);		
 		if (checkArray[0]==Interface.MOB){
+			attackReturn=checkArray;
+		}
+		if (checkArray[0]==Interface.BOSS3){
 			attackReturn=checkArray;
 		}
 		

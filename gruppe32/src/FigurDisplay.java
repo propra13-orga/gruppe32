@@ -1,4 +1,4 @@
-public class FigurBewegung{
+public class FigurDisplay{
 	
 	
 	public void figurBewegen(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){

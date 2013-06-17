@@ -21,7 +21,7 @@ private int[] returnArray = new int[5];
 
 private int figurX;
 private int figurY;
-private FigurBewegung move = new FigurBewegung();
+private FigurDisplay display = new FigurDisplay();
 
 private static final String WEISSIMG = "Images\\weiss.jpg";
 
@@ -65,12 +65,12 @@ public Aktion(boolean ifPlayer, int newId){
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
 			if (player==true){	//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
-				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
 			else {
-				move.gegnerBewegen(figurX,figurY,newFigurX,newFigurY,richtung);
+				display.gegnerBewegen(figurX,figurY,newFigurX,newFigurY,richtung);
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
@@ -125,9 +125,7 @@ public Aktion(boolean ifPlayer, int newId){
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SIEG){
 			if ( player == true){
-				aktuellesLevel=0;
-				aktuellerRaum=0;
-				Interface.sieg();
+				returnArray[0]=Interface.SIEG;
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -138,7 +136,7 @@ public Aktion(boolean ifPlayer, int newId){
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.CHECKPOINT){
 			if (player == true){
-				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
 				returnArray[0]=Interface.CHECKPOINT;
@@ -165,7 +163,7 @@ public Aktion(boolean ifPlayer, int newId){
 			if (player == true){
 				returnArray[0]=Interface.MUENZEN;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
-				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
@@ -232,7 +230,7 @@ public Aktion(boolean ifPlayer, int newId){
 			if (player == true){	
 				returnArray[0]=Interface.HPTRANK;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
-				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
@@ -244,7 +242,7 @@ public Aktion(boolean ifPlayer, int newId){
 			if (player == true){	
 				returnArray[0]=Interface.MANATRANK;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
-				move.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
@@ -264,6 +262,14 @@ public Aktion(boolean ifPlayer, int newId){
 				returnArray[0]=Interface.FIGUR;
 				returnArray[3]=newFigurX;
 				returnArray[4]=newFigurY;
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
+			if (player == true){
+				returnArray[0]=Interface.BOSS3;
+			}
+			else {
+				returnArray[0]=Interface.MAUER;
 			}
 		}
 		else{
@@ -287,19 +293,22 @@ public Aktion(boolean ifPlayer, int newId){
 			returnArray[1]=newFigurX;
 			returnArray[2]=newFigurY;
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
+			returnArray[0]=Interface.BOSS3;
+		}
 		return returnArray;
 	}
 	
 
 public void displayFigur(int x, int y, int farbe, boolean schild){
-	move.displayPlayer(x, y, farbe, schild);
+	display.displayPlayer(x, y, farbe, schild);
 }
 public void playerNachXY(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
-	move.figurBewegen(vonX, vonY, nachX, nachY, farbe, schild );
+	display.figurBewegen(vonX, vonY, nachX, nachY, farbe, schild );
 }
 
 public void displayGegner(int x, int y, int richtung){
-	move.displayGegner(x,y,richtung);
+	display.displayGegner(x,y,richtung);
 }
 	
 	

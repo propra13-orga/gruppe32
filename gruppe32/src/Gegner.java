@@ -31,7 +31,7 @@ public class Gegner{
 		id = newID;
 		aktion = new Aktion(false, id);
 		lebendig = true;
-		
+		stats.displayGegnerHP(hp, defaultHP, x, y);
 		
 	}
 	

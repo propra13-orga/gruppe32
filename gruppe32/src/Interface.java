@@ -59,6 +59,10 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String SHOP3IMG = "Images\\shop3.jpg";
 	public static final String HPTRANKIMG = "Images\\hpTrank.jpg";
 	public static final String MANATRANKIMG = "Images\\manaTrank.jpg";
+	public static final String BOSS1IMG = "Images\\boss1.jpg";
+	public static final String BOSS2IMG = "Images\\boss2.jpg";
+	public static final String BOSS3IMG = "Images\\mob.jpg";
+	
 	public static final int RECHTS = 0;
 	public static final int UNTEN = 1;
 	public static final int LINKS = 2;
@@ -88,12 +92,16 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int MANATRANK= 17;
 	public static final int HPTRANKSHOP = 21;
 	public static final int MANATRANKSHOP= 22;
+	public static final int BOSS1= 23;
+	public static final int BOSS2= 24;
+	public static final int BOSS3= 25;
 		
 	private static final int BREITE = 990;
 	private static final int HOEHE = 660;
 	
 	private Spieler[] player = new Spieler[2];
 	private Gegner[] gegner = new Gegner[20];
+	private Boss3 boss3;
 	
 	private int playerZahl;
 	private static int gegnerZahl=0;
@@ -160,6 +168,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			spielGestartet=true;
 			raum=0;
 			level=0;
+			aktiveCheckpoint=0;
 			player[0]= new Spieler(0);
 			levelDarstellen(); // stellt das aktuelle/erste level dar
 			Aktion.reachedCheckpoint=false;
@@ -274,6 +283,12 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		if (playerAttack[0]==MOB){
 			gegner[ getGegnerID(playerAttack[1],playerAttack[2]) ].schadenBekommen( player[0].getSchaden() );
 		}
+		else if (playerAttack[0]==BOSS3){
+			boss3.schadenBekommen( player[0].getSchaden() );
+			if (player[0].schadenBekommen(boss3.getSchaden())==true){
+				toCheckpoint=true;
+			}
+		}
 	}
 	
 	/**
@@ -372,8 +387,13 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MANATRANKSHOP){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MANATRANKIMG);
 				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS3){
+					StdDraw.picture(20+40*spalte,20+40*reihe, BOSS3IMG);
+					boss3 = new Boss3(spalte,reihe);
+				}
 
 			}
+			
 		}
 				
 

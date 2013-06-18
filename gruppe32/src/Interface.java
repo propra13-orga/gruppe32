@@ -527,7 +527,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				
 			}
 			else if ((level==2)&(raum==2)){ //Storyteller im Endraum (Level 3, Raum 3)
-				StdDraw.text(400, 560, "Fast hast du es geschafft!!! Berühre diese Flagge dort und du kannst beruhigt nach Hause zurückkehren");
+				StdDraw.text(400, 560, "Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge und du kannst beruhigt nach Hause zurückkehren");
 				StdDraw.text(400, 540, "und dich als Sieger feiern lassen. Aber lass dich nicht auf den letzten Metern von den Trollen erwischen!");
 				
 			}		

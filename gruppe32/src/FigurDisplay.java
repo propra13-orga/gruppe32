@@ -8,11 +8,11 @@ public class FigurDisplay{
 		displayPlayer(nachX,nachY,farbe, schild);
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), nachX, nachY, Interface.FIGUR);
 	}
-	public void gegnerBewegen(int vonX, int vonY, int nachX, int nachY, int richtung){
+	public void gegnerBewegen(int vonX, int vonY, int nachX, int nachY, int richtung, int type){
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), vonX, vonY, Interface.BODEN);
 		StdDraw.picture(20+40*vonX,20+40*vonY, Interface.BODENIMG);
-		displayGegner(nachX,nachY,richtung);
-		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), nachX, nachY, Interface.MOB);
+		displayGegner(nachX,nachY,richtung,type);
+		
 		
 	}
 	
@@ -43,7 +43,19 @@ public class FigurDisplay{
 		}
 		
 	}
-	public void displayGegner(int x, int y, int richtung){
-		StdDraw.picture(20+40*x,20+40*y, Interface.MOBIMG, (richtung)*90);
+	public void displayGegner(int x, int y, int richtung, int type){
+		if (type==Interface.MOB){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MOB);
+			StdDraw.picture(20+40*x,20+40*y, Interface.MOBIMG, (richtung)*90);
+		}
+		else if (type==Interface.BOSS1){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.BOSS1);
+			StdDraw.picture(20+40*x,20+40*y, Interface.BOSS1IMG, (richtung)*90);
+		}
+		else if (type==Interface.BOSS2){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.BOSS2);
+			StdDraw.picture(20+40*x,20+40*y, Interface.BOSS2IMG, (richtung)*90);
+		}
+		
 	}
 }

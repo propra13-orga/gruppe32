@@ -54,7 +54,7 @@ public Aktion(boolean ifPlayer, int newId){
  * Methode bewegt Figur anhand von Koordinaten
  * 
  */
-	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild){
+	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild,int type){
 		figurX=figurX2;
 		figurY=figurY2;
 		aktuellesLevel = Interface.getLevel();
@@ -70,7 +70,7 @@ public Aktion(boolean ifPlayer, int newId){
 				figurY=newFigurY;
 			}
 			else {
-				display.gegnerBewegen(figurX,figurY,newFigurX,newFigurY,richtung);
+				display.gegnerBewegen(figurX,figurY,newFigurX,newFigurY,richtung,type);
 				figurX=newFigurX;
 				figurY=newFigurY;
 			}
@@ -288,7 +288,9 @@ public Aktion(boolean ifPlayer, int newId){
 	public int[] playerAttack(int richtung){
 		setNewFigurXY(richtung);
 		returnArray[0]=0;
-		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
+		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS1)
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS2)){
 			returnArray[0]=Interface.MOB;
 			returnArray[1]=newFigurX;
 			returnArray[2]=newFigurY;
@@ -307,8 +309,8 @@ public void playerNachXY(int vonX, int vonY, int nachX, int nachY, int farbe, bo
 	display.figurBewegen(vonX, vonY, nachX, nachY, farbe, schild );
 }
 
-public void displayGegner(int x, int y, int richtung){
-	display.displayGegner(x,y,richtung);
+public void displayGegner(int x, int y, int richtung, int type){
+	display.displayGegner(x,y,richtung,type);
 }
 	
 	

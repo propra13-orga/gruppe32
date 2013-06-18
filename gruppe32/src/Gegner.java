@@ -15,11 +15,13 @@ public class Gegner{
 	private int[] attackReturn = new int[3];
 	private boolean lebendig;
 	private double loot;
+	private int type;
+	private double rndHelp;
 	
 	private StatDisplay stats = new StatDisplay();
 	
 	
-	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID){
+	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID, int newType){
 		
 		defaultHP= startDefaultHP;
 		hp = defaultHP;
@@ -32,32 +34,35 @@ public class Gegner{
 		aktion = new Aktion(false, id);
 		lebendig = true;
 		stats.displayGegnerHP(hp, defaultHP, x, y);
-		
+		type=newType;
 	}
 	
 	public int[] bewegen(){
 		attackReturn[0]=0;
 		if (lebendig==true){	
-			int[] aktionReturn = aktion.figurBewegen(richtung,x,y,0,false);
+			if(type==Interface.BOSS2){
+				randomRichtung();
+			}
+			int[] aktionReturn = aktion.figurBewegen(richtung,x,y,0,false,type);
 			
 			x=aktionReturn[1];
 			y=aktionReturn[2];
 			if((aktionReturn[0]==Interface.MAUER)){
 				if (richtung == Interface.OBEN){
 					richtung = Interface.UNTEN;
-					aktion.displayGegner(x,y,richtung);
+					aktion.displayGegner(x,y,richtung,type);
 				}
 				else if (richtung == Interface.LINKS){
 					richtung = Interface.RECHTS;
-					aktion.displayGegner(x,y,richtung);
+					aktion.displayGegner(x,y,richtung,type);
 				}
 				else if (richtung == Interface.UNTEN){
 					richtung = Interface.OBEN;
-					aktion.displayGegner(x,y,richtung);
+					aktion.displayGegner(x,y,richtung,type);
 				}
 				else if (richtung == Interface.RECHTS){
 					richtung = Interface.LINKS;
-					aktion.displayGegner(x,y,richtung);
+					aktion.displayGegner(x,y,richtung,type);
 				}
 			
 			}
@@ -116,6 +121,21 @@ public class Gegner{
 	}
 	public double getSchaden(){
 		return schaden;
+	}
+	public void randomRichtung(){
+		rndHelp=Math.random();
+		if (rndHelp<0.25){
+			richtung = Interface.LINKS;
+		}
+		else if (rndHelp<0.50){
+			richtung = Interface.RECHTS;
+		}
+		else if (rndHelp<0.75){
+			richtung = Interface.OBEN;
+		}
+		else{
+			richtung = Interface.UNTEN;
+		}
 	}
 	
 	

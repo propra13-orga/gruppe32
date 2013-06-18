@@ -2,7 +2,7 @@ import java.lang.Math;
 
 public class Boss3{
 	
-	private static final int DEFAULTHP=20;
+	private static final int DEFAULTHP=40;
 	private static final int DEFAULTSCHADEN=2;
 	private static final int RUESTUNG= 0;
 	

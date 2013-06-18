@@ -61,7 +61,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String MANATRANKIMG = "Images\\manaTrank.jpg";
 	public static final String BOSS1IMG = "Images\\boss1.jpg";
 	public static final String BOSS2IMG = "Images\\boss2.jpg";
-	public static final String BOSS3IMG = "Images\\mob.jpg";
+	public static final String BOSS3IMG = "Images\\boss3.jpg";
 	
 	public static final int RECHTS = 0;
 	public static final int UNTEN = 1;
@@ -337,7 +337,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MOB){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MOBIMG);
-					gegner[gegnerZahl] = new Gegner(10, spalte, reihe, OBEN, 0, 2, gegnerZahl);
+					gegner[gegnerZahl] = new Gegner(10, spalte, reihe, OBEN, 0, 2, gegnerZahl,MOB);
 					gegnerZahl++;
 				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FIGUR){
@@ -386,6 +386,16 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				}
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MANATRANKSHOP){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MANATRANKIMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS1){
+					StdDraw.picture(20+40*spalte,20+40*reihe, BOSS1IMG);
+					gegner[gegnerZahl] = new Gegner(20, spalte, reihe, LINKS, 0, 4, gegnerZahl,BOSS1);
+					gegnerZahl++;
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS2){
+					StdDraw.picture(20+40*spalte,20+40*reihe, BOSS2IMG);
+					gegner[gegnerZahl] = new Gegner(25, spalte, reihe, RECHTS, 0, 4, gegnerZahl,BOSS2);
+					gegnerZahl++;
 				}
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS3){
 					StdDraw.picture(20+40*spalte,20+40*reihe, BOSS3IMG);

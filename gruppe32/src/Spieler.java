@@ -10,7 +10,7 @@ public class Spieler{
 	private static final int BLAU = 1;
 	private static final int ROT = 2;
 	private static final int DEFAULTFARBE = GELB;
-	private static final double DEFAULTSCHADEN = 1;
+	private static final double DEFAULTSCHADEN = 2;
 	private static final double DEFAULTMANAFAKTOR=1;
 	private static final int DEFAULTLEBEN=3;
 	private static final int DEFAULTRUESTUNG = 20;
@@ -58,7 +58,7 @@ public class Spieler{
 	}*/
 	
 	public int bewegen(int richtung){
-		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild);
+		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild,0);
 		bewegenReturn = 0;
 		if (checkArray[0]==Interface.CHECKPOINT){
 			Interface.nextCheckpoint();
@@ -155,7 +155,7 @@ public class Spieler{
 					gestorben = true;
 				}
 				aktuelleHP=DEFAULTHP;
-				
+				aktuellesMana=DEFAULTMANA;
 				
 			}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);

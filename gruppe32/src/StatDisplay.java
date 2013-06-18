@@ -17,18 +17,28 @@ public class StatDisplay{
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.filledRectangle(920, 300, 100, 500);
 		StdDraw.setPenColor();
-		StdDraw.textLeft(820, 550, "Leben:"+leben);
-		StdDraw.textLeft(820, 530, "Schaden:"+schaden);
-		StdDraw.textLeft(820, 510, "Ruestung:"+ruestung);
-		StdDraw.textLeft(820, 490, "Manafaktor:"+manafaktor);
-		StdDraw.textLeft(820, 470,"Raum: "+(Interface.getLevel()+1)+"-"+(Interface.getRaum()+1));
-		StdDraw.textLeft(820, 450, "HP:"+hp);
-		StdDraw.textLeft(820, 430, "Mana:"+mana);
-		StdDraw.textLeft(820, 410, "Muenzen:"+muenzen);
+		StdDraw.textLeft(820, 510, "Leben:"+leben);
+		StdDraw.textLeft(820, 490, "Schaden:"+schaden);
+		StdDraw.textLeft(820, 470, "Ruestung:"+ruestung);
+		StdDraw.textLeft(820, 450, "Manafaktor:"+manafaktor);
+		StdDraw.textLeft(820, 430,"Raum: "+(Interface.getLevel()+1)+"-"+(Interface.getRaum()+1));
+		StdDraw.textLeft(820, 410, "HP:"+hp);
+		StdDraw.textLeft(820, 390, "Mana:"+mana);
+		StdDraw.textLeft(820, 370, "Muenzen:"+muenzen);
 		if (Aktion.reachedCheckpoint==true){
-			StdDraw.textLeft(820, 390, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
-		    StdDraw.picture(870,360,Interface.CHECKPOINTIMG);
+			StdDraw.textLeft(820, 350, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
+		    StdDraw.picture(870,320,Interface.CHECKPOINTIMG);
 		    }
+		StdDraw.textLeft(820, 250, "Steuerung:");
+		StdDraw.textLeft(820, 220, "Pfeiltasten");
+		StdDraw.textLeft(820, 200, "zur Bewegung");
+		StdDraw.textLeft(820, 170, "W: Angriff oben");
+		StdDraw.textLeft(820, 150, "A: Angriff links");
+		StdDraw.textLeft(820, 130, "S: Angriff rechts");
+		StdDraw.textLeft(820, 110, "D: Angriff unten");
+		StdDraw.textLeft(820, 80, "Leertaste: ");
+		StdDraw.textLeft(820, 60, "aktiviert Schild");
+	
 		displayPlayerHP(hp);
 		displayPlayerMana(mana);
 	}

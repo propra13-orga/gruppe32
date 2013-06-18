@@ -514,7 +514,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		public int getPlayerID(int x,int y){
 			for (counter2=0;counter2<playerZahl; counter2++ ){
 				if ((player[counter2].getX() == x)
-					|(player[counter2].getY() == y)){
+					&(player[counter2].getY() == y)){
 					returner = counter2;
 				}
 			}
@@ -523,7 +523,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		public int getGegnerID(int x,int y){
 			for (counter3=0; counter3<gegnerZahl; counter3++ ){
 				if ((gegner[counter3].getX() == x)
-					|(gegner[counter3].getY() == y)){
+					&(gegner[counter3].getY() == y)){
 					returner= counter3;
 				}
 			}

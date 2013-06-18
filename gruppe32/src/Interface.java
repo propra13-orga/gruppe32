@@ -276,6 +276,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			StdDraw.show();
 		}
 	}
+	/**
+	 * ruft fuer jeden Gegner gegnerAktion auf
+	 */
 	public void alleGegnerBewegen(){
 		for (counter=0;counter<gegnerZahl;counter++){
 			if (spielGestartet==true){
@@ -284,7 +287,11 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 	}
 	
-	
+	/**
+	 * ruft fuer Gegner Methode bewegen() auf
+	 * setzt Boolean toCheckpoint auf true, falls Player Schaden bekommen hat
+	 * @param id: 'Nummer' des Gegners
+	 */
 	public void gegnerAktion(int id){
 		gegnerAttack=gegner[id].bewegen();
 		if (gegnerAttack[0]==1){
@@ -428,7 +435,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	}
 	
 	/**
-	 * erhoeht Raum bzw. Level um eins
+	 * erhoeht raum bzw. level um eins
 	 */
 	public static void nextRoom(){
 		if (raum<2){
@@ -441,7 +448,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 	}
 	/**
-	 * 
+	 * zieht eins ab von raum bzw. level
 	 */
 	public static void previousRoom(){
 		if (raum>0){
@@ -452,10 +459,16 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			raum=2;
 		}
 	}
-
+	
+	/**
+	 * erhoeht Variable aktiveCheckpoint um 1
+	 */
 	public static void nextCheckpoint(){
 		aktiveCheckpoint++;
 	}
+	/**
+	 * setzt als level und raum die Werte des letzten Checkpoints
+	 */
 	public static void toCheckpoint(){
 		gegnerZahl=0;
 		checkpointArray=Spielfeld.getCheckpoint(aktiveCheckpoint);
@@ -487,14 +500,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			spielGestartet=false;			
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		
 		
@@ -528,13 +534,32 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			
 		
 		}
+		/**
+		 * wendet Methode schadenBekommen auf Player an
+		 * @param gegnerID
+		 * @param zielX
+		 * @param zielY
+		 */
 		public void gegnerSchlag(int gegnerID, int zielX, int zielY){
 			player[getPlayerID(zielX,zielY)].schadenBekommen(gegner[gegnerID].getSchaden());
 		}
+		
+		/**
+		 * wendet Methode schadenBekommen auf Gegner an
+		 * @param playerID
+		 * @param zielX
+		 * @param zielY
+		 */
 		public void playerSchlag(int playerID, int zielX, int zielY){
 			gegner[getGegnerID(zielX,zielY)].schadenBekommen(player[playerID].getSchaden());
 		}
 		
+		/**
+		 * gibt Nummer der aktuellen Spielfigur zurueck
+		 * @param x
+		 * @param y
+		 * @return
+		 */
 		public int getPlayerID(int x,int y){
 			for (counter2=0;counter2<playerZahl; counter2++ ){
 				if ((player[counter2].getX() == x)
@@ -544,6 +569,12 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			return returner;
 		}
+		/**
+		 * gibt Gegnernummer zurueck
+		 * @param x
+		 * @param y
+		 * @return
+		 */
 		public int getGegnerID(int x,int y){
 			for (counter3=0; counter3<gegnerZahl; counter3++ ){
 				if ((gegner[counter3].getX() == x)
@@ -553,6 +584,12 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			return returner;
 		}
+		/**
+		 * stellt Gegnerbild dar
+		 * @param x
+		 * @param y
+		 * @param richtung
+		 */
 		public void displayGegner(int x, int y, int richtung){
 			StdDraw.picture(20+40*x,20+40*y, MOBIMG,((-richtung)*90));
 	}

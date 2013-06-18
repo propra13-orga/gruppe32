@@ -57,6 +57,11 @@ public class Spieler{
 		y = newY;
 	}*/
 	
+	/**
+	 * 
+	 * @param richtung
+	 * @return
+	 */
 	public int bewegen(int richtung){
 		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild,0);
 		bewegenReturn = 0;
@@ -171,6 +176,11 @@ public class Spieler{
 			Interface.toCheckpoint=true;
 		}
 	}
+	
+	/**
+	 * reduziert Mana und zeigt neues Wert rechts neben dem Spielfeld an
+	 * @param verbrauch
+	 */
 	public void manaVerbrauchen(double verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
 			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))*100.0)/100.0;
@@ -371,16 +381,7 @@ public class Spieler{
 		return y;
 	}
 	
-	/**
-	 * Methodenkommentar:
-	 * Booelan, ob Storytellerausgabe angezeigt wird
-	 * 
-	 */
-	//public static boolean storytellerBool(){
-	//	return false;
-	//}
-	
-	
+
 	
 	/**
 	 * 
@@ -436,10 +437,17 @@ public class Spieler{
 		y=newY;
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
 	}
-	
+	/**
+	 * setzt HP auf Defaultwert zuruwck
+	 */
 	public void resetHP(){
 		aktuelleHP = DEFAULTHP;
 	}
+	
+	/**
+	 * verbraucht Mana
+	 * bildet andere Spielfigur ab (mit gruenem Kreis um die Figur)
+	 */
 	public void schildZauber(){
 		if ((schildAufladung <MAXSCHILD)&(aktuellesMana>=1)){
 			manaVerbrauchen(1);
@@ -449,6 +457,9 @@ public class Spieler{
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);
 		}
 	}
+	/**
+	 * zeigt Figur und alle Player Eigenschaften an
+	 */
 	public void display(){
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen);

@@ -7,7 +7,7 @@ import java.io.*;
  * 
  */
 public class Spielfeld {
-//hauptarray fuers spielfeld sotiert nach [level][spalte][reihe] (mehr dimensionen=mehr spass)
+//hauptarray fuers spielfeld sotiert nach [level][raum][spalte][reihe] (mehr dimensionen=mehr spass)
 private static int[][][][] spielfeld = new int [3][3][20][15];
 private static int level;
 private static int raum;
@@ -146,7 +146,14 @@ public static void initSpielfeld() {
 		}
 	}
 
-
+/**
+ * setzt einen Checkpoint an die entsprechende Stelle
+ * @param newCheckpoint
+ * @param level
+ * @param raum
+ * @param x
+ * @param y
+ */
 public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, int y){
 	checkpoint[newCheckpoint][0]=level;
 	checkpoint[newCheckpoint][1]=raum;
@@ -154,26 +161,53 @@ public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, 
 	checkpoint[newCheckpoint][3]=y;
 }
 
+/**
+ * gibt den aktuellen Checkpoint zurueck
+ * @param aktiveCheckpoint: zuletzt erreichter Checkpoint
+ * @return 
+ */
 public static int[] getCheckpoint(int aktiveCheckpoint){
 	checkpointReturn = checkpoint[aktiveCheckpoint];
 	return checkpointReturn;
 }
-
+/**
+ * setzt Startpunkt 
+ * @param newStartpunkt
+ * @param x
+ * @param y
+ */
 public static void setStartpunkt(int newStartpunkt,int x,int y){
 	startpunkt[newStartpunkt][0]=x;
 	startpunkt[newStartpunkt][1]=y;
 }
 
+/**
+ * gibt Startpunkt des aktuellen Levels zurueck
+ * @param level
+ * @param raum
+ * @return
+ */
 public static int[] getStartpunkt(int level, int raum){
 	startpunktReturn = startpunkt[level*3+raum];
 	return startpunktReturn;
 }
 
+/**
+ * setzt Zielpunkt
+ * @param newzielpunkt
+ * @param x
+ * @param y
+ */
 public static void setZielpunkt(int newzielpunkt,int x,int y){
 	zielpunkt[newzielpunkt][0]=x;
 	zielpunkt[newzielpunkt][1]=y;
 }
-
+/**
+ * gibt Zielpunkt des aktuellen Levels zurueck
+ * @param level
+ * @param raum
+ * @return
+ */
 public static int[] getZielpunkt(int level, int raum){
 	zielpunktReturn = zielpunkt[level*3+raum];
 	return zielpunktReturn;

@@ -30,7 +30,10 @@ public Aktion(boolean ifPlayer, int newId){
 	
 }
 
-
+/**
+ * neue Koordinaten der Spielfigur abhaengig von der jeweiligen Richtung
+ * @param richtung
+ */
 	private void setNewFigurXY(int richtung){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
@@ -64,7 +67,7 @@ public Aktion(boolean ifPlayer, int newId){
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BODEN)
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
-			if (player==true){	//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
+			if (player==true){																		//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;

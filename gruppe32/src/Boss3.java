@@ -23,6 +23,11 @@ public class Boss3{
 		
 	}
 	
+	/**
+	 * reduziert hp des Bosses
+	 * ruft Methode sterben() auf, wenn kein hp mehr vorhanden ist
+	 * @param schaden
+	 */
 	public void schadenBekommen(double schaden){
 		hp = Math.round((hp-(schaden*((100-RUESTUNG)/100)))*100.0)/100.0;
 		stats.displayGegnerHP(hp, DEFAULTHP, x, y);
@@ -31,6 +36,9 @@ public class Boss3{
 		}
 	}
 	
+	/**
+	 * blendet Bild 'Gewonnen' ein
+	 */
 	public void sterben(){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SIEG);
 			StdDraw.picture(20+40*x,20+40*y, Interface.SIEGIMG);

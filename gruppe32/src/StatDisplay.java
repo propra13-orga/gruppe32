@@ -3,7 +3,16 @@ public class StatDisplay{
 	private int counter;
 	
 	
-	
+	/**
+	 * zeigt Eigenschaften des Players an
+	 * @param leben
+	 * @param schaden
+	 * @param ruestung
+	 * @param manafaktor
+	 * @param hp
+	 * @param mana
+	 * @param muenzen
+	 */
 	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, double hp, double mana, int muenzen){
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.filledRectangle(920, 300, 100, 500);
@@ -66,6 +75,14 @@ public class StatDisplay{
 			
 		}
 	}
+	
+	/**
+	 * zeigt Eigenschaften des Gegners an
+	 * @param hp
+	 * @param defaulthp
+	 * @param x
+	 * @param y
+	 */
 	public void displayGegnerHP(double hp,double defaulthp, int x, int y){
 		if (hp>=0){
 			StdDraw.show(0);

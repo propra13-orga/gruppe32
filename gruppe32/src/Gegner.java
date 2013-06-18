@@ -21,6 +21,17 @@ public class Gegner{
 	private StatDisplay stats = new StatDisplay();
 	
 	
+	/**
+	 * setzt Eigenschaften der Gegner
+	 * @param startDefaultHP
+	 * @param startX
+	 * @param startY
+	 * @param startRichtung
+	 * @param startRuestung
+	 * @param startSchaden
+	 * @param newID
+	 * @param newType
+	 */
 	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID, int newType){
 		
 		defaultHP= startDefaultHP;
@@ -37,6 +48,10 @@ public class Gegner{
 		type=newType;
 	}
 	
+	/** bewegt Gegner abhaengig von Richtung des Players bzw. zufaellig (Boss2)
+	 * 
+	 * @return
+	 */
 	public int[] bewegen(){
 		attackReturn[0]=0;
 		if (lebendig==true){	
@@ -78,6 +93,11 @@ public class Gegner{
 		return attackReturn;
 	}
 	
+	/**
+	 * setzt hp der Gegner herunter, abhaengig von der aktuellen Ruestung des Players
+	 * falls hp <=0 ist wird Methode sterben aufgerufen
+	 * @param schaden
+	 */
 	public void schadenBekommen(double schaden){
 		hp = Math.round((hp-(schaden*((100-ruestung)/100)))*100.0)/100.0;
 		stats.displayGegnerHP(hp, defaultHP, x, y);
@@ -85,6 +105,11 @@ public class Gegner{
 			sterben();
 		}
 	}
+	/**
+	 * Boolean lebendig wird auf false gesetzt
+	 * erstellt Zufallszahl aus dem Intervall [0,1]
+	 * anstelle des Gegners erscheint (abhaengig von der Zufallszahl) ein Manatrank, HPTrank oder eine Muenze
+	 */
 	public void sterben(){
 		lebendig=false;
 		loot=Math.random();
@@ -107,21 +132,49 @@ public class Gegner{
 		y= newY;
 	}
 	
+	/**
+	 * gibt Richtung zurueck
+	 * @return
+	 */
 	public int getRichtung(){
 		return richtung;
 	}
+	
+	/**
+	 * gibt HP zurueck
+	 * @return
+	 */
 	public double getHP(){
 		return hp;
 	}
+	
+	/**
+	 * gibt x-Koordinate zurueck
+	 * @return
+	 */
 	public int getX(){
 		return x;
 	}
+	/**
+	 * gibt y-Koordinate zurueck
+	 * @return
+	 */
 	public int getY(){
 		return y;
 	}
+	
+	/**
+	 * gibt Schaden zurueck
+	 * @return
+	 */
 	public double getSchaden(){
 		return schaden;
 	}
+	
+	/**
+	 * erzeugt Zufallszahl im Intervall [0,1]
+	 * abhaengig von dieser wird eine 'zufaellige' Richtung zugewiesen
+	 */
 	public void randomRichtung(){
 		rndHelp=Math.random();
 		if (rndHelp<0.25){

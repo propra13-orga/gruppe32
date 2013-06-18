@@ -34,8 +34,8 @@ public class StatDisplay{
 		StdDraw.textLeft(820, 200, "zur Bewegung");
 		StdDraw.textLeft(820, 170, "W: Angriff oben");
 		StdDraw.textLeft(820, 150, "A: Angriff links");
-		StdDraw.textLeft(820, 130, "S: Angriff rechts");
-		StdDraw.textLeft(820, 110, "D: Angriff unten");
+		StdDraw.textLeft(820, 130, "S: Angriff unten");
+		StdDraw.textLeft(820, 110, "D: Angriff rechts");
 		StdDraw.textLeft(820, 80, "Leertaste: ");
 		StdDraw.textLeft(820, 60, "aktiviert Schild");
 	

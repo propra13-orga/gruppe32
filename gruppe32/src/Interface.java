@@ -10,7 +10,9 @@ import javax.swing.JFrame;
 
 /**
  * 
- * erstellt das Menu
+ * erstellt das Menu (2 Buttons: 'Spiel starten' und 'Beenden')
+ * faengt Key-Aktionen ab
+ * stellt Level grafisch dar
  *
  */
 public class Interface extends JFrame implements ActionListener, KeyListener{
@@ -127,9 +129,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 * Methode oeffnet das Menue
 	 * 
 	 */
-	
-	
-	public static void main(String[] args){
+		public static void main(String[] args){
 		StdDraw.setCanvasSize(BREITE, HOEHE);
 		starten = new JButton("Spiel starten"); //neuer Button
 		starten.setBounds(260,0,160,40); //legt Groesse und Position fest
@@ -152,13 +152,29 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	
 		}
 	
+	/**
+	 * Gibt Level zurueck
+	 * @return level
+	 */
 	public static int getLevel(){
 		return level;
 	}
+	
+	/**
+	 * Gibt Raum zurueck
+	 * @return raum
+	 */
 	public static int getRaum(){
 		return raum;
 	}
 	
+	/**
+	 * Button-Reaktionen:
+	 * 
+	 * Spiel starten: setzt Raum, Level und Checkpoint zurueck; Spiel gestartet auf true; stellt Spielfeld dar
+	 * 
+	 * Beenden: Beendet Spiel und schliesst Fenster
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		//wenn der Button 'starten' gedrueckt wird, soll sich Fenster mit Spielfeld oeffnen
@@ -181,7 +197,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 
 	/**
-	 * Methode kyeTyped: KeyEvent,
+	 * Methode keyTyped: KeyEvent,
 	 * jedoch nicht genutzt
 	 * 	
 	 */
@@ -201,7 +217,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			StdDraw.show(0);
 				if (k.getKeyCode() == KeyEvent.VK_RIGHT){
 					checkStartZiel = player[0].bewegen(RECHTS);
-					alleGegnerBewegen();
+					alleGegnerBewegen(); 
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_DOWN){
 					checkStartZiel = player[0].bewegen(UNTEN);
@@ -221,7 +237,6 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if (k.getKeyCode() == KeyEvent.VK_W){
 					playerAttack(OBEN);
 					alleGegnerBewegen();
-					
 				}
 				else if (k.getKeyCode() == KeyEvent.VK_A){
 					playerAttack(LINKS);
@@ -412,7 +427,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		StdDraw.show();
 	}
 	
-	
+	/**
+	 * erhoeht Raum bzw. Level um eins
+	 */
 	public static void nextRoom(){
 		if (raum<2){
 			raum++;
@@ -423,9 +440,16 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			aktiveCheckpoint=level*2;	
 		}
 	}
+	/**
+	 * 
+	 */
 	public static void previousRoom(){
 		if (raum>0){
 			raum--;
+		}
+		if ((raum==0) & (level>0)){
+			level--;	
+			raum=2;
 		}
 	}
 

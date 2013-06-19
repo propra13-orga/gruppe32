@@ -1,5 +1,7 @@
 import java.io.*;
 
+import javax.swing.JFileChooser;
+
 
 /**
  * Klassenkommentar:
@@ -27,6 +29,7 @@ private static final int BEICHECKPOINT = 14;
 
 private static FileReader fr;
 private static BufferedReader br;
+private static File file;
 
 /**
  * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
@@ -36,7 +39,13 @@ public static void initSpielfeld() {
 	counter=0;
 	try{
 	    
-		fr = new FileReader("src\\level.txt");
+		JFileChooser chooser = new JFileChooser();
+		int rueckgabe = chooser.showOpenDialog(null);
+		if(rueckgabe == JFileChooser.APPROVE_OPTION){            
+           file = chooser.getSelectedFile();
+        }
+		
+		fr = new FileReader(file);
 		br = new BufferedReader(fr);
 		for (level=0; level<3; level++) {
 			br.skip(4);

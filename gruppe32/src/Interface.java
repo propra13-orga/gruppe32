@@ -180,14 +180,17 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		//wenn der Button 'starten' gedrueckt wird, soll sich Fenster mit Spielfeld oeffnen
 		if (event.getSource().equals(starten)){
 			StdDraw.clear();
-			Spielfeld.initSpielfeld();
-			spielGestartet=true;
-			raum=0;
-			level=0;
-			aktiveCheckpoint=0;
-			player[0]= new Spieler(0);
-			levelDarstellen(); // stellt das aktuelle/erste level dar
-			Aktion.reachedCheckpoint=false;
+			StdDraw.setXscale(0.0,900);
+			StdDraw.setYscale(0,600);
+			if (Spielfeld.initSpielfeld() == false){
+				spielGestartet=true;
+				raum=0;
+				level=0;
+				aktiveCheckpoint=0;
+				player[0]= new Spieler(0);
+				levelDarstellen(); // stellt das aktuelle/erste level dar
+				Aktion.reachedCheckpoint=false;
+			}
 			
 		}
 		
@@ -333,8 +336,6 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public void levelDarstellen() {
 		gegnerZahl=0;
 		//stellt StdDraw auf eine besser handhabbare skala um
-		StdDraw.setXscale(0.0,900);
-		StdDraw.setYscale(0,600);
 		StdDraw.show(0);
 		for (spalte=0;spalte<20;spalte++) {
 			for(reihe=0;reihe<13;reihe++) {

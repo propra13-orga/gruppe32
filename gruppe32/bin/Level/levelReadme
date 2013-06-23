@@ -1,0 +1,37 @@
+Leveldesign-Regeln:
+
+	1. Vor jedem Zeichen muss genau ein Leerzeichen sein.
+	2. Vor jeder Reihe muss ein Zeilenumbruch sein.
+	3. Vor jedem Levelinternen Raumübergang muss genau eine Leerzeile sein.
+	4. vor jedem Levelübergang müssen genau 3 Leerzeilen sein.
+	5. Am Anfang der Datei müssen genau 4 Leerzeilen sein.
+	6. Keine zusätzlichen Zeichen am Reihenende/anfang zwischen Räumen/Leveln, oder sonst irgendwo.... nirgendwo halt.
+	
+Erlaubte Levelzeichen sind:
+
+	"0" 	-> Boden
+	"1" 	-> Mauer
+	"2"		-> Startpunkt
+	"3"		-> Zielpunkt
+	"4"		-> Falle
+	"5"		-> Mob
+	"6"		-> Spielerspawn
+	"7"		-> Sieg
+	"8"		-> Checkpoint
+	"9"		-> Storyteller
+	"R"		-> Roter Farbpot
+	"G		-> Gelber Farbpot
+	"B"		-> Blauer Farbpot
+	"<"		-> Boss1
+	"="		-> Boss2
+	">"		-> Boss3
+	"X"		-> Spielerspawn bei Ziel
+	"Y"		-> Spielerspawn bei Checkpoint
+	"$"		-> Münze
+	"*"		-> Manatrank
+	"+"		-> HPtrank
+	"S"		-> Shop1
+	"O"		-> Shop2
+	"P"		-> Shop3
+	"H"		-> HPTrank Shop
+	"M" 	-> ManaTrank Shop

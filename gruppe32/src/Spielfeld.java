@@ -30,12 +30,22 @@ private static final int BEICHECKPOINT = 14;
 private static FileReader fr;
 private static BufferedReader br;
 private static File file;
+private static boolean fehlerGefunden;
+
+private static Exception myException;
+
+private static int exception;
+private static final int FALSCHESZEICHEN = 0;
+private static final int KEINLEERZEICHEN = 1;
+private static final int KEINELEERZEILE = 2;
+private static final int KEINZEILENUMBRUCH = 3;
 
 /**
  * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
  *
  */
-public static void initSpielfeld() {
+public static boolean initSpielfeld() {
+	fehlerGefunden = false;
 	counter=0;
 	try{
 	    
@@ -48,13 +58,34 @@ public static void initSpielfeld() {
 		fr = new FileReader(file);
 		br = new BufferedReader(fr);
 		for (level=0; level<3; level++) {
-			br.skip(4);
+			if (br.read()!=13
+					){ //^M (enter)
+					exception = KEINELEERZEILE;
+					throw myException;
+				}
+				br.read();
+			if (br.read()!=13){ //^M (enter)
+					exception = KEINELEERZEILE;
+					throw myException;
+				}
+					br.read();
 			for (raum=0; raum<3; raum++) {
-			br.skip(2);
-			for (reihe=12; reihe>=0; reihe--) {
-				br.skip(1);
+				if (br.read()!=13){ //^M (enter)
+						exception = KEINELEERZEILE;
+						throw myException;
+					}
+					br.read();
+				for (reihe=12; reihe>=0; reihe--) {
+				if (br.read()!=13){ //^M (enter)
+					exception = KEINZEILENUMBRUCH;
+					throw myException;
+				}
+				br.read();
 					for (spalte=0; spalte<20; spalte++) {
-						br.skip(1);
+						if (br.read()!=32){ //space
+							exception = KEINLEERZEICHEN;
+							throw myException;
+						}
 						testChar = br.read();
 						if (testChar-48 == 1){ // 1
 							spielfeld[level][raum][spalte][reihe]=Interface.MAUER;
@@ -142,17 +173,45 @@ public static void initSpielfeld() {
 						else if (testChar == 62){ // >
 							spielfeld[level][raum][spalte][reihe]=Interface.BOSS3;
 						}
+						else{
+							
+							exception = FALSCHESZEICHEN;
+							throw myException;
+						}
 				}
 			}
 			}
 		}
 		}
 		catch(FileNotFoundException e){
-			spielfeld[0][0][1][2]=Interface.FARBEBLAU;
+			StdDraw.text(400, 500, "FileNException");
 		}
 		catch(IOException e){
-			spielfeld[0][0][5][6]=Interface.FARBEROT;
+			StdDraw.text(400, 500, "IOException");
 		}
+		catch(Exception e){
+			fehlerGefunden = true;
+			if (exception == FALSCHESZEICHEN){
+				StdDraw.text(400, 500, "Ungültiges Zeichen. "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
+				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+			}
+			else if(exception == KEINLEERZEICHEN){
+				StdDraw.text(400, 500, "Kein Leerzeichen vor "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
+				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+			}
+			else if(exception == KEINZEILENUMBRUCH){
+				StdDraw.text(400, 500, "Kein Zeilenumbruch vor "+(level+1)+"-"+(raum+1)+":: Reihe"+(reihe+1));
+				StdDraw.text(400, 480, "oder zusätzliches Zeichen am vohrigen Reihenende");
+				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+			}
+			else if(exception == KEINELEERZEILE){
+				StdDraw.text(400, 500, "Fehlende Leerzeile vor "+(level+1)+"-"+(raum+1));
+				StdDraw.text(400, 480, "oder zusätzliches Zeichen am vohrigen Reihenende");
+				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+			}
+
+		}
+		return fehlerGefunden;
 	}
 
 /**

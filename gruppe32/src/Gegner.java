@@ -1,5 +1,10 @@
 import java.lang.Math;
 
+/**
+ * 
+ * erstellt Objekt vom Typ Gegner
+ *
+ */
 
 public class Gegner{
 
@@ -24,12 +29,12 @@ public class Gegner{
 	/**
 	 * setzt Eigenschaften der Gegner
 	 * @param startDefaultHP
-	 * @param startX
-	 * @param startY
-	 * @param startRichtung
-	 * @param startRuestung
-	 * @param startSchaden
-	 * @param newID
+	 * @param startX x-Koordinate der Startposition
+	 * @param startY y-Koordinate der Startposition
+	 * @param startRichtung Richtung, in die der Gegner ausgerichtet ist
+	 * @param startRuestung Ruestung die der Gegner zu Beginn hat
+	 * @param startSchaden Schaden, den der Gegner von Beginn an hat
+	 * @param newID 
 	 * @param newType
 	 */
 	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID, int newType){
@@ -94,9 +99,9 @@ public class Gegner{
 	}
 	
 	/**
-	 * setzt hp der Gegner herunter, abhaengig von der aktuellen Ruestung des Players
-	 * falls hp <=0 ist wird Methode sterben aufgerufen
-	 * @param schaden
+	 * setzt Lebenspunkte der Gegner herunter, abhaengig von der aktuellen Ruestung des Spielers
+	 * falls Lebenspunkte aufgebraucht sind, wird Methode sterben aufgerufen
+	 * @param schaden Schaden den der Gegner erleidet
 	 */
 	public void schadenBekommen(double schaden){
 		hp = Math.round((hp-(schaden*((100-ruestung)/100)))*100.0)/100.0;
@@ -106,9 +111,8 @@ public class Gegner{
 		}
 	}
 	/**
-	 * Boolean lebendig wird auf false gesetzt
-	 * erstellt Zufallszahl aus dem Intervall [0,1]
-	 * anstelle des Gegners erscheint (abhaengig von der Zufallszahl) ein Manatrank, HPTrank oder eine Muenze
+	 * Gegner stirbt, anstelle des Gegners erscheint ein Manatrank, HPTrank oder eine Muenze
+	 *  
 	 */
 	public void sterben(){
 		lebendig=false;
@@ -127,22 +131,27 @@ public class Gegner{
 		}
 	}
 	
+	/** 
+	 * setzt Position 
+	 * @param newX aktuelle x-Koordinate
+	 * @param newY aktuelle y-Koordinate
+	 */
 	public void setXY(int newX, int newY){
 		x= newX;
 		y= newY;
 	}
 	
 	/**
-	 * gibt Richtung zurueck
-	 * @return
+	 * gibt Richtung vom Gegner zurueck
+	 * @return Richtung vom Gegner
 	 */
 	public int getRichtung(){
 		return richtung;
 	}
 	
 	/**
-	 * gibt HP zurueck
-	 * @return
+	 * gibt Lebenspunkte des Gegners zurueck
+	 * @return Lebenspunkte des Gegners(HP)
 	 */
 	public double getHP(){
 		return hp;
@@ -150,14 +159,14 @@ public class Gegner{
 	
 	/**
 	 * gibt x-Koordinate zurueck
-	 * @return
+	 * @return x-Koordinate
 	 */
 	public int getX(){
 		return x;
 	}
 	/**
 	 * gibt y-Koordinate zurueck
-	 * @return
+	 * @return y-Koordinate
 	 */
 	public int getY(){
 		return y;
@@ -165,15 +174,16 @@ public class Gegner{
 	
 	/**
 	 * gibt Schaden zurueck
-	 * @return
+	 * @return Schaden
 	 */
 	public double getSchaden(){
 		return schaden;
 	}
 	
 	/**
-	 * erzeugt Zufallszahl im Intervall [0,1]
-	 * abhaengig von dieser wird eine 'zufaellige' Richtung zugewiesen
+	 *
+	 * Dem Gegner wird Bewegungsrichtung zugewiesen
+	 * 
 	 */
 	public void randomRichtung(){
 		rndHelp=Math.random();

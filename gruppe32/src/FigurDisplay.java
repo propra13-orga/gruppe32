@@ -1,14 +1,21 @@
+
+/**
+ * 
+ * Stellt Figuren mit ihren aktuellen Eigenschaften dar
+ *
+ */
+
 public class FigurDisplay{
 	
 	/**
 	 * stellt an der vorherigen Position der Spielfigur Boden dar
 	 * setzt neue Position der Figur und stellt sie dar
-	 * @param vonX
-	 * @param vonY
-	 * @param nachX
-	 * @param nachY
-	 * @param farbe
-	 * @param schild
+	 * @param vonX ursprüngliche X-Koordinate 
+	 * @param vonY ursprüngliche Y-Koordinate 
+	 * @param nachX neue X-Koordinate
+	 * @param nachY neue Y-Koordinate
+	 * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
+	 * @param schild vorhandener Schildzauber (Boolean)
 	 */
 	public void figurBewegen(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
 		
@@ -20,12 +27,12 @@ public class FigurDisplay{
 	
 	/**
 	 * stellt an der vorherigen Position des Gegners Boden dar
-	 * @param vonX
-	 * @param vonY
-	 * @param nachX
-	 * @param nachY
-	 * @param richtung
-	 * @param type
+	 * @param vonX ursprüngliche X-Koordinate 
+	 * @param vonY ursprüngliche Y-Koordinate 
+	 * @param nachX neue X-Koordinate
+	 * @param nachY neue Y-Koordinate
+	 * @param richtung Richtung in die die Figur sich bewegt
+	 * @param type Gegnerart
 	 */
 	public void gegnerBewegen(int vonX, int vonY, int nachX, int nachY, int richtung, int type){
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), vonX, vonY, Interface.BODEN);
@@ -37,10 +44,10 @@ public class FigurDisplay{
 	
 	/**
 	 * stellt SPielfigur je nach aktueller Ruestung dar
-	 * @param x
-	 * @param y
-	 * @param farbe
-	 * @param schild: Boolean
+	 * @param x X-Koordinate der Spielfigur
+	 * @param y Y-Koodrinate der Spielfigur
+	 * @param farbe Farbe abhaengig von Ruestung
+	 * @param schild:  vorhandener Schildzauber (Boolean)
 	 */
 	public void displayPlayer(int x, int y,int farbe, boolean schild){
 		if (farbe == Interface.GELB){
@@ -72,10 +79,10 @@ public class FigurDisplay{
 	/**
 	 * setzt an entsprechender Stelle Werte für Mob/Boss1/Boss2
 	 * stellt die zugehoerigen Bilder dar
-	 * @param x
-	 * @param y
-	 * @param richtung
-	 * @param type
+	 * @param x x-Koordinate des Gegners
+	 * @param y y-Koordinate des Gegners
+	 * @param richtung Richtung in die die Figur sich bewegt
+	 * @param type Gegnerart
 	 */
 	public void displayGegner(int x, int y, int richtung, int type){
 		if (type==Interface.MOB){

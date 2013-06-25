@@ -1,7 +1,7 @@
 
 
 /**
- * Klassenkommentar:
+ *
  * Hauptspiellogik bzw. was tun wenn was passiert
  * 
  */
@@ -25,6 +25,11 @@ private FigurDisplay display = new FigurDisplay();
 
 private static final String WEISSIMG = "Images\\weiss.jpg";
 
+/**
+ * 
+ * @param ifPlayer
+ * @param newId
+ */
 public Aktion(boolean ifPlayer, int newId){
 	player = ifPlayer;
 	
@@ -32,7 +37,7 @@ public Aktion(boolean ifPlayer, int newId){
 
 /**
  * neue Koordinaten der Spielfigur abhaengig von der jeweiligen Richtung
- * @param richtung
+ * @param richtung Richtung in die die Figur zeigt 
  */
 	private void setNewFigurXY(int richtung){
 		if (richtung == Interface.RECHTS){ 
@@ -53,10 +58,17 @@ public Aktion(boolean ifPlayer, int newId){
 		}
 	}
 
-/**
- * Methode bewegt Figur anhand von Koordinaten
- * 
- */
+	/**
+	 * Methode bewegt Figur anhand von Koordinaten
+	 * @param richtung Richtung in die die Figur sich bewegt
+	 * @param figurX2 X-Koordinate der Figur
+	 * @param figurY2 Y-Koordinate der Figur
+	 * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
+	 * @param schild vorhandener Schildzauber (Boolean)
+	 * @param type Art der Figur
+	 * @return 
+	 */
+	
 	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild,int type){
 		figurX=figurX2;
 		figurY=figurY2;
@@ -288,6 +300,13 @@ public Aktion(boolean ifPlayer, int newId){
 
 	}
 
+	
+	/**
+	 * 
+	 * @param richtung Richtung in die der Spieler angreift
+	 * @return 
+	 */
+	
 	public int[] playerAttack(int richtung){
 		setNewFigurXY(richtung);
 		returnArray[0]=0;
@@ -304,13 +323,39 @@ public Aktion(boolean ifPlayer, int newId){
 		return returnArray;
 	}
 	
-
+/**
+ * zeigt Figur an
+ * @param x x-Koordinate der Figur
+ * @param y y- Koordinate der Figur
+ * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
+ * @param schild vorhandener Schildzauber (Boolean)
+ */
+	
 public void displayFigur(int x, int y, int farbe, boolean schild){
 	display.displayPlayer(x, y, farbe, schild);
 }
+
+/**
+ * Bewegt Figur/ Spieler
+ * @param vonX urspruengliche x-Koordinate
+ * @param vonY urspruengliche y-Koordinate
+ * @param nachX neue x-Koordinate
+ * @param nachY neue y-Koordinate
+ * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
+ * @param schild vorhandener Schildzauber (Boolean)
+ */
+
 public void playerNachXY(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
 	display.figurBewegen(vonX, vonY, nachX, nachY, farbe, schild );
 }
+
+/**
+ *  zeigt den Gegner an
+ * @param x x-Koordinate des Gegners
+ * @param y y-Koordinate des Gegners
+ * @param richtung Richtung in die sich die Figur bewegt
+ * @param type Typ der Figur
+ */
 
 public void displayGegner(int x, int y, int richtung, int type){
 	display.displayGegner(x,y,richtung,type);

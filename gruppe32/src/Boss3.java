@@ -1,5 +1,11 @@
 import java.lang.Math;
 
+/**
+ * 
+ * Objekt vom Typ Boss3 (Endgegner) 
+ *
+ */
+
 public class Boss3{
 	
 	private static final int DEFAULTHP=40;
@@ -14,6 +20,11 @@ public class Boss3{
 	private StatDisplay stats = new StatDisplay();
 	
 	
+	/**
+	 * Erstellt Objekt vom Typ Boss3
+	 * @param newX x-Koordinate des Bosses
+	 * @param newY y-Koordinate des Bosses
+	 */
 	public Boss3(int newX, int newY){
 		x=newX;
 		y=newY;
@@ -24,9 +35,9 @@ public class Boss3{
 	}
 	
 	/**
-	 * reduziert hp des Bosses
-	 * ruft Methode sterben() auf, wenn kein hp mehr vorhanden ist
-	 * @param schaden
+	 * reduziert Lebenspunkte des Bosses
+	 * lässt Gegner sterben, wenn keine Lebenspunkte mehr vorhanden sind
+	 * @param schaden Hoehe des Schadens den man anrichten kann
 	 */
 	public void schadenBekommen(double schaden){
 		hp = Math.round((hp-(schaden*((100-RUESTUNG)/100)))*100.0)/100.0;
@@ -44,6 +55,11 @@ public class Boss3{
 			StdDraw.picture(20+40*x,20+40*y, Interface.SIEGIMG);
 		
 	}
+	
+	/**
+	 * 
+	 * @return gibt urspruenglichen Schaden zurueck
+	 */
 	
 	public double getSchaden(){
 		return DEFAULTSCHADEN;

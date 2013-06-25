@@ -5,13 +5,13 @@ public class StatDisplay{
 	
 	/**
 	 * zeigt Eigenschaften des Players an
-	 * @param leben
-	 * @param schaden
-	 * @param ruestung
-	 * @param manafaktor
-	 * @param hp
-	 * @param mana
-	 * @param muenzen
+	 * @param leben Anzahl der Leben der Spielfigur 
+	 * @param schaden Schadenshoehe, die die Spielfigur mit aktueller Ruestung ausrichtet
+	 * @param ruestung Wert der aktuellen Ruestung
+	 * @param manafaktor aktueller Manawert
+	 * @param hp Wert der Lebenspunkte, die die aktuelle Ruestung vorgibt
+	 * @param mana Manawert (Zauber), den die aktuelle Ruestung vorgibt
+	 * @param muenzen bisher gesammelte Muenz-Anzahl
 	 */
 	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, double hp, double mana, int muenzen){
 		StdDraw.setPenColor(StdDraw.WHITE);
@@ -44,8 +44,8 @@ public class StatDisplay{
 	}
 	/**
 	 * 
-	 * zeigt aktuelle HP oben links ueber dem Spielfeld an
-	 * @param hp
+	 * zeigt aktuelle Lebenspunkte (Health Packs) oben links ueber dem Spielfeld an
+	 * @param hp verbleibende Lebenspunkte
 	 * 
 	 */
 	public void displayPlayerHP(double hp){	
@@ -68,7 +68,7 @@ public class StatDisplay{
 	/**
 	 * 
 	 * zeigt aktuelle Mana oben rechts ueber dem Spielfeld an
-	 * @param mana
+	 * @param mana verbleibender Manawert (Zauber)
 	 * 
 	 */
 	public void displayPlayerMana(double mana){	
@@ -88,10 +88,10 @@ public class StatDisplay{
 	
 	/**
 	 * zeigt Eigenschaften des Gegners an
-	 * @param hp
-	 * @param defaulthp
-	 * @param x
-	 * @param y
+	 * @param hp Lebenspunkte des Gegners
+	 * @param defaulthp urspruengliche Lebenspunkte des Gegners
+	 * @param x x-Koordinate des Gegners
+	 * @param y y-Koordinate des Gegners
 	 */
 	public void displayGegnerHP(double hp,double defaulthp, int x, int y){
 		if (hp>=0){

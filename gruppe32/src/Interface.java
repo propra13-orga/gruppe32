@@ -154,7 +154,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	
 	/**
 	 * Gibt Level zurueck
-	 * @return level
+	 * @return level aktuelles Level 
 	 */
 	public static int getLevel(){
 		return level;
@@ -162,18 +162,15 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	
 	/**
 	 * Gibt Raum zurueck
-	 * @return raum
+	 * @return raum aktueller Raum 
 	 */
 	public static int getRaum(){
 		return raum;
 	}
 	
 	/**
-	 * Button-Reaktionen:
+	 * Button-Reaktionen: Spiel "starten" und "beenden"
 	 * 
-	 * Spiel starten: setzt Raum, Level und Checkpoint zurueck; Spiel gestartet auf true; stellt Spielfeld dar
-	 * 
-	 * Beenden: Beendet Spiel und schliesst Fenster
 	 */
 	public void actionPerformed(ActionEvent event) {
 		
@@ -212,6 +209,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	/**
 	 * Methode keyPressed: KeyEvent:
 	 * Tasten werden mit Bewegungsfunktionen innerhalb des Programms belegt
+	 * bei Tastendruck bewegen sich auch alle Gegner
 	 * 
 	 */
 	public void keyPressed(KeyEvent k){
@@ -291,8 +289,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	}
 	
 	/**
-	 * ruft fuer Gegner Methode bewegen() auf
-	 * setzt Boolean toCheckpoint auf true, falls Player Schaden bekommen hat
+	 * bestimmt die Aktionen von Gegnern
 	 * @param id: 'Nummer' des Gegners
 	 */
 	public void gegnerAktion(int id){
@@ -303,6 +300,11 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 		}
 	}
+	
+	/**
+	 * Angriff auf Mob und Bosse
+	 * @param richtung Richtung in die angegriffen wird
+	 */
 	public void playerAttack(int richtung){
 		playerAttack=player[0].playerAttack(richtung);
 		if (playerAttack[0]==MOB){
@@ -462,11 +464,13 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	}
 	
 	/**
-	 * erhoeht Variable aktiveCheckpoint um 1
+	 * geht einen Checkpoint weiter
 	 */
 	public static void nextCheckpoint(){
 		aktiveCheckpoint++;
 	}
+	
+	
 	/**
 	 * setzt als level und raum die Werte des letzten Checkpoints
 	 */
@@ -481,7 +485,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	
 		/**
 		 * 
-		 * blendet 'Game Over' ein und setzt spielGestartet zurueck auf 0
+		 * blendet 'Game Over' ein
+		 * Spiel kann von neuem gestartet werden
 		 * 
 		 */
 		public static void gameOver(){
@@ -493,7 +498,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		
 		/**
 		 * 
-		 * blendet 'Gewonnen' ein und setzt spielGestartet zurueck auf 0
+		 * blendet 'Gewonnen' ein
+		 * Spiel kann von neuem gestartet werden
 		 * 
 		 */
 		public static void sieg(){
@@ -507,6 +513,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		
 		/**
 		 * Storyteller erzaehlt seine Geschichte
+		 * abhaengig vom Raum
 		 * 
 		 */
 		public static void storyteller(){
@@ -537,20 +544,20 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		
 		}
 		/**
-		 * wendet Methode schadenBekommen auf Player an
-		 * @param gegnerID
-		 * @param zielX
-		 * @param zielY
+		 * Spieler bekommt Schaden durch einen gegnerischen Schlag
+		 * @param gegnerID Gegner, der den schaden anrichtet
+		 * @param zielX x-Koordinate des Spielers
+		 * @param zielY y-Koordinate des Spielers
 		 */
 		public void gegnerSchlag(int gegnerID, int zielX, int zielY){
 			player[getPlayerID(zielX,zielY)].schadenBekommen(gegner[gegnerID].getSchaden());
 		}
 		
 		/**
-		 * wendet Methode schadenBekommen auf Gegner an
-		 * @param playerID
-		 * @param zielX
-		 * @param zielY
+		 * Angriff des Spielers auf einen Gegner
+		 * @param playerID Spieler der angreift
+		 * @param zielX x-Koordinate 
+		 * @param zielY y-Koordinate
 		 */
 		public void playerSchlag(int playerID, int zielX, int zielY){
 			gegner[getGegnerID(zielX,zielY)].schadenBekommen(player[playerID].getSchaden());
@@ -558,9 +565,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		
 		/**
 		 * gibt Nummer der aktuellen Spielfigur zurueck
-		 * @param x
-		 * @param y
-		 * @return
+		 * @param x x-Koordinate des Spielers
+		 * @param y y-Koordinate des Spielers
+		 * @return "Nummer" der Spielfigur
 		 */
 		public int getPlayerID(int x,int y){
 			for (counter2=0;counter2<playerZahl; counter2++ ){
@@ -573,9 +580,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 		/**
 		 * gibt Gegnernummer zurueck
-		 * @param x
-		 * @param y
-		 * @return
+		 * @param x x-Koordinate des Gegners
+		 * @param y y-Koordinate des Gegners
+		 * @return "Nummer" des Gegners
 		 */
 		public int getGegnerID(int x,int y){
 			for (counter3=0; counter3<gegnerZahl; counter3++ ){
@@ -588,9 +595,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 		/**
 		 * stellt Gegnerbild dar
-		 * @param x
-		 * @param y
-		 * @param richtung
+		 * @param x x-Koordinate im Spielfeld auf die der Gegner gesetzt werden soll
+		 * @param y y-Koordinate im Spielfeld auf die der Gegner gesetzt werden soll
+		 * @param richtung Richtung in die der Gegner gerichtet ist
 		 */
 		public void displayGegner(int x, int y, int richtung){
 			StdDraw.picture(20+40*x,20+40*y, MOBIMG,((-richtung)*90));

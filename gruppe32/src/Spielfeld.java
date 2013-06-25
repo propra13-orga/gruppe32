@@ -41,7 +41,14 @@ private static final int KEINELEERZEILE = 2;
 private static final int KEINZEILENUMBRUCH = 3;
 
 /**
- * ordnet dem Spielfeld-Array Werte für Mauern, Boden, Start, Ziel, Fallen und Spielfigur zu
+ * File chooser zum Auswaehlen einer Spielfelddatei enthalten
+ * Level Validierung: gibt Fehlermeldung zurueck, falls:
+ *    falsches Zeichen vorhanden
+ *    Leerzeile fehlt
+ *    Leerzeichen fehlt
+ *    Zeilenumbruch fehlt
+ * ordnet dem Spielfeld-Array Werte fuer entsprechende Objekte (Mauer, Boden,...) zu
+ * 
  *
  */
 public static boolean initSpielfeld() {
@@ -216,11 +223,11 @@ public static boolean initSpielfeld() {
 
 /**
  * setzt einen Checkpoint an die entsprechende Stelle
- * @param newCheckpoint
- * @param level
- * @param raum
- * @param x
- * @param y
+ * @param newCheckpoint: Nummer des neuen Checkpoints
+ * @param level: Level in dem der Checkpoint gesetzt wird
+ * @param raum: Raum in dem der Checkpoint gesetzt wird
+ * @param x: x-Koordinate der Position des Checkpoints
+ * @param y: y-Koordinate der Position des Checkpoints
  */
 public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, int y){
 	checkpoint[newCheckpoint][0]=level;
@@ -232,7 +239,7 @@ public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, 
 /**
  * gibt den aktuellen Checkpoint zurueck
  * @param aktiveCheckpoint: zuletzt erreichter Checkpoint
- * @return 
+ * @return aktueller Checkpoint
  */
 public static int[] getCheckpoint(int aktiveCheckpoint){
 	checkpointReturn = checkpoint[aktiveCheckpoint];
@@ -240,9 +247,9 @@ public static int[] getCheckpoint(int aktiveCheckpoint){
 }
 /**
  * setzt Startpunkt 
- * @param newStartpunkt
- * @param x
- * @param y
+ * @param newStartpunkt: "Nummer" des Startpunkts
+ * @param x: x-Koordinate des Startpunkts
+ * @param y: y-Koordinate des Startpunkts
  */
 public static void setStartpunkt(int newStartpunkt,int x,int y){
 	startpunkt[newStartpunkt][0]=x;
@@ -251,9 +258,9 @@ public static void setStartpunkt(int newStartpunkt,int x,int y){
 
 /**
  * gibt Startpunkt des aktuellen Levels zurueck
- * @param level
- * @param raum
- * @return
+ * @param level: aktuelles Level
+ * @param raum: aktueller Raum 
+ * @return: Startpunkt
  */
 public static int[] getStartpunkt(int level, int raum){
 	startpunktReturn = startpunkt[level*3+raum];
@@ -262,9 +269,9 @@ public static int[] getStartpunkt(int level, int raum){
 
 /**
  * setzt Zielpunkt
- * @param newzielpunkt
- * @param x
- * @param y
+ * @param newzielpunkt: "Nummer" des Zielpunkts
+ * @param x: x-Koordinate des Zielpunkts
+ * @param y: y-Koordinate des Zielpunkts
  */
 public static void setZielpunkt(int newzielpunkt,int x,int y){
 	zielpunkt[newzielpunkt][0]=x;
@@ -272,9 +279,9 @@ public static void setZielpunkt(int newzielpunkt,int x,int y){
 }
 /**
  * gibt Zielpunkt des aktuellen Levels zurueck
- * @param level
- * @param raum
- * @return
+ * @param level: aktuelles Level
+ * @param raum: Aktueller Raum
+ * @return: Zielpunkt
  */
 public static int[] getZielpunkt(int level, int raum){
 	zielpunktReturn = zielpunkt[level*3+raum];
@@ -283,9 +290,9 @@ public static int[] getZielpunkt(int level, int raum){
 
 /**
  * Spielfeldeigenschaft Wert des Feldes XY abfragen
- * @param level Level des Spiels
- * @param x X-Koordinate
- * @param y Y-Koordinate
+ * @param level: Level des Spiels
+ * @param x: X-Koordinate
+ * @param y: Y-Koordinate
  * 
  */
 public static int wertLesenBeiXY(int level,int raum,int x,int y) {
@@ -296,10 +303,10 @@ public static int wertLesenBeiXY(int level,int raum,int x,int y) {
 
 /**
  * Methode setzt den Wert bei den X- und Y-Koordinaten
- * @param level Level des Spiels
- * @param x X-Koordinate
- * @param y Y-Koordinate
- * @param wert Wert, der in das entsprechende Spielfeld gesetzt wird
+ * @param level: Level des Spiels
+ * @param x: X-Koordinate
+ * @param y: Y-Koordinate
+ * @param wert: Wert, der in das entsprechende Spielfeld gesetzt wird
  * 
  */
 public static void wertSetzenBeiXY (int level,int raum, int x, int y, int wert) {

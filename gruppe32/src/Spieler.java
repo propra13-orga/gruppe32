@@ -1,5 +1,12 @@
 import java.lang.Math;
 
+/** 
+ * erstellt Objekt vom Typ Spieler 
+ * 
+ * 
+ *
+ */
+
 public class Spieler{
 	
 	public static final double MAXMANA = 10.0;
@@ -40,6 +47,7 @@ public class Spieler{
 	
 	private int id;
 	private int bewegenReturn;
+	
 	
 	public Spieler(int newId){
 		id = newId;
@@ -133,10 +141,11 @@ public class Spieler{
 		y = newY;
 	}
 	
+	
 	/**
-	 * Methodenkommentar
-	 * reduziert die aktuellenHP/mana um einen gegeben schadenswert
-	 * 
+	 * reduziert die aktuellen HP/mana um einen gegeben schadenswert
+	 * @param incSchaden 
+	 * @return
 	 */
 	public boolean schadenBekommen(double incSchaden){
 		gestorben = false;

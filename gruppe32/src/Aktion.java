@@ -203,6 +203,34 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 			
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SCHLUESSEL){
+			if (player == true){
+				returnArray[0]=Interface.SCHLUESSEL;
+				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				figurX=newFigurX;
+				figurY=newFigurY;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.TOR){
+			if (Quests.torAuf == true){
+				if (player == true){
+					returnArray[0]=Interface.TOR;
+					Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+					figurX=newFigurX;
+					figurY=newFigurY;
+					}
+				else{
+					returnArray[0]=Interface.MAUER;	
+				}
+			}
+		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
 			if (player == true){	
 				returnArray[0]=Interface.HPTRANKSHOP;

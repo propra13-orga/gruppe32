@@ -183,6 +183,12 @@ public static boolean initSpielfeld() {
 						else if (testChar == 62){ // >
 							spielfeld[level][raum][spalte][reihe]=Interface.BOSS3;
 						}
+						else if (testChar == 112){ // p
+							spielfeld[level][raum][spalte][reihe]=Interface.SCHLUESSEL;
+						}
+						else if (testChar == 84){ // T
+							spielfeld[level][raum][spalte][reihe]=Interface.TOR;
+						}
 						else{
 							
 							exception = FALSCHESZEICHEN;

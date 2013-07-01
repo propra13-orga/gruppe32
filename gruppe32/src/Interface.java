@@ -65,6 +65,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String BOSS1IMG = "Images\\boss1.jpg";
 	public static final String BOSS2IMG = "Images\\boss2.jpg";
 	public static final String BOSS3IMG = "Images\\boss3.jpg";
+	public static final String SCHLUESSELIMG = "Images\\schluessel.jpg";
+	public static final String TORIMG = "Images\\tor.jpg";
 	
 	public static final int RECHTS = 0;
 	public static final int UNTEN = 1;
@@ -99,6 +101,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int BOSS1= 23;
 	public static final int BOSS2= 24;
 	public static final int BOSS3= 25;
+	public static final int SCHLUESSEL= 27;
+	public static final int TOR= 28;
 		
 	private static final int BREITE = 990;
 	private static final int HOEHE = 660;
@@ -110,8 +114,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	private int playerZahl;
 	private static int gegnerZahl=0;
 	
-	private static int level;
-	private static int raum;
+	public static int level;
+	public static int raum;
 	
 	private int checkStartZiel;
 	
@@ -122,7 +126,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	private static int aktiveCheckpoint=0;
 	private static int[] checkpointArray = new int[4];
 	
-	public static  boolean toCheckpoint;
+	public static boolean toCheckpoint;
 	
 
 	
@@ -431,7 +435,12 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 					StdDraw.picture(20+40*spalte,20+40*reihe, BOSS3IMG);
 					boss3 = new Boss3(spalte,reihe);
 				}
-
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SCHLUESSEL){
+					StdDraw.picture(20+40*spalte,20+40*reihe, SCHLUESSELIMG);
+				}
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==TOR){
+					StdDraw.picture(20+40*spalte,20+40*reihe, TORIMG);
+				}
 			}
 			
 		}
@@ -544,9 +553,10 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 
 			}
 			else if ((level==1)&(raum==1)){ //Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2)
-				StdDraw.text(400, 560, "Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! Die Trolle haben es errichtet, wer sonst!");
-				StdDraw.text(400, 540, "Aber sie haben auch die Schlüssel dafür... Sammle 2, um das Tor zu öffen!");
-
+				StdDraw.text(400, 570, "Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! ");
+				StdDraw.text(400, 550, "Die Trolle haben es errichtet, wer sonst! Aber sie haben auch die Schlüssel dafür...");
+				StdDraw.text(400, 530, "Man braucht 2 Schlüssel, um das Tor zu öffen, denn es ist ein doppelt gesichertes Tor!");
+				
 			}
 			else if ((level==2)&(raum==2)){ //Storyteller im Endraum (Level 3, Raum 3)
 				StdDraw.text(400, 570, "Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge ");

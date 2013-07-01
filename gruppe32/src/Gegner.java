@@ -125,10 +125,15 @@ public class Gegner{
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
 			StdDraw.picture(20+40*x,20+40*y, Interface.MANATRANKIMG);
 		}
+		else if ((Interface.level==1)&(Interface.raum==0)&(loot<0.90)){
+			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SCHLUESSEL);
+			StdDraw.picture(20+40*x,20+40*y, Interface.SCHLUESSELIMG);
+		}
 		else{
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
 			StdDraw.picture(20+40*x,20+40*y, Interface.MUENZENIMG);
 		}
+		
 	}
 	
 	/** 

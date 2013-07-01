@@ -12,8 +12,9 @@ public class StatDisplay{
 	 * @param hp Wert der Lebenspunkte, die die aktuelle Ruestung vorgibt
 	 * @param mana Manawert (Zauber), den die aktuelle Ruestung vorgibt
 	 * @param muenzen bisher gesammelte Muenz-Anzahl
+	 * @param schluessel bisher gesammelte Schluessel-Anzahl
 	 */
-	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, double hp, double mana, int muenzen){
+	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, double hp, double mana, int muenzen, int schluessel){
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.filledRectangle(920, 300, 100, 500);
 		StdDraw.setPenColor();
@@ -25,9 +26,10 @@ public class StatDisplay{
 		StdDraw.textLeft(820, 410, "HP:"+hp);
 		StdDraw.textLeft(820, 390, "Mana:"+mana);
 		StdDraw.textLeft(820, 370, "Muenzen:"+muenzen);
+		StdDraw.textLeft(820, 350, "Schluessel:"+schluessel);
 		if (Aktion.reachedCheckpoint==true){
-			StdDraw.textLeft(820, 350, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
-		    StdDraw.picture(870,320,Interface.CHECKPOINTIMG);
+			StdDraw.textLeft(820, 330, "Checkpoint:"+(Aktion.checkpointMerkeLevel+1)+"-"+(Aktion.checkpointMerkeRaum+1));
+		    StdDraw.picture(870,300,Interface.CHECKPOINTIMG);
 		    }
 		StdDraw.textLeft(820, 250, "Steuerung:");
 		StdDraw.textLeft(820, 220, "Pfeiltasten");

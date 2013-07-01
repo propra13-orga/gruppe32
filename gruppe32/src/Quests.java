@@ -7,6 +7,14 @@
  */
 public class Quests {
 	
+	public static boolean torAuf;
 	
 	
+	/**
+	 * (2. Quest: "Schlüssel und Tor")
+	 * Methode lässt Tor durch Schluessel aufgehen
+	 */
+	public static void torAuf(){
+		torAuf = true;
+	}
 }

@@ -34,4 +34,5 @@ Erlaubte Levelzeichen sind:
 	"O"		-> Shop2
 	"P"		-> Shop3
 	"H"		-> HPTrank Shop
-	"M" 	-> ManaTrank Shop
+	"M" 		-> ManaTrank Shop
+	"V"		-> Versteckter Gang

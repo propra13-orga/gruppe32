@@ -92,6 +92,20 @@ public Aktion(boolean ifPlayer, int newId){
 			returnArray[0]=Interface.BODEN;
 			
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.VERSTECKTERGANG){
+			if (player == true){
+				returnArray[0]=Interface.VERSTECKTERGANG;
+				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.VERSTECKTERGANG);
+				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+				figurX=newFigurX;
+				figurY=newFigurY;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+			}
+		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.START)
 				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
 			if (player==true){

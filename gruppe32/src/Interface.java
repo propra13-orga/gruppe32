@@ -29,6 +29,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	private static boolean spielGestartet;
 
 	public static final String MAUERIMG = "Images\\mauer.jpg";
+	public static final String VERSTECKTERGANGIMG = "Images\\mauer.jpg";
 	public static final String BODENIMG = "Images\\boden.jpg";
 	public static final String CHECKPOINTIMG = "Images\\checkpoint.jpg";
 	public static final String EMPTYHEARTIMG = "Images\\emptyHeart.jpg";
@@ -71,6 +72,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int OBEN= 3;
 
 	public static final int BODEN = 0;
+	public static final int VERSTECKTERGANG = 26;
 	public static final int MAUER = 1;
 	public static final int START = 2;
 	public static final int ZIEL = 3;
@@ -351,6 +353,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MAUER){
 					StdDraw.picture(20+40*spalte,20+40*reihe, MAUERIMG);
 				}
+				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==VERSTECKTERGANG){
+					StdDraw.picture(20+40*spalte,20+40*reihe, VERSTECKTERGANGIMG);
+				}
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)== START){
 					StdDraw.picture(20+40*spalte,20+40*reihe, STARTIMG);
 				}
@@ -529,10 +534,19 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				StdDraw.text(400, 530, "wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
 				
 			}
+			else if ((level==0)&(raum==2)){ //Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3)
+				StdDraw.text(400, 560, "Auch wenn es alle dementieren: In manchen Ausnahmesituationen hilft es,");
+				StdDraw.text(400, 540, "auch mal mit dem Kopf durch die Wand zu gehen!");
+			}
 			else if ((level==1)&(raum==0)){ //Storyteller vor dem Checkpoint (Level 2, Raum 1)
 				StdDraw.text(400, 560, "Das hier ist der einzige Shop hier unten. Decke dich gut ein, denn du wirst nicht so schnell wieder die Möglichkeit finden,");
 				StdDraw.text(400, 540, "deine Gesundheit und dein Mana zu regenerieren! Jeder Trank kostet genau eine Münze!");
-				
+
+			}
+			else if ((level==1)&(raum==1)){ //Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2)
+				StdDraw.text(400, 560, "Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! Die Trolle haben es errichtet, wer sonst!");
+				StdDraw.text(400, 540, "Aber sie haben auch die Schlüssel dafür... Sammle 2, um das Tor zu öffen!");
+
 			}
 			else if ((level==2)&(raum==2)){ //Storyteller im Endraum (Level 3, Raum 3)
 				StdDraw.text(400, 570, "Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge ");

@@ -97,6 +97,9 @@ public static boolean initSpielfeld() {
 						if (testChar-48 == 1){ // 1
 							spielfeld[level][raum][spalte][reihe]=Interface.MAUER;
 						}
+						else if (testChar == 86){ // V
+							spielfeld[level][raum][spalte][reihe]=Interface.VERSTECKTERGANG;	
+						}
 						else if (testChar-48 ==0){ // 0
 							spielfeld[level][raum][spalte][reihe]=Interface.BODEN;	
 						}

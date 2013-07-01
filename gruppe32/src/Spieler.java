@@ -79,6 +79,7 @@ public class Spieler{
 			Interface.nextCheckpoint();
 		}
 		else if (checkArray[0]==Interface.MUENZEN){
+			//Sound.soundAbspielen();
 			aktuelleMuenzen++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}

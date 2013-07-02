@@ -1,4 +1,3 @@
-import java.lang.Math;
 
 /**
  * 
@@ -28,16 +27,17 @@ public class Gegner{
 	
 	/**
 	 * setzt Eigenschaften der Gegner
-	 * @param startDefaultHP
+	 * @param startDefaultHP 
 	 * @param startX x-Koordinate der Startposition
 	 * @param startY y-Koordinate der Startposition
 	 * @param startRichtung Richtung, in die der Gegner ausgerichtet ist
 	 * @param startRuestung Ruestung die der Gegner zu Beginn hat
 	 * @param startSchaden Schaden, den der Gegner von Beginn an hat
-	 * @param newID 
-	 * @param newType
+	 * @param newID Neue ID 
+	 * @param newType Neuer Typ
 	 */
-	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung, int startSchaden, int newID, int newType){
+	public Gegner(int startDefaultHP, int startX, int startY, int startRichtung, int startRuestung,
+			int startSchaden, int newID, int newType){
 		
 		defaultHP= startDefaultHP;
 		hp = defaultHP;
@@ -55,11 +55,11 @@ public class Gegner{
 	
 	/** bewegt Gegner abhaengig von Richtung des Players bzw. zufaellig (Boss2)
 	 * 
-	 * @return
+	 * @return Return
 	 */
 	public int[] bewegen(){
 		attackReturn[0]=0;
-		if (lebendig==true){	
+		if (lebendig==true){
 			if(type==Interface.BOSS2){
 				randomRichtung();
 			}
@@ -67,7 +67,7 @@ public class Gegner{
 			
 			x=aktionReturn[1];
 			y=aktionReturn[2];
-			if((aktionReturn[0]==Interface.MAUER)){
+			if(aktionReturn[0]==Interface.MAUER){
 				if (richtung == Interface.OBEN){
 					richtung = Interface.UNTEN;
 					aktion.displayGegner(x,y,richtung,type);
@@ -88,8 +88,8 @@ public class Gegner{
 			}
 			else if(aktionReturn[0]==Interface.FIGUR){
 				attackReturn[0]=1;
-				attackReturn[1]=aktionReturn[3];
-				attackReturn[2]=aktionReturn[4];
+				attackReturn[1]=aktionReturn[Interface.DREI];
+				attackReturn[2]=aktionReturn[Interface.VIER];
 			
 			}
 				stats.displayGegnerHP(hp, defaultHP, x, y);
@@ -104,7 +104,8 @@ public class Gegner{
 	 * @param schaden Schaden den der Gegner erleidet
 	 */
 	public void schadenBekommen(double schaden){
-		hp = Math.round((hp-(schaden*((100-ruestung)/100)))*100.0)/100.0;
+		hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
+				*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		stats.displayGegnerHP(hp, defaultHP, x, y);
 		if (hp<=0){
 			sterben();
@@ -117,21 +118,21 @@ public class Gegner{
 	public void sterben(){
 		lebendig=false;
 		loot=Math.random();
-		if (loot<0.33){
+		if (loot<Interface.ZUFALL1){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.HPTRANK);
-			StdDraw.picture(20+40*x,20+40*y, Interface.HPTRANKIMG);
+			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.HPTRANKIMG);
 		}
-		else if (loot<0.66){
+		else if (loot<Interface.ZUFALL2){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
-			StdDraw.picture(20+40*x,20+40*y, Interface.MANATRANKIMG);
+			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MANATRANKIMG);
 		}
-		else if ((Interface.level==1)&(Interface.raum==0)&(loot<0.90)){
+		else if ((Interface.level==1)&(Interface.raum==0)&(loot<Interface.ZUFALL3)){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SCHLUESSEL);
-			StdDraw.picture(20+40*x,20+40*y, Interface.SCHLUESSELIMG);
+			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.SCHLUESSELIMG);
 		}
 		else{
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
-			StdDraw.picture(20+40*x,20+40*y, Interface.MUENZENIMG);
+			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MUENZENIMG);
 		}
 		
 	}
@@ -192,13 +193,13 @@ public class Gegner{
 	 */
 	public void randomRichtung(){
 		rndHelp=Math.random();
-		if (rndHelp<0.25){
+		if (rndHelp<Interface.VIERTEL){
 			richtung = Interface.LINKS;
 		}
-		else if (rndHelp<0.50){
+		else if (rndHelp<Interface.HALBES){
 			richtung = Interface.RECHTS;
 		}
-		else if (rndHelp<0.75){
+		else if (rndHelp<Interface.DREIVIERTEL){
 			richtung = Interface.OBEN;
 		}
 		else{

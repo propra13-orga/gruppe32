@@ -27,8 +27,8 @@ private static final String WEISSIMG = "Images\\weiss.jpg";
 
 /**
  * 
- * @param ifPlayer
- * @param newId
+ * @param ifPlayer 
+ * @param newId 
  */
 public Aktion(boolean ifPlayer, int newId){
 	player = ifPlayer;
@@ -66,10 +66,9 @@ public Aktion(boolean ifPlayer, int newId){
 	 * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
 	 * @param schild vorhandener Schildzauber (Boolean)
 	 * @param type Art der Figur
-	 * @return 
+	 * @return Return 
 	 */
-	
-	public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild,int type){
+		public int[] figurBewegen(int richtung, int figurX2, int figurY2, int farbe, boolean schild,int type){
 		figurX=figurX2;
 		figurY=figurY2;
 		aktuellesLevel = Interface.getLevel();
@@ -77,9 +76,13 @@ public Aktion(boolean ifPlayer, int newId){
 		setNewFigurXY(richtung);
 		
 		if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BODEN)
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==13) //13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==14)){ //13: X steht in level.txt fuer die Stelle neben dem Ziel
-			if (player==true){																		//14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
+				/*
+				 * 13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
+				 * 13: X steht in level.txt fuer die Stelle neben dem Ziel
+				 * 14: Y steht in level.txt fuer die Stelle neben dem Checkpoint*/
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.DREIZEHN) 
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.VIERZEHN)){ 
+			if (player==true){
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
@@ -110,7 +113,7 @@ public Aktion(boolean ifPlayer, int newId){
 				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
 			if (player==true){
 				returnArray[0]=Interface.START;
-				StdDraw.picture(400,560,WEISSIMG);
+				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -121,7 +124,7 @@ public Aktion(boolean ifPlayer, int newId){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
 			if ( player==true){	
 				returnArray[0]=Interface.ZIEL;
-				StdDraw.picture(400,560,WEISSIMG);
+				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -129,7 +132,7 @@ public Aktion(boolean ifPlayer, int newId){
 				
 			}
 		}
-		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB)){
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB){
 			
 			if (player==true){
 				returnArray[0]=Interface.MOB;
@@ -140,7 +143,7 @@ public Aktion(boolean ifPlayer, int newId){
 				
 			}
 						
-		}	else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE)){
+		}	else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE){
 			
 			if (player==true){
 				returnArray[0]=Interface.FALLE;
@@ -317,8 +320,8 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 			else {
 				returnArray[0]=Interface.FIGUR;
-				returnArray[3]=newFigurX;
-				returnArray[4]=newFigurY;
+				returnArray[Interface.DREI]=newFigurX;
+				returnArray[Interface.VIER]=newFigurY;
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
@@ -346,9 +349,8 @@ public Aktion(boolean ifPlayer, int newId){
 	/**
 	 * 
 	 * @param richtung Richtung in die der Spieler angreift
-	 * @return 
+	 * @return Return    
 	 */
-	
 	public int[] playerAttack(int richtung){
 		setNewFigurXY(richtung);
 		returnArray[0]=0;

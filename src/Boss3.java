@@ -1,4 +1,3 @@
-import java.lang.Math;
 
 /**
  * 
@@ -8,10 +7,13 @@ import java.lang.Math;
 
 public class Boss3{
 	
+	/**
+	 * Werte fuer HP, Schaden und Ruestung
+	 */
 	private static final int DEFAULTHP=40;
 	private static final int DEFAULTSCHADEN=2;
 	private static final int RUESTUNG= 0;
-	
+
 	private double hp;
 	private int x;
 	private int y;
@@ -40,7 +42,8 @@ public class Boss3{
 	 * @param schaden Hoehe des Schadens den man anrichten kann
 	 */
 	public void schadenBekommen(double schaden){
-		hp = Math.round((hp-(schaden*((100-RUESTUNG)/100)))*100.0)/100.0;
+		hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-RUESTUNG)/Interface.EINHUNDERT)))
+				*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		stats.displayGegnerHP(hp, DEFAULTHP, x, y);
 		if (hp<=0){
 			sterben();
@@ -52,7 +55,7 @@ public class Boss3{
 	 */
 	public void sterben(){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SIEG);
-			StdDraw.picture(20+40*x,20+40*y, Interface.SIEGIMG);
+			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.SIEGIMG);
 		
 	}
 	

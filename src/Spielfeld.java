@@ -1,4 +1,9 @@
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
@@ -64,129 +69,162 @@ public static boolean initSpielfeld() {
 		
 		fr = new FileReader(file);
 		br = new BufferedReader(fr);
-		for (level=0; level<3; level++) {
-			if (br.read()!=13
-					){ //^M (enter)
+		for (level=0; level<Interface.DREI; level++) {
+			//^M (enter)
+			if (br.read()!=13){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 				br.read();
-			if (br.read()!=13){ //^M (enter)
+				//^M (enter)
+			if (br.read()!=Interface.DREIZEHN){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 					br.read();
-			for (raum=0; raum<3; raum++) {
-				if (br.read()!=13){ //^M (enter)
+			for (raum=0; raum<Interface.DREI; raum++) {
+				 //^M (enter)
+				if (br.read()!=Interface.DREIZEHN){
 						exception = KEINELEERZEILE;
 						throw myException;
 					}
 					br.read();
-				for (reihe=12; reihe>=0; reihe--) {
-				if (br.read()!=13){ //^M (enter)
+				for (reihe=Interface.ZWOELF; reihe>=0; reihe--) {
+					//^M (enter)
+				if (br.read()!=Interface.DREIZEHN){ 
 					exception = KEINZEILENUMBRUCH;
 					throw myException;
 				}
 				br.read();
-					for (spalte=0; spalte<20; spalte++) {
-						if (br.read()!=32){ //space
+					for (spalte=0; spalte<Interface.ZWANZIG; spalte++) {
+						//space
+						if (br.read()!= Interface.ZWEIUNDDREISSIG){ 
 							exception = KEINLEERZEICHEN;
 							throw myException;
 						}
 						testChar = br.read();
-						if (testChar-48 == 1){ // 1
+						// 1
+						if (testChar-Interface.ACHTUNDVIERZIG == 1){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MAUER;
 						}
-						else if (testChar == 86){ // V
+						// V
+						else if (testChar == Interface.SECHSUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.VERSTECKTERGANG;	
 						}
-						else if (testChar-48 ==0){ // 0
+						// 0
+						else if (testChar-Interface.ACHTUNDVIERZIG ==0){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.BODEN;	
 						}
-						else if (testChar-48 ==2){ // 2
+						// 2
+						else if (testChar-Interface.ACHTUNDVIERZIG ==2){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.START;	
 						}
-						else if (testChar-48 ==3){  // 3
+						// 3
+						else if (testChar-Interface.ACHTUNDVIERZIG ==Interface.DREI){  
 							spielfeld[level][raum][spalte][reihe]=Interface.ZIEL;
 						}
-						else if (testChar-48 == 5){ // 5
+						// 5
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.FUENF){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MOB;
 						}
-						else if (testChar-48 == 4){ // 4
+						// 4
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.VIER){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.FALLE;
 						}
-						else if (testChar-48 == 6){ // 6
+						// 6
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.SECHS){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.FIGUR;
 							if (counter==0){
 							setCheckpoint(level*2,level,raum,spalte,reihe);
-							counter=counter-3;
+							counter=counter-Interface.DREI;
 							}
 							counter++;
-							setStartpunkt((level*3)+raum,spalte,reihe);
+							setStartpunkt((level*Interface.DREI)+raum,spalte,reihe);
 						}
-						else if (testChar-48 == 7){ // 7
+						// 7
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.SIEBEN){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SIEG;
 						}
-						else if (testChar-48 == 8){ // 8
+						// 8
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.ACHT){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.CHECKPOINT;
 							setCheckpoint(level*2+1,level,raum,spalte,reihe);
 						}
-						else if (testChar-48 == 9){ // 9
+						// 9
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.NEUN){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.STORYTELLER;
 						}
-						else if (testChar == 36){ // $
+						// $
+						else if (testChar == Interface.SECHSUNDDREISSIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MUENZEN;
 						}
-						else if (testChar == 83){ // S
+						// S
+						else if (testChar == Interface.DREIUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP1; 
 						}
-						else if (testChar == 79){ // O
+						// O
+						else if (testChar == Interface.NEUNUNDSIEBZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP2; 
 						}
-						else if (testChar == 80){ // P
+						// P
+						else if (testChar == Interface.ACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP3; 
 						}
-						else if (testChar == 72){ // H
+						// H
+						else if (testChar == Interface.ZWEIUNDSIEBZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.HPTRANKSHOP; 
 						}
-						else if (testChar == 77){ // M
+						// M
+						else if (testChar == Interface.SIEBENUNDSIEBZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANKSHOP; 
 						}
-						else if (testChar == 71){  // G
+						// G
+						else if (testChar == Interface.EINUNDSIEBZIG){  
 							spielfeld[level][raum][spalte][reihe]=Interface.FARBEGELB;
 						}
-						else if (testChar == 82){ // R
+						 // R
+						else if (testChar == Interface.ZWEIUNDACHZIG){
 							spielfeld[level][raum][spalte][reihe]=Interface.FARBEROT;
 						}
-						else if (testChar == 66){ // B
+						// B
+						else if (testChar == Interface.SECHSUNDSECHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.FARBEBLAU;
 						}
-						else if (testChar == 88){ // X
+						// X
+						else if (testChar == Interface.ACHTUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=BEIZIEL;
-							setZielpunkt((level*3)+raum,spalte,reihe);
+							setZielpunkt((level*Interface.DREI)+raum,spalte,reihe);
 						}
-						else if (testChar == 89){ // Y
+						// Y
+						else if (testChar == Interface.NEUNUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=BEICHECKPOINT;
 						}
-						else if (testChar == 43){ // +
+						// +
+						else if (testChar == Interface.DREIUNDVIERZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.HPTRANK;
 						}
-						else if (testChar == 42){ // *
+						// *
+						else if (testChar == Interface.ZWEIUNDVIERZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANK;
 						}
-						else if (testChar == 60){ // <
+						// <
+						else if (testChar == Interface.SECHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.BOSS1;
 						}
-						else if (testChar == 61){ // =
+						// =
+						else if (testChar == Interface.EINUNDSECHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.BOSS2;
 						}
-						else if (testChar == 62){ // >
+						// >
+						else if (testChar == Interface.ZWEIUNDSECHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.BOSS3;
 						}
-						else if (testChar == 112){ // p
+						// p
+						else if (testChar == Interface.EINHUNDERTZWOELF){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SCHLUESSEL;
 						}
-						else if (testChar == 84){ // T
+						// T
+						else if (testChar == Interface.VIERUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.TOR;
 						}
 						else{
@@ -200,30 +238,35 @@ public static boolean initSpielfeld() {
 		}
 		}
 		catch(FileNotFoundException e){
-			StdDraw.text(400, 500, "FileNException");
+			StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "FileNException");
 		}
 		catch(IOException e){
-			StdDraw.text(400, 500, "IOException");
+			StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "IOException");
 		}
 		catch(Exception e){
 			fehlerGefunden = true;
 			if (exception == FALSCHESZEICHEN){
-				StdDraw.text(400, 500, "Ungültiges Zeichen. "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
-				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, 
+						"Ungültiges Zeichen. "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINLEERZEICHEN){
-				StdDraw.text(400, 500, "Kein Leerzeichen vor "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
-				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT,
+						"Kein Leerzeichen vor "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINZEILENUMBRUCH){
-				StdDraw.text(400, 500, "Kein Zeilenumbruch vor "+(level+1)+"-"+(raum+1)+":: Reihe"+(reihe+1));
-				StdDraw.text(400, 480, "oder zusätzliches Zeichen am vohrigen Reihenende");
-				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, 
+						"Kein Zeilenumbruch vor "+(level+1)+"-"+(raum+1)+":: Reihe"+(reihe+1));
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTACHZIG,
+						"oder zusätzliches Zeichen am vohrigen Reihenende");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINELEERZEILE){
-				StdDraw.text(400, 500, "Fehlende Leerzeile vor "+(level+1)+"-"+(raum+1));
-				StdDraw.text(400, 480, "oder zusätzliches Zeichen am vohrigen Reihenende");
-				StdDraw.text(400,450, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "Fehlende Leerzeile vor "+(level+1)+"-"+(raum+1));
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTACHZIG, 
+						"oder zusätzliches Zeichen am vohrigen Reihenende");
+				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
 			}
 
 		}
@@ -232,22 +275,22 @@ public static boolean initSpielfeld() {
 
 /**
  * setzt einen Checkpoint an die entsprechende Stelle
- * @param newCheckpoint: Nummer des neuen Checkpoints
- * @param level: Level in dem der Checkpoint gesetzt wird
- * @param raum: Raum in dem der Checkpoint gesetzt wird
- * @param x: x-Koordinate der Position des Checkpoints
- * @param y: y-Koordinate der Position des Checkpoints
+ * @param newCheckpoint Nummer des neuen Checkpoints
+ * @param level Level in dem der Checkpoint gesetzt wird
+ * @param raum Raum in dem der Checkpoint gesetzt wird
+ * @param x x-Koordinate der Position des Checkpoints
+ * @param y y-Koordinate der Position des Checkpoints
  */
 public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, int y){
 	checkpoint[newCheckpoint][0]=level;
 	checkpoint[newCheckpoint][1]=raum;
 	checkpoint[newCheckpoint][2]=x;
-	checkpoint[newCheckpoint][3]=y;
+	checkpoint[newCheckpoint][Interface.DREI]=y;
 }
 
 /**
  * gibt den aktuellen Checkpoint zurueck
- * @param aktiveCheckpoint: zuletzt erreichter Checkpoint
+ * @param aktiveCheckpoint zuletzt erreichter Checkpoint
  * @return aktueller Checkpoint
  */
 public static int[] getCheckpoint(int aktiveCheckpoint){
@@ -256,9 +299,9 @@ public static int[] getCheckpoint(int aktiveCheckpoint){
 }
 /**
  * setzt Startpunkt 
- * @param newStartpunkt: "Nummer" des Startpunkts
- * @param x: x-Koordinate des Startpunkts
- * @param y: y-Koordinate des Startpunkts
+ * @param newStartpunkt "Nummer" des Startpunkts
+ * @param x x-Koordinate des Startpunkts
+ * @param y y-Koordinate des Startpunkts
  */
 public static void setStartpunkt(int newStartpunkt,int x,int y){
 	startpunkt[newStartpunkt][0]=x;
@@ -267,20 +310,20 @@ public static void setStartpunkt(int newStartpunkt,int x,int y){
 
 /**
  * gibt Startpunkt des aktuellen Levels zurueck
- * @param level: aktuelles Level
- * @param raum: aktueller Raum 
- * @return: Startpunkt
+ * @param level aktuelles Level
+ * @param raum aktueller Raum 
+ * @return Startpunkt
  */
 public static int[] getStartpunkt(int level, int raum){
-	startpunktReturn = startpunkt[level*3+raum];
+	startpunktReturn = startpunkt[level*Interface.DREI+raum];
 	return startpunktReturn;
 }
 
 /**
  * setzt Zielpunkt
- * @param newzielpunkt: "Nummer" des Zielpunkts
- * @param x: x-Koordinate des Zielpunkts
- * @param y: y-Koordinate des Zielpunkts
+ * @param newzielpunkt "Nummer" des Zielpunkts
+ * @param x x-Koordinate des Zielpunkts
+ * @param y y-Koordinate des Zielpunkts
  */
 public static void setZielpunkt(int newzielpunkt,int x,int y){
 	zielpunkt[newzielpunkt][0]=x;
@@ -288,21 +331,22 @@ public static void setZielpunkt(int newzielpunkt,int x,int y){
 }
 /**
  * gibt Zielpunkt des aktuellen Levels zurueck
- * @param level: aktuelles Level
- * @param raum: Aktueller Raum
- * @return: Zielpunkt
+ * @param level aktuelles Level
+ * @param raum Aktueller Raum
+ * @return Zielpunkt
  */
 public static int[] getZielpunkt(int level, int raum){
-	zielpunktReturn = zielpunkt[level*3+raum];
+	zielpunktReturn = zielpunkt[level*Interface.DREI+raum];
 	return zielpunktReturn;
 }
 
 /**
  * Spielfeldeigenschaft Wert des Feldes XY abfragen
- * @param level: Level des Spiels
- * @param x: X-Koordinate
- * @param y: Y-Koordinate
- * 
+ * @param level Level des Spiels
+ * @param x X-Koordinate
+ * @param y Y-Koordinate
+ * @param raum Raum des Spiels
+ * @return RETURN
  */
 public static int wertLesenBeiXY(int level,int raum,int x,int y) {
 	
@@ -312,10 +356,11 @@ public static int wertLesenBeiXY(int level,int raum,int x,int y) {
 
 /**
  * Methode setzt den Wert bei den X- und Y-Koordinaten
- * @param level: Level des Spiels
- * @param x: X-Koordinate
- * @param y: Y-Koordinate
- * @param wert: Wert, der in das entsprechende Spielfeld gesetzt wird
+ * @param level Level des Spiels
+ * @param x X-Koordinate
+ * @param y Y-Koordinate
+ * @param wert Wert, der in das entsprechende Spielfeld gesetzt wird
+ * @param raum Raum des Spiels
  * 
  */
 public static void wertSetzenBeiXY (int level,int raum, int x, int y, int wert) {

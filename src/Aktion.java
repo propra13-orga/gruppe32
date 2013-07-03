@@ -224,8 +224,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.TOR){
-			if (Quests.torAuf){
-				if (player){
+			if (Spieler.aktuelleSchluessel==2 & player){
 					returnArray[0]=Interface.TOR;
 					Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -235,7 +234,6 @@ public Aktion(boolean ifPlayer, int newId){
 				else{
 					returnArray[0]=Interface.MAUER;	
 				}
-			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
 			if (player){	

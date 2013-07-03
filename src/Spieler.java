@@ -32,7 +32,7 @@ public class Spieler{
 	private double aktuelleHP;
 	private double ruestung;
 	private int aktuelleMuenzen;
-	private int aktuelleSchluessel;
+	static int aktuelleSchluessel;
 	private int aktuelleFarbe;
 	private int schildAufladung;
 	private boolean schild;
@@ -139,11 +139,11 @@ public class Spieler{
 					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}
 		else if (checkArray[0]==Interface.TOR){
-			if (aktuelleSchluessel>1){
-				aktuelleSchluessel = aktuelleSchluessel-2;
-				Quests.torAuf();
-			}
-		
+			aktuelleSchluessel = 0;
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
+				//Quests.torAuf();
+				
 		}
 		
 		x=checkArray[1];
@@ -489,7 +489,7 @@ public class Spieler{
 		
 		if (farbe == GELB){
 			if (aktuelleFarbe == BLAU){
-				manaFaktor = Math.round(manaFaktor*1.5);
+				manaFaktor = Math.round(manaFaktor*Interface.EINEINHALB);
 				ruestung = ruestung+Interface.DREISSIG;
 			}
 			else if (aktuelleFarbe == ROT){

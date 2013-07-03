@@ -310,7 +310,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			StdDraw.clear();
 			StdDraw.setXscale(0.0,NEUNHUNDERT);
 			StdDraw.setYscale(0,SECHSHUNDERT);
-			if (Spielfeld.initSpielfeld() == false){
+			if (!Spielfeld.initSpielfeld()){
 				spielGestartet=true;
 				raum=0;
 				level=0;
@@ -350,7 +350,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 */
 	public void keyPressed(KeyEvent k){
 		toCheckpoint=false;
-		if(spielGestartet == true){
+		if(spielGestartet){
 			StdDraw.show(0);
 			/*Key Aktionen:*/
 		     	/*Bewegung nach Rechts*/
@@ -413,7 +413,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 					player[0].moveTo(Spielfeld.getZielpunkt(level,raum)[0], Spielfeld.getZielpunkt(level,raum)[1]);
 				}
 				/*aktion beim Checkpoint*/
-				if (toCheckpoint==true){
+				if (toCheckpoint){
 					gegnerZahl=0;
 					levelDarstellen();
 					player[0].moveTo(checkpointArray[2], checkpointArray[DREI]);
@@ -427,7 +427,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 */
 	public void alleGegnerBewegen(){
 		for (counter=0;counter<gegnerZahl;counter++){
-			if (spielGestartet==true){
+			if (spielGestartet){
 				gegnerAktion(counter);
 			}
 		}
@@ -440,7 +440,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public void gegnerAktion(int id){
 		gegnerAttack=gegner[id].bewegen();
 		if (gegnerAttack[0]==1){
-			if (player[ getPlayerID(gegnerAttack[1],gegnerAttack[2]) ].schadenBekommen( gegner[id].getSchaden() ) ==true){
+			if (player[ getPlayerID(gegnerAttack[1],gegnerAttack[2]) ].schadenBekommen( gegner[id].getSchaden() )){
 				toCheckpoint=true;
 			}
 		}
@@ -457,7 +457,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		}
 		else if (playerAttack[0]==BOSS3){
 			boss3.schadenBekommen( player[0].getSchaden() );
-			if (player[0].schadenBekommen(boss3.getSchaden())==true){
+			if (player[0].schadenBekommen(boss3.getSchaden())){
 				toCheckpoint=true;
 			}
 		}
@@ -817,6 +817,6 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		 * @param richtung Richtung in die der Gegner gerichtet ist
 		 */
 		public void displayGegner(int x, int y, int richtung){
-			StdDraw.picture(ZWANZIG+VIERZIG*x,ZWANZIG+VIERZIG*y, MOBIMG,((-richtung)*NEUNZIG));
+			StdDraw.picture(ZWANZIG+VIERZIG*x,ZWANZIG+VIERZIG*y, MOBIMG,(-richtung)*NEUNZIG);
 	}
 }

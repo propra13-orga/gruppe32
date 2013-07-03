@@ -14,21 +14,36 @@ import javax.swing.JFileChooser;
  * 
  */
 public class Spielfeld {
-//hauptarray fuers spielfeld sotiert nach [level][raum][spalte][reihe] (mehr dimensionen=mehr spass)
+/**
+ * hauptarray fuers spielfeld sotiert nach [level][raum][spalte][reihe] (mehr dimensionen=mehr spass)
+ */
 private static int[][][][] spielfeld = new int [3][3][20][15];
+/**
+ * Level, Raum des Spiels
+ */
 private static int level;
 private static int raum;
+/**
+ * Reihe und Spalte des Spielfelds
+ */
 private static int reihe;
 private  static int spalte;
+
 private static int testChar;
-private static int[][] checkpoint = new int[6][4];
 private static int counter;
+/**
+ * Arrays für Checkpoint, Startpunkt und Zielpunkt
+ */
+private static int[][] checkpoint = new int[6][4];
+private static int[] checkpointReturn = new int[4];
 private static int[][] startpunkt = new int[9][2];
 private static int[] startpunktReturn = new int[2];
 private static int[][] zielpunkt = new int[9][2];
 private static int[] zielpunktReturn = new int[2];
-private static int[] checkpointReturn = new int[4];
 
+/**
+ * Felder neben Ziel/Checkpoint als Konstanten
+ */
 private static final int BEIZIEL = 13;
 private static final int BEICHECKPOINT = 14;
 
@@ -37,8 +52,10 @@ private static BufferedReader br;
 private static File file;
 private static boolean fehlerGefunden;
 
+/**
+ * Fehlertypen
+ */
 private static Exception myException;
-
 private static int exception;
 private static final int FALSCHESZEICHEN = 0;
 private static final int KEINLEERZEICHEN = 1;
@@ -71,7 +88,7 @@ public static boolean initSpielfeld() {
 		br = new BufferedReader(fr);
 		for (level=0; level<Interface.DREI; level++) {
 			//^M (enter)
-			if (br.read()!=13){ 
+			if (br.read()!=Interface.DREIZEHN){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}

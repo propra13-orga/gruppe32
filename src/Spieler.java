@@ -6,7 +6,6 @@
  * 
  *
  */
-
 public class Spieler{
 	
 	public static final double MAXMANA = 10.0;
@@ -124,7 +123,7 @@ public class Spieler{
 			Interface.sieg();
 		}
 		else if (checkArray[0]==Interface.FALLE){
-			if (schadenBekommen(Interface.FUENF)==true){
+			if (schadenBekommen(Interface.FUENF)){
 				Interface.toCheckpoint=true;
 			}
 		}
@@ -209,7 +208,7 @@ public class Spieler{
 	public void sterben(){
 		schildAufladung=0;
 		schild=false;
-		if (schadenBekommen(Interface.VIEL)==true){
+		if (schadenBekommen(Interface.VIEL)){
 			Interface.toCheckpoint=true;
 		}
 	}
@@ -572,7 +571,7 @@ public class Spieler{
 	
 	/**
 	 * 
-	 * @param richtung
+	 * @param richtung Richtung in die angegriffen wird
 	 * @return Return
 	 */
 	public int[] playerAttack(int richtung){

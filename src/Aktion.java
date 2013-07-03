@@ -7,6 +7,9 @@
  */
 public class Aktion{
 
+/**
+ *  Level und Raum initialisieren
+ */
 private int aktuellesLevel = 0;
 private int aktuellerRaum =0;
 private int newFigurX;
@@ -82,7 +85,7 @@ public Aktion(boolean ifPlayer, int newId){
 				 * 14: Y steht in level.txt fuer die Stelle neben dem Checkpoint*/
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.DREIZEHN) 
 				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.VIERZEHN)){ 
-			if (player==true){
+			if (player){
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
@@ -96,7 +99,7 @@ public Aktion(boolean ifPlayer, int newId){
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.VERSTECKTERGANG){
-			if (player == true){
+			if (player){
 				returnArray[0]=Interface.VERSTECKTERGANG;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.VERSTECKTERGANG);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -111,7 +114,7 @@ public Aktion(boolean ifPlayer, int newId){
 		}
 		else if ((Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.START)
 				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
-			if (player==true){
+			if (player){
 				returnArray[0]=Interface.START;
 				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
 			}
@@ -122,7 +125,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
-			if ( player==true){	
+			if ( player){	
 				returnArray[0]=Interface.ZIEL;
 				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
 			}
@@ -134,7 +137,7 @@ public Aktion(boolean ifPlayer, int newId){
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MOB){
 			
-			if (player==true){
+			if (player){
 				returnArray[0]=Interface.MOB;
 			}
 			else{
@@ -145,7 +148,7 @@ public Aktion(boolean ifPlayer, int newId){
 						
 		}	else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FALLE){
 			
-			if (player==true){
+			if (player){
 				returnArray[0]=Interface.FALLE;
 			}
 			else{
@@ -156,7 +159,7 @@ public Aktion(boolean ifPlayer, int newId){
 						
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SIEG){
-			if ( player == true){
+			if ( player){
 				returnArray[0]=Interface.SIEG;
 			}
 			else{
@@ -167,7 +170,7 @@ public Aktion(boolean ifPlayer, int newId){
 		}
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.CHECKPOINT){
-			if (player == true){
+			if (player){
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
@@ -182,7 +185,7 @@ public Aktion(boolean ifPlayer, int newId){
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.STORYTELLER){
-			if (player == true){
+			if (player){
 				Interface.storyteller();
 			}
 			else{
@@ -192,7 +195,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MUENZEN){
-			if (player == true){
+			if (player){
 				returnArray[0]=Interface.MUENZEN;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -207,7 +210,7 @@ public Aktion(boolean ifPlayer, int newId){
 			
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SCHLUESSEL){
-			if (player == true){
+			if (player){
 				returnArray[0]=Interface.SCHLUESSEL;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -221,8 +224,8 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.TOR){
-			if (Quests.torAuf == true){
-				if (player == true){
+			if (Quests.torAuf){
+				if (player){
 					returnArray[0]=Interface.TOR;
 					Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -235,7 +238,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.HPTRANKSHOP;
 			}
 			else{
@@ -246,7 +249,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MANATRANKSHOP){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.MANATRANKSHOP;
 			}
 			else{
@@ -257,7 +260,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEGELB){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.FARBEGELB;
 			}
 			else{
@@ -268,7 +271,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEROT){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.FARBEROT;
 			}
 			else{
@@ -279,7 +282,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEBLAU){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.FARBEBLAU;
 			}
 			else{
@@ -287,7 +290,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANK){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.HPTRANK;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -299,7 +302,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MANATRANK){
-			if (player == true){	
+			if (player){	
 				returnArray[0]=Interface.MANATRANK;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -313,7 +316,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FIGUR){
-			if (player == true){
+			if (player){
 				returnArray[0]=Interface.MAUER;
 				
 
@@ -325,7 +328,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
-			if (player == true){
+			if (player){
 				returnArray[0]=Interface.BOSS3;
 			}
 			else {

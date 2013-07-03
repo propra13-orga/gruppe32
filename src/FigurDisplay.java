@@ -51,7 +51,7 @@ public class FigurDisplay{
 	 */
 	public void displayPlayer(int x, int y,int farbe, boolean schild){
 		if (farbe == Interface.GELB){
-			if (schild==false){
+			if  (!schild){
 				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURGELB);
 			}
 			else{
@@ -60,7 +60,7 @@ public class FigurDisplay{
 			}
 		}
 		else if (farbe == Interface.BLAU){
-			if (schild==false){
+			if (!schild){
 				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURBLAU);
 			}
 			else{
@@ -69,7 +69,7 @@ public class FigurDisplay{
 			}
 		}
 		else if (farbe== Interface.ROT){
-			if (schild==false){
+			if (!schild){
 				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURROT);
 			}
 			else{

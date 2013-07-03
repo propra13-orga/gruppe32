@@ -4,7 +4,6 @@
  * Objekt vom Typ Boss3 (Endgegner) 
  *
  */
-
 public class Boss3{
 	
 	/**

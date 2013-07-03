@@ -4,7 +4,6 @@
  * erstellt Objekt vom Typ Gegner
  *
  */
-
 public class Gegner{
 
 	private double defaultHP;
@@ -59,7 +58,7 @@ public class Gegner{
 	 */
 	public int[] bewegen(){
 		attackReturn[0]=0;
-		if (lebendig==true){
+		if (lebendig){
 			if(type==Interface.BOSS2){
 				randomRichtung();
 			}

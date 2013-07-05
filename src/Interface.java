@@ -721,7 +721,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 						"wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
 				
 			}
-			//Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3)
+			//Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3) (Mauerstück als versteckter Durchgang)
 			else if ((level==0)&(raum==2)){ 
 				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSECHZIG, 
 						"Auch wenn es alle dementieren: In manchen Ausnahmesituationen hilft es,");
@@ -737,7 +737,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 						"deine Gesundheit und dein Mana zu regenerieren! Jeder Trank kostet genau eine Münze!");
 
 			}
-			//Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2)
+			//Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2) (Sammeln von zwei Schlüsseln, sodass Tor aufgeht)
 			else if ((level==1)&(raum==1)){ 
 				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSIEBZIG, 
 						"Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! ");

@@ -357,7 +357,6 @@ public class Spieler{
 		ruestung = DEFAULTRUESTUNG;
 		schild = false;
 		schildAufladung = DEFAULTSCHILDAUFLADUNG;
-		Quests.torAuf = false;
 	}
 	
 	/**

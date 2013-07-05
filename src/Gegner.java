@@ -117,23 +117,24 @@ public class Gegner{
 	public void sterben(){
 		lebendig=false;
 		loot=Math.random();
-		if (loot<Interface.ZUFALL1){
-			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.HPTRANK);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.HPTRANKIMG);
-		}
-		else if (loot<Interface.ZUFALL2){
-			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MANATRANKIMG);
-		}
-		else if ((Interface.level==1)&(Interface.raum==0)&(loot<Interface.ZUFALL3)){
+		if ((Interface.level==1)&(Interface.raum==0)&(loot<Interface.ZUFALL3)){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SCHLUESSEL);
 			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.SCHLUESSELIMG);
 		}
 		else{
-			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MUENZENIMG);
+			if (loot<Interface.ZUFALL1){
+				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.HPTRANK);
+				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.HPTRANKIMG);
+			}
+			else if (loot<Interface.ZUFALL2){
+				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
+				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MANATRANKIMG);
+			}
+			else{
+				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
+				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MUENZENIMG);
+			}
 		}
-		
 	}
 	
 	/** 

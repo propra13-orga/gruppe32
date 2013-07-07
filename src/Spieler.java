@@ -49,6 +49,8 @@ public class Spieler{
 	private int id;
 	private int bewegenReturn;
 	
+	Sound sound;
+	
 	
 	public Spieler(int newId){
 		id = newId;
@@ -72,13 +74,18 @@ public class Spieler{
 	 * @return RETURN
 	 */
 	public int bewegen(int richtung){
+		
+		sound = new Sound();
+		sound.loadSound("muenze", "Sounds/muenze.wav");
+		sound.loadSound("tor", "Sounds/tor.wav");
+		
 		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild,0);
 		bewegenReturn = 0;
 		if (checkArray[0]==Interface.CHECKPOINT){
 			Interface.nextCheckpoint();
 		}
 		else if (checkArray[0]==Interface.MUENZEN){
-			//Sound.soundAbspielen();
+			sound.playSound("muenze");
 			aktuelleMuenzen++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
 					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
@@ -142,8 +149,7 @@ public class Spieler{
 			aktuelleSchluessel = 0;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
 					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
-				//Quests.torAuf();
-				
+			sound.playSound("tor");
 		}
 		
 		x=checkArray[1];

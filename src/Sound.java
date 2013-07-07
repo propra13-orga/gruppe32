@@ -1,44 +1,31 @@
-import java.io.*;
-import java.net.URL;
-import javax.sound.sampled.*;
+import java.applet.*;
+import java.net.*;
+import java.util.*;
+
 
 
 /**
  * Klasse Sound spielt Sounds im Spiel ab
- *
+ * (verwendete Quelle: "Spiele-Programmierung in Java", Version 1.2 (Autor nicht genannt))
  */
-
-/**
- * This enum encapsulates all the sound effects of a game, so as to separate the sound playing
- * codes from the game codes.
- * 1. Define all your sound effect names and the associated wave file.
- * 2. To play a specific sound, simply invoke SoundEffect.SOUND_NAME.play().
- */
-public enum Sound{
-   MUENZESOUND("muenze.wav"),   // muenze
-   TORSOUND("tor.wav");         // tor
-   
-   
-   // Each sound effect has its own clip, loaded with its own sound file.
-   private Clip clip;
-   
-   // Constructor to construct each element of the enum with its own sound file.
-   Sound(String soundFileName) {
-      try {
-         // Use URL (instead of File) to read from disk and JAR.
-         URL url = this.getClass().getClassLoader().getResource("muenze.wav");
-         // Set up an audio input stream piped from the sound file.
-         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-         // Get a clip resource.
-         clip = AudioSystem.getClip();
-         // Open audio clip and load samples from the audio input stream.
-         clip.open(audioInputStream);
-      } catch (UnsupportedAudioFileException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      } catch (LineUnavailableException e) {
-         e.printStackTrace();
-      }
-   }
+public class Sound{
+	Hashtable<String, AudioClip> sounds;
+	
+	public Sound(){
+		sounds = new Hashtable<String, AudioClip>();
+	}
+	
+	public void loadSound(String name, String path){
+		if(sounds.containsKey(name)){
+			return;
+		}
+		
+		URL sound_url = getClass().getClassLoader().getResource(path);
+		sounds.put(name, (AudioClip)Applet.newAudioClip(sound_url));
+	}
+	
+	public void playSound(String name){
+		AudioClip audio = sounds.get(name);
+		audio.play();
+	}
 }

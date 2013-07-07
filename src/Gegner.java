@@ -18,6 +18,7 @@ public class Gegner{
 	private int[] attackReturn = new int[3];
 	private boolean lebendig;
 	private double loot;
+	private double gegnerSchadenAusteilen;
 	private int type;
 	private double rndHelp;
 	
@@ -103,6 +104,11 @@ public class Gegner{
 	 * @param schaden Schaden den der Gegner erleidet
 	 */
 	public void schadenBekommen(double schaden){
+		gegnerSchadenAusteilen=Math.random();
+		if (gegnerSchadenAusteilen>Interface.ZUFALL2){
+			Spieler staticSchadenBekommen = new Spieler(type);
+			staticSchadenBekommen.schadenBekommen(1);
+		}
 		hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
 				*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		stats.displayGegnerHP(hp, defaultHP, x, y);

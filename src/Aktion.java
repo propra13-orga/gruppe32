@@ -116,7 +116,7 @@ public Aktion(boolean ifPlayer, int newId){
 				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
 			if (player){
 				returnArray[0]=Interface.START;
-				StdDraw.picture(Interface.HOEHETEXT,Interface.BREITETEXT8,WEISSIMG);
+				StdDraw.picture(400, 550,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -127,7 +127,7 @@ public Aktion(boolean ifPlayer, int newId){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
 			if ( player){	
 				returnArray[0]=Interface.ZIEL;
-				StdDraw.picture(Interface.HOEHETEXT,Interface.BREITETEXT8,WEISSIMG);
+				StdDraw.picture(400,550,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;

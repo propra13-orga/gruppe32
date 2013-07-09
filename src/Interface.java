@@ -748,9 +748,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			//Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3) (Mauerstück als versteckter Durchgang)
 			else if ((level==0)&(raum==2)){ 
-				StdDraw.text(HOEHETEXT, BREITETEXT1, 
+				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Auch wenn es alle dementieren: In manchen Ausnahmesituationen hilft es,");
-				StdDraw.text(HOEHETEXT, BREITETEXT2, 
+				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"auch mal mit dem Kopf durch die Wand zu gehen!");
 			}
 			//Storyteller vor dem Checkpoint (Level 2, Raum 1)
@@ -776,7 +776,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			else if ((level==2)&(raum==2)){ 
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge ");
-				StdDraw.text(HOEHETEXT, BREITETEXT4, 
+				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"und du kannst beruhigt nach Hause zurückkehren und dich als Sieger feiern lassen.");		
 				StdDraw.text(HOEHETEXT, BREITETEXT1, 
 						"Aber lass dich nicht auf den letzten Metern von den Trollen erwischen!");

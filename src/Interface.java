@@ -118,30 +118,42 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final double ZUFALL2 = 0.66;
 	public static final double ZUFALL3 = 0.90;
 	
-	public static final double VIERTEL = 0.25;
-	public static final double HALBES = 0.5;
-	public static final double DREIVIERTEL = 0.75;
+	public static final double ZUFALL4 = 0.25;
+	public static final double ZUFALL5 = 0.5;
+	public static final double ZUFALL6 = 0.75;
 	public static final double EINEINHALB = 1.5;
 	
+	public static final int ARRAYDREI = 3;
+	public static final int ARRAYVIER = 4;
 	
-	public static final int DREI = 3;
-	public static final int VIER = 4;
-	public static final int FUENF = 5;
-	public static final int SECHS = 6;
-	public static final int SIEBEN = 7;
-	public static final int ACHT = 8;
-	public static final int NEUN = 9;
+	public static final int CHARZIEL = 3;
+	public static final int CHARFALLE = 4;
+	public static final int CHARMOB = 5;
+	public static final int CHARFIGUR = 6;
+	public static final int CHARSIEG = 7;
+	public static final int CHARCHECKPOINT = 8;
+	public static final int CHARSTORYTELLER = 9;
+	public static final int CHARMUENZE =36;
+	public static final int CHARSHOP1 = 83;
+	public static final int CHARSHOP2 = 79;
+	public static final int CHARSHOP3 = 80;
+	public static final int CHARHPTRANKSHOP = 72;
+	
+	
 	public static final int ZEHN = 10;
 	public static final int ZWOELF = 12;
-	public static final int DREIZEHN = 13;
-	public static final int VIERZEHN = 14;
+	public static final int BEIZIEL = 13;
+	public static final int BEICHECKPOINT = 14;
 	public static final int FUENFZEHN = 15;
-	public static final int ZWANZIG = 20;
+	
+	public static final int PIC1 = 20;
+	public static final int PIC2 = 40;
+	
 	public static final int FUENFUNDZWANZIG = 25;
 	public static final int DREISSIG = 30;
 	public static final int ZWEIUNDDREISSIG = 32;
-	public static final int SECHSUNDDREISSIG =36;
-	public static final int VIERZIG = 40;
+	
+	
 	public static final int ZWEIUNDVIERZIG = 42;
 	public static final int DREIUNDVIERZIG = 43;
 	public static final int ACHTUNDVIERZIG = 48;
@@ -150,12 +162,13 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int ZWEIUNDSECHZIG = 62;
 	public static final int SECHSUNDSECHZIG = 66;
 	public static final int EINUNDSIEBZIG = 71;
-	public static final int ZWEIUNDSIEBZIG = 72;
-	public static final int SIEBENUNDSIEBZIG = 77;
-	public static final int NEUNUNDSIEBZIG = 79;
 	public static final int ACHZIG = 80;
+	
+	public static final int SIEBENUNDSIEBZIG = 77;
+	
+	
 	public static final int ZWEIUNDACHZIG = 82;
-	public static final int DREIUNDACHZIG = 83;
+	
 	public static final int VIERUNDACHZIG = 84;
 	public static final int SECHSUNDACHZIG = 86;
 	public static final int ACHTUNDACHZIG = 88;
@@ -176,20 +189,29 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int DREIHUNDERTFUENFZIG = 350;
 	public static final int DREIHUNDERTSIEBZIG = 370;
 	public static final int DREIHUNDERTNEUNZIG = 390;
-	public static final int VIERHUNDERT = 400;
+	
+	public static final int HOEHETEXT = 400;
+	public static final int BREITETEXT1 = 530;
+	public static final int BREITETEXT2 = 540;
+	public static final int BREITETEXT3 = 550;
+	public static final int BREITETEXT4 = 560;
+	public static final int BREITETEXT5 = 570;
+	public static final int BREITETEXT6 = 450;
+	public static final int BREITETEXT7 = 480;
+	public static final int BREITETEXT8 = 500;
+	
+	public static final int BREITEBILDGROSS = 400;
+	public static final int HOEHEBILDGROSS = 300;
+	
+		
 	public static final int VIERHUNDERTZEHN = 410;
 	public static final int VIERHUNDERTDREISSIG = 430;
-	public static final int VIERHUNDERTFUENFZIG = 450;
 	public static final int VIERHUNDERTSIEBZIG = 470;
-	public static final int VIERHUNDERTACHZIG = 480;
 	public static final int VIERHUNDERTNEUNZIG = 490;
-	public static final int FUENFHUNDERT = 500;
 	public static final int FUENFHUNDERTZEHN = 510;
-	public static final int FUENFHUNDERTDREISSIG = 530;
-	public static final int FUENFHUNDERTVIERZIG = 540;
-	public static final int FUENFHUNDERTFUENFZIG = 550;
-	public static final int FUENFHUNDERTSECHZIG = 560;
-	public static final int FUENFHUNDERTSIEBZIG = 570;
+	
+	
+	
 	public static final int SECHSHUNDERT = 600;
 	public static final int SECHSHUNDERTZEHN = 610;
 	public static final int ACHTHUNDERTZEHN = 810;
@@ -197,6 +219,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int NEUNHUNDERT = 900;
 	public static final int NEUNHUNDERTZWANZIG = 920;
 	public static final int VIEL = 1000000000;
+	
+	public static final int SPALTEN = 20;
+	public static final int REIHEN = 13;
 	
 	/**
 	 * Spieler- und Gegneranzahl
@@ -208,7 +233,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 * Objekte vom Typ Spieler, Gegner und Boss
 	 */
 	private Spieler[] player = new Spieler[2];
-	private Gegner[] gegner = new Gegner[20];
+	private Gegner[] gegner = new Gegner[SPALTEN];
 	private Boss3 boss3;
 	
 	
@@ -223,11 +248,11 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	private int checkStartZiel;
 	
 	
-	private int[] gegnerAttack = new int[3];
-	private int[] playerAttack = new int[3];
+	private int[] gegnerAttack = new int[ARRAYDREI];
+	private int[] playerAttack = new int[ARRAYDREI];
 	
 	private static int aktiveCheckpoint=0;
-	private static int[] checkpointArray = new int[4];
+	private static int[] checkpointArray = new int[ARRAYVIER];
 	
 	public static boolean toCheckpoint;
 	
@@ -259,7 +284,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		//neuer Button
 		starten = new JButton("Spiel starten");
 		//legt Groesse und Position fest
-		starten.setBounds(ZWEIHUNDERTSECHZIG,0,EINHUNDERTSECHZIG,VIERZIG); 
+		starten.setBounds(ZWEIHUNDERTSECHZIG,0,EINHUNDERTSECHZIG,PIC2); 
 		//damit was passiert, wenn man Buttons drueckt
 		starten.addActionListener(StdDraw.frame); 
 		starten.setFocusable(false);
@@ -269,7 +294,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		// Button "Beenden"
 		//folgendes analog zu starten-Button (mit geaenderten Koordinaten)
 		ende = new JButton("Beenden");
-		ende.setBounds(VIERHUNDERTFUENFZIG,0,EINHUNDERTSECHZIG,VIERZIG);
+		ende.setBounds(BREITETEXT6,0,EINHUNDERTSECHZIG,PIC2);
 		ende.addActionListener(StdDraw.frame);
 		StdDraw.frame.add(ende);
 		
@@ -416,7 +441,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				if (toCheckpoint){
 					gegnerZahl=0;
 					levelDarstellen();
-					player[0].moveTo(checkpointArray[2], checkpointArray[DREI]);
+					player[0].moveTo(checkpointArray[2], checkpointArray[ARRAYDREI]);
 				}				
 				
 			StdDraw.show();
@@ -485,8 +510,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		gegnerZahl=0;
 		//stellt StdDraw auf eine besser handhabbare skala um
 		StdDraw.show(0);
-		for (spalte=0;spalte<ZWANZIG;spalte++) {
-			for(reihe=0;reihe<DREIZEHN;reihe++) {
+		for (spalte=0;spalte<SPALTEN;spalte++) {
+			for(reihe=0;reihe<REIHEN;reihe++) {
 				// stellt an allen orten das dem wert entsprechende bild dar
 				if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BODEN
 						/*
@@ -494,34 +519,34 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 						 * 13: X steht in level.txt fuer die Stelle neben dem Ziel
 						 * 14: Y steht in level.txt fuer die Stelle neben dem Checkpoint
 						 */
-						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==DREIZEHN) 
-						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==VIERZEHN)){
+						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BEIZIEL) 
+						|(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BEICHECKPOINT)){
 																					
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, BODENIMG); 
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, BODENIMG); 
 				}
 				/* Mauer*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MAUER){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, MAUERIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, MAUERIMG);
 				}
 				/* Versteckter Gang*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==VERSTECKTERGANG){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, VERSTECKTERGANGIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, VERSTECKTERGANGIMG);
 				}
 				/* Startpunkt*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)== START){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, STARTIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, STARTIMG);
 				}
 				/*Zielpunkt*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==ZIEL){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, ZIELIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, ZIELIMG);
 				}
 				/*Falle*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FALLE){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, FALLEIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FALLEIMG);
 				}
 				/*Mob*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MOB){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, MOBIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, MOBIMG);
 					gegner[gegnerZahl] = new Gegner(ZEHN, spalte, reihe, OBEN, 0, 2, gegnerZahl,MOB);
 					gegnerZahl++;
 				}
@@ -533,84 +558,84 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				/*Sieg*/
 				else if (Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SIEG){
 
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, SIEGIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SIEGIMG);
 				}
 				/*Checkpoint*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==CHECKPOINT){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, CHECKPOINTIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, CHECKPOINTIMG);
 				}
 				/*blaue Spielfigur*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FARBEBLAU){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, FARBEBLAUIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FARBEBLAUIMG);
 				}
 				/*gelbe Spielfigur*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FARBEGELB){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, FARBEGELBIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FARBEGELBIMG);
 				}
 				/*rote Spielfigur*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FARBEROT){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, FARBEROTIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FARBEROTIMG);
 				}
 				/* Storyteller*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==STORYTELLER){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, STORYTELLERIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, STORYTELLERIMG);
 				}
 				/*Muenze*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MUENZEN){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, MUENZENIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, MUENZENIMG);
 				}
 				/* Shop erster Teil*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SHOP1){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, SHOP1IMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SHOP1IMG);
 				}
 				/* Shop zweiter Teil*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SHOP2){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, SHOP2IMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SHOP2IMG);
 				}
 				/* Shop dritter Teil*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SHOP3){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, SHOP3IMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SHOP3IMG);
 				}
 				/* HP-Trank*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==HPTRANK){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, HPTRANKIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, HPTRANKIMG);
 				}
 				/* Manatrank*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MANATRANK){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, MANATRANKIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, MANATRANKIMG);
 				}
 				/*HP-Trankshop*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==HPTRANKSHOP){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, HPTRANKIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, HPTRANKIMG);
 				}
 				/* Mana-Trankshop*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==MANATRANKSHOP){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, MANATRANKIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, MANATRANKIMG);
 				}
 				/*Boss 1*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS1){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, BOSS1IMG);
-					gegner[gegnerZahl] = new Gegner(ZWANZIG, spalte, reihe, LINKS, 0, VIER, gegnerZahl,BOSS1);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, BOSS1IMG);
+					gegner[gegnerZahl] = new Gegner(SPALTEN, spalte, reihe, LINKS, 0, ARRAYVIER, gegnerZahl,BOSS1);
 					gegnerZahl++;
 				}
 				/*Boss 2*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS2){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, BOSS2IMG);
-					gegner[gegnerZahl] = new Gegner(FUENFUNDZWANZIG, spalte, reihe, RECHTS, 0, VIER, gegnerZahl,BOSS2);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, BOSS2IMG);
+					gegner[gegnerZahl] = new Gegner(FUENFUNDZWANZIG, spalte, reihe, RECHTS, 0, ARRAYVIER, gegnerZahl,BOSS2);
 					gegnerZahl++;
 				}
 				/* Boss 3*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==BOSS3){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, BOSS3IMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, BOSS3IMG);
 					boss3 = new Boss3(spalte,reihe);
 				}
 				/*Schluessel*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SCHLUESSEL){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, SCHLUESSELIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SCHLUESSELIMG);
 				}
 				/* Tor*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==TOR){
-					StdDraw.picture(ZWANZIG+VIERZIG*spalte,ZWANZIG+VIERZIG*reihe, TORIMG);
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, TORIMG);
 				}
 			}
 			
@@ -675,7 +700,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		 * 
 		 */
 		public static void gameOver(){
-			StdDraw.picture(VIERHUNDERT,DREIHUNDERT, GAMEOVERIMG);
+			StdDraw.picture(BREITEBILDGROSS,HOEHEBILDGROSS, GAMEOVERIMG);
 			spielGestartet=false;			
 		}
 		
@@ -688,7 +713,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		 * 
 		 */
 		public static void sieg(){
-			StdDraw.picture(VIERHUNDERT,DREIHUNDERT, GEWONNENIMG);
+			StdDraw.picture(BREITEBILDGROSS,HOEHEBILDGROSS, GEWONNENIMG);
 			spielGestartet=false;			
 		}
 		
@@ -704,56 +729,56 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		public static void storyteller(){
 			//Storyteller am Anfang (Level 1, Raum 1)
 			if ((level==0)&(raum==0)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSECHZIG,
+				StdDraw.text(HOEHETEXT, BREITETEXT4,
 						"Früher war dies ein friedliches Plätzchen, aber dann kamen die Trolle und legten Fallen aus... ");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTVIERZIG, "Und das nur, um ihr Essen besser würzen zu können!");
+				StdDraw.text(HOEHETEXT, BREITETEXT2, "Und das nur, um ihr Essen besser würzen zu können!");
 									
 			}
 			//Storyteller vor dem Checkpoint (Level 1, Raum 2)
 			else if ((level==0)&(raum==1)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSIEBZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, " +
 						"seit es die fiesen Trolle hier runter geschafft haben.");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTFUENFZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"Diese rote Flagge da ist ein CHECKPOINT! Wenn du sie berührst und im weiteren Verlauf deines " +
 						"Abenteuers stirbst,");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTDREISSIG,
+				StdDraw.text(HOEHETEXT, BREITETEXT1,
 						"wirst du hier wiederbelebt werden. Und, habe ich zu viel versprochen? Die Idee ist ja wohl genial!");
 				
 			}
 			//Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3) (Mauerstück als versteckter Durchgang)
 			else if ((level==0)&(raum==2)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSECHZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT1, 
 						"Auch wenn es alle dementieren: In manchen Ausnahmesituationen hilft es,");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTVIERZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT2, 
 						"auch mal mit dem Kopf durch die Wand zu gehen!");
 			}
 			//Storyteller vor dem Checkpoint (Level 2, Raum 1)
 			else if ((level==1)&(raum==0)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSECHZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT4, 
 						"Das hier ist der einzige Shop hier unten. Decke dich gut ein, denn du wirst " +
 						"nicht so schnell wieder die Möglichkeit finden,");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTVIERZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT2, 
 						"deine Gesundheit und dein Mana zu regenerieren! Jeder Trank kostet genau eine Münze!");
 
 			}
 			//Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2) (Sammeln von zwei Schlüsseln, sodass Tor aufgeht)
 			else if ((level==1)&(raum==1)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSIEBZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! ");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTFUENFZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"Die Trolle haben es errichtet, wer sonst! Aber sie haben auch die Schlüssel dafür...");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTDREISSIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT1, 
 						"Man braucht 2 Schlüssel, um das Tor zu öffen, denn es ist ein doppelt gesichertes Tor!");
 				
 			}
 			//Storyteller im Endraum (Level 3, Raum 3)
 			else if ((level==2)&(raum==2)){ 
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTSIEBZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge ");
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTFUENFZIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT4, 
 						"und du kannst beruhigt nach Hause zurückkehren und dich als Sieger feiern lassen.");		
-				StdDraw.text(VIERHUNDERT, FUENFHUNDERTDREISSIG, 
+				StdDraw.text(HOEHETEXT, BREITETEXT1, 
 						"Aber lass dich nicht auf den letzten Metern von den Trollen erwischen!");
 				
 			}		
@@ -817,6 +842,6 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		 * @param richtung Richtung in die der Gegner gerichtet ist
 		 */
 		public void displayGegner(int x, int y, int richtung){
-			StdDraw.picture(ZWANZIG+VIERZIG*x,ZWANZIG+VIERZIG*y, MOBIMG,(-richtung)*NEUNZIG);
+			StdDraw.picture(PIC1+PIC2*x,PIC1+PIC2*y, MOBIMG,(-richtung)*NEUNZIG);
 	}
 }

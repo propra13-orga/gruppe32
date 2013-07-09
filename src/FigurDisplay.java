@@ -19,7 +19,7 @@ public class FigurDisplay{
 	 */
 	public void figurBewegen(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
 		
-		StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*vonX,Interface.ZWANZIG+Interface.VIERZIG*vonY, Interface.BODENIMG);
+		StdDraw.picture(Interface.PIC1+Interface.PIC2*vonX,Interface.PIC1+Interface.PIC2*vonY, Interface.BODENIMG);
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), vonX, vonY, Interface.BODEN);
 		displayPlayer(nachX,nachY,farbe, schild);
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), nachX, nachY, Interface.FIGUR);
@@ -36,7 +36,7 @@ public class FigurDisplay{
 	 */
 	public void gegnerBewegen(int vonX, int vonY, int nachX, int nachY, int richtung, int type){
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), vonX, vonY, Interface.BODEN);
-		StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*vonX,Interface.ZWANZIG+Interface.VIERZIG*vonY, Interface.BODENIMG);
+		StdDraw.picture(Interface.PIC1+Interface.PIC2*vonX,Interface.PIC1+Interface.PIC2*vonY, Interface.BODENIMG);
 		displayGegner(nachX,nachY,richtung,type);
 		
 		
@@ -52,28 +52,28 @@ public class FigurDisplay{
 	public void displayPlayer(int x, int y,int farbe, boolean schild){
 		if (farbe == Interface.GELB){
 			if  (!schild){
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURGELB);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURGELB);
 			}
 			else{
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, 
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURGELBSCHILD);
 			}
 		}
 		else if (farbe == Interface.BLAU){
 			if (!schild){
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURBLAU);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURBLAU);
 			}
 			else{
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, 
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURBLAUSCHILD);
 			}
 		}
 		else if (farbe== Interface.ROT){
 			if (!schild){
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.FIGURROT);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURROT);
 			}
 			else{
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, 
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURROTSCHILD);
 			}
 		}
@@ -90,17 +90,17 @@ public class FigurDisplay{
 	public void displayGegner(int x, int y, int richtung, int type){
 		if (type==Interface.MOB){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MOB);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, 
+			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y,
 					Interface.MOBIMG, richtung*Interface.NEUNZIG);
 		}
 		else if (type==Interface.BOSS1){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.BOSS1);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, 
+			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 					Interface.BOSS1IMG, richtung*Interface.NEUNZIG);
 		}
 		else if (type==Interface.BOSS2){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.BOSS2);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y,
+			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y,
 					Interface.BOSS2IMG, richtung*Interface.NEUNZIG);
 		}
 		

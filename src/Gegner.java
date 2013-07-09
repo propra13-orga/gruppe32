@@ -88,8 +88,8 @@ public class Gegner{
 			}
 			else if(aktionReturn[0]==Interface.FIGUR){
 				attackReturn[0]=1;
-				attackReturn[1]=aktionReturn[Interface.DREI];
-				attackReturn[2]=aktionReturn[Interface.VIER];
+				attackReturn[1]=aktionReturn[Interface.ARRAYDREI];
+				attackReturn[2]=aktionReturn[Interface.ARRAYVIER];
 			
 			}
 				stats.displayGegnerHP(hp, defaultHP, x, y);
@@ -125,20 +125,20 @@ public class Gegner{
 		loot=Math.random();
 		if ((Interface.level==1)&(Interface.raum==0)&(loot<Interface.ZUFALL3)){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SCHLUESSEL);
-			StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.SCHLUESSELIMG);
+			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.SCHLUESSELIMG);
 		}
 		else{
 			if (loot<Interface.ZUFALL1){
 				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.HPTRANK);
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.HPTRANKIMG);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.HPTRANKIMG);
 			}
 			else if (loot<Interface.ZUFALL2){
 				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MANATRANK);
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MANATRANKIMG);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.MANATRANKIMG);
 			}
 			else{
 				Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.MUENZEN);
-				StdDraw.picture(Interface.ZWANZIG+Interface.VIERZIG*x,Interface.ZWANZIG+Interface.VIERZIG*y, Interface.MUENZENIMG);
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.MUENZENIMG);
 			}
 		}
 	}
@@ -199,13 +199,13 @@ public class Gegner{
 	 */
 	public void randomRichtung(){
 		rndHelp=Math.random();
-		if (rndHelp<Interface.VIERTEL){
+		if (rndHelp<Interface.ZUFALL1){
 			richtung = Interface.LINKS;
 		}
-		else if (rndHelp<Interface.HALBES){
+		else if (rndHelp<Interface.ZUFALL2){
 			richtung = Interface.RECHTS;
 		}
-		else if (rndHelp<Interface.DREIVIERTEL){
+		else if (rndHelp<Interface.ZUFALL3){
 			richtung = Interface.OBEN;
 		}
 		else{

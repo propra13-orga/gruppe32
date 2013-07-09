@@ -21,12 +21,12 @@ public class StatDisplay{
 	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, 
 			double hp, double mana, int muenzen, int schluessel){
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(Interface.NEUNHUNDERTZWANZIG,Interface.DREIHUNDERT, Interface.EINHUNDERT, Interface.FUENFHUNDERT);
+		StdDraw.filledRectangle(Interface.NEUNHUNDERTZWANZIG,Interface.DREIHUNDERT, Interface.EINHUNDERT, Interface.BREITETEXT8);
 		StdDraw.setPenColor();
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.FUENFHUNDERTZEHN, "Leben:"+leben);
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTNEUNZIG, "Schaden:"+schaden);
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTSIEBZIG, "Ruestung:"+ruestung);
-		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTFUENFZIG, "Manafaktor:"+manafaktor);
+		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.BREITETEXT6, "Manafaktor:"+manafaktor);
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTDREISSIG,"Raum:" +
 				" "+(Interface.getLevel()+1)+"-"+(Interface.getRaum()+1));
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTZEHN, "HP:"+hp);
@@ -56,13 +56,13 @@ public class StatDisplay{
 	public void displayPlayerHP(double hp){	
 		for (counter=1; counter<=Spieler.MAXHP; counter++){
 			if ((counter>hp)&(hp>counter-1)){
-				StdDraw.picture(-Interface.ZEHN+Interface.ZWANZIG*counter,Interface.SECHSHUNDERTZEHN,Interface.HALFHEARTIMG);
+				StdDraw.picture(-Interface.ZEHN+Interface.PIC1*counter,Interface.SECHSHUNDERTZEHN,Interface.HALFHEARTIMG);
 			}
 			else if(counter<=hp){
-				StdDraw.picture(-Interface.ZEHN+Interface.ZWANZIG*counter,Interface.SECHSHUNDERTZEHN,Interface.FULLHEARTIMG);
+				StdDraw.picture(-Interface.ZEHN+Interface.PIC1*counter,Interface.SECHSHUNDERTZEHN,Interface.FULLHEARTIMG);
 			}
 			else{
-				StdDraw.picture(-Interface.ZEHN+Interface.ZWANZIG*counter,Interface.SECHSHUNDERTZEHN,Interface.EMPTYHEARTIMG);
+				StdDraw.picture(-Interface.ZEHN+Interface.PIC1*counter,Interface.SECHSHUNDERTZEHN,Interface.EMPTYHEARTIMG);
 			}
 			
 		}
@@ -79,15 +79,15 @@ public class StatDisplay{
 	public void displayPlayerMana(double mana){	
 		for (counter=1; counter<=Spieler.MAXMANA; counter++){
 			if ((counter>mana)&(mana>counter-1)){
-				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.ZWANZIG*counter,
+				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.PIC1*counter,
 						Interface.SECHSHUNDERTZEHN,Interface.HALFMANAIMG);
 			}
 			else if(counter<=mana){
-				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.ZWANZIG*counter,
+				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.PIC1*counter,
 						Interface.SECHSHUNDERTZEHN,Interface.FULLMANAIMG);
 			}
 			else{
-				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.ZWANZIG*counter,
+				StdDraw.picture(Interface.ACHTHUNDERTZEHN-Interface.PIC1*counter,
 						Interface.SECHSHUNDERTZEHN,Interface.EMPTYMANAIMG);
 			}
 			
@@ -105,12 +105,12 @@ public class StatDisplay{
 		if (hp>=0){
 			StdDraw.show(0);
 			StdDraw.setPenColor(StdDraw.GRAY);
-			StdDraw.filledRectangle(Interface.ZWANZIG+Interface.VIERZIG*x,
-					Interface.ZWANZIG+Interface.VIERZIG*y+Interface.ZWOELF, Interface.FUENFZEHN, 2);
+			StdDraw.filledRectangle(Interface.PIC1+Interface.PIC2*x,
+					Interface.PIC1+Interface.PIC2*y+Interface.ZWOELF, Interface.FUENFZEHN, 2);
 			StdDraw.setPenColor(StdDraw.GREEN);
 			double mod =  (hp/defaulthp)*Interface.FUENFZEHN;
-			StdDraw.filledRectangle(Interface.ZWANZIG+Interface.VIERZIG*x,
-					Interface.ZWANZIG+Interface.VIERZIG*y+Interface.ZWOELF, mod, 2);
+			StdDraw.filledRectangle(Interface.PIC1+Interface.PIC2*x,
+					Interface.PIC1+Interface.PIC2*y+Interface.ZWOELF, mod, 2);
 			StdDraw.setPenColor();
 			StdDraw.show(0);
 		}

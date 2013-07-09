@@ -17,7 +17,7 @@ public class Spielfeld {
 /**
  * hauptarray fuers spielfeld sotiert nach [level][raum][spalte][reihe] (mehr dimensionen=mehr spass)
  */
-private static int[][][][] spielfeld = new int [3][3][20][15];
+private static int[][][][] spielfeld = new int [Interface.ARRAYDREI][Interface.ARRAYDREI][20][15];
 /**
  * Level, Raum des Spiels
  */
@@ -86,34 +86,34 @@ public static boolean initSpielfeld() {
 		
 		fr = new FileReader(file);
 		br = new BufferedReader(fr);
-		for (level=0; level<Interface.DREI; level++) {
+		for (level=0; level<Interface.ARRAYDREI; level++) {
 			//^M (enter)
-			if (br.read()!=Interface.DREIZEHN){ 
+			if (br.read()!=Interface.BEIZIEL){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 				br.read();
 				//^M (enter)
-			if (br.read()!=Interface.DREIZEHN){ 
+			if (br.read()!=Interface.BEICHECKPOINT){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 					br.read();
-			for (raum=0; raum<Interface.DREI; raum++) {
+			for (raum=0; raum<Interface.ARRAYDREI; raum++) {
 				 //^M (enter)
-				if (br.read()!=Interface.DREIZEHN){
+				if (br.read()!=Interface.BEIZIEL){
 						exception = KEINELEERZEILE;
 						throw myException;
 					}
 					br.read();
 				for (reihe=Interface.ZWOELF; reihe>=0; reihe--) {
 					//^M (enter)
-				if (br.read()!=Interface.DREIZEHN){ 
+				if (br.read()!=Interface.BEIZIEL){ 
 					exception = KEINZEILENUMBRUCH;
 					throw myException;
 				}
 				br.read();
-					for (spalte=0; spalte<Interface.ZWANZIG; spalte++) {
+					for (spalte=0; spalte<Interface.SPALTEN; spalte++) {
 						//space
 						if (br.read()!= Interface.ZWEIUNDDREISSIG){ 
 							exception = KEINLEERZEICHEN;
@@ -137,58 +137,58 @@ public static boolean initSpielfeld() {
 							spielfeld[level][raum][spalte][reihe]=Interface.START;	
 						}
 						// 3
-						else if (testChar-Interface.ACHTUNDVIERZIG ==Interface.DREI){  
+						else if (testChar-Interface.ACHTUNDVIERZIG ==Interface.CHARZIEL){  
 							spielfeld[level][raum][spalte][reihe]=Interface.ZIEL;
 						}
 						// 5
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.FUENF){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARMOB){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MOB;
 						}
 						// 4
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.VIER){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARFALLE){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.FALLE;
 						}
 						// 6
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.SECHS){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARFIGUR){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.FIGUR;
 							if (counter==0){
 							setCheckpoint(level*2,level,raum,spalte,reihe);
-							counter=counter-Interface.DREI;
+							counter=counter-Interface.ARRAYDREI;
 							}
 							counter++;
-							setStartpunkt((level*Interface.DREI)+raum,spalte,reihe);
+							setStartpunkt((level*Interface.ARRAYDREI)+raum,spalte,reihe);
 						}
 						// 7
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.SIEBEN){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARSIEG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SIEG;
 						}
 						// 8
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.ACHT){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARCHECKPOINT){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.CHECKPOINT;
 							setCheckpoint(level*2+1,level,raum,spalte,reihe);
 						}
 						// 9
-						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.NEUN){ 
+						else if (testChar-Interface.ACHTUNDVIERZIG == Interface.CHARSTORYTELLER){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.STORYTELLER;
 						}
 						// $
-						else if (testChar == Interface.SECHSUNDDREISSIG){ 
+						else if (testChar == Interface.CHARMUENZE){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MUENZEN;
 						}
 						// S
-						else if (testChar == Interface.DREIUNDACHZIG){ 
+						else if (testChar == Interface.CHARSHOP1){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP1; 
 						}
 						// O
-						else if (testChar == Interface.NEUNUNDSIEBZIG){ 
+						else if (testChar == Interface.CHARSHOP2){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP2; 
 						}
 						// P
-						else if (testChar == Interface.ACHZIG){ 
+						else if (testChar == Interface.CHARSHOP3){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.SHOP3; 
 						}
 						// H
-						else if (testChar == Interface.ZWEIUNDSIEBZIG){ 
+						else if (testChar == Interface.CHARHPTRANKSHOP){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.HPTRANKSHOP; 
 						}
 						// M
@@ -210,7 +210,7 @@ public static boolean initSpielfeld() {
 						// X
 						else if (testChar == Interface.ACHTUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=BEIZIEL;
-							setZielpunkt((level*Interface.DREI)+raum,spalte,reihe);
+							setZielpunkt((level*Interface.ARRAYDREI)+raum,spalte,reihe);
 						}
 						// Y
 						else if (testChar == Interface.NEUNUNDACHZIG){ 
@@ -255,35 +255,35 @@ public static boolean initSpielfeld() {
 		}
 		}
 		catch(FileNotFoundException e){
-			StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "FileNException");
+			StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8, "FileNException");
 		}
 		catch(IOException e){
-			StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "IOException");
+			StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8, "IOException");
 		}
 		catch(Exception e){
 			fehlerGefunden = true;
 			if (exception == FALSCHESZEICHEN){
-				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, 
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8, 
 						"Ungültiges Zeichen. "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT6, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINLEERZEICHEN){
-				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT,
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8,
 						"Kein Leerzeichen vor "+(level+1)+"-"+(raum+1)+"::"+(spalte+1)+","+(reihe+1));
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT6, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINZEILENUMBRUCH){
-				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, 
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8, 
 						"Kein Zeilenumbruch vor "+(level+1)+"-"+(raum+1)+":: Reihe"+(reihe+1));
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTACHZIG,
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT7,
 						"oder zusätzliches Zeichen am vohrigen Reihenende");
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT6, "Für genaue Level-Regeln levelReadme lesen");
 			}
 			else if(exception == KEINELEERZEILE){
-				StdDraw.text(Interface.VIERHUNDERT,Interface.FUENFHUNDERT, "Fehlende Leerzeile vor "+(level+1)+"-"+(raum+1));
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTACHZIG, 
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT8, "Fehlende Leerzeile vor "+(level+1)+"-"+(raum+1));
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT7, 
 						"oder zusätzliches Zeichen am vohrigen Reihenende");
-				StdDraw.text(Interface.VIERHUNDERT,Interface.VIERHUNDERTFUENFZIG, "Für genaue Level-Regeln levelReadme lesen");
+				StdDraw.text(Interface.HOEHETEXT,Interface.BREITETEXT6, "Für genaue Level-Regeln levelReadme lesen");
 			}
 
 		}
@@ -302,7 +302,7 @@ public static void setCheckpoint(int newCheckpoint, int level, int raum, int x, 
 	checkpoint[newCheckpoint][0]=level;
 	checkpoint[newCheckpoint][1]=raum;
 	checkpoint[newCheckpoint][2]=x;
-	checkpoint[newCheckpoint][Interface.DREI]=y;
+	checkpoint[newCheckpoint][Interface.ARRAYDREI]=y;
 }
 
 /**
@@ -332,7 +332,7 @@ public static void setStartpunkt(int newStartpunkt,int x,int y){
  * @return Startpunkt
  */
 public static int[] getStartpunkt(int level, int raum){
-	startpunktReturn = startpunkt[level*Interface.DREI+raum];
+	startpunktReturn = startpunkt[level*Interface.ARRAYDREI+raum];
 	return startpunktReturn;
 }
 
@@ -353,7 +353,7 @@ public static void setZielpunkt(int newzielpunkt,int x,int y){
  * @return Zielpunkt
  */
 public static int[] getZielpunkt(int level, int raum){
-	zielpunktReturn = zielpunkt[level*Interface.DREI+raum];
+	zielpunktReturn = zielpunkt[level*Interface.ARRAYDREI+raum];
 	return zielpunktReturn;
 }
 

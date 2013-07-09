@@ -130,7 +130,7 @@ public class Spieler{
 			Interface.sieg();
 		}
 		else if (checkArray[0]==Interface.FALLE){
-			if (schadenBekommen(Interface.FUENF)){
+			if (schadenBekommen(Interface.CHARMOB)){
 				Interface.toCheckpoint=true;
 			}
 		}
@@ -499,7 +499,7 @@ public class Spieler{
 			}
 			else if (aktuelleFarbe == ROT){
 				schaden = schaden/Interface.EINEINHALB;
-				ruestung = ruestung+Interface.VIERZIG;
+				ruestung = ruestung+Interface.PIC2;
 			}
 			aktuelleFarbe=GELB;
 		}
@@ -524,7 +524,7 @@ public class Spieler{
 				ruestung = ruestung-Interface.ZEHN;
 			}
 			else if (aktuelleFarbe == GELB){
-				ruestung = ruestung-Interface.VIERZIG;
+				ruestung = ruestung-Interface.PIC2;
 				schaden = schaden*Interface.EINEINHALB;
 			}
 			aktuelleFarbe=ROT;

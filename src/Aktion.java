@@ -83,8 +83,8 @@ public Aktion(boolean ifPlayer, int newId){
 				 * 13 und 14 sind Hilfselemente um an bestimmte Punkte zurueck zu kehren
 				 * 13: X steht in level.txt fuer die Stelle neben dem Ziel
 				 * 14: Y steht in level.txt fuer die Stelle neben dem Checkpoint*/
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.DREIZEHN) 
-				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.VIERZEHN)){ 
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BEIZIEL) 
+				|(Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BEICHECKPOINT)){ 
 			if (player){
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
@@ -116,7 +116,7 @@ public Aktion(boolean ifPlayer, int newId){
 				&((aktuellerRaum!=0)|(aktuellesLevel!=0))){
 			if (player){
 				returnArray[0]=Interface.START;
-				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
+				StdDraw.picture(Interface.HOEHETEXT,Interface.BREITETEXT8,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -127,7 +127,7 @@ public Aktion(boolean ifPlayer, int newId){
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
 			if ( player){	
 				returnArray[0]=Interface.ZIEL;
-				StdDraw.picture(Interface.VIERHUNDERT,Interface.FUENFHUNDERTSECHZIG,WEISSIMG);
+				StdDraw.picture(Interface.HOEHETEXT,Interface.BREITETEXT8,WEISSIMG);
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -321,8 +321,8 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 			else {
 				returnArray[0]=Interface.FIGUR;
-				returnArray[Interface.DREI]=newFigurX;
-				returnArray[Interface.VIER]=newFigurY;
+				returnArray[Interface.ARRAYDREI]=newFigurX;
+				returnArray[Interface.ARRAYVIER]=newFigurY;
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){

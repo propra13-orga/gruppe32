@@ -88,34 +88,34 @@ public static boolean initSpielfeld() {
 		br = new BufferedReader(fr);
 		for (level=0; level<Interface.ARRAYDREI; level++) {
 			//^M (enter)
-			if (br.read()!=Interface.BEIZIEL){ 
+			if (br.read()!=13){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 				br.read();
 				//^M (enter)
-			if (br.read()!=Interface.BEICHECKPOINT){ 
+			if (br.read()!=13){ 
 					exception = KEINELEERZEILE;
 					throw myException;
 				}
 					br.read();
 			for (raum=0; raum<Interface.ARRAYDREI; raum++) {
 				 //^M (enter)
-				if (br.read()!=Interface.BEIZIEL){
+				if (br.read()!=13){
 						exception = KEINELEERZEILE;
 						throw myException;
 					}
 					br.read();
 				for (reihe=Interface.ZWOELF; reihe>=0; reihe--) {
 					//^M (enter)
-				if (br.read()!=Interface.BEIZIEL){ 
+				if (br.read()!=13){ 
 					exception = KEINZEILENUMBRUCH;
 					throw myException;
 				}
 				br.read();
 					for (spalte=0; spalte<Interface.SPALTEN; spalte++) {
 						//space
-						if (br.read()!= Interface.ZWEIUNDDREISSIG){ 
+						if (br.read()!= 32){ 
 							exception = KEINLEERZEICHEN;
 							throw myException;
 						}

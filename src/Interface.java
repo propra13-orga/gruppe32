@@ -186,6 +186,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int ZWEIHUNDERTFUENFZIG = 250;
 	public static final int ZWEIHUNDERTSECHZIG = 260;	
 	public static final int DREIHUNDERT = 300;
+	public static final int DREIHUNDERTDREISSIG = 330;
 	public static final int DREIHUNDERTFUENFZIG = 350;
 	public static final int DREIHUNDERTSIEBZIG = 370;
 	public static final int DREIHUNDERTNEUNZIG = 390;
@@ -262,6 +263,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 */
 	public static JButton starten;
 	public static JButton ende;
+	
 	/**
 	 * Reihe und Spalte für das Spielfeld
 	 */

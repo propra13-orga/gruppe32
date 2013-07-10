@@ -118,10 +118,11 @@ public class Gegner{
 	}
 	/**
 	 * Gegner stirbt, anstelle des Gegners erscheint ein Manatrank, HPTrank oder eine Muenze
-	 *  
+	 * Spieler erhaelt 100 Erfahrungspunkte
 	 */
 	public void sterben(){
 		lebendig=false;
+		// Spieler.erfahrungspunkteSammeln(100);
 		loot=Math.random();
 		if ((Interface.level==1)&(Interface.raum==0)&(loot<Interface.ZUFALL3)){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SCHLUESSEL);

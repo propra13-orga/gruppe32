@@ -51,11 +51,12 @@ public class Boss3{
 	
 	/**
 	 * blendet Bild 'Gewonnen' ein
+	 * Spieler erhaelt 500 Erfahrungspunkte
 	 */
 	public void sterben(){
 			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SIEG);
 			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.SIEGIMG);
-		
+			// Spieler.erfahrungspunkteSammeln(500);
 	}
 	
 	/**

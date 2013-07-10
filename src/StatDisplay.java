@@ -17,10 +17,9 @@ public class StatDisplay{
 	 * @param mana Manawert (Zauber), den die aktuelle Ruestung vorgibt
 	 * @param muenzen bisher gesammelte Muenz-Anzahl
 	 * @param schluessel bisher gesammelte Schluessel-Anzahl
-	 * @param erfahrungspunkte gesammelte Erfahrungspunkte des Spielers
 	 */
 	public void displayPlayerStats(int leben, double schaden, double ruestung, double manafaktor, 
-			double hp, double mana,  int erfahrungspunkte, int muenzen, int schluessel){
+			double hp, double mana, int muenzen, int schluessel){
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.filledRectangle(Interface.NEUNHUNDERTZWANZIG,Interface.DREIHUNDERT, Interface.EINHUNDERT, Interface.BREITETEXT8);
 		StdDraw.setPenColor();
@@ -32,9 +31,8 @@ public class StatDisplay{
 				" "+(Interface.getLevel()+1)+"-"+(Interface.getRaum()+1));
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.VIERHUNDERTZEHN, "HP:"+hp);
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTNEUNZIG, "Mana:"+mana);
-		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTSIEBZIG, "Erfahrung:"+erfahrungspunkte);
-		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTFUENFZIG, "Muenzen:"+muenzen);
-		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTDREISSIG, "Schluessel:"+schluessel);
+		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTSIEBZIG, "Muenzen:"+muenzen);
+		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.DREIHUNDERTFUENFZIG, "Schluessel:"+schluessel);
 		
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.ZWEIHUNDERTFUENFZIG, "Steuerung:");
 		StdDraw.textLeft(Interface.ACHTHUNDERTZWANZIG, Interface.ZWEIHUNDERTZWANZIG, "Pfeiltasten");

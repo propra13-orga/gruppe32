@@ -17,7 +17,7 @@ public class FigurDisplay{
 	 * @param farbe aktuelle Farbe, abhaengig von aktueller Ruestung
 	 * @param schild vorhandener Schildzauber (Boolean)
 	 */
-	public void figurBewegen(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild){
+	public void figurBewegen(int vonX, int vonY, int nachX, int nachY, int farbe, boolean schild ){
 		
 		StdDraw.picture(Interface.PIC1+Interface.PIC2*vonX,Interface.PIC1+Interface.PIC2*vonY, Interface.BODENIMG);
 		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), vonX, vonY, Interface.BODEN);

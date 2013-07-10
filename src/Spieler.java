@@ -20,7 +20,6 @@ public class Spieler{
 	private static final double DEFAULTMANAFAKTOR=1;
 	private static final int DEFAULTLEBEN=3;
 	private static final int DEFAULTRUESTUNG = 20;
-	private static final int DEFAULTERFAHRUNGSPUNKTE = 0;
 	private static final int DEFAULTMUENZEN = 0;
 	private static final int DEFAULTSCHLUESSEL = 0;
 	private static final int DEFAULTSCHILDAUFLADUNG = 0;
@@ -32,10 +31,8 @@ public class Spieler{
 	private double aktuellesMana;
 	private double aktuelleHP;
 	private double ruestung;
-	private int aktuelleErfahrungspunkte;
 	private int aktuelleMuenzen;
 	static int aktuelleSchluessel;
-	private int erfahrungspunkte;
 	private int aktuelleFarbe;
 	private int schildAufladung;
 	private boolean schild;
@@ -91,7 +88,7 @@ public class Spieler{
 			sound.playSound("muenze");
 			aktuelleMuenzen++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}
 		else if (checkArray[0]==Interface.MANATRANK){
 			manaReg(1);
@@ -146,12 +143,12 @@ public class Spieler{
 		else if (checkArray[0]==Interface.SCHLUESSEL){
 			aktuelleSchluessel++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}
 		else if (checkArray[0]==Interface.TOR){
 			aktuelleSchluessel = 0;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 			sound.playSound("tor");
 		}
 		
@@ -189,7 +186,7 @@ public class Spieler{
 		else {
 			aktuelleHP = Math.round((aktuelleHP-(incSchaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
-			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,aktuelleMuenzen,
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleMuenzen,
 					aktuelleSchluessel);
 			if (aktuelleHP<=0){
 				leben--;
@@ -204,8 +201,8 @@ public class Spieler{
 				aktuellesMana=DEFAULTMANA;
 				
 			}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
-					aktuelleMuenzen,aktuelleSchluessel);
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
+				aktuelleMuenzen,aktuelleSchluessel);
 		
 		}
 	return gestorben;	
@@ -235,7 +232,7 @@ public class Spieler{
 			aktuellesMana = 0;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
@@ -251,7 +248,7 @@ public class Spieler{
 		else{
 			aktuelleHP = MAXHP;
 		}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	/**
@@ -266,7 +263,7 @@ public class Spieler{
 			aktuellesMana = MAXMANA;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
@@ -283,7 +280,7 @@ public class Spieler{
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	/**
 	 * 
@@ -293,21 +290,13 @@ public class Spieler{
 		if (((aktuellesMana+reg)<=MAXMANA)&(aktuelleMuenzen>0)){
 			aktuellesMana = Math.round((aktuellesMana+reg)*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
 	
-	/**
-	 * Erfahrungspunkte sammeln
-	 * @param erfahrungspunkte Erfahrungspunkte
-	 */
-	public void erfahrungspunkteSammeln(int erfahrungspunkte){
-		aktuelleErfahrungspunkte = aktuelleErfahrungspunkte+erfahrungspunkte;
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
-	}
+	
 	
 	/**
 	 * Muenzen einsammeln
@@ -316,7 +305,7 @@ public class Spieler{
 	public void muenzenSammeln(int muenzen){
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
@@ -328,7 +317,7 @@ public class Spieler{
 		if (aktuelleMuenzen > 0){
 			aktuelleMuenzen = aktuelleMuenzen-muenzen;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
 	
@@ -338,7 +327,7 @@ public class Spieler{
 	 */
 	public void schluesselSammeln(int schluessel){
 		aktuelleSchluessel = aktuelleSchluessel+schluessel;
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
@@ -350,7 +339,7 @@ public class Spieler{
 		if (aktuelleSchluessel > 1){
 			aktuelleSchluessel = aktuelleSchluessel-schluessel;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
 	
@@ -365,7 +354,6 @@ public class Spieler{
 	public void resetPlayerStats(){
 		aktuelleHP=DEFAULTHP;
 		aktuellesMana=DEFAULTMANA;
-		aktuelleErfahrungspunkte=DEFAULTERFAHRUNGSPUNKTE;
 		aktuelleMuenzen=DEFAULTMUENZEN;
 		aktuelleSchluessel=DEFAULTSCHLUESSEL;
 		aktuelleFarbe=DEFAULTFARBE;
@@ -542,7 +530,7 @@ public class Spieler{
 			aktuelleFarbe=ROT;
 		}
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
@@ -573,7 +561,7 @@ public class Spieler{
 			schildAufladung = schildAufladung+1;
 			schild = true ;
 			aktion.displayFigur(x,y,aktuelleFarbe,schild);
-			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 					aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
@@ -582,7 +570,7 @@ public class Spieler{
 	 */
 	public void display(){
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	

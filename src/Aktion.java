@@ -30,10 +30,11 @@ private FigurDisplay display = new FigurDisplay();
 
 private static final String WEISSIMG = "Images\\weiss.jpg";
 
-private AudioClip muenzeSound = Sound.loadSound("src/Sounds/gold.wav");
-private AudioClip torSound = Sound.loadSound("src/Sounds/tor.wav");
-private AudioClip bombeSound = Sound.loadSound("src/Sounds/bombe.wav");
-private AudioClip angriffSound = Sound.loadSound("src/Sounds/angriff.wav");
+private static final AudioClip MUENZESOUND = Sound.loadSound("src/Sounds/gold.wav");
+private static final AudioClip TORSOUND = Sound.loadSound("src/Sounds/tor.wav");
+private static final AudioClip BOMBESOUND = Sound.loadSound("src/Sounds/bombe.wav");
+private static final AudioClip ANGRIFFSOUND = Sound.loadSound("src/Sounds/angriff.wav");
+private static final AudioClip CHECKPOINTSOUND = Sound.loadSound("src/Sounds/checkpoint.wav");
 
 /**
  * 
@@ -132,10 +133,11 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
-			torSound.play();
+			
 			if ( player){	
 				returnArray[0]=Interface.ZIEL;
 				StdDraw.picture(400,550,WEISSIMG);
+				TORSOUND.play();
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -158,7 +160,7 @@ public Aktion(boolean ifPlayer, int newId){
 			
 			if (player){
 				returnArray[0]=Interface.FALLE;
-				bombeSound.play();
+				BOMBESOUND.play();
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -180,6 +182,7 @@ public Aktion(boolean ifPlayer, int newId){
 		
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.CHECKPOINT){
 			if (player){
+				CHECKPOINTSOUND.play();
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);
 				figurX=newFigurX;
 				figurY=newFigurY;
@@ -204,7 +207,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MUENZEN){
-			muenzeSound.play();
+			MUENZESOUND.play();
 			if (player){
 				
 				returnArray[0]=Interface.MUENZEN;
@@ -242,7 +245,7 @@ public Aktion(boolean ifPlayer, int newId){
 					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 					figurX=newFigurX;
 					figurY=newFigurY;
-					torSound.play();
+					TORSOUND.play();
 					}
 				else{
 					returnArray[0]=Interface.MAUER;	
@@ -374,11 +377,11 @@ public Aktion(boolean ifPlayer, int newId){
 			returnArray[0]=Interface.MOB;
 			returnArray[1]=newFigurX;
 			returnArray[2]=newFigurY;
-			angriffSound.play();
+			ANGRIFFSOUND.play();
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
 			returnArray[0]=Interface.BOSS3;
-			angriffSound.play();
+			ANGRIFFSOUND.play();
 		}
 		return returnArray;
 	}

@@ -32,7 +32,7 @@ public class Spieler{
 	private double aktuellesMana;
 	private double aktuelleHP;
 	private double ruestung;
-	private int aktuelleErfahrungspunkte;
+	public static int aktuelleErfahrungspunkte;
 	private int aktuelleMuenzen;
 	static int aktuelleSchluessel;
 	private int erfahrungspunkte;

@@ -52,11 +52,16 @@ public class Boss3{
 	/**
 	 * blendet Bild 'Gewonnen' ein
 	 * Spieler erhaelt 500 Erfahrungspunkte
+	 * Aufwertung Fertigkeitenbaum
 	 */
 	public void sterben(){
-			Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SIEG);
-			StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.SIEGIMG);
-			// Spieler.erfahrungspunkteSammeln(500);
+		Spielfeld.wertSetzenBeiXY(Interface.getLevel(), Interface.getRaum(), x, y, Interface.SIEG);
+		StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.SIEGIMG);
+		
+		// Spieler.erfahrungspunkteSammeln(500);
+		if (Spieler.aktuelleErfahrungspunkte > 800){
+			//Fertigkeitenbaum
+		}
 	}
 	
 	/**

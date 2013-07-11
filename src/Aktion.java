@@ -1,3 +1,5 @@
+import java.applet.AudioClip;
+
 
 
 /**
@@ -27,6 +29,11 @@ private int figurY;
 private FigurDisplay display = new FigurDisplay();
 
 private static final String WEISSIMG = "Images\\weiss.jpg";
+
+private AudioClip muenzeSound = Sound.loadSound("src/Sounds/gold.wav");
+private AudioClip torSound = Sound.loadSound("src/Sounds/tor.wav");
+private AudioClip bombeSound = Sound.loadSound("src/Sounds/bombe.wav");
+private AudioClip angriffSound = Sound.loadSound("src/Sounds/angriff.wav");
 
 /**
  * 
@@ -125,6 +132,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.ZIEL){
+			torSound.play();
 			if ( player){	
 				returnArray[0]=Interface.ZIEL;
 				StdDraw.picture(400,550,WEISSIMG);
@@ -150,6 +158,7 @@ public Aktion(boolean ifPlayer, int newId){
 			
 			if (player){
 				returnArray[0]=Interface.FALLE;
+				bombeSound.play();
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -195,12 +204,15 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MUENZEN){
+			muenzeSound.play();
 			if (player){
+				
 				returnArray[0]=Interface.MUENZEN;
 				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 				figurX=newFigurX;
 				figurY=newFigurY;
+				
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
@@ -230,6 +242,7 @@ public Aktion(boolean ifPlayer, int newId){
 					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
 					figurX=newFigurX;
 					figurY=newFigurY;
+					torSound.play();
 					}
 				else{
 					returnArray[0]=Interface.MAUER;	
@@ -361,9 +374,11 @@ public Aktion(boolean ifPlayer, int newId){
 			returnArray[0]=Interface.MOB;
 			returnArray[1]=newFigurX;
 			returnArray[2]=newFigurY;
+			angriffSound.play();
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.BOSS3){
 			returnArray[0]=Interface.BOSS3;
+			angriffSound.play();
 		}
 		return returnArray;
 	}

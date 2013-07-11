@@ -1,3 +1,6 @@
+import java.applet.AudioClip;
+import java.io.File;
+
 
 
 /** 
@@ -52,7 +55,6 @@ public class Spieler{
 	private int id;
 	private int bewegenReturn;
 	
-	Sound sound;
 	
 	
 	public Spieler(int newId){
@@ -77,21 +79,18 @@ public class Spieler{
 	 * @return RETURN
 	 */
 	public int bewegen(int richtung){
-		
-		sound = new Sound();
-		sound.loadSound("muenze", "Sounds/muenze.wav");
-		sound.loadSound("tor", "Sounds/tor.wav");
-		
+					
 		checkArray = aktion.figurBewegen(richtung, x, y, aktuelleFarbe,schild,0);
 		bewegenReturn = 0;
 		if (checkArray[0]==Interface.CHECKPOINT){
 			Interface.nextCheckpoint();
 		}
 		else if (checkArray[0]==Interface.MUENZEN){
-			sound.playSound("muenze");
 			aktuelleMuenzen++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
 					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+		
+								
 		}
 		else if (checkArray[0]==Interface.MANATRANK){
 			manaReg(1);
@@ -152,7 +151,7 @@ public class Spieler{
 			aktuelleSchluessel = 0;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
 					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
-			sound.playSound("tor");
+	
 		}
 		
 		x=checkArray[1];
@@ -317,6 +316,7 @@ public class Spieler{
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
 				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+		
 	}
 	
 	

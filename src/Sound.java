@@ -1,31 +1,23 @@
-import java.applet.*;
-import java.net.*;
-import java.util.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.MalformedURLException;
+import java.io.File;
 
 
-
-/**
- * Klasse Sound spielt Sounds im Spiel ab
- * (verwendete Quelle: "Spiele-Programmierung in Java", Version 1.2 (Autor nicht genannt))
- */
+  
 public class Sound{
-	Hashtable<String, AudioClip> sounds;
-	
-	public Sound(){
-		sounds = new Hashtable<String, AudioClip>();
-	}
-	
-	public void loadSound(String name, String path){
-		if(sounds.containsKey(name)){
-			return;
+      
+    public static AudioClip loadSound(String string) {
+		File f = new File(string);
+		try {
+			AudioClip sound = Applet.newAudioClip(f.toURI().toURL());
+			return sound;
+		} 
+		catch (MalformedURLException e) {
+			System.out.println(e);
+			return null;
 		}
-		
-		URL sound_url = getClass().getClassLoader().getResource(path);
-		sounds.put(name, (AudioClip)Applet.newAudioClip(sound_url));
-	}
-	
-	public void playSound(String name){
-		AudioClip audio = sounds.get(name);
-		audio.play();
 	}
 }
+    
+ 

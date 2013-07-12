@@ -244,6 +244,14 @@ public static boolean initSpielfeld() {
 						else if (testChar == Interface.VIERUNDACHZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.TOR;
 						}
+						// #
+						else if (testChar == Interface.FUENFUNDDREISSIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.PORTAL;
+						}
+						// }
+						else if (testChar == Interface.EINHUNDERTFÜNFUNDZWANZIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.STANDHERE;
+						}
 						else{
 							
 							exception = FALSCHESZEICHEN;

@@ -250,7 +250,24 @@ public Aktion(boolean ifPlayer, int newId){
 					}
 				else{
 					returnArray[0]=Interface.MAUER;	
+					
+					
 				}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.PORTAL){
+//			if (Spieler 1 und Spieler vor stand here stehen){
+//				returnArray[0]=Interface.BODEN;
+//			}
+//			else {
+				returnArray[0]=Interface.PORTAL;
+//			}
+				
+				
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.STANDHERE){
+				returnArray[0]=Interface.STANDHERE;
+					
+					
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
 			if (player){	
@@ -258,9 +275,9 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 			else{
 				returnArray[0]=Interface.MAUER;
-				
-				
 
+				
+				
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.MANATRANKSHOP){

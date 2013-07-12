@@ -68,6 +68,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String BOSS3IMG = "Images\\boss3.jpg";
 	public static final String SCHLUESSELIMG = "Images\\schluessel.jpg";
 	public static final String TORIMG = "Images\\tor.jpg";
+	public static final String PORTALIMG = "Images\\portal.jpg";
+	public static final String STANDHEREIMG = "Images\\standhere.jpg";
 	
 	
 	/**
@@ -103,6 +105,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int BOSS3= 25;
 	public static final int SCHLUESSEL= 27;
 	public static final int TOR= 28;
+	public static final int PORTAL= 29;
+	public static final int STANDHERE= 30;
 		
 	/**
 	 * Spielfeldgroesse
@@ -153,6 +157,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int FUENFUNDZWANZIG = 25;
 	public static final int DREISSIG = 30;
 	public static final int ZWEIUNDDREISSIG = 32;
+	public static final int FUENFUNDDREISSIG = 35;
 	
 	
 	public static final int ZWEIUNDVIERZIG = 42;
@@ -182,6 +187,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int EINHUNDERTFUENFZIG = 150;
 	public static final int EINHUNDERTSECHZIG = 160;
 	public static final int EINHUNDERTSIEBZIG = 170;
+	public static final int EINHUNDERTFÜNFUNDZWANZIG = 125;
 	public static final int ZWEIHUNDERT = 200;
 	public static final int ZWEIHUNDERTZWANZIG = 220;
 	public static final int ZWEIHUNDERTFUENFZIG = 250;
@@ -636,9 +642,17 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SCHLUESSEL){
 					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SCHLUESSELIMG);
 				}
-				/* Tor*/
+				/*Tor*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==TOR){
 					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, TORIMG);
+				}
+				/*Portal*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==PORTAL){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, PORTALIMG);
+				}
+				/*stand here*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==STANDHERE){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, STANDHEREIMG);
 				}
 			}
 			

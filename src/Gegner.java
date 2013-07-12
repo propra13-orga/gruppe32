@@ -101,13 +101,13 @@ public class Gegner{
 	/**
 	 * setzt Lebenspunkte der Gegner herunter, abhaengig von der aktuellen Ruestung des Spielers
 	 * falls Lebenspunkte aufgebraucht sind, wird Methode sterben aufgerufen
+	 * Gegner wehrt sich: Spieler erleidet zufallsbasiert Schaden, wenn Gegner getroffen wird
 	 * @param schaden Schaden den der Gegner erleidet
 	 */
 	public void schadenBekommen(double schaden){
 		gegnerSchadenAusteilen=Math.random();
-		if (gegnerSchadenAusteilen>Interface.ZUFALL2){
-			Spieler staticSchadenBekommen = new Spieler(type);
-			staticSchadenBekommen.schadenBekommen(1);
+		if (gegnerSchadenAusteilen>Interface.ZUFALL7){
+			Interface.player[0].schadenBekommen(1);
 		}
 		hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
 				*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;

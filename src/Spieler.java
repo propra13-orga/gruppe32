@@ -1,7 +1,3 @@
-import java.applet.AudioClip;
-import java.io.File;
-
-
 
 /** 
  * erstellt Objekt vom Typ Spieler 

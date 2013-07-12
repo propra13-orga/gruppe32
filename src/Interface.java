@@ -121,6 +121,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final double ZUFALL4 = 0.25;
 	public static final double ZUFALL5 = 0.5;
 	public static final double ZUFALL6 = 0.75;
+	public static final double ZUFALL7 = 0.85;
 	public static final double EINEINHALB = 1.5;
 	
 	public static final int ARRAYDREI = 3;
@@ -233,7 +234,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	/**
 	 * Objekte vom Typ Spieler, Gegner und Boss
 	 */
-	private Spieler[] player = new Spieler[2];
+	public static Spieler[] player = new Spieler[2];
 	private Gegner[] gegner = new Gegner[SPALTEN];
 	private Boss3 boss3;
 	

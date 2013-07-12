@@ -25,6 +25,12 @@ public class Spieler{
 	private static final int DEFAULTSCHILDAUFLADUNG = 0;
 	private static final int MAXSCHILD = 2;
 	
+	public static int ERHALTERFAHRUNGSPUNKTE = 100;
+	
+	private static final int FIRSTLEVEL = 400;
+	private static final int SECONDLEVEL = 800;
+	
+	
 	private int leben;
 	private double manaFaktor;
 	private double schaden;
@@ -34,10 +40,10 @@ public class Spieler{
 	public static int aktuelleErfahrungspunkte;
 	private int aktuelleMuenzen;
 	static int aktuelleSchluessel;
-	private int erfahrungspunkte;
 	private int aktuelleFarbe;
 	private int schildAufladung;
 	private boolean schild;
+	public boolean kannSchildZaubern = false;
 	private int x;
 	private int y;
 	private Aktion aktion;
@@ -84,7 +90,7 @@ public class Spieler{
 		else if (checkArray[0]==Interface.MUENZEN){
 			aktuelleMuenzen++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 		
 								
 		}
@@ -141,12 +147,12 @@ public class Spieler{
 		else if (checkArray[0]==Interface.SCHLUESSEL){
 			aktuelleSchluessel++;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 		}
 		else if (checkArray[0]==Interface.TOR){
 			aktuelleSchluessel = 0;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 	
 		}
 		
@@ -184,7 +190,7 @@ public class Spieler{
 		else {
 			aktuelleHP = Math.round((aktuelleHP-(incSchaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
-			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,aktuelleMuenzen,
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,
 					aktuelleSchluessel);
 			if (aktuelleHP<=0){
 				leben--;
@@ -199,7 +205,7 @@ public class Spieler{
 				aktuellesMana=DEFAULTMANA;
 				
 			}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 					aktuelleMuenzen,aktuelleSchluessel);
 		
 		}
@@ -212,6 +218,7 @@ public class Spieler{
 	public void sterben(){
 		schildAufladung=0;
 		schild=false;
+		kannSchildZaubern = false;
 		if (schadenBekommen(Interface.VIEL)){
 			Interface.toCheckpoint=true;
 		}
@@ -230,7 +237,7 @@ public class Spieler{
 			aktuellesMana = 0;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
@@ -246,7 +253,7 @@ public class Spieler{
 		else{
 			aktuelleHP = MAXHP;
 		}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	/**
@@ -261,7 +268,7 @@ public class Spieler{
 			aktuellesMana = MAXMANA;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
 	
@@ -278,7 +285,7 @@ public class Spieler{
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 	}
 	/**
 	 * 
@@ -288,7 +295,7 @@ public class Spieler{
 		if (((aktuellesMana+reg)<=MAXMANA)&(aktuelleMuenzen>0)){
 			aktuellesMana = Math.round((aktuellesMana+reg)*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 		}
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
@@ -296,13 +303,30 @@ public class Spieler{
 	
 	/**
 	 * Erfahrungspunkte sammeln
+	 * 
+	 * bei erstem Levelup: aktuelle HP wird aufgeladen, Schildzauber wird einsetzbar 
+	 * und ein Leben wird dazugerechnet
+	 * bei zweitem Levelup: gleiches wie bei erstem Levelup, zusaetzlich wird Mana 
+	 * aufgeladen und ein weiteres Leben wird dazugerechnet
+	 * 
 	 * @param erfahrungspunkte Erfahrungspunkte
 	 */
 	public void erfahrungspunkteSammeln(int erfahrungspunkte){
 		aktuelleErfahrungspunkte = aktuelleErfahrungspunkte+erfahrungspunkte;
+		if (aktuelleErfahrungspunkte == FIRSTLEVEL | aktuelleErfahrungspunkte == SECONDLEVEL){
+			Aktion.LEVELUPSOUND.play();
+			aktuelleHP = MAXHP;
+			leben = leben + 1;
+			kannSchildZaubern = true;
+			if (aktuelleErfahrungspunkte == SECONDLEVEL){
+				aktuellesMana = MAXMANA;
+				leben = leben + 1;
+			}
+		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 	}
+	
 	
 	/**
 	 * Muenzen einsammeln
@@ -311,7 +335,7 @@ public class Spieler{
 	public void muenzenSammeln(int muenzen){
 		aktuelleMuenzen = aktuelleMuenzen+muenzen;
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 
-				aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+				aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 		
 	}
 	
@@ -324,7 +348,7 @@ public class Spieler{
 		if (aktuelleMuenzen > 0){
 			aktuelleMuenzen = aktuelleMuenzen-muenzen;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
 	
@@ -334,7 +358,7 @@ public class Spieler{
 	 */
 	public void schluesselSammeln(int schluessel){
 		aktuelleSchluessel = aktuelleSchluessel+schluessel;
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
@@ -346,7 +370,7 @@ public class Spieler{
 		if (aktuelleSchluessel > 1){
 			aktuelleSchluessel = aktuelleSchluessel-schluessel;
 			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP,
-					aktuellesMana,erfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
+					aktuellesMana,aktuelleErfahrungspunkte,aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
 	
@@ -370,6 +394,7 @@ public class Spieler{
 		leben = DEFAULTLEBEN;
 		ruestung = DEFAULTRUESTUNG;
 		schild = false;
+		kannSchildZaubern = false;
 		schildAufladung = DEFAULTSCHILDAUFLADUNG;
 	}
 	
@@ -538,7 +563,7 @@ public class Spieler{
 			aktuelleFarbe=ROT;
 		}
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	
@@ -564,12 +589,12 @@ public class Spieler{
 	 * bildet andere Spielfigur ab (mit gruenem Kreis um die Figur)
 	 */
 	public void schildZauber(){
-		if ((schildAufladung <MAXSCHILD)&(aktuellesMana>=1)){
+		if (kannSchildZaubern == true & (schildAufladung <MAXSCHILD)&(aktuellesMana>=1)){
 			manaVerbrauchen(1);
 			schildAufladung = schildAufladung+1;
 			schild = true ;
 			aktion.displayFigur(x,y,aktuelleFarbe,schild);
-			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+			stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 					aktuelleMuenzen,aktuelleSchluessel);
 		}
 	}
@@ -578,7 +603,7 @@ public class Spieler{
 	 */
 	public void display(){
 		aktion.displayFigur(x,y,aktuelleFarbe,schild);
-		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,erfahrungspunkte,
+		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, aktuellesMana,aktuelleErfahrungspunkte,
 				aktuelleMuenzen,aktuelleSchluessel);
 	}
 	

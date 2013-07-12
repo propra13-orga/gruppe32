@@ -35,6 +35,7 @@ private static final AudioClip TORSOUND = Sound.loadSound("src/Sounds/tor.wav");
 private static final AudioClip BOMBESOUND = Sound.loadSound("src/Sounds/bombe.wav");
 private static final AudioClip ANGRIFFSOUND = Sound.loadSound("src/Sounds/angriff.wav");
 private static final AudioClip CHECKPOINTSOUND = Sound.loadSound("src/Sounds/checkpoint.wav");
+public static final AudioClip LEVELUPSOUND = Sound.loadSound("src/Sounds/levelup.wav");
 
 /**
  * 

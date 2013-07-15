@@ -22,6 +22,7 @@ static int checkpointMerkeLevel;
 static int checkpointMerkeRaum;
 static boolean storyteller;
 private boolean player;
+public static boolean feldervorstandhere = false;
 private int[] returnArray = new int[5];
 
 private int figurX;
@@ -254,21 +255,109 @@ public Aktion(boolean ifPlayer, int newId){
 					
 				}
 		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.PORTAL){
-//			if (Spieler 1 und Spieler vor stand here stehen){
-//				returnArray[0]=Interface.BODEN;
+//		// 1. Co-Op-Quest: Portal
+//		// (beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.PORTAL){
+//			if (player & (feldervorstandhere == true)){
+//				
+//				returnArray[0]=Interface.PORTAL;
+//				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+//				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+//				figurX=newFigurX;
+//				figurY=newFigurY;
 //			}
-//			else {
-				returnArray[0]=Interface.PORTAL;
+//			else{
+//				returnArray[0]=Interface.PORTAL;
 //			}
-				
-				
-		}
-		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.STANDHERE){
-				returnArray[0]=Interface.STANDHERE;
-					
-					
-		}
+//				
+//				
+//		}
+//		// 1. Co-Op-Quest: stand here
+//		// (beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.STANDHERE){
+//			returnArray[0]=Interface.STANDHERE;
+//					
+//					
+//		}
+//		// 1. Co-Op-Quest: Feld 1 vor stand here (Ausloesefelder, bzw. die "Knoepfe")
+//		// (beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FELDVORSTANDHEREEINS){
+//			
+//			if (((player1 == Interface.FELDVORSTANDHEREEINS) | (player2 == Interface.FELDVORSTANDHEREEINS)) &
+//					((player1 == Interface.FELDVORSTANDHEREZWEI) | (player2 == Interface.FELDVORSTANDHEREZWEI))){
+//				
+//				feldervorstandhere = true;
+//				
+//				returnArray[0]=Interface.FELDVORSTANDHEREEINS;
+//				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.FELDVORSTANDHEREEINS);
+//				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+//				figurX=newFigurX;
+//				figurY=newFigurY;
+//				
+//			}
+//			else{
+//				returnArray[0]=Interface.FELDVORSTANDHEREEINS;
+//			}
+//				
+//			
+//		}
+//		// 1. Co-Op-Quest: Feld 2 vor stand here (Ausloesefelder, bzw. die "Knoepfe")
+//		// (beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FELDVORSTANDHEREZWEI){
+//					
+//			if (((player1 == Interface.FELDVORSTANDHEREEINS) | (player2 == Interface.FELDVORSTANDHEREEINS)) &
+//					((player1 == Interface.FELDVORSTANDHEREZWEI) | (player2 == Interface.FELDVORSTANDHEREZWEI))){
+//						
+//				feldervorstandhere = true;
+//
+//				returnArray[0]=Interface.FELDVORSTANDHEREZWEI;
+//				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.FELDVORSTANDHEREZWEI);
+//				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+//				figurX=newFigurX;
+//				figurY=newFigurY;
+//						
+//			}
+//			else{
+//				returnArray[0]=Interface.FELDVORSTANDHEREZWEI;
+//			}
+//				
+//			
+//		}
+//		// 2. Co-Op-Quest: linke Seite von Doppelportal 
+//		// (nur wenn beide Spieler das Doppelportal ansteuern, laesst es sich oeffnen)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.DOPPELPORTALLINKS){
+//			if (((player1 == Interface.DOPPELPORTALLINKS) | (player2 == Interface.DOPPELPORTALLINKS)) & 
+//					((player1 == Interface.DOPPELPORTALRECHTS) | (player2 == Interface.DOPPELPORTALRECHTS))){
+//				
+//				returnArray[0]=Interface.DOPPELPORTALLINKS;
+//				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+//				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+//				figurX=newFigurX;
+//				figurY=newFigurY;
+//			}
+//			else{
+//				returnArray[0]=Interface.DOPPELPORTALLINKS;
+//			}
+//				
+//		}
+//		// 2. Co-Op-Quest: rechte Seite von Doppelportal 
+//		// (nur wenn beide Spieler das Doppelportal ansteuern, laesst es sich oeffnen)
+//		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.DOPPELPORTALRECHTS){
+//			if (((player1 == Interface.DOPPELPORTALLINKS) | (player2 == Interface.DOPPELPORTALLINKS)) & 
+//					((player1 == Interface.DOPPELPORTALRECHTS) | (player2 == Interface.DOPPELPORTALRECHTS))){
+//					
+//				returnArray[0]=Interface.DOPPELPORTALRECHTS;
+//				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
+//				display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
+//				figurX=newFigurX;
+//				figurY=newFigurY;
+//			}
+//			else{
+//				returnArray[0]=Interface.DOPPELPORTALRECHTS;
+//			}
+//					
+//					
+//		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.HPTRANKSHOP){
 			if (player){	
 				returnArray[0]=Interface.HPTRANKSHOP;

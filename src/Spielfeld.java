@@ -249,8 +249,24 @@ public static boolean initSpielfeld() {
 							spielfeld[level][raum][spalte][reihe]=Interface.PORTAL;
 						}
 						// }
-						else if (testChar == Interface.EINHUNDERTFÜNFUNDZWANZIG){ 
+						else if (testChar == Interface.EINHUNDERTFUENFUNDZWANZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.STANDHERE;
+						}
+						// (
+						else if (testChar == Interface.VIERZIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.FELDVORSTANDHEREEINS;
+						}
+						// )
+						else if (testChar == Interface.EINUNDVIERZIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.FELDVORSTANDHEREZWEI;
+						}
+						// [
+						else if (testChar == Interface.EINUNDNEUNZIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.DOPPELPORTALLINKS;
+						}
+						// ]
+						else if (testChar == Interface.DREIUNDNEUNZIG){ 
+							spielfeld[level][raum][spalte][reihe]=Interface.DOPPELPORTALRECHTS;
 						}
 						else{
 							

@@ -70,6 +70,10 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String TORIMG = "Images\\tor.jpg";
 	public static final String PORTALIMG = "Images\\portal.jpg";
 	public static final String STANDHEREIMG = "Images\\standhere.jpg";
+	public static final String FELDVORSTANDHEREEINSIMG = "Images\\boden.jpg";
+	public static final String FELDVORSTANDHEREZWEIIMG = "Images\\boden.jpg";
+	public static final String DOPPELPORTALLINKSIMG = "Images\\portal.jpg";
+	public static final String DOPPELPORTALRECHTSIMG = "Images\\portal.jpg";
 	
 	
 	/**
@@ -105,8 +109,14 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int BOSS3= 25;
 	public static final int SCHLUESSEL= 27;
 	public static final int TOR= 28;
+	
 	public static final int PORTAL= 29;
 	public static final int STANDHERE= 30;
+	public static final int FELDVORSTANDHEREEINS= 31;
+	public static final int FELDVORSTANDHEREZWEI= 32;
+	
+	public static final int DOPPELPORTALLINKS= 33;
+	public static final int DOPPELPORTALRECHTS= 34;
 		
 	/**
 	 * Spielfeldgroesse
@@ -160,6 +170,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int FUENFUNDDREISSIG = 35;
 	
 	
+	public static final int VIERZIG = 40;
+	public static final int EINUNDVIERZIG = 41;
 	public static final int ZWEIUNDVIERZIG = 42;
 	public static final int DREIUNDVIERZIG = 43;
 	public static final int ACHTUNDVIERZIG = 48;
@@ -180,6 +192,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int ACHTUNDACHZIG = 88;
 	public static final int NEUNUNDACHZIG = 89;
 	public static final int NEUNZIG = 90;
+	public static final int EINUNDNEUNZIG = 91;
+	public static final int DREIUNDNEUNZIG = 93;
 	public static final int EINHUNDERT = 100;
 	public static final int EINHUNDERTZEHN = 110;
 	public static final int EINHUNDERTZWOELF = 112;
@@ -187,7 +201,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int EINHUNDERTFUENFZIG = 150;
 	public static final int EINHUNDERTSECHZIG = 160;
 	public static final int EINHUNDERTSIEBZIG = 170;
-	public static final int EINHUNDERTFÜNFUNDZWANZIG = 125;
+	public static final int EINHUNDERTFUENFUNDZWANZIG = 125;
 	public static final int ZWEIHUNDERT = 200;
 	public static final int ZWEIHUNDERTZWANZIG = 220;
 	public static final int ZWEIHUNDERTFUENFZIG = 250;
@@ -654,6 +668,22 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==STANDHERE){
 					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, STANDHEREIMG);
 				}
+				/*Feld 1 vor stand here*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FELDVORSTANDHEREEINS){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FELDVORSTANDHEREEINSIMG);
+				}
+				/*Feld 2 vor stand here*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FELDVORSTANDHEREZWEI){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FELDVORSTANDHEREZWEIIMG);
+				}
+				/*linke Seite von Doppelportal*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==DOPPELPORTALLINKS){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, DOPPELPORTALLINKSIMG);
+				}
+				/*rechte Seite von Doppelportal*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==DOPPELPORTALRECHTS){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, DOPPELPORTALRECHTSIMG);
+				}
 			}
 			
 		}
@@ -718,7 +748,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		 */
 		public static void gameOver(){
 			StdDraw.picture(BREITEBILDGROSS,HOEHEBILDGROSS, GAMEOVERIMG);
-			spielGestartet=false;			
+			spielGestartet=false;
+			Aktion.feldervorstandhere = false;
 		}
 		
 		
@@ -782,17 +813,33 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			//Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2) (Sammeln von zwei Schlüsseln, sodass Tor aufgeht)
 			else if ((level==1)&(raum==1)){ 
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
-						"Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch! ");
+						"Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch!");
 				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"Die Trolle haben es errichtet, wer sonst! Aber sie haben auch die Schlüssel dafür...");
 				StdDraw.text(HOEHETEXT, BREITETEXT1, 
 						"Man braucht 2 Schlüssel, um das Tor zu öffen, denn es ist ein doppelt gesichertes Tor!");
 				
 			}
+			//Storyteller für 1. Co-Op-Quest "Doppelportal" (Level 3, Raum 1) 
+			//(beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
+			else if ((level==2)&(raum==0)){ 
+				StdDraw.text(HOEHETEXT, BREITETEXT5, 
+						"Manchmal macht man hier unten ganz merkwürdige Entdeckungen...");
+				StdDraw.text(HOEHETEXT, BREITETEXT3, 
+						"Die Trolle haben anscheinend einen Faible für Hindernisse");
+				StdDraw.text(HOEHETEXT, BREITETEXT1, 
+						" auf den Wegen... und für Knopfmechanismen!");
+				
+			}
+			//Storyteller für 2. Co-Op-Quest "Portal" (Level 3, Raum 2) (nur wenn beide Spieler das Doppelportal ansteuern, laesst es sich oeffnen)
+			else if ((level==2)&(raum==1)){ 
+				StdDraw.text(HOEHETEXT, BREITETEXT3, "Gemeinsam seid ihr stark!!!");
+				
+			}
 			//Storyteller im Endraum (Level 3, Raum 3)
 			else if ((level==2)&(raum==2)){ 
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
-						"Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge ");
+						"Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge");
 				StdDraw.text(HOEHETEXT, BREITETEXT3, 
 						"und du kannst beruhigt nach Hause zurückkehren und dich als Sieger feiern lassen.");		
 				StdDraw.text(HOEHETEXT, BREITETEXT1, 

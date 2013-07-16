@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -777,6 +778,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		public static void storyteller(){
 			//Storyteller am Anfang (Level 1, Raum 1)
 			if ((level==0)&(raum==0)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT4,
 						"Früher war dies ein friedliches Plätzchen, aber dann kamen die Trolle und legten Fallen aus... ");
 				StdDraw.text(HOEHETEXT, BREITETEXT2, "Und das nur, um ihr Essen besser würzen zu können!");
@@ -784,6 +786,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			//Storyteller vor dem Checkpoint (Level 1, Raum 2)
 			else if ((level==0)&(raum==1)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Da bist du ja schon! Pass auf, dort unten steht die beste Erfindung, " +
 						"seit es die fiesen Trolle hier runter geschafft haben.");
@@ -796,13 +799,15 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			//Storyteller für 1. Quest "Versteckter Gang" (Level 1, Raum 3) (Mauerstück als versteckter Durchgang)
 			else if ((level==0)&(raum==2)){ 
-				StdDraw.text(HOEHETEXT, BREITETEXT5, 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
+				StdDraw.text(HOEHETEXT, BREITETEXT4, 
 						"Auch wenn es alle dementieren: In manchen Ausnahmesituationen hilft es,");
-				StdDraw.text(HOEHETEXT, BREITETEXT3, 
+				StdDraw.text(HOEHETEXT, BREITETEXT2, 
 						"auch mal mit dem Kopf durch die Wand zu gehen!");
 			}
 			//Storyteller vor dem Checkpoint (Level 2, Raum 1)
 			else if ((level==1)&(raum==0)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT4, 
 						"Das hier ist der einzige Shop hier unten. Decke dich gut ein, denn du wirst " +
 						"nicht so schnell wieder die Möglichkeit finden,");
@@ -812,6 +817,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			//Storyteller für 2. Quest "Schlüssel und Tor" (Level 2, Raum 2) (Sammeln von zwei Schlüsseln, sodass Tor aufgeht)
 			else if ((level==1)&(raum==1)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Ja ich weiß, da ist ein verschlossenes Tor... Mich stört es da ja auch!");
 				StdDraw.text(HOEHETEXT, BREITETEXT3, 
@@ -823,6 +829,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			//Storyteller für 1. Co-Op-Quest "Doppelportal" (Level 3, Raum 1) 
 			//(beide Spieler muessen vor einem stand-here-Pfeil stehen, sodass das Portal wie auf Knopfdruck geoeffnet werden kann)
 			else if ((level==2)&(raum==0)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Manchmal macht man hier unten ganz merkwürdige Entdeckungen...");
 				StdDraw.text(HOEHETEXT, BREITETEXT3, 
@@ -833,11 +840,13 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			}
 			//Storyteller für 2. Co-Op-Quest "Portal" (Level 3, Raum 2) (nur wenn beide Spieler das Doppelportal ansteuern, laesst es sich oeffnen)
 			else if ((level==2)&(raum==1)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT3, "Gemeinsam seid ihr stark!!!");
 				
 			}
 			//Storyteller im Endraum (Level 3, Raum 3)
 			else if ((level==2)&(raum==2)){ 
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
 				StdDraw.text(HOEHETEXT, BREITETEXT5, 
 						"Fast hast du es geschafft!!! Besiege den Endgegner und berühre die Flagge");
 				StdDraw.text(HOEHETEXT, BREITETEXT3, 

@@ -318,9 +318,24 @@ public class Spieler{
 			aktuelleHP = MAXHP;
 			leben = leben + 1;
 			kannSchildZaubern = true;
+			
+			if (aktuelleErfahrungspunkte != SECONDLEVEL){
+				StdDraw.picture(400,560,Aktion.WEISSIMG);
+				StdDraw.text(Interface.HOEHETEXT, Interface.BREITETEXT4, 
+						"Glückwunsch, du hast Level 2 erreicht!!! Ab nun kannst du mit der Leertaste");
+				StdDraw.text(Interface.HOEHETEXT, Interface.BREITETEXT2, 
+						"den Schildzauber einsetzen! Setze ihn weise ein...");
+			}
+						
 			if (aktuelleErfahrungspunkte == SECONDLEVEL){
 				aktuellesMana = MAXMANA;
 				leben = leben + 1;
+				
+				if (aktuelleErfahrungspunkte != FIRSTLEVEL){
+					StdDraw.picture(400,560,Aktion.WEISSIMG);
+					StdDraw.text(Interface.HOEHETEXT, Interface.BREITETEXT5, 
+							"Glückwunsch, du hast Level 3 erreicht!!!");
+				}
 			}
 		}
 		stats.displayPlayerStats(leben, schaden, ruestung, manaFaktor,aktuelleHP, 

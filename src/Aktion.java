@@ -29,7 +29,7 @@ private int figurX;
 private int figurY;
 private FigurDisplay display = new FigurDisplay();
 
-private static final String WEISSIMG = "Images\\weiss.jpg";
+public static final String WEISSIMG = "Images\\weiss.jpg";
 
 private static final AudioClip MUENZESOUND = Sound.loadSound("src/Sounds/gold.wav");
 private static final AudioClip TORSOUND = Sound.loadSound("src/Sounds/tor.wav");
@@ -241,7 +241,7 @@ public Aktion(boolean ifPlayer, int newId){
 			}
 		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.TOR){
-			if (Spieler.aktuelleSchluessel==2 & player){
+			if (Spieler.aktuelleSchluessel >= 2 & player){
 					returnArray[0]=Interface.TOR;
 					Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.BODEN);
 					display.figurBewegen(figurX,figurY,newFigurX,newFigurY, farbe, schild);	
@@ -286,7 +286,7 @@ public Aktion(boolean ifPlayer, int newId){
 //			if (((player1 == Interface.FELDVORSTANDHEREEINS) | (player2 == Interface.FELDVORSTANDHEREEINS)) &
 //					((player1 == Interface.FELDVORSTANDHEREZWEI) | (player2 == Interface.FELDVORSTANDHEREZWEI))){
 //				
-//				feldervorstandhere = true;
+//				feldervortandhere = true;
 //				
 //				returnArray[0]=Interface.FELDVORSTANDHEREEINS;
 //				Spielfeld.wertSetzenBeiXY(aktuellesLevel, aktuellerRaum, newFigurX, newFigurY, Interface.FELDVORSTANDHEREEINS);

@@ -9,11 +9,20 @@ Entwicklerdokumentation:
 Es sollte klar werden, wie die oben genannten Funktionen in den Code integriert sind und wie der Informationsfluss einer bestimmten Funktion aussieht. Z.B. wie die Daten aus einer Textdatei in ein Array gelangen..
 
 Bitte den aktuellen Stand ergänzen:
+
 Netzwerkmodus
+
 Quests & Rätsel
+
 RPS-Prinzip für Schadenssystem
+
 Chat
+
 Netzwerklobby
+
 Co-Op-Rätsel
+
 EP & Skill-Tree
+
 Sound
+

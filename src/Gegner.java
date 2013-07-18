@@ -22,6 +22,8 @@ public class Gegner{
 	private int type;
 	private double rndHelp;
 	
+	private static double GERINGERERANGRIFF = 0.5;
+	
 	private StatDisplay stats = new StatDisplay();
 	
 	
@@ -109,9 +111,29 @@ public class Gegner{
 		if (gegnerSchadenAusteilen>Interface.ZUFALL7){
 			Interface.player[0].schadenBekommen(1);
 		}
-		hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
-				*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
-		stats.displayGegnerHP(hp, defaultHP, x, y);
+		
+		if (((Spielfeld.wertLesenBeiXY(Aktion.aktuellesLevel,Aktion.aktuellerRaum,Aktion.newFigurX,Aktion.newFigurY)==Interface.BOSS1)
+				| (Spielfeld.wertLesenBeiXY(Aktion.aktuellesLevel,Aktion.aktuellerRaum,Aktion.newFigurX,Aktion.newFigurY)==Interface.BOSS2))
+						& (Spieler.spezialAngriff == true)){
+			
+			
+			hp = Math.round((hp-(schaden*3*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
+					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
+			stats.displayGegnerHP(hp, defaultHP, x, y);
+		}
+		else if(((Spielfeld.wertLesenBeiXY(Aktion.aktuellesLevel,Aktion.aktuellerRaum,Aktion.newFigurX,Aktion.newFigurY)==Interface.BOSS1)
+				| (Spielfeld.wertLesenBeiXY(Aktion.aktuellesLevel,Aktion.aktuellerRaum,Aktion.newFigurX,Aktion.newFigurY)==Interface.BOSS2))
+						& (Spieler.spezialAngriff == false)){
+			hp = Math.round((hp-((schaden - GERINGERERANGRIFF)*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
+					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
+			stats.displayGegnerHP(hp, defaultHP, x, y);
+		}
+		else{
+			hp = Math.round((hp-(schaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
+					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
+			stats.displayGegnerHP(hp, defaultHP, x, y);
+		}
+		
 		if (hp<=0){
 			sterben();
 		}

@@ -12,10 +12,10 @@ public class Aktion{
 /**
  *  Level und Raum initialisieren
  */
-private int aktuellesLevel = 0;
-private int aktuellerRaum =0;
-private int newFigurX;
-private int newFigurY;
+public static int aktuellesLevel = 0;
+public static int aktuellerRaum =0;
+public static int newFigurX;
+public static int newFigurY;
 
 static boolean reachedCheckpoint;
 static int checkpointMerkeLevel;

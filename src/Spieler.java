@@ -44,6 +44,8 @@ public class Spieler{
 	private int schildAufladung;
 	private boolean schild;
 	public boolean kannSchildZaubern = false;
+	public static boolean spezialAngriff = false;
+
 	private int x;
 	private int y;
 	private Aktion aktion;
@@ -219,6 +221,7 @@ public class Spieler{
 		schildAufladung=0;
 		schild=false;
 		kannSchildZaubern = false;
+		spezialAngriff = false;
 		if (schadenBekommen(Interface.VIEL)){
 			Interface.toCheckpoint=true;
 		}
@@ -410,6 +413,7 @@ public class Spieler{
 		ruestung = DEFAULTRUESTUNG;
 		schild = false;
 		kannSchildZaubern = false;
+		spezialAngriff = false;
 		schildAufladung = DEFAULTSCHILDAUFLADUNG;
 	}
 	

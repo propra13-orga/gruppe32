@@ -3,9 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+
+import com.sun.security.ntlm.Server;
 
 
 
@@ -285,6 +288,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	 */
 	public static JButton starten;
 	public static JButton ende;
+	public static JButton chat;
 	
 	/**
 	 * Reihe und Spalte für das Spielfeld
@@ -302,8 +306,9 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
     /**
      * Methode oeffnet das Menue
      * @param args String
+     * @throws IOException 
      */
-		public static void main(String[] args){
+		public static void main(String[] args) throws IOException{
 		StdDraw.setCanvasSize(BREITE, HOEHE);
 		//neuer Button
 		starten = new JButton("Spiel starten");
@@ -322,7 +327,18 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		ende.addActionListener(StdDraw.frame);
 		StdDraw.frame.add(ende);
 		
+		
+		// Button "Chat"
+		chat = new JButton("Chat");
+		chat.setBounds(870,20,100,45); 
+		chat.addActionListener(StdDraw.frame); 
+		//chat.setFocusable(false);
+		StdDraw.frame.add(chat); 
+		
 		StdDraw.frame.addKeyListener(StdDraw.frame);
+		
+		
+	
 		
 		
 	}
@@ -376,10 +392,17 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		if(event.getSource().equals(ende)){
 			System.exit(0);
 		}
-
+		
+		/*if (event.getSource().equals(chat)){
+			 int port = 5000;
+			 new Server(port);
+		}
+*/
 		
 		
 	}	
+	
+	
 	
 	/**
 	 * Methode keyTyped: KeyEvent,

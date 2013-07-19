@@ -195,6 +195,14 @@ public static boolean initSpielfeld() {
 						else if (testChar == Interface.SIEBENUNDSIEBZIG){ 
 							spielfeld[level][raum][spalte][reihe]=Interface.MANATRANKSHOP; 
 						}
+						// z
+						else if (testChar == Interface.EINHUNDERTZWEIUNDZWANZIG){  
+							spielfeld[level][raum][spalte][reihe]=Interface.SPEZIALANGRIFFITEMAUFNEHMEN;
+						}
+						// s
+						else if (testChar == Interface.EINHUNDERTFUENFZEHN){  
+							spielfeld[level][raum][spalte][reihe]=Interface.SPEZIALANGRIFFITEMVERLIEREN;
+						}
 						// G
 						else if (testChar == Interface.EINUNDSIEBZIG){  
 							spielfeld[level][raum][spalte][reihe]=Interface.FARBEGELB;

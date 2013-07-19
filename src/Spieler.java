@@ -412,7 +412,6 @@ public class Spieler{
 		leben = DEFAULTLEBEN;
 		ruestung = DEFAULTRUESTUNG;
 		schild = false;
-		kannSchildZaubern = false;
 		spezialAngriff = false;
 		schildAufladung = DEFAULTSCHILDAUFLADUNG;
 	}

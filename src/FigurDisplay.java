@@ -51,30 +51,51 @@ public class FigurDisplay{
 	 */
 	public void displayPlayer(int x, int y,int farbe, boolean schild){
 		if (farbe == Interface.GELB){
-			if  (!schild){
+			if  ((!schild) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURGELB);
 			}
-			else{
+			else if  ((!schild) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURGELBSPEZIAL);
+			}
+			else if ((schild == true) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURGELBSCHILD);
 			}
+			else if ((schild == true) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
+						Interface.FIGURGELBSCHILDSPEZIAL);
+			}
 		}
 		else if (farbe == Interface.BLAU){
-			if (!schild){
+			if  ((!schild) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURBLAU);
 			}
-			else{
+			else if  ((!schild) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURBLAUSPEZIAL);
+			}
+			else if ((schild == true) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURBLAUSCHILD);
 			}
+			else if ((schild == true) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
+						Interface.FIGURBLAUSCHILDSPEZIAL);
+			}
 		}
 		else if (farbe== Interface.ROT){
-			if (!schild){
+			if  ((!schild) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURROT);
 			}
-			else{
+			else if  ((!schild) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, Interface.FIGURROTSPEZIAL);
+			}
+			else if ((schild == true) & (Spieler.spezialAngriff == false)){
 				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
 						Interface.FIGURROTSCHILD);
+			}
+			else if ((schild == true) & (Spieler.spezialAngriff == true)){
+				StdDraw.picture(Interface.PIC1+Interface.PIC2*x,Interface.PIC1+Interface.PIC2*y, 
+						Interface.FIGURROTSCHILDSPEZIAL);
 			}
 		}
 		

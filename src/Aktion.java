@@ -380,6 +380,31 @@ public Aktion(boolean ifPlayer, int newId){
 
 			}
 		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SPEZIALANGRIFFITEMAUFNEHMEN){
+			if (player){	
+				Spieler.spezialAngriff = true;
+				
+				returnArray[0]=Interface.SPEZIALANGRIFFITEMAUFNEHMEN;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
+		}
+		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.SPEZIALANGRIFFITEMVERLIEREN){
+			if (player){
+				Spieler.spezialAngriff = false;
+				returnArray[0]=Interface.SPEZIALANGRIFFITEMVERLIEREN;
+			}
+			else{
+				returnArray[0]=Interface.MAUER;
+				
+				
+
+			}
+		}
 		else if (Spielfeld.wertLesenBeiXY(aktuellesLevel,aktuellerRaum,newFigurX,newFigurY)==Interface.FARBEGELB){
 			if (player){	
 				returnArray[0]=Interface.FARBEGELB;

@@ -57,6 +57,14 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final String FIGURGELBSCHILD = "Images\\figurGelbSchild.jpg";
 	public static final String FIGURROTSCHILD = "Images\\figurRotSchild.jpg";
 	public static final String FIGURBLAUSCHILD = "Images\\figurBlauSchild.jpg";
+	public static final String FIGURGELBSPEZIAL = "Images\\figurGelbSpezial.jpg";
+	public static final String FIGURROTSPEZIAL = "Images\\figurRotSpezial.jpg";
+	public static final String FIGURBLAUSPEZIAL = "Images\\figurBlauSpezial.jpg";
+	public static final String FIGURGELBSCHILDSPEZIAL = "Images\\figurGelbSchildSpezial.jpg";
+	public static final String FIGURROTSCHILDSPEZIAL = "Images\\figurRotSchildSpezial.jpg";
+	public static final String FIGURBLAUSCHILDSPEZIAL = "Images\\figurBlauSchildSpezial.jpg";
+	public static final String SPEZIALANGRIFFITEMAUFNEHMENIMG = "Images\\spezialAngriffItemAufnehmen.jpg";
+	public static final String SPEZIALANGRIFFITEMVERLIERENIMG = "Images\\spezialAngriffItemVerlieren.jpg";
 	public static final String FARBEGELBIMG = "Images\\farbeGelb.jpg";
 	public static final String FARBEROTIMG = "Images\\farbeRot.jpg";
 	public static final String FARBEBLAUIMG = "Images\\farbeBlau.jpg";
@@ -98,6 +106,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int SHOP1 = 18;
 	public static final int SHOP2 = 19;
 	public static final int SHOP3 = 20;
+	public static final int SPEZIALANGRIFFITEMAUFNEHMEN = 36;
+	public static final int SPEZIALANGRIFFITEMVERLIEREN = 37;
 	public static final int FARBEGELB = 12;
 	public static final int FARBEBLAU = 10;
 	public static final int FARBEROT = 11;
@@ -201,6 +211,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int EINHUNDERT = 100;
 	public static final int EINHUNDERTZEHN = 110;
 	public static final int EINHUNDERTZWOELF = 112;
+	public static final int EINHUNDERTFUENFZEHN = 115;
 	public static final int EINHUNDERTDREISSIG = 130;
 	public static final int EINHUNDERTFUENFZIG = 150;
 	public static final int EINHUNDERTSECHZIG = 160;
@@ -208,6 +219,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 	public static final int EINHUNDERTFUENFUNDZWANZIG = 125;
 	public static final int ZWEIHUNDERT = 200;
 	public static final int ZWEIHUNDERTZWANZIG = 220;
+	public static final int EINHUNDERTZWEIUNDZWANZIG = 122;
 	public static final int ZWEIHUNDERTFUENFZIG = 250;
 	public static final int ZWEIHUNDERTSECHZIG = 260;	
 	public static final int DREIHUNDERT = 300;
@@ -622,6 +634,14 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 				/*rote Spielfigur*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==FARBEROT){
 					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, FARBEROTIMG);
+				}
+				/*Item Spezialangriff aufnehmen*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SPEZIALANGRIFFITEMAUFNEHMEN){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SPEZIALANGRIFFITEMAUFNEHMENIMG);
+				}
+				/*Item Spezialangriff verlieren*/
+				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==SPEZIALANGRIFFITEMVERLIEREN){
+					StdDraw.picture(PIC1+PIC2*spalte,PIC1+PIC2*reihe, SPEZIALANGRIFFITEMVERLIERENIMG);
 				}
 				/* Storyteller*/
 				else if(Spielfeld.wertLesenBeiXY(level,raum,spalte,reihe)==STORYTELLER){

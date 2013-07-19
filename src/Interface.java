@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import com.sun.security.ntlm.Server;
+//import com.sun.security.ntlm.Server;
 
 
 
@@ -19,7 +19,7 @@ import com.sun.security.ntlm.Server;
  * stellt Level grafisch dar
  *
  */
-public class Interface extends JFrame implements ActionListener, KeyListener{
+public class Interface extends JFrame implements ActionListener, KeyListener, Runnable{
 
 	/**
 	 * Richtungen
@@ -405,11 +405,11 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 			System.exit(0);
 		}
 		
-		/*if (event.getSource().equals(chat)){
-			 int port = 5000;
-			 new Server(port);
+		if (event.getSource().equals(chat)){
+			 
+			 new Server();
 		}
-*/
+
 		
 		
 	}	
@@ -960,4 +960,10 @@ public class Interface extends JFrame implements ActionListener, KeyListener{
 		public void displayGegner(int x, int y, int richtung){
 			StdDraw.picture(PIC1+PIC2*x,PIC1+PIC2*y, MOBIMG,(-richtung)*NEUNZIG);
 	}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
 }

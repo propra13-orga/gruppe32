@@ -1,64 +1,55 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Server implements Runnable
-{
-	public static final int PORT = 8765;
-	public static ServerSocket listen;
-	public static Vector connections;
-	Thread connect;
+public class Server {
+	
+	final static int PORT = 5000;
 
-	public Server()
+	public static ArrayList<Socket> ConnectionArray = new ArrayList<Socket>();
+	public static ArrayList<String> CurrentUsers = new ArrayList<String>();
+	
+	public static void main(String[] args) throws IOException
 	{
 		try
 		{
-			listen = new ServerSocket(PORT);
-		} catch (IOException e)
-		{
-			System.err.println("Fehler beim Erzeugen der Sockets:"+e);
-			System.exit(1);
-		}
-
-		connections = new Vector();
-
-		connect = new Thread(this);
-		connect.start();
-	}
-
-	public void run()
-	{
-		try
-		{
+			
+			ServerSocket server = new ServerSocket(PORT);
+			System.out.println("Auf Clients warten...");
+			
 			while(true)
 			{
-				Socket client=listen.accept();
-
-				Connection c = new Connection(this, client);
-				connections.addElement(c);
+				Socket SOCK = server.accept();
+				ConnectionArray.add(SOCK);
+				
+				System.out.println("Client verbunden von: " + SOCK.getLocalAddress().getHostName());
+				
+				addUserName(SOCK);
+				
+				ServerReturn CHAT = new ServerReturn(SOCK);
+				Thread X = new Thread(CHAT);
+				X.start();
 			}
-		} catch (IOException e)
-		{
-			System.err.println("Fehler beim Warten auf Verbindungen:"+e);
-			System.exit(1);
 		}
+		
+		catch(Exception X) {System.out.print(X);}
 	}
-
 	
-	public static void broadcast(String msg)
+	public static void addUserName(Socket X) throws IOException
 	{
-		int i;
-		Connection you;
-
-		for (i=0; i<connections.size(); i++)
+		Scanner INPUT = new Scanner(X.getInputStream());
+		String UserName = INPUT.nextLine();
+		CurrentUsers.add(UserName);
+		
+		for(int i = 1; i <= Server.ConnectionArray.size(); i++)
 		{
-			you = (Connection) connections.elementAt(i);
-			you.out.println(msg);
+			Socket TEMP_SOCK = (Socket) Server.ConnectionArray.get(i-1);
+			PrintWriter OUT = new PrintWriter (TEMP_SOCK.getOutputStream());
+			OUT.println("#?!" + CurrentUsers);
+			OUT.flush();
 		}
-	}
-	
-	public static void main(String[] args){
-		new Server();
 	}
 }

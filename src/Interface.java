@@ -407,7 +407,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 		
 		if (event.getSource().equals(chat)){
 			 
-			 new Server();
+			ServerGUI.chatWindow();
+			
 		}
 
 		

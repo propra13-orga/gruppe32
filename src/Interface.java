@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 //import com.sun.security.ntlm.Server;
 
@@ -416,11 +417,19 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 		if (event.getSource().equals(server)){
 			 
 			/* Lobby-Frame mit Rolle Server. */
+			new Lobby("Server", null);
 		}
 		
 		if (event.getSource().equals(client)) {
 			
-			/* Lobby-Frame mit Rolle Client. */
+			/* IP-Adresse abfragen. */
+			String ip = JOptionPane.showInputDialog("Bitte IP eingeben");
+			
+			if (ip != null && !ip.equals("")) {
+				
+				/* Lobby-Frame mit Rolle Client. */
+				new Lobby("Client", ip);
+			}
 		}
 
 		

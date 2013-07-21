@@ -300,7 +300,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 	 */
 	public static JButton starten;
 	public static JButton ende;
-	public static JButton chat;
+	public static JButton server;
+	public static JButton client;
 	
 	/**
 	 * Reihe und Spalte für das Spielfeld
@@ -340,12 +341,19 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 		StdDraw.frame.add(ende);
 		
 		
-		// Button "Chat"
-		chat = new JButton("Chat");
-		chat.setBounds(870,20,100,45); 
-		chat.addActionListener(StdDraw.frame); 
+		// Button "Server"
+		server = new JButton("Server");
+		server.setBounds(870,10,100,35); 
+		server.addActionListener(StdDraw.frame); 
 		//chat.setFocusable(false);
-		StdDraw.frame.add(chat); 
+		StdDraw.frame.add(server); 
+		
+		// Button "Client"
+		client = new JButton("Client");
+		client.setBounds(870,65,100,35); 
+		client.addActionListener(StdDraw.frame); 
+		//chat.setFocusable(false);
+		StdDraw.frame.add(client); 
 		
 		StdDraw.frame.addKeyListener(StdDraw.frame);
 		
@@ -405,10 +413,14 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 			System.exit(0);
 		}
 		
-		if (event.getSource().equals(chat)){
+		if (event.getSource().equals(server)){
 			 
-			ServerGUI.chatWindow();
+			/* Lobby-Frame mit Rolle Server. */
+		}
+		
+		if (event.getSource().equals(client)) {
 			
+			/* Lobby-Frame mit Rolle Client. */
 		}
 
 		

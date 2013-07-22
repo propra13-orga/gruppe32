@@ -1,4 +1,5 @@
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-public class Lobby extends JFrame {
+public class Lobby extends JFrame implements ActionListener{
 	
 	private static Client Client;
 		
@@ -26,13 +27,12 @@ public class Lobby extends JFrame {
 	public Lobby(String rolle, String ip) {
 		
 		/* Frame erzeugen, Eigenschaften festlegen. */
-			mainWindow.setTitle("Chat");
-			mainWindow.setSize(450,500);
+			mainWindow.setTitle("Chat: "+rolle);
+			mainWindow.setSize(370,320);
 			mainWindow.setLocation(220,180);
 			mainWindow.setResizable(false);
 			mainWindow.setVisible(true);
 			mainWindow.setBackground(new java.awt.Color(255, 255, 255));
-			mainWindow.setSize(500,320);
 			mainWindow.getContentPane().setLayout(null);
 			
 			send.setBackground(new java.awt.Color(0, 0, 255));
@@ -81,6 +81,12 @@ public class Lobby extends JFrame {
 			new Client(ip, Server.PORT);
 		}
 	}
+	
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource().equals(send)){
+			//send();
+		}
+		}
 	
 	
 

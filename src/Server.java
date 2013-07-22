@@ -12,15 +12,16 @@ public class Server extends Thread implements Runnable{
 	final static int PORT = 5000;
 	ServerSocket server = null;
 	Socket socket = null;
-	BufferedReader inputClient = null;
-	BufferedWriter outputServer = null; 
+	BufferedReader input = null;
+	BufferedWriter output = null; 
 
 	
 		
 	public Server(){
 		try{
 			server = new ServerSocket(PORT);
-			System.out.println("Auf Clients warten...");				
+			System.out.println("Auf Clients warten...");
+		
 		}
 		catch(IOException e) {System.out.print(e);}
 		
@@ -36,18 +37,18 @@ public class Server extends Thread implements Runnable{
 			socket = server.accept();
 
 			// BufferedReader um Daten zu lesen
-			inputClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
+			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
 			// BufferedWriter um Daten zum Client zu schicken
-			outputServer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			output = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
 			
 			// Warten auf den Client
 			/*
-			String fromClient = inputClient.readLine();
-			outputServer.write(fromClient);
-			outputServer.newLine();
-			outputServer.flush(); 
+			String fromClient = input.readLine();
+			output.write(fromClient);
+			output.newLine();
+			output.flush(); 
 		*/
 			
 			
@@ -57,13 +58,7 @@ public class Server extends Thread implements Runnable{
 			System.exit(1);
 		}
 	}
-	public void actionPerformed(ActionEvent event) {
-	if (event.getSource().equals(Lobby.send)){
-		
-	}
-	}
 	
-
 
 	
 	

@@ -316,6 +316,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 	private int returner;
 	private static boolean spielGestartet;
 	
+	public static String ip;
+	
 	
     /**
      * Methode oeffnet das Menue
@@ -417,18 +419,31 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 		if (event.getSource().equals(server)){
 			 
 			/* Lobby-Frame mit Rolle Server. */
-			new Lobby("Server", null);
+			try {
+				new Lobby("Server", Server.out, Server.in);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if (event.getSource().equals(client)) {
 			
 			/* IP-Adresse abfragen. */
-			String ip = JOptionPane.showInputDialog("Bitte IP eingeben");
+			ip = JOptionPane.showInputDialog("Bitte IP eingeben");
 			
 			if (ip != null && !ip.equals("")) {
 				
 				/* Lobby-Frame mit Rolle Client. */
-				new Lobby("Client", ip);
+				
+				try {
+					
+					new Lobby("Client", Client.out, Client.in);
+				
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 

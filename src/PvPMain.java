@@ -8,7 +8,10 @@ public class PvPMain{
 	public static boolean aktiv;
 	public static boolean isServer;
 	
+	public static int connectionCounter;
+	
 	public PvPMain(boolean server, int leben, double startSchaden, int startMana, int startFarbe){
+		connectionCounter=0;
 		isServer = server;
 		PvPSpieler.setLeben(leben);
 		PvPSpieler.setSchaden(startSchaden);
@@ -71,7 +74,7 @@ public class PvPMain{
 		
 	}
 	
-	public void updateTransferArray(){
+	public static void updateTransferArray(){
 		transferArray[0]=PvPSpieler.getX();
 		transferArray[1]=PvPSpieler.getY();
 		transferArray[2]=PvPSpieler.getSchaden();
@@ -79,7 +82,7 @@ public class PvPMain{
 		transferArray[4]=PvPSpieler.getFarbe();
 		transferArray[5]=PvPSpieler.getSchildInt();
 	}
-	public void recieveAuswerten(){
+	public static void recieveAuswerten(){
 		int newX = (int)recieveArray[0];
 		int newY = (int)recieveArray[1];
 		PvPGegner.setXY(newX, newY);
@@ -103,6 +106,12 @@ public class PvPMain{
 			oos.writeObject(transferArray);
 			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 			recieveArray = (double[]) ois.readObject();
+			connectionCounter++;
+			if ((connectionCounter%2)!=0){
+				aktiv=true;
+				recieveAuswerten();
+			}
+			socket.close();
 		}
 		catch (UnknownHostException e) {
 	        e.printStackTrace();
@@ -123,6 +132,12 @@ public class PvPMain{
 				oos.writeObject(transferArray);
 				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
 				recieveArray = (double[]) ois.readObject();
+				connectionCounter++;
+				if ((connectionCounter%2)==0){
+					aktiv=true;
+					recieveAuswerten();
+				}
+				server.close();
 		    }
 		 catch (IOException e) {
 		        e.printStackTrace();
@@ -130,5 +145,6 @@ public class PvPMain{
 		 catch (ClassNotFoundException e){
 				e.printStackTrace();
 		 }
+		 
 	}
 }

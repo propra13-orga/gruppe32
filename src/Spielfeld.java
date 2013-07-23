@@ -19,6 +19,11 @@ public class Spielfeld {
  */
 private static int[][][][] spielfeld = new int [Interface.ARRAYDREI][Interface.ARRAYDREI][20][15];
 /**
+ * hauptarray fuers PvP/Netzwerkspiel
+ */
+private static int[][] spielfeldPvP = new int [20][15];
+
+/**
  * Level, Raum des Spiels
  */
 private static int level;
@@ -322,6 +327,27 @@ public static boolean initSpielfeld() {
 		return fehlerGefunden;
 	}
 
+public static void initSpielfeldPvP(){
+	for(reihe=0;reihe<=15;reihe++){
+		for(spalte=0;spalte<=20;spalte++){
+			if(spalte==0|reihe==0|spalte==20|reihe==15){
+				spielfeldPvP[spalte][reihe]=Interface.MAUER;
+			}
+		}
+	}
+	spielfeldPvP[1][1]=Interface.FIGUR;
+	spielfeldPvP[19][14]=Interface.BEIZIEL;
+	spielfeldPvP[1][14]=Interface.FARBEBLAU;
+	spielfeldPvP[19][1]=Interface.FARBEROT;
+	spielfeldPvP[10][7]=Interface.FARBEGELB;
+}
+
+public static int getPvPWertBeiXY(int x, int y){
+	return spielfeldPvP[x][y];
+}
+public static void setPvPWertBeiXY(int x, int y, int wert){
+	spielfeldPvP[x][y]=wert;
+}
 /**
  * setzt einen Checkpoint an die entsprechende Stelle
  * @param newCheckpoint Nummer des neuen Checkpoints

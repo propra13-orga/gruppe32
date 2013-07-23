@@ -11,9 +11,9 @@ public class Spieler{
 	public static final double MAXHP = 10.0;
 	private static final double DEFAULTMANA = 10.0;
 	private static final double DEFAULTHP = 10.0;
-	private static final int GELB = 0;
-	private static final int BLAU = 1;
-	private static final int ROT = 2;
+	public static final int GELB = 0;
+	public static final int BLAU = 1;
+	public static final int ROT = 2;
 	private static final int DEFAULTFARBE = GELB;
 	private static final double DEFAULTSCHADEN = 2;
 	private static final double DEFAULTMANAFAKTOR=1;

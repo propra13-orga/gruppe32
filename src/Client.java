@@ -36,7 +36,8 @@ public class Client extends Thread {
 			String incoming;
 			try {
 				incoming = in.readLine();
-				frame.addAusgabe(incoming);
+				frame.addAusgabe(incoming+"\n");
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -44,8 +45,9 @@ public class Client extends Thread {
 	}
 
 	public void print(String ausgabe) {
-		out.print("Client: "+ausgabe+"\n");
+		out.print("Client: "+ausgabe);
 		out.flush();
+		
 				
 	}
 }

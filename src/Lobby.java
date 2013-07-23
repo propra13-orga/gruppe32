@@ -15,7 +15,7 @@ public class Lobby extends JFrame implements ActionListener {
 
 	/** Textareas im Fenster */
 	TextArea eingabe;
-	TextField ausgabe;
+	TextArea ausgabe;
 	/** Button im Fenster */
 	JButton send;
 	JButton bereit;
@@ -69,7 +69,7 @@ public class Lobby extends JFrame implements ActionListener {
 
 		/* initialisert TextAreas */
 		eingabe = new TextArea();
-		ausgabe = new TextField();
+		ausgabe = new TextArea();
 		ausgabe.setEditable(false);  
 		
 		/* initialisiert Button */
@@ -115,14 +115,17 @@ public class Lobby extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals("Send")) {
 			String ausgabe = eingabe.getText() + "\n";
 			
+			//addAusgabe(ausgabe);
 			
 			if (server != null) {
 				
 				server.print(ausgabe);
+				addAusgabe("Server: "+ausgabe);
 				eingabe.setText("");
 			} else {
 				
 				client.print(ausgabe);
+				addAusgabe("Client: "+ausgabe);
 				eingabe.setText("");
 			}
 		}

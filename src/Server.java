@@ -34,7 +34,8 @@ public class Server extends Thread {
 			
 			while (true){
 				String incoming = in.readLine();
-				frame.addAusgabe(incoming);
+				frame.addAusgabe(incoming+"\n");
+				
 			
 			}
 		}catch (IOException e) {
@@ -47,7 +48,7 @@ public class Server extends Thread {
 
 	public void print(String ausgabe) {
 		
-		out.print("Server: "+ausgabe+"\n");
+		out.print("Server: "+ausgabe);
 		out.flush();
 		
 		

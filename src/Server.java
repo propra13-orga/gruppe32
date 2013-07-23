@@ -11,8 +11,8 @@ public class Server extends Thread {
 	private Lobby frame;
 	private ServerSocket serverSocket = null;
 	private Socket clientSocket = null;
-	public static PrintWriter out = null;
-	public static BufferedReader in = null;
+	private PrintWriter out = null;
+	private BufferedReader in = null;
 
 	public Server(Lobby lobby) {
 		
@@ -35,6 +35,7 @@ public class Server extends Thread {
 			while (true){
 				String incoming = in.readLine();
 				frame.addAusgabe(incoming);
+			
 			}
 		}catch (IOException e) {
 			System.out.println("Fehler - ServerSocket.accept()");
@@ -48,8 +49,8 @@ public class Server extends Thread {
 		
 		out.print("Server: "+ausgabe+"\n");
 		out.flush();
-		(Client.out).print("Server: "+ausgabe+"\n");
-		(Client.out).flush();
+		
+		
 	}
 }
 

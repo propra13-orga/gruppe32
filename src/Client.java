@@ -9,8 +9,8 @@ public class Client extends Thread {
 	
 	private Lobby frame;
 	private Socket socket = null;
-	public static PrintWriter out = null;
-	public static BufferedReader in = null;
+	private PrintWriter out = null;
+	private BufferedReader in = null;
 
 	/**
 	 * Konstruktor
@@ -46,8 +46,6 @@ public class Client extends Thread {
 	public void print(String ausgabe) {
 		out.print("Client: "+ausgabe+"\n");
 		out.flush();
-		(Server.out).print("Client: "+ausgabe+"\n");
-		(Server.out).flush();
-		
+				
 	}
 }

@@ -115,6 +115,7 @@ public class Lobby extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals("Send")) {
 			String ausgabe = eingabe.getText() + "\n";
 			
+			
 			if (server != null) {
 				
 				server.print(ausgabe);

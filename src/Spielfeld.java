@@ -335,8 +335,7 @@ public static void initSpielfeldPvP(){
 			}
 		}
 	}
-	spielfeldPvP[1][1]=Interface.FIGUR;
-	spielfeldPvP[19][14]=Interface.BEIZIEL;
+
 	spielfeldPvP[1][14]=Interface.FARBEBLAU;
 	spielfeldPvP[19][1]=Interface.FARBEROT;
 	spielfeldPvP[10][7]=Interface.FARBEGELB;

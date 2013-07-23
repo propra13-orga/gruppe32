@@ -27,7 +27,7 @@ public class PvPGegner{
 	public static double getHP(){
 		return aktuelleHP;
 	}
-	public void setXY(int newX,int newY){
+	public static void setXY(int newX,int newY){
 		x=newX;
 		y=newY;
 	}
@@ -39,6 +39,9 @@ public class PvPGegner{
 	}
 	public static void setFarbe(int newFarbe){
 		aktuelleFarbe=newFarbe;
+	}
+	public static void setRuestung(double newRuestung){
+		ruestung=newRuestung;
 	}
 	
 	public static void schadenBekommen(double incSchaden){

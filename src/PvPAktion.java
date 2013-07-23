@@ -3,7 +3,7 @@ public class PvPAktion{
 	public static int newFigurX;
 	public static int newFigurY;
 	
-	public void figurBewegen(int richtung, int figurX, int figurY){
+	public static void figurBewegen(int richtung, int figurX, int figurY){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
 			newFigurY=figurY;
@@ -54,7 +54,7 @@ public class PvPAktion{
 		}
 	}
 	
-	public void figurAttack(int richtung, int figurX, int figurY){
+	public static void figurAttack(int richtung, int figurX, int figurY){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
 			newFigurY=figurY;
@@ -73,6 +73,7 @@ public class PvPAktion{
 		}
 		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.BEIZIEL){
 			PvPGegner.schadenBekommen(PvPSpieler.getSchaden());
+			PvPMain.transferArray[6]=PvPMain.transferArray[6]+PvPSpieler.getSchaden();
 		}
 		
 	}

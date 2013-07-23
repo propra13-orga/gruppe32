@@ -3,15 +3,14 @@ public class PvPSpieler{
 	
 
 	private static int leben;
-	private static double manaFaktor;
+	private static double manaFaktor = 1;
 	private static double schaden;
-	private static double aktuellesMana;
-	private static double aktuelleHP;
-	private static double ruestung;
-	private static int aktuelleFarbe;
+	private static double aktuellesMana=10;
+	private static double aktuelleHP=10;
+	private static double ruestung = 20;
+	private static int aktuelleFarbe = Interface.GELB;
 	private static int x;
 	private static int y;
-	private static int schildAufladung;
 	private static boolean schild;
 	private static boolean server;
 	public static void bewegen(int richtung){
@@ -79,6 +78,14 @@ public class PvPSpieler{
 	public static boolean getSchild(){
 		return schild;
 	}
+	public static int getSchildInt(){
+		 if(schild){
+			 return 1;
+		 }
+		 else{
+			 return 0;
+		 }
+	}
 	public static int getFarbe(){
 		return aktuelleFarbe;
 	}
@@ -89,7 +96,12 @@ public class PvPSpieler{
 		x=newX;
 		y=newY;
 	}
-		
+	public static void setLeben(int newLeben){
+		leben=newLeben;
+	}
+	public static void setSchaden(double newSchaden){
+		schaden=newSchaden;
+	}
 	public static void setFarbe(int farbe){
 			
 			if (farbe == Spieler.GELB){
@@ -138,7 +150,8 @@ public class PvPSpieler{
 		}
 	}
 	public static void respawn(){
-	
+		aktuelleHP=10;
+		aktuellesMana=10;
 			if(Spielfeld.getPvPWertBeiXY(1, 1)==Interface.BODEN){
 				PvPDisplay.figurBewegen(x, y, 1, 1, true);
 				Spielfeld.setPvPWertBeiXY(1,1,Interface.FIGUR);	

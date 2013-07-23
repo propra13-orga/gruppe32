@@ -1,10 +1,15 @@
+import java.io.*;
+import java.net.*;
+
+
 public class PvPMain{
 	public static double[] transferArray = new double[6];
 	public static double[] recieveArray = new double[6];
 	public static boolean aktiv;
+	public static boolean isServer;
 	
 	public PvPMain(boolean server, int leben, double startSchaden, int startMana, int startFarbe){
-		
+		isServer = server;
 		PvPSpieler.setLeben(leben);
 		PvPSpieler.setSchaden(startSchaden);
 		PvPGegner.setSchaden(startSchaden);
@@ -19,6 +24,8 @@ public class PvPMain{
 		else{
 			PvPGegner.setXY(1, 1);
 			PvPSpieler.setXY(19, 14);
+			aktiv=false;
+			clientConnect();
 		}
 		PvPDisplay.spielfeldDarstellen();	
 	}
@@ -55,6 +62,13 @@ public class PvPMain{
 
 		}
 		aktiv=false;
+		if(isServer){
+			serverAccept();
+		}
+		else{
+			clientConnect();
+		}
+		
 	}
 	
 	public void updateTransferArray(){
@@ -81,5 +95,40 @@ public class PvPMain{
 		}
 		PvPSpieler.schadenBekommen(recieveArray[6]);
 		aktiv=true;
+	}
+	public static void clientConnect(){
+		try{
+			Socket socket = new Socket("localhost", 7777);
+			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+			oos.writeObject(transferArray);
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			recieveArray = (double[]) ois.readObject();
+		}
+		catch (UnknownHostException e) {
+	        e.printStackTrace();
+	    } 
+		catch (IOException e) {
+	        e.printStackTrace();
+	    }
+		catch (ClassNotFoundException e){
+			e.printStackTrace();
+		}
+	}
+	public static void serverAccept(){
+		 try
+		    {
+		        ServerSocket server = new ServerSocket(7777);
+		        Socket socket = server.accept();
+		        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+				oos.writeObject(transferArray);
+				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+				recieveArray = (double[]) ois.readObject();
+		    }
+		 catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		 catch (ClassNotFoundException e){
+				e.printStackTrace();
+		 }
 	}
 }

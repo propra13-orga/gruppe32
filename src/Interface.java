@@ -315,6 +315,8 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 	private int counter3;
 	private int returner;
 	private static boolean spielGestartet;
+	private static boolean pvpSpielGestartet;
+	private static String pvpAktionString;
 	
 	public static String ip;
 	
@@ -471,6 +473,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 	 */
 	public void keyPressed(KeyEvent k){
 		toCheckpoint=false;
+		
 		if(spielGestartet){
 			StdDraw.show(0);
 			/*Key Aktionen:*/
@@ -539,8 +542,46 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 					levelDarstellen();
 					player[0].moveTo(checkpointArray[2], checkpointArray[ARRAYDREI]);
 				}				
-				
+			
 			StdDraw.show();
+		}
+		else if(pvpSpielGestartet){
+			if (k.getKeyCode() == KeyEvent.VK_RIGHT){
+				pvpAktionString = "rechts";
+			}
+			/*Bewegung nach Unten*/
+			else if (k.getKeyCode() == KeyEvent.VK_DOWN){
+				pvpAktionString = "unten";
+			}
+			/*Bewegung nach Links*/
+			else if (k.getKeyCode() == KeyEvent.VK_LEFT){
+				pvpAktionString = "links";
+			}
+			/* Bewegung nach Oben*/
+			else if (k.getKeyCode() == KeyEvent.VK_UP){
+				pvpAktionString = "oben";
+			}
+			/* zum zaubern*/
+			else if (k.getKeyCode() == KeyEvent.VK_SPACE){
+				pvpAktionString = "leer";
+			}
+			/* Angriff oben*/
+			else if (k.getKeyCode() == KeyEvent.VK_W){
+				pvpAktionString = "w";
+			}
+			/*Angriff links*/
+			else if (k.getKeyCode() == KeyEvent.VK_A){
+				pvpAktionString = "a";
+			}
+			/*Angriff unten*/
+			else if (k.getKeyCode() == KeyEvent.VK_S){
+				pvpAktionString = "s";
+			}
+			/*Angriff rechts*/
+			else if (k.getKeyCode() == KeyEvent.VK_D){
+				pvpAktionString = "d";
+			}
+			PvPMain.aktion(pvpAktionString);
 		}
 	}
 	/**

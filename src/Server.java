@@ -11,8 +11,8 @@ public class Server extends Thread {
 	private Lobby frame;
 	private ServerSocket serverSocket = null;
 	private Socket clientSocket = null;
-	private PrintWriter out = null;
-	private BufferedReader in = null;
+	public static PrintWriter out = null;
+	public static BufferedReader in = null;
 
 	public Server(Lobby lobby) {
 		
@@ -46,8 +46,10 @@ public class Server extends Thread {
 
 	public void print(String ausgabe) {
 		
-		out.print(ausgabe);
+		out.print("Server: "+ausgabe+"\n");
 		out.flush();
+		(Client.out).print("Server: "+ausgabe+"\n");
+		(Client.out).flush();
 	}
 }
 

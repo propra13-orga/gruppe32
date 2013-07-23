@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.TextArea;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
@@ -14,9 +15,10 @@ public class Lobby extends JFrame implements ActionListener {
 
 	/** Textareas im Fenster */
 	TextArea eingabe;
-	TextArea ausgabe;
+	TextField ausgabe;
 	/** Button im Fenster */
 	JButton send;
+	JButton bereit;
 	
 	private Server server;
 	private Client client;
@@ -67,15 +69,21 @@ public class Lobby extends JFrame implements ActionListener {
 
 		/* initialisert TextAreas */
 		eingabe = new TextArea();
-		ausgabe = new TextArea();
-
+		ausgabe = new TextField();
+		ausgabe.setEditable(false);  
+		
 		/* initialisiert Button */
 		send = new JButton();
+		bereit = new JButton();
 
 		/* ActionListener wird erzeugt */
 		send.setText("Abschicken");
 		send.setActionCommand("Send");
 		send.addActionListener(this);
+		
+		bereit.setText("Bereit für Netzwerk");
+		bereit.setActionCommand("Bereit");
+		bereit.addActionListener(this);
 
 		this.setLayout(new BorderLayout());
 
@@ -84,6 +92,7 @@ public class Lobby extends JFrame implements ActionListener {
 		unten.setLayout(new BorderLayout());
 		unten.add(eingabe, BorderLayout.CENTER);
 		unten.add(send, BorderLayout.EAST);
+		unten.add(bereit, BorderLayout.WEST);
 
 		this.add(unten, BorderLayout.SOUTH);
 		this.add(ausgabe, BorderLayout.CENTER);
@@ -109,9 +118,26 @@ public class Lobby extends JFrame implements ActionListener {
 			if (server != null) {
 				
 				server.print(ausgabe);
+				eingabe.setText("");
 			} else {
 				
 				client.print(ausgabe);
+				eingabe.setText("");
+			}
+		}
+		
+		if (e.getActionCommand().equals("Bereit")) {
+			bereit.setEnabled(false);
+			String bereit = " ist bereit zum Spielen\n";
+			
+			if (server != null) {
+				
+				server.print(bereit);
+				
+			} else {
+				
+				client.print(bereit);
+				
 			}
 		}
 	}

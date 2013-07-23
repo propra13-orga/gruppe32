@@ -3,8 +3,9 @@ import java.awt.Container;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -57,7 +58,12 @@ public class Lobby extends JFrame implements ActionListener {
 		setSize(800, 600);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
-		this.setTitle(rolle);
+		try {
+			this.setTitle(InetAddress.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		/* initialisert TextAreas */
 		eingabe = new TextArea();

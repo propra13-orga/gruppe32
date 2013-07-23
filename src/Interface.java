@@ -422,7 +422,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 			 
 			/* Lobby-Frame mit Rolle Server. */
 			try {
-				new Lobby("Server", Server.out, Server.in);
+				new Lobby("Server", null);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -440,7 +440,7 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 				
 				try {
 					
-					new Lobby("Client", Client.out, Client.in);
+					new Lobby("Client", ip);
 				
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

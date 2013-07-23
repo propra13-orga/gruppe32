@@ -1,4 +1,4 @@
-import java.awt.event.ActionEvent;
+/*import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -26,7 +26,7 @@ public class Lobby extends JFrame implements ActionListener{
 	
 	public Lobby(String rolle, String ip) {
 		
-		/* Frame erzeugen, Eigenschaften festlegen. */
+		// Frame erzeugen, Eigenschaften festlegen. 
 			mainWindow.setTitle("Chat: "+rolle);
 			mainWindow.setSize(370,320);
 			mainWindow.setLocation(220,180);
@@ -73,11 +73,11 @@ public class Lobby extends JFrame implements ActionListener{
 		
 		if (rolle.equals("Server")) {
 			
-			/* Server starten. */
+			// Server starten. 
 			new Server();
 		} else {
 			
-			/* Client starten. */
+			// Client starten. 
 			new Client(ip, Server.PORT);
 		}
 	}
@@ -90,4 +90,131 @@ public class Lobby extends JFrame implements ActionListener{
 	
 	
 
+}*/
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+
+public class Lobby extends JFrame {
+
+	/** Textareas im Fenster */
+	TextArea eingabe;
+	TextArea ausgabe;
+	/** Button im Fenster */
+	JButton send;
+	PrintWriter outPW;
+	BufferedReader inBR;
+	ActionListener x;
+
+	Lobby(String rolle, PrintWriter out, BufferedReader in) throws Exception {
+		outPW = out;
+		inBR = in;
+		init(rolle);
+	
+    if (rolle.equals("Server")) {
+			
+			// Server starten. 
+    	try{
+			new Server();
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
+		} else {
+			try{
+			// Client starten. 
+			new Client();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+
+	/**
+	 * initialisiert das Fenster
+	 * 
+	 * @param Titel
+	 */
+	void init(String rolle) {
+		setLocation(400, 400);
+		setSize(800, 600);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setVisible(true);
+		this.setTitle(rolle);
+
+		/* initialisert TextAreas */
+		eingabe = new TextArea();
+		ausgabe = new TextArea();
+
+		/* initialisiert Button */
+		send = new JButton();
+
+		/* ActionListener wird erzeugt */
+		x = new Action(outPW, inBR, eingabe);
+		send.setText("Abschicken");
+		send.setActionCommand("Send");
+		send.addActionListener(x);
+
+		this.setLayout(new BorderLayout());
+
+		/* Container für alle Fragmente im unteren Teil des Fensters */
+		Container unten = new Container();
+		unten.setLayout(new BorderLayout());
+		unten.add(eingabe, BorderLayout.CENTER);
+		unten.add(send, BorderLayout.EAST);
+
+		this.add(unten, BorderLayout.SOUTH);
+		this.add(ausgabe, BorderLayout.CENTER);
+		
+	}
+
+	/**
+	 * verkettet die einzelnen Ausgaben miteinander
+	 * @param add
+	 */
+	public void addAusgabe(String add) {
+		String temp = ausgabe.getText();
+		temp += add;
+		ausgabe.setText(temp);
+	}
 }
+
+class Action implements ActionListener {
+	PrintWriter outPW;
+	BufferedReader inBR;
+	TextArea eingabe;
+
+	/**
+	 * 
+	 * @param out
+	 * @param in
+	 * @param Text
+	 */
+	Action(PrintWriter out, BufferedReader in, TextArea Text) {
+		outPW = out;
+		inBR = in;
+		eingabe = Text;
+	}
+
+	/**
+	 * 
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("Send")) {
+			String Ausgabe = eingabe.getText() + "\n";
+			outPW.print(Ausgabe);
+			outPW.flush();
+		}
+	}
+}
+

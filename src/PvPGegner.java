@@ -55,5 +55,13 @@ public class PvPGegner{
 		}
 		PvPDisplay.gegnerDarstellen(x, y);
 	}
+	public static void moveTo(int newX,int newY){
+		Spielfeld.setPvPWertBeiXY(x,y,Interface.BODEN);
+		Spielfeld.setPvPWertBeiXY(newX,newY,Interface.FIGUR);
+		PvPDisplay.figurBewegen(x, y, newX, newY, false);
+		x=newX;
+		y=newY;
+		
+	}
 	
 }

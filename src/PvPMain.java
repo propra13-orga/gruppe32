@@ -3,14 +3,15 @@ import java.net.*;
 
 
 public class PvPMain{
-	public static double[] transferArray = new double[6];
-	public static double[] recieveArray = new double[6];
+	public static double[] transferArray = new double[7];
 	public static boolean aktiv;
 	public static boolean isServer;
+	public static Server myServer;
+	public static Client client;
 	
 	public static int connectionCounter;
 	
-	public PvPMain(boolean server, int leben, double startSchaden, int startMana, int startFarbe){
+	public PvPMain(boolean server,Server newServer, Client newClient, int leben, double startSchaden, int startMana, int startFarbe){
 		connectionCounter=0;
 		isServer = server;
 		PvPSpieler.setLeben(leben);
@@ -19,22 +20,22 @@ public class PvPMain{
 		PvPSpieler.setFarbe(startFarbe);
 		PvPGegner.setFarbe(startFarbe);
 		Spielfeld.initSpielfeldPvP();
+		
 		if (server){
+			myServer = newServer;
 			PvPSpieler.setXY(1, 1);
 			PvPGegner.setXY(19, 14);
-			aktiv=true;
 		}
 		else{
+			client = newClient;
 			PvPGegner.setXY(1, 1);
 			PvPSpieler.setXY(19, 14);
-			aktiv=false;
-			clientConnect();
 		}
 		PvPDisplay.spielfeldDarstellen();	
 	}
 	
 	public static void aktion(String taste){
-		if(aktiv){
+		
 			if (taste=="w"){
 				PvPAktion.figurAttack(Interface.OBEN,PvPSpieler.getX(),PvPSpieler.getY());
 			}
@@ -62,30 +63,28 @@ public class PvPMain{
 			if (taste=="leer"){
 				PvPSpieler.schildZauber();
 			}
-
-		}
-		aktiv=false;
-		if(isServer){
-			serverAccept();
-		}
-		else{
-			clientConnect();
-		}
 		
 	}
 	
-	public static void updateTransferArray(){
+	public static void transfer(){
 		transferArray[0]=PvPSpieler.getX();
 		transferArray[1]=PvPSpieler.getY();
 		transferArray[2]=PvPSpieler.getSchaden();
 		transferArray[3]=PvPSpieler.getRuestung();
 		transferArray[4]=PvPSpieler.getFarbe();
 		transferArray[5]=PvPSpieler.getSchildInt();
+		if(isServer){
+			myServer.transfer(transferArray);
+		}
+		else{
+			client.transfer(transferArray);
+		}
+		transferArray[6]=0;
 	}
-	public static void recieveAuswerten(){
+	public static void recieve(double[] recieveArray){
 		int newX = (int)recieveArray[0];
 		int newY = (int)recieveArray[1];
-		PvPGegner.setXY(newX, newY);
+		PvPGegner.moveTo(newX, newY);
 		PvPGegner.setSchaden(recieveArray[2]);
 		PvPGegner.setRuestung(recieveArray[3]);
 		int newFarbe = (int)recieveArray[4];
@@ -97,54 +96,6 @@ public class PvPMain{
 			PvPGegner.setSchild(false);
 		}
 		PvPSpieler.schadenBekommen(recieveArray[6]);
-		aktiv=true;
 	}
-	public static void clientConnect(){
-		try{
-			Socket socket = new Socket("localhost", 7777);
-			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			oos.writeObject(transferArray);
-			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-			recieveArray = (double[]) ois.readObject();
-			connectionCounter++;
-			if ((connectionCounter%2)!=0){
-				aktiv=true;
-				recieveAuswerten();
-			}
-			socket.close();
-		}
-		catch (UnknownHostException e) {
-	        e.printStackTrace();
-	    } 
-		catch (IOException e) {
-	        e.printStackTrace();
-	    }
-		catch (ClassNotFoundException e){
-			e.printStackTrace();
-		}
-	}
-	public static void serverAccept(){
-		 try
-		    {
-		        ServerSocket server = new ServerSocket(7777);
-		        Socket socket = server.accept();
-		        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-				oos.writeObject(transferArray);
-				ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-				recieveArray = (double[]) ois.readObject();
-				connectionCounter++;
-				if ((connectionCounter%2)==0){
-					aktiv=true;
-					recieveAuswerten();
-				}
-				server.close();
-		    }
-		 catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		 catch (ClassNotFoundException e){
-				e.printStackTrace();
-		 }
-		 
-	}
+	
 }

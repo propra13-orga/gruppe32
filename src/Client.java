@@ -40,9 +40,9 @@ public class Client extends Thread {
 					incoming = (String)incoming;
 					frame.addAusgabe(incoming+"\n");
 				}
-				else if(incoming instanceof int[]){
-					incoming = (int[])incoming;
-					//PvPMain.recieve(incoming);
+				else if(incoming instanceof double[]){
+					double[] incoming2 = (double[])incoming;
+					PvPMain.recieve(incoming2);
 				}
 			}
 			catch (IOException e) {
@@ -67,7 +67,7 @@ public class Client extends Thread {
 		}
 				
 	}
-	public void transfer(int[] transferArray){
+	public void transfer(double[] transferArray){
 		try{
 			out.writeObject(transferArray);
 			out.flush();

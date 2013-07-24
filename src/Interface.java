@@ -472,7 +472,57 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 	 * 
 	 */
 	public void keyPressed(KeyEvent k){
-		toCheckpoint=false;
+		
+	}
+	/**
+	 * ruft fuer jeden Gegner gegnerAktion auf
+	 */
+	public void alleGegnerBewegen(){
+		for (counter=0;counter<gegnerZahl;counter++){
+			if (spielGestartet){
+				gegnerAktion(counter);
+			}
+		}
+	}
+	
+	/**
+	 * bestimmt die Aktionen von Gegnern
+	 * @param id 'Nummer' des Gegners
+	 */
+	public void gegnerAktion(int id){
+		gegnerAttack=gegner[id].bewegen();
+		if (gegnerAttack[0]==1){
+			if (player[ getPlayerID(gegnerAttack[1],gegnerAttack[2]) ].schadenBekommen( gegner[id].getSchaden() )){
+				toCheckpoint=true;
+			}
+		}
+	}
+	
+	/**
+	 * Angriff auf Mob und Bosse
+	 * @param richtung Richtung in die angegriffen wird
+	 */
+	public void playerAttack(int richtung){
+		playerAttack=player[0].playerAttack(richtung);
+		if (playerAttack[0]==MOB){
+			gegner[ getGegnerID(playerAttack[1],playerAttack[2]) ].schadenBekommen( player[0].getSchaden() );
+		}
+		else if (playerAttack[0]==BOSS3){
+			boss3.schadenBekommen( player[0].getSchaden() );
+			if (player[0].schadenBekommen(boss3.getSchaden())){
+				toCheckpoint=true;
+			}
+		}
+	}
+	
+	/**
+	 * Methode keyReleased : KeyEvent, 
+	 * jedoch nicht genutzt
+	 * @param k Key Event
+	 * 
+	 */
+	public void keyReleased(KeyEvent k){
+toCheckpoint=false;
 		
 		if(spielGestartet){
 			StdDraw.show(0);
@@ -583,56 +633,6 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 			}
 			PvPMain.aktion(pvpAktionString);
 		}
-	}
-	/**
-	 * ruft fuer jeden Gegner gegnerAktion auf
-	 */
-	public void alleGegnerBewegen(){
-		for (counter=0;counter<gegnerZahl;counter++){
-			if (spielGestartet){
-				gegnerAktion(counter);
-			}
-		}
-	}
-	
-	/**
-	 * bestimmt die Aktionen von Gegnern
-	 * @param id 'Nummer' des Gegners
-	 */
-	public void gegnerAktion(int id){
-		gegnerAttack=gegner[id].bewegen();
-		if (gegnerAttack[0]==1){
-			if (player[ getPlayerID(gegnerAttack[1],gegnerAttack[2]) ].schadenBekommen( gegner[id].getSchaden() )){
-				toCheckpoint=true;
-			}
-		}
-	}
-	
-	/**
-	 * Angriff auf Mob und Bosse
-	 * @param richtung Richtung in die angegriffen wird
-	 */
-	public void playerAttack(int richtung){
-		playerAttack=player[0].playerAttack(richtung);
-		if (playerAttack[0]==MOB){
-			gegner[ getGegnerID(playerAttack[1],playerAttack[2]) ].schadenBekommen( player[0].getSchaden() );
-		}
-		else if (playerAttack[0]==BOSS3){
-			boss3.schadenBekommen( player[0].getSchaden() );
-			if (player[0].schadenBekommen(boss3.getSchaden())){
-				toCheckpoint=true;
-			}
-		}
-	}
-	
-	/**
-	 * Methode keyReleased : KeyEvent, 
-	 * jedoch nicht genutzt
-	 * @param k Key Event
-	 * 
-	 */
-	public void keyReleased(KeyEvent k){
-		
 	}
 
 	

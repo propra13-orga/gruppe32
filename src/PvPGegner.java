@@ -2,7 +2,7 @@ public class PvPGegner{
 	
 	
 	private static double schaden;
-	private static double aktuelleHP;
+	private static double aktuelleHP=10;
 	private static double ruestung;
 	private static int aktuelleFarbe;
 	private static int x;

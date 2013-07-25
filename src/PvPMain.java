@@ -3,12 +3,12 @@ import java.net.*;
 
 
 public class PvPMain{
-	public static double[] transferArray = new double[7];
+	//public static double[] transferArray = new double[7];
 	public static boolean aktiv;
 	public static boolean isServer;
 	public static Server myServer;
 	public static Client client;
-	
+	public static double damageTransfer;
 	public static int connectionCounter;
 	
 	public PvPMain(boolean server,Server newServer, Client newClient, int leben, double startSchaden, int startMana, int startFarbe){
@@ -69,19 +69,21 @@ public class PvPMain{
 	}
 	
 	public static void transfer(){
+		double[] transferArray = new double[7];
 		transferArray[0]=PvPSpieler.getX();
 		transferArray[1]=PvPSpieler.getY();
 		transferArray[2]=PvPSpieler.getSchaden();
 		transferArray[3]=PvPSpieler.getRuestung();
 		transferArray[4]=PvPSpieler.getFarbe();
 		transferArray[5]=PvPSpieler.getSchildInt();
+		transferArray[6]=damageTransfer;
 		if(isServer){
 			myServer.transfer(transferArray);
 		}
 		else{
 			client.transfer(transferArray);
 		}
-		transferArray[6]=0;
+		damageTransfer=0;
 	}
 	public static void recieve(double[] recieveArray){
 		int newX = (int)recieveArray[0];

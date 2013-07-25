@@ -87,7 +87,7 @@ public class PvPDisplay{
 			StdDraw.filledRectangle(Interface.PIC1+Interface.PIC2*x,
 					Interface.PIC1+Interface.PIC2*y+Interface.ZWOELF, mod, 2);
 			StdDraw.setPenColor();
-			StdDraw.show(0);
+			StdDraw.show();
 		}
 	}
 	

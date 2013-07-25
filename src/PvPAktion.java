@@ -74,7 +74,7 @@ public class PvPAktion{
 		}
 		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.BEIZIEL){
 			PvPGegner.schadenBekommen(PvPSpieler.getSchaden());
-			PvPMain.transferArray[6]=PvPMain.transferArray[6]+PvPSpieler.getSchaden();
+			PvPMain.damageTransfer=PvPMain.damageTransfer+PvPSpieler.getSchaden();
 		}
 		
 	}

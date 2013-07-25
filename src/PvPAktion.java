@@ -24,32 +24,33 @@ public class PvPAktion{
 			PvPSpieler.setXY(newFigurX,newFigurY);
 			Spielfeld.setPvPWertBeiXY(newFigurX,newFigurY,Interface.FIGUR);
 			Spielfeld.setPvPWertBeiXY(figurX,figurY,Interface.BODEN);
+			PvPDisplay.figurBewegen(figurX, figurY, newFigurX, newFigurY, true);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.BEIZIEL){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.BEIZIEL){
 			PvPSpieler.schadenBekommen(PvPGegner.getSchaden());
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEBLAU){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEBLAU){
 			PvPSpieler.setFarbe(Spieler.BLAU);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEROT){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEROT){
 			PvPSpieler.setFarbe(Spieler.ROT);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEGELB){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.FARBEGELB){
 			PvPSpieler.setFarbe(Spieler.GELB);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.MANATRANK){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.MANATRANK){
 			PvPSpieler.manaReg(1);
 			PvPSpieler.setXY(newFigurX,newFigurY);
 			Spielfeld.setPvPWertBeiXY(newFigurX,newFigurY,Interface.FIGUR);
 			Spielfeld.setPvPWertBeiXY(figurX,figurY,Interface.BODEN);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.HPTRANK){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.HPTRANK){
 			PvPSpieler.schadenHeilen(1);
 			PvPSpieler.setXY(newFigurX,newFigurY);
 			Spielfeld.setPvPWertBeiXY(newFigurX,newFigurY,Interface.FIGUR);
 			Spielfeld.setPvPWertBeiXY(figurX,figurY,Interface.BODEN);
 		}
-		if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.MAUER){
+		else if (Spielfeld.getPvPWertBeiXY(newFigurX,newFigurY)==Interface.MAUER){
 			
 		}
 	}

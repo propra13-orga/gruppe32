@@ -328,16 +328,16 @@ public static boolean initSpielfeld() {
 	}
 
 public static void initSpielfeldPvP(){
-	for(reihe=0;reihe<=15;reihe++){
-		for(spalte=0;spalte<=20;spalte++){
-			if(spalte==0|reihe==0|spalte==20|reihe==15){
+	for(reihe=0;reihe<=12;reihe++){
+		for(spalte=0;spalte<=19;spalte++){
+			if(spalte==0|reihe==0|spalte==19|reihe==12){
 				spielfeldPvP[spalte][reihe]=Interface.MAUER;
 			}
 		}
 	}
 
-	spielfeldPvP[1][14]=Interface.FARBEBLAU;
-	spielfeldPvP[19][1]=Interface.FARBEROT;
+	spielfeldPvP[1][11]=Interface.FARBEBLAU;
+	spielfeldPvP[18][1]=Interface.FARBEROT;
 	spielfeldPvP[10][7]=Interface.FARBEGELB;
 }
 

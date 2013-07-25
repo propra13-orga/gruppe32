@@ -24,14 +24,15 @@ public class PvPMain{
 		if (server){
 			myServer = newServer;
 			PvPSpieler.setXY(1, 1);
-			PvPGegner.setXY(19, 14);
+			PvPGegner.setXY(18, 11);
 		}
 		else{
 			client = newClient;
 			PvPGegner.setXY(1, 1);
-			PvPSpieler.setXY(19, 14);
+			PvPSpieler.setXY(18, 11);
 		}
-		PvPDisplay.spielfeldDarstellen();	
+		PvPDisplay.spielfeldDarstellen();
+		Interface.startPvp();
 	}
 	
 	public static void aktion(String taste){
@@ -39,30 +40,31 @@ public class PvPMain{
 			if (taste=="w"){
 				PvPAktion.figurAttack(Interface.OBEN,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="a"){
+			else if (taste=="a"){
 				PvPAktion.figurAttack(Interface.LINKS,PvPSpieler.getX(),PvPSpieler.getY());			
 			}
-			if (taste=="s"){
+			else if (taste=="s"){
 				PvPAktion.figurAttack(Interface.UNTEN,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="d"){
+			else if (taste=="d"){
 				PvPAktion.figurAttack(Interface.RECHTS,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="links"){
+			else if (taste=="links"){
 				PvPAktion.figurBewegen(Interface.LINKS,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="rechts"){
+			else if (taste=="rechts"){
 				PvPAktion.figurBewegen(Interface.RECHTS,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="oben"){
+			else if (taste=="oben"){
 				PvPAktion.figurBewegen(Interface.OBEN,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="unten"){
+			else if (taste=="unten"){
 				PvPAktion.figurBewegen(Interface.UNTEN,PvPSpieler.getX(),PvPSpieler.getY());
 			}
-			if (taste=="leer"){
+			else if (taste=="leer"){
 				PvPSpieler.schildZauber();
 			}
+			transfer();
 		
 	}
 	

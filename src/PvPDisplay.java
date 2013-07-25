@@ -175,6 +175,10 @@ public class PvPDisplay{
 		}
 	}
 	public static void spielfeldDarstellen(){
+		//StdDraw.show(0);
+		StdDraw.clear();
+		StdDraw.setXscale(0.0,900);
+		StdDraw.setYscale(0,600);
 		StdDraw.show(0);
 		for (spalte=0;spalte<Interface.SPALTEN;spalte++) {
 			for(reihe=0;reihe<Interface.REIHEN;reihe++) {
@@ -198,6 +202,7 @@ public class PvPDisplay{
 		}
 		spielerDarstellen(PvPSpieler.getX(),PvPSpieler.getY());
 		gegnerDarstellen(PvPGegner.getX(),PvPGegner.getY());
+		StdDraw.show();
 	}
 	
 }

@@ -23,6 +23,11 @@ public class Lobby extends JFrame implements ActionListener {
 	private Server server;
 	private Client client;
 
+	private boolean selfReady;
+	private boolean oppReady;
+	
+	private PvPMain pvpMain;
+	
 	Lobby(String rolle, String ip) throws Exception {
 		
 		init(rolle);
@@ -133,16 +138,37 @@ public class Lobby extends JFrame implements ActionListener {
 		if (e.getActionCommand().equals("Bereit")) {
 			bereit.setEnabled(false);
 			String bereit = " ist bereit zum Spielen\n";
-			
+			selfReady = true;
 			if (server != null) {
 				
 				server.print(bereit);
-				
+				server.setReady();
 			} else {
 				
 				client.print(bereit);
-				
+				client.setReady();
 			}
+			if(oppReady){
+				startPvP();
+			}
+		}
+	}
+	
+	public void startPvP(){
+		if (server != null) {
+			//Interface newInterface = new Interface();
+			pvpMain = new PvPMain(true, server, null, 5, 2, 4, Interface.GELB);
+			
+		} else {
+			//Interface newInterface =new Interface();
+			pvpMain = new PvPMain(false, null, client, 5, 2, 4, Interface.GELB);
+			
+		}
+	}
+	public void setOppReady(){
+		oppReady=true;
+		if(selfReady){
+			startPvP();
 		}
 	}
 }

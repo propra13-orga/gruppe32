@@ -350,14 +350,14 @@ public class Interface extends JFrame implements ActionListener, KeyListener, Ru
 		server = new JButton("Server");
 		server.setBounds(870,10,100,35); 
 		server.addActionListener(StdDraw.frame); 
-		//chat.setFocusable(false);
+		server.setFocusable(false);
 		StdDraw.frame.add(server); 
 		
 		// Button "Client"
 		client = new JButton("Client");
 		client.setBounds(870,65,100,35); 
 		client.addActionListener(StdDraw.frame); 
-		//chat.setFocusable(false);
+		client.setFocusable(false);
 		StdDraw.frame.add(client); 
 		
 		StdDraw.frame.addKeyListener(StdDraw.frame);
@@ -1043,5 +1043,10 @@ toCheckpoint=false;
 		public void run() {
 			// TODO Auto-generated method stub
 			
+		}
+		public static void startPvp(){
+			spielGestartet=false;
+			pvpSpielGestartet=true;
+			//this.setFocusable();
 		}
 }

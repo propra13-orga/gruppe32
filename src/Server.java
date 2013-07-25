@@ -45,6 +45,9 @@ public class Server extends Thread {
 						double[]incoming2 = (double[])incoming;
 						PvPMain.recieve(incoming2);
 					}
+					else if(incoming instanceof int[]){
+						frame.setOppReady();
+					}
 				}
 				catch (IOException e) {
 					e.printStackTrace();
@@ -76,6 +79,17 @@ public class Server extends Thread {
 	public void transfer(double[] transferArray){
 		try{
 			out.writeObject(transferArray);
+			out.flush();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void setReady(){
+		int[] ready = new int[0];
+		try{
+			out.writeObject(ready);
 			out.flush();
 		}
 		catch (IOException e){

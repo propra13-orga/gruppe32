@@ -202,6 +202,7 @@ public class PvPDisplay{
 		}
 		spielerDarstellen(PvPSpieler.getX(),PvPSpieler.getY());
 		gegnerDarstellen(PvPGegner.getX(),PvPGegner.getY());
+		displayPlayerStats();
 		StdDraw.show();
 	}
 	

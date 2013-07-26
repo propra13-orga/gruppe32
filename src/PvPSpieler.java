@@ -12,7 +12,6 @@ public class PvPSpieler{
 	private static int x;
 	private static int y;
 	private static boolean schild;
-	private static boolean server;
 	public static void bewegen(int richtung){
 		
 	}
@@ -22,12 +21,18 @@ public class PvPSpieler{
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 			if(aktuelleHP<=0){
 				leben--;
-				respawn();
+				if (leben<1){
+					PvPMain.loose();
+				}
+				else{
+					respawn();
+				}
 			}
 			}
 		else{
 			schild=false;
 		}	
+		PvPDisplay.displayPlayerStats();
 	}
 	public static void schadenHeilen(int heilung){
 		if ((aktuelleHP+heilung)<=10){
@@ -36,6 +41,7 @@ public class PvPSpieler{
 		else{
 			aktuelleHP = 10;
 		}
+		PvPDisplay.displayPlayerStats();
 	}
 	public static void manaVerbrauchen(int verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
@@ -45,6 +51,7 @@ public class PvPSpieler{
 		else{
 			aktuellesMana = 0;
 		}
+		PvPDisplay.displayPlayerStats();
 	}
 	public static void manaReg(int reg){
 		if ((aktuellesMana+reg)<=10){
@@ -53,6 +60,7 @@ public class PvPSpieler{
 		else{
 			aktuellesMana = 10;
 		}
+		PvPDisplay.displayPlayerStats();
 	}
 	public static double getSchaden(){
 		return schaden;
@@ -141,26 +149,34 @@ public class PvPSpieler{
 				}
 				aktuelleFarbe=Spieler.ROT;
 			}
+			PvPDisplay.displayPlayerStats();
+			PvPDisplay.spielerDarstellen(x, y);
 		}
 	public static void schildZauber(){
 		if (schild==false&(aktuellesMana>=1)){
 			manaVerbrauchen(1);
 			schild = true ;
-			
+			PvPDisplay.spielerDarstellen(x, y);
 		}
 	}
 	public static void respawn(){
 		aktuelleHP=10;
 		aktuellesMana=10;
-			if(Spielfeld.getPvPWertBeiXY(1, 1)==Interface.BODEN){
+			if(x>9){
 				PvPDisplay.figurBewegen(x, y, 1, 1, true);
 				Spielfeld.setPvPWertBeiXY(1,1,Interface.FIGUR);	
+				x=1;
+				y=1;
 			}
 			else{
-				PvPDisplay.figurBewegen(x, y, 19, 14, true);
-				Spielfeld.setPvPWertBeiXY(19,14,Interface.FIGUR);
+				PvPDisplay.figurBewegen(x, y, 18, 11, true);
+				Spielfeld.setPvPWertBeiXY(18,11,Interface.FIGUR);
+				x=18;
+				y=11;
 		}		
 		Spielfeld.setPvPWertBeiXY(x,y,Interface.BODEN);
+		PvPDisplay.displayPlayerStats();
+		PvPMain.transfer();
 	}
 	
 }

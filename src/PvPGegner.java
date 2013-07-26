@@ -30,12 +30,17 @@ public class PvPGegner{
 	public static void setXY(int newX,int newY){
 		x=newX;
 		y=newY;
+		Spielfeld.setPvPWertBeiXY(newX,newY,Interface.BEIZIEL);
+	}
+	public static void setHP(double newHP){
+		aktuelleHP=newHP;
 	}
 	public static void setSchaden(double newSchaden){
 		schaden=newSchaden;
 	}
 	public static void setSchild(boolean newSchild){
 		schild=newSchild;
+		PvPDisplay.gegnerDarstellen(x, y);
 	}
 	public static void setFarbe(int newFarbe){
 		aktuelleFarbe=newFarbe;
@@ -46,7 +51,7 @@ public class PvPGegner{
 	
 	public static void schadenBekommen(double incSchaden){
 		if(schild==false){
-			aktuelleHP = Math.round((aktuelleHP-(incSchaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
+			aktuelleHP =  Math.round((aktuelleHP-(incSchaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
 					*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
 			
 			}
@@ -57,7 +62,7 @@ public class PvPGegner{
 	}
 	public static void moveTo(int newX,int newY){
 		Spielfeld.setPvPWertBeiXY(x,y,Interface.BODEN);
-		Spielfeld.setPvPWertBeiXY(newX,newY,Interface.FIGUR);
+		Spielfeld.setPvPWertBeiXY(newX,newY,Interface.BEIZIEL);
 		PvPDisplay.figurBewegen(x, y, newX, newY, false);
 		x=newX;
 		y=newY;

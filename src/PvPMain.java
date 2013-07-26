@@ -10,6 +10,7 @@ public class PvPMain{
 	public static Client client;
 	public static double damageTransfer;
 	public static int connectionCounter;
+	public static int checkLoose=0;
 	
 	public PvPMain(boolean server,Server newServer, Client newClient, int leben, double startSchaden, int startMana, int startFarbe){
 		connectionCounter=0;
@@ -33,6 +34,7 @@ public class PvPMain{
 		}
 		PvPDisplay.spielfeldDarstellen();
 		Interface.startPvp();
+		
 	}
 	
 	public static void aktion(String taste){
@@ -69,7 +71,7 @@ public class PvPMain{
 	}
 	
 	public static void transfer(){
-		double[] transferArray = new double[7];
+		double[] transferArray = new double[9];
 		transferArray[0]=PvPSpieler.getX();
 		transferArray[1]=PvPSpieler.getY();
 		transferArray[2]=PvPSpieler.getSchaden();
@@ -77,6 +79,8 @@ public class PvPMain{
 		transferArray[4]=PvPSpieler.getFarbe();
 		transferArray[5]=PvPSpieler.getSchildInt();
 		transferArray[6]=damageTransfer;
+		transferArray[7]=PvPSpieler.getHP();
+		transferArray[8]=checkLoose;
 		if(isServer){
 			myServer.transfer(transferArray);
 		}
@@ -86,20 +90,35 @@ public class PvPMain{
 		damageTransfer=0;
 	}
 	public static void recieve(double[] recieveArray){
-		int newX = (int)recieveArray[0];
-		int newY = (int)recieveArray[1];
-		PvPGegner.moveTo(newX, newY);
-		PvPGegner.setSchaden(recieveArray[2]);
-		PvPGegner.setRuestung(recieveArray[3]);
-		int newFarbe = (int)recieveArray[4];
-		PvPGegner.setFarbe(newFarbe);
-		if(recieveArray[5]==1){
-			PvPGegner.setSchild(true);
+		if(recieveArray[8]==1){
+			win();
 		}
 		else{
-			PvPGegner.setSchild(false);
+			int newX = (int)recieveArray[0];
+			int newY = (int)recieveArray[1];
+			PvPGegner.moveTo(newX, newY);
+			PvPGegner.setSchaden(recieveArray[2]);
+			PvPGegner.setRuestung(recieveArray[3]);
+			int newFarbe = (int)recieveArray[4];
+			PvPGegner.setFarbe(newFarbe);
+			PvPGegner.setHP(recieveArray[7]);
+			if(recieveArray[5]==1){
+				PvPGegner.setSchild(true);
+			}
+			else{
+				PvPGegner.setSchild(false);
+			}
+			if(recieveArray[6]>0){
+				PvPSpieler.schadenBekommen(recieveArray[6]);
+			}
 		}
-		PvPSpieler.schadenBekommen(recieveArray[6]);
 	}
-	
+	public static void loose(){
+		checkLoose=1;
+		transfer();
+		Interface.gameOver();
+	}
+	public static void win(){
+		Interface.sieg();
+	}
 }

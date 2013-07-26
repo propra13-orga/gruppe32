@@ -870,6 +870,7 @@ toCheckpoint=false;
 		 */
 		public static void gameOver(){
 			StdDraw.picture(BREITEBILDGROSS,HOEHEBILDGROSS, GAMEOVERIMG);
+			pvpSpielGestartet=false;
 			spielGestartet=false;
 			Aktion.feldervorstandhere = false;
 		}
@@ -884,7 +885,8 @@ toCheckpoint=false;
 		 */
 		public static void sieg(){
 			StdDraw.picture(BREITEBILDGROSS,HOEHEBILDGROSS, GEWONNENIMG);
-			spielGestartet=false;			
+			spielGestartet=false;	
+			pvpSpielGestartet=false;
 		}
 		
 	

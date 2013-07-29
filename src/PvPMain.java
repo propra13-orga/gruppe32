@@ -1,7 +1,11 @@
 import java.io.*;
 import java.net.*;
 
-
+/**
+ * 
+ * Klasse die das Netzwerkspiel starten, die Array-kommunikation ausführt und auswertet
+ *
+ */
 public class PvPMain{
 	//public static double[] transferArray = new double[7];
 	public static boolean aktiv;
@@ -12,6 +16,17 @@ public class PvPMain{
 	public static int connectionCounter;
 	public static int checkLoose=0;
 	
+	/**
+	 * 
+	 * Konstruktor
+	 * @param server boolean ob man server oder client ist
+	 * @param newServer Sever-intanz aus lobby
+	 * @param newClient Client-instanz aus lobby
+	 * @param leben start-leben
+	 * @param startSchaden start-schaden
+	 * @param startMana start-mana
+	 * @param startFarbe start-farbe
+	 */
 	public PvPMain(boolean server,Server newServer, Client newClient, int leben, double startSchaden, int startMana, int startFarbe){
 		connectionCounter=0;
 		isServer = server;
@@ -37,6 +52,10 @@ public class PvPMain{
 		
 	}
 	
+	/**
+	 * initiert aktion in PvPAktion abhängig von gedrückter taste
+	 * @param taste gedrückte taste als String
+	 */
 	public static void aktion(String taste){
 		
 			if (taste=="w"){
@@ -70,6 +89,9 @@ public class PvPMain{
 		
 	}
 	
+	/**
+	 * leitet die wichtigen werte über netzwerkverbindung weiter
+	 */
 	public static void transfer(){
 		double[] transferArray = new double[9];
 		transferArray[0]=PvPSpieler.getX();
@@ -89,6 +111,11 @@ public class PvPMain{
 		}
 		damageTransfer=0;
 	}
+	
+	/**
+	 * verwertet die werte in recieveArray
+	 * @param recieveArray array mit den wichtigen werten, die über netzwerkverbindung weitergegeben werden
+	 */
 	public static void recieve(double[] recieveArray){
 		if(recieveArray[8]==1){
 			win();
@@ -113,11 +140,19 @@ public class PvPMain{
 			}
 		}
 	}
+	
+	/**
+	 * lässt den spieler verlieren
+	 */
 	public static void loose(){
 		checkLoose=1;
 		transfer();
 		Interface.gameOver();
 	}
+	
+	/**
+	 * lässt den spieler gewinnen
+	 */
 	public static void win(){
 		Interface.sieg();
 	}

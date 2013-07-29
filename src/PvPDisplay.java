@@ -1,10 +1,22 @@
+/**
+ * 
+ * klasse die für alle anzeigen im netzwerkspiel zuständig ist
+ *
+ */
 public class PvPDisplay{
 	
 	private static int counter;
 	private static int spalte;
 	private static int reihe;
 	
-	
+	/**
+	 * bewegt eine figur von vonX,vonY nach nachX,nachY
+	 * @param vonX alter x wert
+	 * @param vonY alter y wert
+	 * @param nachX neuer x wert
+	 * @param nachY neuer y wert
+	 * @param spieler boolean für figur-typ
+	 */
 	public static void figurBewegen(int vonX,int vonY,int nachX,int nachY, boolean spieler){
 		StdDraw.picture(Interface.PIC1+Interface.PIC2*vonX,Interface.PIC1+Interface.PIC2*vonY, Interface.BODENIMG);
 		if (spieler){
@@ -14,6 +26,12 @@ public class PvPDisplay{
 			gegnerDarstellen(nachX,nachY);
 		}
 	}
+	
+	/**
+	 * stellt den spieler bei x,y dar
+	 * @param x X-Koordinate
+	 * @param y Y-Koordinate
+	 */
 	public static void spielerDarstellen(int x, int y){
 		if (PvPSpieler.getFarbe() == Interface.GELB){
 			if  ((!PvPSpieler.getSchild())){
@@ -46,6 +64,12 @@ public class PvPDisplay{
 			
 		}
 	}
+	
+	/**
+	 * stellt den gegner bei x,y dar
+	 * @param x X-Koordinate
+	 * @param y Y-Koordinate
+	 */
 	public static void gegnerDarstellen(int x, int y){
 		if (PvPGegner.getFarbe() == Interface.GELB){
 			if  ((!PvPGegner.getSchild())){
@@ -99,9 +123,6 @@ public class PvPDisplay{
 	 * @param manafaktor aktueller Manawert
 	 * @param hp Wert der Lebenspunkte, die die aktuelle Ruestung vorgibt
 	 * @param mana Manawert (Zauber), den die aktuelle Ruestung vorgibt
-	 * @param muenzen bisher gesammelte Muenz-Anzahl
-	 * @param schluessel bisher gesammelte Schluessel-Anzahl
-	 * @param erfahrungspunkte gesammelte Erfahrungspunkte des Spielers
 	 */
 	public static void displayPlayerStats(){
 		StdDraw.setPenColor(StdDraw.WHITE);
@@ -174,6 +195,11 @@ public class PvPDisplay{
 			
 		}
 	}
+	
+	/**
+	 * 
+	 *stellt das spielfeld dar
+	 */
 	public static void spielfeldDarstellen(){
 		//StdDraw.show(0);
 		StdDraw.clear();

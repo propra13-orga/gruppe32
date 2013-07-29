@@ -1,4 +1,9 @@
-	
+
+/**
+ * Klasse zur speicherung und verarbeitung der Spielerwerte im PvP
+ * 
+ */
+
 public class PvPSpieler{
 	
 
@@ -12,9 +17,12 @@ public class PvPSpieler{
 	private static int x;
 	private static int y;
 	private static boolean schild;
-	public static void bewegen(int richtung){
-		
-	}
+
+	/**
+	 * Lässt den spieler Schaden erleiden
+	 * @param incSchaden erlittener Schaden
+	 * 
+	 */
 	public static void schadenBekommen(double incSchaden){
 		if(schild==false){
 			aktuelleHP = Math.round((aktuelleHP-(incSchaden*((Interface.EINHUNDERT-ruestung)/Interface.EINHUNDERT)))
@@ -34,6 +42,12 @@ public class PvPSpieler{
 		}	
 		PvPDisplay.displayPlayerStats();
 	}
+	
+	/**
+	 * Lässt den spieler erlittenen Schaden heilem
+	 * @param heilung erhaltene heilung
+	 * 
+	 */
 	public static void schadenHeilen(int heilung){
 		if ((aktuelleHP+heilung)<=10){
 			aktuelleHP = Math.round((aktuelleHP+heilung)*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
@@ -43,6 +57,12 @@ public class PvPSpieler{
 		}
 		PvPDisplay.displayPlayerStats();
 	}
+	
+	/**
+	 * Lässt den spieler Mana verbrauchen
+	 * @param verbrauch verbrauchtes mana
+	 * 
+	 */
 	public static void manaVerbrauchen(int verbrauch){
 		if ((aktuellesMana-(verbrauch*manaFaktor))>=0){
 			aktuellesMana = Math.round((aktuellesMana-(verbrauch*manaFaktor))
@@ -53,6 +73,12 @@ public class PvPSpieler{
 		}
 		PvPDisplay.displayPlayerStats();
 	}
+	
+	/**
+	 * Lässt den spieler Mana regenerieren
+	 * @param reg regeneriertes mana
+	 * 
+	 */
 	public static void manaReg(int reg){
 		if ((aktuellesMana+reg)<=10){
 			aktuellesMana = Math.round((aktuellesMana+reg)*(double)Interface.EINHUNDERT)/(double)Interface.EINHUNDERT;
@@ -62,30 +88,84 @@ public class PvPSpieler{
 		}
 		PvPDisplay.displayPlayerStats();
 	}
+	
+	/**
+	 *	Gibt den aktuellen Schadenswert aus 
+	 * 	@return schaden
+	 * 
+	 */
 	public static double getSchaden(){
 		return schaden;
 	}
+	
+	/**
+	 *	Gibt den aktuellen X-wert aus 
+	 * 	@return x
+	 * 
+	 */
 	public static int getX(){
 		return x;
 	}
+	
+	/**
+	 *	Gibt den aktuellen Y-wert aus 
+	 * 	@return y
+	 * 
+	 */
 	public static int getY(){
 		return y;
 	}
+	
+	/**
+	 *	Gibt die aktuellen HP aus 
+	 * 	@return aktuelleHP
+	 * 
+	 */
 	public static double getHP(){
 		return aktuelleHP;
 	}
+	
+	/**
+	 *	Gibt das aktuelle mana aus 
+	 * 	@return aktuellesMana
+	 * 
+	 */
 	public static double getMana(){
 		return aktuellesMana;
 	}
+	
+	/**
+	 *	Gibt den aktuellen Ruestungswert aus 
+	 * 	@return ruestung
+	 * 
+	 */
 	public static double getRuestung(){
 		return ruestung;
 	}
+	
+	/**
+	 *	Gibt den aktuellen manafaktor aus 
+	 * 	@return manaFaktor
+	 * 
+	 */
 	public static double getManafaktor(){
 		return manaFaktor;
 	}
+	
+	/**
+	 *	Gibt aus ob das Schild aktiv is (als boolean) 
+	 * 	@return schild
+	 * 
+	 */
 	public static boolean getSchild(){
 		return schild;
 	}
+	
+	/**
+	 *	Gibt aus ob das Schild aktiv ist (als int 0|1) 
+	 * 	@return 0|1
+	 * 
+	 */
 	public static int getSchildInt(){
 		 if(schild){
 			 return 1;
@@ -94,22 +174,59 @@ public class PvPSpieler{
 			 return 0;
 		 }
 	}
+	
+	/**
+	 *	Gibt die aktuelle Farbe 
+	 * 	@return aktuelleFarbe
+	 * 
+	 */
 	public static int getFarbe(){
 		return aktuelleFarbe;
 	}
+	
+	/**
+	 *	Gibt die aktuellen Leben aus 
+	 * 	@return leben
+	 * 
+	 */
 	public static int getLeben(){
 		return leben;
 	}
+	
+	/**
+	 *	Setzt den x und y wert auf newX und newY 
+	 * 	@param newX neuer X-wert als int
+	 *  @param newY neuer Y-wert als int
+	 * 
+	 */
 	public static void setXY(int newX,int newY){
 		x=newX;
 		y=newY;
 	}
+	
+	/**
+	 *	setzt die aktuellen leben auf newLeben
+	 * 	@param newLeben neue lebensanzahl als int
+	 * 
+	 */
 	public static void setLeben(int newLeben){
 		leben=newLeben;
 	}
+	
+	/**
+	 *	setzt den aktuelle schaden auf newSchaden
+	 * 	@param newSchaden neuer schaden als double
+	 * 
+	 */
 	public static void setSchaden(double newSchaden){
 		schaden=newSchaden;
 	}
+	
+	/**
+	 *	setzt die aktuelle farbe auf newFarbe
+	 * 	@param newFarbe neue Farbe als int
+	 * 
+	 */
 	public static void setFarbe(int farbe){
 			
 			if (farbe == Spieler.GELB){
@@ -152,6 +269,11 @@ public class PvPSpieler{
 			PvPDisplay.displayPlayerStats();
 			PvPDisplay.spielerDarstellen(x, y);
 		}
+	
+	/**
+	 *	Wirkt den Schildzauber
+	 * 
+	 */
 	public static void schildZauber(){
 		if (schild==false&(aktuellesMana>=1)){
 			manaVerbrauchen(1);
@@ -159,6 +281,11 @@ public class PvPSpieler{
 			PvPDisplay.spielerDarstellen(x, y);
 		}
 	}
+	
+	/**
+	 * Respawnt den Spieler
+	 *  
+	 */
 	public static void respawn(){
 		aktuelleHP=10;
 		aktuellesMana=10;

@@ -1,8 +1,19 @@
+/**
+ * 
+ * klasse für die verarbeitung der tasteneingabe
+ *
+ */
 public class PvPAktion{
 	
 	public static int newFigurX;
 	public static int newFigurY;
 	
+	/**
+	 * leitet die bewegung des spieler von figurX,figurY in eine bestimmte Richtung
+	 * @param richtung richtung als int
+	 * @param figurX ausgangs X-Koordinate
+	 * @param figurY ausgangs Y-Koordinate
+	 */
 	public static void figurBewegen(int richtung, int figurX, int figurY){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
@@ -55,6 +66,12 @@ public class PvPAktion{
 		}
 	}
 	
+	/**
+	 * leitet eine von figurX,figurY in eine bestimmt richtung ein
+	 * @param richtung schadens-ausrichtung
+	 * @param figurX ausgangs X-Koordinate
+	 * @param figurY ausgangs Y-Koordinate
+	 */
 	public static void figurAttack(int richtung, int figurX, int figurY){
 		if (richtung == Interface.RECHTS){ 
 			newFigurX=figurX+1;
